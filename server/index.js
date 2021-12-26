@@ -1,5 +1,5 @@
 const app = require('./app');
-const { connectToDB } = require('./db/connectToDB');
+const { connectToDB } = require('./db/connect');
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
