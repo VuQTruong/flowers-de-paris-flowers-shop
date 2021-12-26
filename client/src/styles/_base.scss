@@ -1,0 +1,61 @@
+// Format CSS
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline-color: $clr-primary;
+}
+
+body {
+  font-family: $ff-primary;
+  font-size: 1rem;
+  color: $clr-txt-primary;
+  line-height: 1.6;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+a {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+// Media Queries
+@media (min-width: $screen-md) {
+  body {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: $screen-lg) {
+  body::-webkit-scrollbar {
+    display: block;
+    width: 0.75rem;
+  }
+
+  body::-webkit-scrollbar-track {
+    background: #212121;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    border-radius: 0.5rem;
+    background: $clr-primary-400;
+  }
+}
