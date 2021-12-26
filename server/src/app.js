@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 // Health Check
 app.get('/healthcheck', (req, res) => {
   return res.status(200).json({
-    message: 'Ok',
+    message: 'ok',
   });
 });
 
