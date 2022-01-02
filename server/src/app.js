@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 
 const AppError = require('./errors/app-error');
-const { errorHandler } = require('./errors/error-handler');
+const { errorHandler } = require('./middlewares/error-handler');
 
 // Middlewares
 app.use(express.json());
