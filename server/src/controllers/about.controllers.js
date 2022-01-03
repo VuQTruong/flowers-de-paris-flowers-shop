@@ -3,10 +3,10 @@ const About = require('../models/about.model');
 const catchAsync = require('../utilities/catch-async.util');
 
 exports.getAbout = catchAsync(async (req, res, next) => {
-  const about = await About.findOne({ _id: req.body.id });
+  const about = await About.findOne();
 
   if (!about) {
-    return next(AppError.notFound('Cannot find the content with provided id'));
+    return next(AppError.notFound('There is no About content'));
   }
 
   return res.status(200).json({
@@ -29,16 +29,12 @@ exports.createAbout = catchAsync(async (req, res, next) => {
 });
 
 exports.updateAbout = catchAsync(async (req, res, next) => {
-  const updatedAbout = await About.findByIdAndUpdate(
-    req.body.id,
-    {
-      content: req.body.content,
-    },
-    {
-      new: true,
-      runValidators: true,
-    }
-  );
+  const { id: aboutId } = req.params;
+
+  const updatedAbout = await About.findByIdAndUpdate(aboutId, req.body, {
+    new: true,
+    runValidators: true,
+  });
 
   return res.status(200).json({
     status: 'success',

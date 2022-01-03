@@ -2,12 +2,15 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 
+const morgan = require('morgan');
+
 const AppError = require('./errors/app-error');
 const { errorHandler } = require('./middlewares/error-handler');
 
 const aboutRouter = require('./routes/about.routes');
 
 // Middlewares
+app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
