@@ -5,6 +5,8 @@ const app = express();
 const AppError = require('./errors/app-error');
 const { errorHandler } = require('./middlewares/error-handler');
 
+const aboutRouter = require('./routes/about.routes');
+
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -17,6 +19,7 @@ app.get('/healthcheck', (req, res) => {
 });
 
 // Routes
+app.use('/api/v1/about', aboutRouter);
 
 // Unhandle Routes
 app.all('*', (req, res, next) => {

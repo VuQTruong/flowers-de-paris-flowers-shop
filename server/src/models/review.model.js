@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Product = require('./product.model');
-const { roundHalf } = require('../utilities/helpers.utils');
+const { roundHalf } = require('../utilities/helpers.util');
 
 const reviewSchema = new mongoose.Schema(
   {

@@ -8,6 +8,7 @@ const categorySchema = new mongoose.Schema(
       trim: true,
       unique: true,
     },
+    slug: String,
   },
   {
     timestamps: true,
