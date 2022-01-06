@@ -5,17 +5,14 @@ const userSchema = new mongoose.Schema(
   {
     email: {
       type: String,
-      required: true,
       unique: true,
     },
     phone: {
       type: String,
-      required: true,
       unique: true,
     },
     password: {
       type: String,
-      required: true,
     },
     isAdmin: {
       type: Boolean,
@@ -35,6 +32,8 @@ const userSchema = new mongoose.Schema(
         ref: 'Product',
       },
     ],
+    googleId: String,
+    facebookId: String,
   },
   {
     timestamps: true,

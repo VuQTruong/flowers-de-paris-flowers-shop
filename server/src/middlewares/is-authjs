@@ -1,0 +1,11 @@
+const passport = require('passport');
+
+const isAuth = (req, res, next) => {
+  if (req.cookies['jwt']) {
+    return passport.authenticate('jwt', { session: false });
+  } else {
+    next();
+  }
+};
+
+module.exports = isAuth;

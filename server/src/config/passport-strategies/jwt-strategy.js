@@ -24,10 +24,10 @@ const strategy = new JwtStrategy(options, async (payload, done) => {
     const user = await User.findOne({ _id: payload._id });
 
     if (user) {
-      // Infomation is attached to req.user in here
-
+      // If found, send the user object to the next step to attach to req.user
       return done(null, user);
     } else {
+      // If NOT found, reject with status code 401 - Unauthorized
       return done(null, false);
     }
   } catch (error) {
