@@ -2,8 +2,14 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/signout', (req, res, next) => {
-  // req.logOut();
-  req.session = null;
+  // Sign out OAuth
+  req.logOut();
+  // req.session = null;
+
+  // Sign out JWT Auth
+  if (req.cookies['jwt']) {
+    res.clearCookie('jwt');
+  }
 
   res.status(200).json({
     status: 'success',

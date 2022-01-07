@@ -6,8 +6,8 @@ const router = express.Router();
 
 router.get(
   '/favourites',
-  isOAuth,
   isAuth,
+  isOAuth,
   catchAsync(async (req, res, next) => {
     return res.status(200).json({
       status: 'success',
