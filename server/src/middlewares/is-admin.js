@@ -6,6 +6,6 @@ exports.isAdmin = (req, res, next) => {
   if (isAdmin) {
     next();
   } else {
-    next(AppError.unauthorized('You are not allowed to access this resource'));
+    next(AppError.forbidden('You are not allowed to access this resource'));
   }
 };

@@ -5,6 +5,10 @@ function App() {
     window.open('http://localhost:5000/api/auth/google', '_self');
   };
 
+  const facebookSignIn = () => {
+    window.open('http://localhost:5000/api/auth/facebook', '_self');
+  };
+
   const emailSignIn = async () => {
     const data = await axios
       .post(
@@ -49,6 +53,9 @@ function App() {
       <h1>Flowers de Paris</h1>
       <div>
         <button onClick={googleSignIn}>Sign in with Google</button>
+      </div>
+      <div>
+        <button onClick={facebookSignIn}>Sign in with Facebook</button>
       </div>
       <div>
         <button onClick={emailSignIn}>Sign in with Email</button>

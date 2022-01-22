@@ -24,13 +24,14 @@ const strategy = new GoogleStrategy(
     } else {
       // If no, insert new user to the databases
       const userInfo = {
-        email: profile.emails[0].value,
         isAdmin: false,
         name: profile.displayName,
         googleId: profile.id,
       };
 
-      const newUser = await User.create(userInfo);
+      const newUser = await User.create(userInfo).catch((error) =>
+        done(error, null)
+      );
 
       // Pass user data to Serialization step
       done(null, newUser);

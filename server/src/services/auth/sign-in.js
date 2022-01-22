@@ -12,7 +12,7 @@ router.post(
     const { username, password } = req.body;
     let userInfo;
 
-    // Check for
+    // Check if the username is exist or not
     if (isNaN(username)) {
       userInfo = await User.findOne({ email: username });
     } else {
@@ -20,10 +20,13 @@ router.post(
     }
 
     if (userInfo) {
+      console.log(userInfo);
+
       if (bcrypt.compareSync(password, userInfo.password)) {
         const token = signJWT(
           {
             _id: userInfo._id,
+            // ?Consider ommiting the name and isAdmin if they are not used
             name: userInfo.name,
             isAdmin: userInfo.isAdmin,
           },

@@ -4,7 +4,7 @@ const User = require('../../models/user.model');
 const catchAsync = require('../../utilities/catch-async.util');
 const { signJWT } = require('../../utilities/jwt.util');
 const { body } = require('express-validator');
-const { validateRequest } = require('../../middlewares/validate-request');
+const validateRequest = require('../../middlewares/validate-request');
 const router = express.Router();
 
 const validations = [

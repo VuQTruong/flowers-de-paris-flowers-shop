@@ -11,10 +11,12 @@ router.get('/signout', (req, res, next) => {
     res.clearCookie('jwt');
   }
 
-  res.status(200).json({
-    status: 'success',
-    message: 'You are signed out',
-  });
+  // res.status(200).json({
+  //   status: 'success',
+  //   message: 'You are signed out',
+  // });
+
+  res.redirect(process.env.CLIENT_URL);
 });
 
 module.exports = router;
