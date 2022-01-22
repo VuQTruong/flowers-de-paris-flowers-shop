@@ -3,6 +3,8 @@ const { body } = require('express-validator');
 const validateRequest = require('../../middlewares/validate-request');
 const About = require('../../models/about.model');
 const catchAsync = require('../../utilities/catch-async.util');
+const isAuth = require('../../middlewares/is-auth');
+const isAdmin = require('../../middlewares/is-admin');
 const router = express.Router();
 
 const validations = [
@@ -11,6 +13,8 @@ const validations = [
 
 router.post(
   '/',
+  isAuth,
+  isAdmin,
   validations,
   validateRequest,
   catchAsync(async (req, res, next) => {

@@ -12,7 +12,7 @@ router.get('/verify', isAuth, (req, res, next) => {
   }
 
   return res.status(401).json({
-    message: 'fail',
+    status: 'fail',
     data: null,
   });
 });

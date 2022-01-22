@@ -1,5 +1,7 @@
 const express = require('express');
 const { body } = require('express-validator');
+const isAdmin = require('../../middlewares/is-admin');
+const isAuth = require('../../middlewares/is-auth');
 const validateRequest = require('../../middlewares/validate-request');
 const About = require('../../models/about.model');
 const catchAsync = require('../../utilities/catch-async.util');
@@ -11,6 +13,8 @@ const validations = [
 
 router.patch(
   '/:id',
+  isAuth,
+  isAdmin,
   validations,
   validateRequest,
   catchAsync(async (req, res, next) => {

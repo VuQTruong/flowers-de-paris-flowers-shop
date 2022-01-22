@@ -1,6 +1,6 @@
 const AppError = require('../errors/app-error');
 
-exports.isAdmin = (req, res, next) => {
+const isAdmin = (req, res, next) => {
   const { isAdmin } = req.user;
 
   if (isAdmin) {
@@ -9,3 +9,5 @@ exports.isAdmin = (req, res, next) => {
     next(AppError.forbidden('You are not allowed to access this resource'));
   }
 };
+
+module.exports = isAdmin;
