@@ -4,16 +4,16 @@ const catchAsync = require('../../utilities/catch-async.util');
 const router = express.Router();
 
 router.get(
-  '/:id',
+  '/',
   catchAsync(async (req, res, next) => {
-    const contactId = req.params.id;
-    const contact = await Contact.findById(contactId);
+    const contacts = await Contact.find();
 
     return res.status(200).json({
       status: 'success',
-      message: 'Retrieve Contact successfully',
+      message: 'Retrieve all Contacts',
       data: {
-        contact,
+        results: contacts.length,
+        contacts,
       },
     });
   })

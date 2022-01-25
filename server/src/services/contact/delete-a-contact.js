@@ -1,20 +1,21 @@
 const express = require('express');
+const isAdmin = require('../../middlewares/is-admin');
+const isAuth = require('../../middlewares/is-auth');
 const Contact = require('../../models/contact.model');
 const catchAsync = require('../../utilities/catch-async.util');
 const router = express.Router();
 
-router.get(
+router.delete(
   '/:id',
+  isAuth,
+  isAdmin,
   catchAsync(async (req, res, next) => {
     const contactId = req.params.id;
-    const contact = await Contact.findById(contactId);
+    await Contact.findByIdAndDelete(contactId);
 
     return res.status(200).json({
       status: 'success',
-      message: 'Retrieve Contact successfully',
-      data: {
-        contact,
-      },
+      message: 'Contact deleted successfully',
     });
   })
 );

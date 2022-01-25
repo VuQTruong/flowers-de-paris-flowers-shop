@@ -51,9 +51,9 @@ app.get('/healthcheck', (req, res) => {
 /* Routes */
 app.use('/api/about', aboutRouter);
 app.use('/api/auth', authRouter);
-app.use('/api/category', categoryRouter);
-app.use('/api/contact', contactRouter);
-app.use('/api/user', userRouter);
+app.use('/api/categories', categoryRouter);
+app.use('/api/contacts', contactRouter);
+app.use('/api/users', userRouter);
 
 /* Unhandle Routes */
 app.all('*', (req, res, next) => {
