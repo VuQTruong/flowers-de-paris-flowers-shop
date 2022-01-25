@@ -22,6 +22,7 @@ router.post(
 
     return res.status(201).json({
       status: 'success',
+      message: 'New About Us content created successfully',
       data: {
         about,
       },

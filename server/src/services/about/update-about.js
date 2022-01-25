@@ -27,6 +27,7 @@ router.patch(
 
     return res.status(200).json({
       status: 'success',
+      message: 'About Us content is updated',
       data: {
         about: updatedAbout,
       },

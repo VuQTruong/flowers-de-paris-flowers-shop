@@ -7,6 +7,7 @@ exports.signJWT = (payload, expiresIn = '1d') => {
   });
 };
 
+// *Since JWT is implement by Passport.js, we don't need this function. jwt-strategy comes with this
 exports.verifyJWT = (token) => {
   return jwt.verify(token, process.env.PUBLIC_KEY);
 };
