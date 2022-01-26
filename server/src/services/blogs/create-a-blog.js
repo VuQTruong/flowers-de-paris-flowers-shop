@@ -1,5 +1,5 @@
 const express = require('express');
-const { body } = require('express-validator');
+const { body, oneOf, check } = require('express-validator');
 const isAuth = require('../../middlewares/is-auth');
 const isAdmin = require('../../middlewares/is-admin');
 const catchAsync = require('../../utilities/catch-async.util');
@@ -8,6 +8,14 @@ const Blog = require('../../models/blog.model');
 const router = express.Router();
 
 const validations = [
+  oneOf([
+    check('title').exists(),
+    check('author').exists(),
+    check('tags').exists(),
+    check('summary').exists(),
+    check('content').exists(),
+    check('coverImage').exists(),
+  ]),
   body('title').isString().notEmpty().withMessage('Title is missing'),
   body('author').isString().notEmpty().withMessage('Author is missing'),
   body('tags').isArray(),
