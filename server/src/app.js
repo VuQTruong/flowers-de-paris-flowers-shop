@@ -11,9 +11,10 @@ const { errorHandler } = require('./middlewares/error-handler');
 
 const aboutRouter = require('./services/about');
 const authRouter = require('./services/auth');
-const categoryRouter = require('./services/category');
-const contactRouter = require('./services/contact');
-const userRouter = require('./services/user');
+const categoryRouter = require('./services/categories');
+const contactRouter = require('./services/contacts');
+const userRouter = require('./services/users');
+const blogRouter = require('./services/blogs');
 
 const app = express();
 
@@ -51,6 +52,7 @@ app.get('/healthcheck', (req, res) => {
 /* Routes */
 app.use('/api/about', aboutRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/blogs', blogRouter);
 app.use('/api/categories', categoryRouter);
 app.use('/api/contacts', contactRouter);
 app.use('/api/users', userRouter);

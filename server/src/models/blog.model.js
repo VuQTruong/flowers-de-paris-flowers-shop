@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify');
 
 const blogSchema = new mongoose.Schema(
   {
@@ -14,6 +15,7 @@ const blogSchema = new mongoose.Schema(
       required: true,
     },
     coverImage: String,
+    slug: String,
     views: {
       type: Number,
       default: 0,
@@ -32,6 +34,20 @@ const blogSchema = new mongoose.Schema(
     },
   }
 );
+
+blogSchema.pre('save', function (next) {
+  if (this.isModified('title')) {
+    const slug = slugify(this.get('title'), {
+      trim: true,
+      lower: true,
+      locale: 'vi',
+    });
+
+    this.set('slug', slug);
+  }
+
+  next();
+});
 
 const Blog = mongoose.model('Blog', blogSchema);
 
