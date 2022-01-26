@@ -1,6 +1,6 @@
 const express = require('express');
 const slugify = require('slugify');
-const { body } = require('express-validator');
+const { body, oneOf, check } = require('express-validator');
 const isAuth = require('../../middlewares/is-auth');
 const isAdmin = require('../../middlewares/is-admin');
 const catchAsync = require('../../utilities/catch-async.util');
@@ -9,6 +9,7 @@ const Category = require('../../models/category.model');
 const router = express.Router();
 
 const validations = [
+  oneOf([check('name').exists()]),
   body('name').isString().notEmpty().withMessage('Category name is missing'),
 ];
 
