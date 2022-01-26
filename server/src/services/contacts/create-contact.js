@@ -3,11 +3,17 @@ const isAuth = require('../../middlewares/is-auth');
 const isAdmin = require('../../middlewares/is-admin');
 const catchAsync = require('../../utilities/catch-async.util');
 const validateRequest = require('../../middlewares/validate-request');
-const { body } = require('express-validator');
+const { body, oneOf, check } = require('express-validator');
 const Contact = require('../../models/contact.model');
 const router = express.Router();
 
 const validations = [
+  oneOf([
+    check('name').exists(),
+    check('description').exists(),
+    check('phone').exists(),
+    check('address').exists(),
+  ]),
   body('name')
     .isString()
     .notEmpty()

@@ -1,5 +1,5 @@
 const express = require('express');
-const { body } = require('express-validator');
+const { body, oneOf, check } = require('express-validator');
 const isAdmin = require('../../middlewares/is-admin');
 const isAuth = require('../../middlewares/is-auth');
 const validateRequest = require('../../middlewares/validate-request');
@@ -8,6 +8,12 @@ const catchAsync = require('../../utilities/catch-async.util');
 const router = express.Router();
 
 const validations = [
+  oneOf([
+    check('name').exists(),
+    check('description').exists(),
+    check('phone').exists(),
+    check('address').exists(),
+  ]),
   body('name').isString().optional(),
   body('description').isString().optional(),
   body('phone').isString().optional(),
