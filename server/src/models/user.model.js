@@ -24,8 +24,14 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
     address: String,
-    gender: String,
-    dateOfBirth: Date,
+    gender: {
+      type: String,
+      default: 'Unknown',
+    },
+    dateOfBirth: {
+      type: Date,
+      default: Date.now(),
+    },
     favourites: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -34,6 +40,10 @@ const userSchema = new mongoose.Schema(
     ],
     googleId: String,
     facebookId: String,
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   {
     timestamps: true,
@@ -47,10 +57,17 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.pre('save', function (next) {
-  if (this.isModified('password')) {
-    const hashed = bcrypt.hashSync(this.get('password'), 10);
-    this.set('password', hashed);
+  const hashed = bcrypt.hashSync(this.get('password'), 10);
+  this.set('password', hashed);
+  next();
+});
+
+userSchema.pre('findOneAndUpdate', function (next) {
+  if (!this._update.password) {
+    return next();
   }
+
+  this._update.password = bcrypt.hashSync(this._update.password, 10);
   next();
 });
 

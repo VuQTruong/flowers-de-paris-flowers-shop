@@ -25,6 +25,7 @@ const strategy = new JwtStrategy(options, async (payload, done) => {
 
     if (user) {
       // If found, send the user object to the next step to attach to req.user
+      user.loginType = 'jwt';
       return done(null, user);
     } else {
       // If NOT found, reject with status code 401 - Unauthorized

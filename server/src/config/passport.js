@@ -23,6 +23,7 @@ module.exports = (passport) => {
     });
 
     if (user) {
+      user.loginType = 'oauth';
       return done(null, user);
     }
   });
