@@ -20,8 +20,6 @@ router.post(
     }
 
     if (userInfo) {
-      console.log(userInfo);
-
       if (bcrypt.compareSync(password, userInfo.password)) {
         const token = signJWT(
           {
