@@ -28,30 +28,6 @@ const reviewSchema = new mongoose.Schema(
   }
 );
 
-reviewSchema.pre('remove', async function (next) {
-  const product = await Product.findById(this.product);
-
-  // Remove the review in the product's reviews list
-  product.reviews = product.reviews.filter(
-    (review) => review._id !== req.params.reviewId
-  );
-
-  // Update the product rating
-  if (product.reviews.length !== 0) {
-    const totalRating = product.reviews.reduce(
-      (accumulator, review) => review.rating + accumulator,
-      0
-    );
-    product.rating = roundHalf(totalRating / product.reviews.length);
-  } else {
-    product.rating = 0;
-  }
-
-  await product.save();
-
-  next();
-});
-
 const Review = mongoose.model('Review', reviewSchema);
 
 module.exports = Review;

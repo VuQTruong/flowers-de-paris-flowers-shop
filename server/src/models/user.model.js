@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema(
       type: Date,
       default: Date.now(),
     },
-    favourites: [
+    favorites: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product',
