@@ -14,7 +14,9 @@ router.get(
   validateRequest,
   catchAsync(async (req, res, next) => {
     const productId = req.params.id;
-    const product = await Product.findById(productId).populate('category');
+    const product = await Product.findById(productId).populate(
+      'category reviews'
+    );
     product.views += 1;
     product.save();
 

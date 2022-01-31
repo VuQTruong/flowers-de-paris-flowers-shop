@@ -11,7 +11,8 @@ router.delete(
   isAdmin,
   catchAsync(async (req, res, next) => {
     const productId = req.params.id;
-    await Product.findByIdAndDelete(productId);
+    const product = await Product.findById(productId);
+    product.remove();
 
     return res.status(200).json({
       status: 'success',

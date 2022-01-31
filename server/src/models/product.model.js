@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Review = require('./review.model');
 const slugify = require('slugify');
 const { roundHalf } = require('../utilities/helpers.util');
 
@@ -160,7 +161,17 @@ productSchema.pre('save', async function (next) {
 
 // !cascade delete reviews
 productSchema.pre('remove', async function (next) {
-  next();
+  try {
+    await Review.deleteMany({
+      _id: {
+        $in: this.reviews,
+      },
+    });
+
+    next();
+  } catch (error) {
+    next(error);
+  }
 });
 
 // todo: cascade delete product in user's favorites
