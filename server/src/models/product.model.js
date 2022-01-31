@@ -56,6 +56,10 @@ const productSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    views: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     timestamps: true,
@@ -154,7 +158,10 @@ productSchema.pre('save', async function (next) {
   next();
 });
 
-// todo: cascade delete reviews
+// !cascade delete reviews
+productSchema.pre('remove', async function (next) {
+  next();
+});
 
 // todo: cascade delete product in user's favorites
 

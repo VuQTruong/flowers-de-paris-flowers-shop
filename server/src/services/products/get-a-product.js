@@ -15,6 +15,8 @@ router.get(
   catchAsync(async (req, res, next) => {
     const productId = req.params.id;
     const product = await Product.findById(productId).populate('category');
+    product.views += 1;
+    product.save();
 
     return res.status(200).json({
       status: 'success',
