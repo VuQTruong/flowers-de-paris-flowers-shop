@@ -11,11 +11,13 @@ router.delete(
   isAdmin,
   catchAsync(async (req, res, next) => {
     const categoryId = req.params.id;
-    await Category.findByIdAndDelete(categoryId);
+    const category = await Category.findById(categoryId);
+    category.remove();
 
     return res.status(200).json({
       status: 'success',
       message: 'Category deleted successfully',
+      data: null,
     });
   })
 );

@@ -6,6 +6,7 @@ const validateFields = require('../../../middlewares/validate-fields');
 const validateRequest = require('../../../middlewares/validate-request');
 const catchAsync = require('../../../utilities/catch-async.util');
 const Product = require('../../../models/product.model');
+const Category = require('../../../models/category.model');
 const router = express.Router();
 
 const requireFields = [
@@ -63,6 +64,11 @@ router.post(
   validateRequest,
   catchAsync(async (req, res, next) => {
     const newProduct = await Product.create(req.body);
+
+    // !wire up relationship with related category
+    const category = await Category.findById(req.body.category);
+    category.products.unshift(newProduct._id);
+    await category.save();
 
     return res.status(201).json({
       status: 'success',

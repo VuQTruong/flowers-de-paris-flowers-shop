@@ -20,19 +20,7 @@ router.post(
   validations,
   validateRequest,
   catchAsync(async (req, res, next) => {
-    const { name } = req.body;
-    const slug = slugify(name, {
-      lower: true,
-      trim: true,
-      locale: 'vi',
-    });
-
-    const categoryInfo = {
-      name,
-      slug,
-    };
-
-    const newCategory = await Category.create(categoryInfo);
+    const newCategory = await Category.create(req.body);
 
     return res.status(201).json({
       status: 'success',
