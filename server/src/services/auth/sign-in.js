@@ -20,6 +20,15 @@ router.post(
     }
 
     if (userInfo) {
+      // !Check if the user is blocked or not
+      if (!userInfo.isActive) {
+        return next(
+          AppError.unauthorized(
+            'Unable to sign in! Your account is unactivated!'
+          )
+        );
+      }
+
       if (bcrypt.compareSync(password, userInfo.password)) {
         const token = signJWT(
           {
