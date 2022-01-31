@@ -14,7 +14,7 @@ const requireFields = [
   'images',
   'coverImage',
   'price',
-  'discountPrice',
+  'discountAmount',
   'size',
   'summary',
   'description',
@@ -40,7 +40,7 @@ const validations = [
     .isNumeric()
     .notEmpty()
     .withMessage('Price of product is missing'),
-  body('discountPrice').isNumeric().optional(),
+  body('discountAmount').isNumeric().optional(),
   body('size').isString().optional(),
   body('summary')
     .isString()
@@ -64,7 +64,7 @@ router.post(
   catchAsync(async (req, res, next) => {
     const newProduct = await Product.create(req.body);
 
-    return res.status(200).json({
+    return res.status(201).json({
       status: 'success',
       message: 'Product created successfully',
       data: {

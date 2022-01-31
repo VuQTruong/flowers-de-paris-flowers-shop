@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
+const { roundHalf } = require('../utilities/helpers.util');
 
 const productSchema = new mongoose.Schema(
   {
@@ -18,7 +19,7 @@ const productSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    discountPrice: {
+    discountAmount: {
       type: Number,
       default: 0,
     },
@@ -40,10 +41,11 @@ const productSchema = new mongoose.Schema(
     },
     colors: [String],
     tags: [String],
-    ratingAverage: {
+    averageRating: {
       type: Number,
       default: 0,
     },
+    // ?list of previews to be able to populate product's related reviews
     reviews: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -107,12 +109,10 @@ productSchema.pre('findOneAndUpdate', function (next) {
 
 // !calculate discount percentage on discount price saved
 productSchema.pre('save', function (next) {
-  if (this.isModified('discountPrice')) {
+  if (this.isModified('discountAmount') && this.get('discountAmount') !== 0) {
     const price = this.get('price') * 1;
-    const discountPrice = this.get('discountPrice') * 1;
-    const percentage = Math.ceil(
-      ((price - discountPrice) / price) * 100
-    ).toFixed(0);
+    const discountAmount = this.get('discountAmount') * 1;
+    const percentage = Math.ceil((discountAmount / price) * 100).toFixed(0);
 
     this.set('discountPercentage', percentage);
   }
@@ -122,12 +122,14 @@ productSchema.pre('save', function (next) {
 
 // !calculate discount percentage on discount price updated
 productSchema.pre('findOneAndUpdate', function (next) {
-  if (this._update && this._update.discountPrice) {
+  if (
+    this._update &&
+    this._update.discountAmount &&
+    this._update.discountAmount !== 0
+  ) {
     const price = this.get('price') * 1;
-    const discountPrice = this._update.discountPrice * 1;
-    const percentage = Math.ceil(
-      ((price - discountPrice) / price) * 100
-    ).toFixed(0);
+    const discountAmount = this._update.discountAmount * 1;
+    const percentage = Math.ceil((discountAmount / price) * 100).toFixed(0);
 
     this._update.discountPercentage = percentage;
   }
@@ -135,7 +137,22 @@ productSchema.pre('findOneAndUpdate', function (next) {
   next();
 });
 
-// todo: update the review average and reviews
+// !update the review average when reviews changed
+productSchema.pre('save', async function (next) {
+  const product = await this.populate('reviews');
+
+  const totalRating = product.reviews.reduce((accumulator, review) => {
+    return review.rating + accumulator;
+  }, 0);
+
+  if (this.get('reviews').length !== 0) {
+    const rating = roundHalf(totalRating / this.get('reviews').length);
+    this.set('averageRating', rating);
+  } else {
+    this.set('averageRating', 0);
+  }
+  next();
+});
 
 // todo: cascade delete reviews
 

@@ -16,6 +16,7 @@ const contactRouter = require('./services/contacts');
 const userRouter = require('./services/users');
 const blogRouter = require('./services/blogs');
 const productRouter = require('./services/products');
+const reviewRouter = require('./services/reviews');
 
 const app = express();
 
@@ -57,6 +58,7 @@ app.use('/api/blogs', blogRouter);
 app.use('/api/categories', categoryRouter);
 app.use('/api/contacts', contactRouter);
 app.use('/api/products', productRouter);
+app.use('/api/reviews', reviewRouter);
 app.use('/api/users', userRouter);
 
 /* Unhandle Routes */

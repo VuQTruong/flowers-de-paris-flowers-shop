@@ -38,6 +38,13 @@ const userSchema = new mongoose.Schema(
         ref: 'Product',
       },
     ],
+    // ?list of previews to be able to populate user's related reviews
+    reviews: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Review',
+      },
+    ],
     googleId: String,
     facebookId: String,
     isActive: {
