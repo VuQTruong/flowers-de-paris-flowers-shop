@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Product = require('./product.model');
 const { roundHalf } = require('../utilities/helpers.util');
+const User = require('./user.model');
 
 const reviewSchema = new mongoose.Schema(
   {
@@ -28,6 +29,34 @@ const reviewSchema = new mongoose.Schema(
     },
   }
 );
+
+reviewSchema.pre('remove', { document: true }, async function (next) {
+  try {
+    const review = await this.populate('user product');
+
+    if (review.product) {
+      const productId = review.product._id;
+      const product = await Product.findById(productId);
+      product.reviews = product.reviews.filter((id) => {
+        return String(id) !== String(review._id);
+      });
+      await product.save();
+    }
+
+    if (review.user) {
+      const userId = review.user._id;
+      const user = await User.findById(userId);
+      user.reviews = user.reviews.filter((id) => {
+        return String(id) !== String(review._id);
+      });
+      await user.save();
+    }
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
 
 const Review = mongoose.model('Review', reviewSchema);
 

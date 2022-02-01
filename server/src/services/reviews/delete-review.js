@@ -18,11 +18,17 @@ router.delete(
   validateRequest,
   catchAsync(async (req, res, next) => {
     const reviewId = req.params.reviewId;
+    const review = await Review.findById(reviewId);
     const user = req.user;
 
-    // !Admin is allow to delete every review
+    if (!review) {
+      return next(AppError.badRequest('Review does not exist'));
+    }
+
+    // !Admin is allowed to delete any review
     if (user.isAdmin) {
-      await Review.findByIdAndDelete(reviewId);
+      await cascadeDelete(review, user);
+      await review.deleteOne();
 
       return res.status(200).json({
         status: 'success',
@@ -32,12 +38,6 @@ router.delete(
     }
 
     // !Check if the user is the person created the review
-    const review = await Review.findById(reviewId);
-
-    if (!review) {
-      return next(AppError.badRequest('Review does not exist'));
-    }
-
     if (String(review.user) !== String(user._id)) {
       return next(
         AppError.forbidden('You are not allowed to remove this review')
@@ -45,21 +45,8 @@ router.delete(
     }
 
     // !Ok, the user is the person who created the review
-    const product = await Product.findById(review.product).populate('reviews');
-
-    product.reviews = product.reviews.filter((review) => {
-      return String(review._id) !== String(reviewId);
-    });
-    await product.save();
-
-    // *remove the review from user's reviews
-    user.reviews = user.reviews.filter((id) => {
-      return String(id) !== String(reviewId);
-    });
-    await user.save();
-
-    // *remove the review itself
-    await review.remove();
+    await cascadeDelete(review, user);
+    await review.deleteOne();
 
     return res.status(200).json({
       status: 'success',
@@ -68,5 +55,20 @@ router.delete(
     });
   })
 );
+
+async function cascadeDelete(review, user) {
+  const product = await Product.findById(review.product).populate('reviews');
+
+  product.reviews = product.reviews.filter((review) => {
+    return String(review._id) !== String(review._id);
+  });
+  await product.save();
+
+  // *remove the review from user's reviews
+  user.reviews = user.reviews.filter((id) => {
+    return String(id) !== String(review._id);
+  });
+  await user.save();
+}
 
 module.exports = router;
