@@ -162,12 +162,6 @@ productSchema.pre('save', async function (next) {
 // !cascade delete reviews
 productSchema.post('remove', async function (doc, next) {
   try {
-    // await Review.deleteMany({
-    //   _id: {
-    //     $in: this.reviews,
-    //   },
-    // });
-
     for (let reviewId of doc.reviews) {
       const review = await Review.findById(reviewId);
       await review.remove();
