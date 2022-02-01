@@ -15,9 +15,9 @@ router.delete(
       return next(AppError.badRequest('Item does not exist in favorites list'));
     }
 
-    user.favorites = user.favorites.filter(
-      (itemId) => itemId.toString() !== itemId
-    );
+    user.favorites = user.favorites.filter((id) => {
+      return String(id) !== String(itemId);
+    });
 
     const updatedUser = await user.save();
 
