@@ -1,5 +1,5 @@
 const express = require('express');
-const { body } = require('express-validator');
+const { body, param } = require('express-validator');
 const isAdmin = require('../../../middlewares/is-admin');
 const isAuth = require('../../../middlewares/is-auth');
 const validateFields = require('../../../middlewares/validate-fields');
@@ -23,6 +23,7 @@ const requireFields = [
 ];
 
 const validations = [
+  param('id').isMongoId(),
   body('name').isString().optional(),
   body('category').isMongoId().optional(),
   body('images').isArray().optional(),
@@ -30,8 +31,8 @@ const validations = [
   body('price').isNumeric().optional(),
   body('discountAmount').isNumeric().optional(),
   body('size').isString().optional(),
-  body('summary').isString().optional(),
-  body('description').isString().optional(),
+  body('summary').isString().optional().trim().escape(),
+  body('description').isString().optional().trim().escape(),
   body('colors').isArray().optional(),
   body('tags').isArray().optional(),
 ];

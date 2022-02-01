@@ -17,7 +17,9 @@ const validations = [
   body('content')
     .isString()
     .notEmpty()
-    .withMessage('Comment content is missing'),
+    .withMessage('Comment content is missing')
+    .trim()
+    .escape(),
   body('rating').isNumeric().notEmpty().withMessage('Rating is missing'),
   body('reviewTags').isArray(),
   body('product').isMongoId().notEmpty(),

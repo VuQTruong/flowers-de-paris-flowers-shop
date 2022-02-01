@@ -1,26 +1,29 @@
 const express = require('express');
-const { body, oneOf, check } = require('express-validator');
+const { body, param } = require('express-validator');
 const isAdmin = require('../../middlewares/is-admin');
 const isAuth = require('../../middlewares/is-auth');
 const validateRequest = require('../../middlewares/validate-request');
 const catchAsync = require('../../utilities/catch-async.util');
 const Blog = require('../../models/blog.model');
+const validateFields = require('../../middlewares/validate-fields');
 const router = express.Router();
 
+const requireFields = [
+  'title',
+  'author',
+  'tags',
+  'summary',
+  'content',
+  'coverImage',
+];
+
 const validations = [
-  oneOf([
-    check('title').exists(),
-    check('author').exists(),
-    check('tags').exists(),
-    check('summary').exists(),
-    check('content').exists(),
-    check('coverImage').exists(),
-  ]),
+  param('id').isMongoId(),
   body('title').isString().optional(),
   body('author').isString().optional(),
   body('tags').isArray().optional(),
-  body('summary').isString().optional(),
-  body('content').isString().optional(),
+  body('summary').isString().optional().trim().escape(),
+  body('content').isString().optional().trim().escape(),
   body('coverImage').isString().optional(),
 ];
 
@@ -28,6 +31,7 @@ router.patch(
   '/:id',
   isAuth,
   isAdmin,
+  validateFields(requireFields),
   validations,
   validateRequest,
   catchAsync(async (req, res, next) => {

@@ -1,26 +1,38 @@
 const express = require('express');
-const { body, oneOf, check } = require('express-validator');
+const { body } = require('express-validator');
 const isAuth = require('../../middlewares/is-auth');
 const isAdmin = require('../../middlewares/is-admin');
 const catchAsync = require('../../utilities/catch-async.util');
 const validateRequest = require('../../middlewares/validate-request');
 const Blog = require('../../models/blog.model');
+const validateFields = require('../../middlewares/validate-fields');
 const router = express.Router();
 
+const requireFields = [
+  'title',
+  'author',
+  'tags',
+  'summary',
+  'content',
+  'coverImage',
+];
+
 const validations = [
-  oneOf([
-    check('title').exists(),
-    check('author').exists(),
-    check('tags').exists(),
-    check('summary').exists(),
-    check('content').exists(),
-    check('coverImage').exists(),
-  ]),
   body('title').isString().notEmpty().withMessage('Title is missing'),
   body('author').isString().notEmpty().withMessage('Author is missing'),
   body('tags').isArray(),
-  body('summary').isString().notEmpty().withMessage('Summary is missing'),
-  body('content').isString().notEmpty().withMessage('Content is missing'),
+  body('summary')
+    .isString()
+    .notEmpty()
+    .withMessage('Summary is missing')
+    .trim()
+    .escape(),
+  body('content')
+    .isString()
+    .notEmpty()
+    .withMessage('Content is missing')
+    .trim()
+    .escape(),
   body('coverImage')
     .isString()
     .notEmpty()
@@ -31,6 +43,7 @@ router.post(
   '/',
   isAuth,
   isAdmin,
+  validateFields(requireFields),
   validations,
   validateRequest,
   catchAsync(async (req, res, next) => {

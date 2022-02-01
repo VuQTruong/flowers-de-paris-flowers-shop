@@ -1,14 +1,17 @@
 const express = require('express');
-const { body, oneOf, check } = require('express-validator');
+const { body, param } = require('express-validator');
 const isAdmin = require('../../middlewares/is-admin');
 const isAuth = require('../../middlewares/is-auth');
+const validateFields = require('../../middlewares/validate-fields');
 const validateRequest = require('../../middlewares/validate-request');
 const About = require('../../models/about.model');
 const catchAsync = require('../../utilities/catch-async.util');
 const router = express.Router();
 
+const requireFields = ['content'];
+
 const validations = [
-  oneOf([check('content').exists()]),
+  param('id').isMongoId(),
   body('content').isString().notEmpty().withMessage('Content must not empty'),
 ];
 
@@ -16,6 +19,7 @@ router.patch(
   '/:id',
   isAuth,
   isAdmin,
+  validateFields(requireFields),
   validations,
   validateRequest,
   catchAsync(async (req, res, next) => {

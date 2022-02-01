@@ -3,17 +3,14 @@ const isAuth = require('../../middlewares/is-auth');
 const isAdmin = require('../../middlewares/is-admin');
 const catchAsync = require('../../utilities/catch-async.util');
 const validateRequest = require('../../middlewares/validate-request');
-const { body, oneOf, check } = require('express-validator');
+const { body } = require('express-validator');
 const Contact = require('../../models/contact.model');
+const validateFields = require('../../middlewares/validate-fields');
 const router = express.Router();
 
+const requireFields = ['name', 'description', 'phone', 'address'];
+
 const validations = [
-  oneOf([
-    check('name').exists(),
-    check('description').exists(),
-    check('phone').exists(),
-    check('address').exists(),
-  ]),
   body('name')
     .isString()
     .notEmpty()
@@ -21,7 +18,9 @@ const validations = [
   body('description')
     .isString()
     .notEmpty()
-    .withMessage('Description of the branch is missing'),
+    .withMessage('Description of the branch is missing')
+    .trim()
+    .escape(),
   body('phone')
     .isString()
     .notEmpty()
@@ -36,6 +35,7 @@ router.post(
   '/',
   isAuth,
   isAdmin,
+  validateFields(requireFields),
   validations,
   validateRequest,
   catchAsync(async (req, res, next) => {

@@ -46,11 +46,15 @@ const validations = [
   body('summary')
     .isString()
     .notEmpty()
-    .withMessage('Summary of product is missing'),
+    .withMessage('Summary of product is missing')
+    .trim()
+    .escape(),
   body('description')
     .isString()
     .notEmpty()
-    .withMessage('Description of product is missing'),
+    .withMessage('Description of product is missing')
+    .trim()
+    .escape(),
   body('colors').isArray().notEmpty(),
   body('tags').isArray().notEmpty(),
 ];

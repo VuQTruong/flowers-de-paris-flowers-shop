@@ -1,12 +1,18 @@
 const express = require('express');
+const { param } = require('express-validator');
 const AppError = require('../../../errors/app-error');
 const isAuth = require('../../../middlewares/is-auth');
+const validateRequest = require('../../../middlewares/validate-request');
 const catchAsync = require('../../../utilities/catch-async.util');
 const router = express.Router();
+
+const validations = [param('id').isMongoId()];
 
 router.delete(
   '/favorites/:id',
   isAuth,
+  validations,
+  validateRequest,
   catchAsync(async (req, res, next) => {
     const itemId = req.params.id;
     const user = req.user;

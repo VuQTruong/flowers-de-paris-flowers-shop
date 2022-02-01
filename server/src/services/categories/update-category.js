@@ -1,15 +1,18 @@
 const express = require('express');
 const slugify = require('slugify');
-const { body, oneOf, check } = require('express-validator');
+const { body, oneOf, check, param } = require('express-validator');
 const isAdmin = require('../../middlewares/is-admin');
 const isAuth = require('../../middlewares/is-auth');
 const validateRequest = require('../../middlewares/validate-request');
 const catchAsync = require('../../utilities/catch-async.util');
 const Category = require('../../models/category.model');
+const validateFields = require('../../middlewares/validate-fields');
 const router = express.Router();
 
+const requireFields = ['name'];
+
 const validations = [
-  oneOf([check('name').exists()]),
+  param('id').isMongoId(),
   body('name').isString().notEmpty().withMessage('Category name is missing'),
 ];
 
@@ -17,6 +20,7 @@ router.patch(
   '/:id',
   isAuth,
   isAdmin,
+  validateFields(requireFields),
   validations,
   validateRequest,
   catchAsync(async (req, res, next) => {

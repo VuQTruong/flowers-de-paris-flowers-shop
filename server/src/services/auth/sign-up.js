@@ -3,17 +3,28 @@ const AppError = require('../../errors/app-error');
 const User = require('../../models/user.model');
 const catchAsync = require('../../utilities/catch-async.util');
 const { signJWT } = require('../../utilities/jwt.util');
-const { body, oneOf, check } = require('express-validator');
+const { body } = require('express-validator');
 const validateRequest = require('../../middlewares/validate-request');
+const validateFields = require('../../middlewares/validate-fields');
 const router = express.Router();
 
+const requireFields = ['email', 'phone', 'password', 'name'];
+
 const validations = [
-  oneOf([check('email').exists()]),
-  body('email').isString().isEmail().withMessage('Invalid email format'),
+  body('email')
+    .isString()
+    .isEmail()
+    .withMessage('Invalid email format')
+    .optional()
+    .normalizeEmail(),
+  body('phone').isString().withMessage('Invalid phone number').optional(),
+  body('password').isString().notEmpty().withMessage('Password is missing'),
+  body('name').isString().optional(),
 ];
 
 router.post(
   '/signup',
+  validateFields(requireFields),
   validations,
   validateRequest,
   catchAsync(async (req, res, next) => {
