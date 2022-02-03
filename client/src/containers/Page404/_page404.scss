@@ -1,0 +1,20 @@
+.notfound__svg {
+  width: 35%;
+  height: auto;
+}
+
+.notfound__title {
+  font-size: 2rem;
+  margin: 0.5em auto;
+}
+
+.notfound__back-home {
+  display: inline-flex;
+  align-items: flex-end;
+  color: $clr-txt-secondary;
+}
+
+.notfound__back-home i {
+  font-size: 2rem;
+  margin-right: 0.25em;
+}

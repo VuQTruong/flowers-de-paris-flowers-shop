@@ -5,6 +5,17 @@
   margin: 0 auto;
 }
 
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.column {
+  flex-direction: column;
+}
+
 .divider {
   margin: 1em 0;
   border-bottom: 1px grey dashed;
