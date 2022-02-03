@@ -1,0 +1,11 @@
+.loading-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.loading-page__svg {
+  margin-left: 2em;
+}

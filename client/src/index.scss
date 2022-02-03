@@ -1,5 +1,13 @@
-// Base styles
+// base styles
 @import './styles/variables';
 @import './styles/base';
 @import './styles/common';
 @import './styles/form';
+
+// components
+@import './components/Loading/loading';
+
+// containers
+@import './containers/Home/home';
+@import './containers/LoadingPage/loading-page';
+@import './containers/Page404/page404';
