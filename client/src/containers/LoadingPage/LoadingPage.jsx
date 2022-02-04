@@ -1,6 +1,6 @@
 import React from 'react';
 import Loading from '../../components/Loading/Loading';
-import { ReactComponent as LoadingSVG } from '../../assets/undraw_loading_re_5axr.svg';
+import { ReactComponent as LoadingSVG } from '../../assets/svgs/undraw_loading_re_5axr.svg';
 
 function LoadingPage() {
   return (

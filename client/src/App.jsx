@@ -8,11 +8,20 @@ import AdminLayout from './containers/admin/AdminLayout/AdminLayout';
 
 import Home from './containers/client/Home/Home';
 import Page404 from './containers/Page404/Page404';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchCategories } from './features/categories/categoriesSlice';
 
 // lazy load components
 const Dashboard = lazy(() => import('./containers/admin/Dashboard/Dashboard'));
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, []);
+
   return (
     <Router>
       <ScrollToTop />

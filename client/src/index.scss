@@ -2,10 +2,19 @@
 @import './styles/variables';
 @import './styles/base';
 @import './styles/common';
-@import './styles/form';
+
+// utilities
+@import './styles/utilities/flex';
+@import './styles/utilities/brand';
+@import './styles/utilities/form';
+@import './styles/utilities/dropdown';
 
 // components
 @import './components/Loading/loading';
+@import './components/NavBar/nav-bar';
+@import './components/SearchBar/search-bar';
+@import './components/Header/header';
+@import './components/Footer/footer';
 
 // containers
 @import './containers/client/Home/home';

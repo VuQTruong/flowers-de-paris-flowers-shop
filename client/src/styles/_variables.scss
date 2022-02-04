@@ -1,7 +1,7 @@
 /* Font families */
-$ff-primary: 'Rubik', Arial, sans-serif;
+// $ff-primary: 'Rubik', Arial, sans-serif;
 
-// $ff-primary: 'Roboto', Arial, sans-serif;
+$ff-primary: 'Roboto', Arial, sans-serif;
 $ff-secondary: 'Lora', serif;
 $ff-brand: 'Sacramento', cursive;
 
@@ -40,7 +40,7 @@ $fs-70: 4.375rem;
 
 /* Colors */
 $clr-txt-primary: #212121;
-$clr-txt-secondary: #555;
+$clr-txt-secondary: #404040;
 
 $clr-primary-300: #ffd700;
 $clr-primary-400: #f1c237;
@@ -60,11 +60,7 @@ $clr-facebook: #3b5998;
 $box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.2);
 $txt-shadow: 0 0 1rem white;
 
-$bg-gradient-main: linear-gradient(
-  to bottom right,
-  #eee,
-  rgba($clr-primary-300, 0.7)
-);
+$bg-gradient-main: linear-gradient(to bottom right, #eee, rgba($clr-primary-300, 0.7));
 
 $screen-md: 850px;
 $screen-lg: 1280px;
