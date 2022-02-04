@@ -11,10 +11,12 @@
 
 // components
 @import './components/Loading/loading';
-@import './components/NavBar/nav-bar';
-@import './components/SearchBar/search-bar';
 @import './components/Header/header';
 @import './components/Footer/footer';
+@import './components/NavBar/nav-bar';
+@import './components/SearchBar/search-bar';
+@import './components/UserNav/user-nav';
+@import './components/MobileNav/mobile-nav';
 
 // containers
 @import './containers/client/Home/home';

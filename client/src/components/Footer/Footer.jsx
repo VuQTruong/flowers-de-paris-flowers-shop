@@ -7,7 +7,7 @@ import masterImg from '../../assets/payment-methods/master-card.png';
 import paypalImg from '../../assets/payment-methods/paypal.png';
 
 function Footer() {
-  const { categories } = useSelector((state) => state.categories);
+  const { categories } = useSelector((state) => state.allCategories);
 
   return (
     <footer className='bg-primary'>
@@ -45,7 +45,7 @@ function Footer() {
           {categories &&
             categories.map((category) => {
               return (
-                <li>
+                <li key={category.slug}>
                   <Link
                     to={`/products/${category.slug}`}
                     className='footer-link'

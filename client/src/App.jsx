@@ -10,7 +10,7 @@ import Home from './containers/client/Home/Home';
 import Page404 from './containers/Page404/Page404';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchCategories } from './features/categories/categoriesSlice';
+import { fetchCategories } from './features/categories/categories-slice';
 
 // lazy load components
 const Dashboard = lazy(() => import('./containers/admin/Dashboard/Dashboard'));
@@ -20,6 +20,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchCategories());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

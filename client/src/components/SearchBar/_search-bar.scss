@@ -1,0 +1,20 @@
+.search-bar {
+  grid-area: search-bar;
+  min-width: 200px;
+
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0.35em 0.75em;
+  margin: 0 0.5em;
+
+  border: none;
+  border-radius: 20px;
+  box-shadow: $box-shadow;
+}
+
+@media (min-width: $screen-lg) {
+  .search-bar {
+    padding: 0.5em 1em;
+    outline: none;
+  }
+}
