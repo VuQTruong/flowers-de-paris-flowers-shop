@@ -64,8 +64,11 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.pre('save', function (next) {
-  const hashed = bcrypt.hashSync(this.get('password'), 10);
-  this.set('password', hashed);
+  if (this.isModified('password')) {
+    const hashed = bcrypt.hashSync(this.get('password'), 10);
+    this.set('password', hashed);
+  }
+
   next();
 });
 

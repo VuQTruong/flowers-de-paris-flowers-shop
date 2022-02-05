@@ -7,8 +7,8 @@ router.get(
   '/google/callback',
   passport.authenticate('google', {
     // successRedirect: process.env.CLIENT_URL,
-    // failureRedirect: process.env.CLIENT_URL + '/signup/fail',
-    failureMessage: 'Cannot sign in with Google',
+    failureRedirect: process.env.CLIENT_URL + '/oauth/fail',
+    // failureMessage: 'Cannot sign in with Google',
   }),
   (req, res) => {
     // ? This is sent to the window that are being used to sign in to Google

@@ -7,6 +7,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { signIn } from '../../../features/auth/current-user-slice';
+import { unwrapResult } from '@reduxjs/toolkit';
+import swal from 'sweetalert2';
 
 const validationSchema = Yup.object({
   username: Yup.string().required('Email or Phone number is required'),
@@ -24,7 +26,7 @@ function Signin() {
   const location = useLocation();
 
   const currentUser = useSelector((state) => state.currentUser);
-  const { userInfo, loading, error } = currentUser;
+  const { userInfo, loading } = currentUser;
 
   const redirect = location.search ? location.search.split('=')[1] : '/';
 
@@ -34,8 +36,31 @@ function Signin() {
     }
   }, [navigate, redirect, userInfo]);
 
-  const signInHandler = (values) => {
-    dispatch(signIn(values));
+  const signInHandler = async (values) => {
+    try {
+      const actionResult = await dispatch(signIn(values));
+      const data = unwrapResult(actionResult);
+
+      swal.fire({
+        icon: 'success',
+        title: `Woo hoo!!...`,
+        text: `Welcome back, ${data.name}!`,
+      });
+    } catch (error) {
+      swal.fire({
+        icon: 'error',
+        title: 'Oops!...',
+        text: error.message,
+      });
+    }
+  };
+
+  const googleSignInHandler = () => {
+    window.open('http://localhost:5000/api/auth/google', '_self');
+  };
+
+  const facebookSignInHandler = () => {
+    window.open('http://localhost:5000/api/auth/facebook', '_self');
   };
 
   return (
@@ -46,14 +71,20 @@ function Signin() {
 
           <div className='signin__content'>
             <h2>Sign In</h2>
-            <div className='signin__social google'>
+            <button
+              className='btn signin__social google'
+              onClick={googleSignInHandler}
+            >
               <i className='bx bxl-google signin__social-icon'></i>
               <span>Sign in with Google</span>
-            </div>
-            <div className='signin__social facebook'>
+            </button>
+            <button
+              className='btn signin__social facebook'
+              onClick={facebookSignInHandler}
+            >
               <i className='bx bxl-facebook-square signin__social-icon'></i>
-              <span>Sign in with acebook</span>
-            </div>
+              <span>Sign in with Facebook</span>
+            </button>
 
             <div className='signin__divider'>or</div>
 
@@ -62,68 +93,79 @@ function Signin() {
               validationSchema={validationSchema}
               onSubmit={signInHandler}
             >
-              <Form className='signin__form'>
-                <div className='form__control'>
-                  <div className='form__input-box'>
-                    <i className='bx bx-envelope'></i>
-                    <Field
-                      type='input'
-                      id='username'
-                      name='username'
-                      placeholder='email/phone number'
-                      className='form__input--text'
-                    />
-                    <label htmlFor='username' className='form__label--hidden'>
-                      Email/Phone number
-                    </label>
-                  </div>
-                  <ErrorMessage name='username'>
-                    {(errorMsg) => (
-                      <div className='form__error'>{errorMsg}</div>
-                    )}
-                  </ErrorMessage>
-                </div>
+              {(formik) => {
+                return (
+                  <Form className='signin__form'>
+                    <div className='form__control'>
+                      <div className='form__input-box'>
+                        <i className='bx bx-envelope'></i>
+                        <Field
+                          type='input'
+                          id='username'
+                          name='username'
+                          placeholder='email/phone number'
+                          className='form__input--text'
+                        />
+                        <label
+                          htmlFor='username'
+                          className='form__label--hidden'
+                        >
+                          Email/Phone number
+                        </label>
+                      </div>
+                      <ErrorMessage name='username'>
+                        {(errorMsg) => (
+                          <div className='form__error'>{errorMsg}</div>
+                        )}
+                      </ErrorMessage>
+                    </div>
 
-                <div className='form__control'>
-                  <div className='form__input-box'>
-                    <i className='bx bx-lock'></i>
-                    <Field
-                      type='password'
-                      id='password'
-                      name='password'
-                      placeholder='password'
-                      className='form__input--text'
-                    />
-                    <label htmlFor='password' className='form__label--hidden'>
-                      Password
-                    </label>
-                  </div>
-                  <ErrorMessage name='password'>
-                    {(errorMsg) => (
-                      <div className='form__error'>{errorMsg}</div>
-                    )}
-                  </ErrorMessage>
-                </div>
+                    <div className='form__control'>
+                      <div className='form__input-box'>
+                        <i className='bx bx-lock'></i>
+                        <Field
+                          type='password'
+                          id='password'
+                          name='password'
+                          placeholder='password'
+                          className='form__input--text'
+                        />
+                        <label
+                          htmlFor='password'
+                          className='form__label--hidden'
+                        >
+                          Password
+                        </label>
+                      </div>
+                      <ErrorMessage name='password'>
+                        {(errorMsg) => (
+                          <div className='form__error'>{errorMsg}</div>
+                        )}
+                      </ErrorMessage>
+                    </div>
 
-                <div className='flex col'>
-                  <button
-                    type='submit'
-                    className='btn btn-primary signin__btn-login'
-                  >
-                    {loading ? (
-                      <i className='bx bx-loader-alt bx-spin bx-rotate-90'></i>
-                    ) : (
-                      'Login'
-                    )}
-                  </button>
-                  <Link
-                    to='/forgotpassword'
-                    className='signin__link signin__forgot-pw'
-                  >
-                    Forgot Password?
-                  </Link>
-                </div>
-              </Form>
+                    <div className='flex col'>
+                      <button
+                        type='submit'
+                        className='btn btn-primary signin__btn-login'
+                        disabled={loading || !formik.isValid}
+                      >
+                        {loading ? (
+                          <i className='bx bx-loader-alt bx-spin bx-rotate-90'></i>
+                        ) : (
+                          'Login'
+                        )}
+                      </button>
+                      <Link
+                        to='/forgotpassword'
+                        className='signin__link signin__forgot-pw'
+                      >
+                        Forgot Password?
+                      </Link>
+                    </div>
+                  </Form>
+                );
+              }}
             </Formik>
 
             <section className='signin__footer'>
