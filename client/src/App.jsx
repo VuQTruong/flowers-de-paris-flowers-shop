@@ -12,6 +12,7 @@ import Home from './containers/client/Home/Home';
 import Page404 from './containers/Page404/Page404';
 
 import { fetchCategories } from './features/categories/categories-slice';
+import { verifyUser } from './features/auth/current-user-slice';
 
 // lazy load components
 const Dashboard = lazy(() => import('./containers/admin/Dashboard/Dashboard'));
@@ -22,6 +23,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(verifyUser());
     dispatch(fetchCategories());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

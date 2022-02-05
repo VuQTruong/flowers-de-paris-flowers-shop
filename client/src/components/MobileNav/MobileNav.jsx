@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { signOut } from '../../features/auth/current-user-slice';
 
 function MobileNav(props) {
+  const dispatch = useDispatch();
   const { mbNavActive, activeMobileNav } = props;
 
   const cart = useSelector((state) => state.cart);
@@ -20,7 +22,7 @@ function MobileNav(props) {
   };
 
   const onSignOutClick = () => {
-    // dispatch(signout());
+    dispatch(signOut());
     closeNavHandler();
   };
 
