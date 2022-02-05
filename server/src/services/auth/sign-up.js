@@ -8,7 +8,10 @@ const validateRequest = require('../../middlewares/validate-request');
 const validateFields = require('../../middlewares/validate-fields');
 const router = express.Router();
 
-const requireFields = ['email', 'phone', 'password', 'name'];
+const fetch = (...args) =>
+  import('node-fetch').then(({ default: fetch }) => fetch(...args));
+
+const requireFields = ['email', 'phone', 'password', 'name', 'reCaptchaToken'];
 
 const validations = [
   body('email')
@@ -20,6 +23,10 @@ const validations = [
   body('phone').isString().withMessage('Invalid phone number').optional(),
   body('password').isString().notEmpty().withMessage('Password is missing'),
   body('name').isString().optional(),
+  body('reCaptchaToken')
+    .isString()
+    .notEmpty()
+    .withMessage('reCaptchaToken is missing'),
 ];
 
 router.post(
@@ -28,7 +35,18 @@ router.post(
   validations,
   validateRequest,
   catchAsync(async (req, res, next) => {
-    const { email, phone, password, name } = req.body;
+    const { email, phone, password, name, reCaptchaToken } = req.body;
+
+    const isHuman = await validateHuman(reCaptchaToken);
+
+    // Verify if the one is submitting is a human
+    if (!isHuman) {
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Sorry, you are not a human',
+        data: null,
+      });
+    }
 
     // Check for existing email
     const existingEmail = await User.findOne({ email: email });
@@ -83,5 +101,22 @@ router.post(
     });
   })
 );
+
+async function validateHuman(reCaptchaToken) {
+  try {
+    const secret = process.env.RECAPTCHA_SECRET_KEY;
+    const response = await fetch(
+      `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${reCaptchaToken}`,
+      {
+        method: 'POST',
+      }
+    );
+
+    const data = await response.json();
+    return data.success;
+  } catch (error) {
+    return false;
+  }
+}
 
 module.exports = router;
