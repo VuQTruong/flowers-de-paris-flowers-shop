@@ -7,7 +7,9 @@ router.get('/verify', isAuth, (req, res, next) => {
   if (req.user) {
     return res.status(200).json({
       status: 'success',
-      data: req.user,
+      data: {
+        user: req.user,
+      },
     });
   }
 
