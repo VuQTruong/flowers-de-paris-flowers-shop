@@ -1,0 +1,25 @@
+.oauth-fail__container {
+  margin: 2em auto;
+  height: 100vh;
+}
+
+.oauth-fail__svg {
+  width: 35%;
+  height: auto;
+}
+
+.oauth-fail__title {
+  font-size: 2rem;
+  margin: 0.5em auto;
+}
+
+.oauth-fail__btn-back {
+  display: inline-flex;
+  align-items: flex-end;
+  color: $clr-txt-secondary;
+}
+
+.oauth-fail__btn-back i {
+  font-size: 2rem;
+  margin-right: 0.25em;
+}

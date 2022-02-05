@@ -18,6 +18,7 @@ import { verifyUser } from './features/auth/current-user-slice';
 const Dashboard = lazy(() => import('./containers/admin/Dashboard/Dashboard'));
 const Signin = lazy(() => import('./containers/client/Signin/Signin'));
 const Signup = lazy(() => import('./containers/client/Signup/Signup'));
+const OAuthFail = lazy(() => import('./containers/client/OAuthFail/OAuthFail'));
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path='signin' element={<Signin />} />
             <Route path='signup' element={<Signup />} />
+            <Route path='oauth/fail' element={<OAuthFail />} />
           </Route>
 
           {/* admin routes */}
