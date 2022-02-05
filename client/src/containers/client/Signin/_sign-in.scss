@@ -1,0 +1,186 @@
+.signin__panel {
+  position: relative;
+}
+
+.signin__image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.signin__content {
+  display: grid;
+  justify-items: center;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 90%;
+  padding: 1em;
+
+  border-radius: 5px;
+  background: rgba($color: #fff, $alpha: 0.8);
+}
+
+.signin__social {
+  justify-self: center;
+  width: 100%;
+  padding: 0.5em 1em;
+  margin: 0.25em 0;
+  color: white;
+  box-shadow: $box-shadow;
+
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+
+  &-icon {
+    font-size: $fs-24;
+    margin-right: 0.5em;
+  }
+
+  &.google {
+    background-color: $clr-google;
+  }
+
+  &.facebook {
+    background-color: $clr-facebook;
+  }
+}
+
+.signin__divider {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+
+  font-style: italic;
+
+  margin: 1em;
+}
+
+.signin__divider::before,
+.signin__divider::after {
+  content: '';
+  display: block;
+  width: 4em;
+  height: 1px;
+  background-color: grey;
+}
+
+.signin__form {
+  width: 100%;
+}
+
+.signin__message {
+  color: red;
+  font-style: italic;
+  font-size: 0.875em;
+}
+
+.signin__btn-login {
+  margin: 1em 0;
+}
+
+.signin__link {
+  font-weight: 700;
+  font-style: italic;
+  color: blue;
+}
+
+.signin__forgot-pw {
+  align-self: center;
+}
+
+.signin__footer {
+  margin-top: 2em;
+}
+
+@media (max-width: 374px) {
+  .signin__content {
+    width: 95%;
+    padding: 0.5em;
+  }
+
+  .signin__social {
+    padding: 0.25em 0.5em;
+  }
+
+  .signin__divider {
+    margin: 0.5em;
+    font-size: $fs-14;
+  }
+
+  .signin__btn-login {
+    margin-bottom: 0.5em;
+  }
+
+  .signin__link {
+    font-size: $fs-16;
+  }
+}
+
+@media (min-width: 700px) {
+  .signin__content {
+    width: 50%;
+  }
+}
+
+@media (min-width: $screen-lg) {
+  .signin__bg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 1em;
+  }
+
+  .signin__bg::after {
+    content: '';
+    opacity: 0.3;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+    background-image: url('../../../assets/images/bg-welcome.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+  }
+
+  .signin__panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    width: 55%;
+    margin: 2em auto;
+
+    box-shadow: $box-shadow;
+    border-radius: 5px;
+    overflow: hidden;
+
+    h2 {
+      text-shadow: 0 0 10px white;
+    }
+  }
+
+  .signin__content {
+    position: static;
+    transform: translate(0, 0);
+    width: 100%;
+
+    //margin: 1em 0;
+    padding: 2em 1em;
+
+    border-radius: 0;
+    background: linear-gradient($clr-primary-300, white);
+  }
+
+  .signin__social {
+    align-self: center;
+  }
+}

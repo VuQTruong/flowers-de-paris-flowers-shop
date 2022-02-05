@@ -1,4 +1,6 @@
 import { Suspense, lazy } from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import ScrollToTop from './components/ScrollToTop/ScropToTop';
@@ -8,12 +10,13 @@ import AdminLayout from './containers/admin/AdminLayout/AdminLayout';
 
 import Home from './containers/client/Home/Home';
 import Page404 from './containers/Page404/Page404';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+
 import { fetchCategories } from './features/categories/categories-slice';
 
 // lazy load components
 const Dashboard = lazy(() => import('./containers/admin/Dashboard/Dashboard'));
+const Signin = lazy(() => import('./containers/client/Signin/Signin'));
+const Signup = lazy(() => import('./containers/client/Signup/Signup'));
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +34,8 @@ function App() {
           {/* client routes */}
           <Route path='/' element={<ClientLayout />}>
             <Route index element={<Home />} />
+            <Route path='signin' element={<Signin />} />
+            <Route path='signup' element={<Signup />} />
           </Route>
 
           {/* admin routes */}

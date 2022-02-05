@@ -1,0 +1,85 @@
+.btn {
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: 700;
+  padding: 0.75em 1.25em;
+  border: none;
+  cursor: pointer;
+}
+
+/* Primary button */
+.btn-primary {
+  text-transform: uppercase;
+  background-color: $clr-primary-300;
+  transition: all 0.1s;
+  color: black;
+}
+
+/* Call-to-action button*/
+.btn-cta {
+  position: relative;
+  text-transform: uppercase;
+  padding: 1em 1.5em;
+  background-color: orangered;
+  color: white;
+  overflow: hidden;
+}
+
+.btn-cta::before {
+  content: '';
+  height: 100px;
+  width: 3px;
+  background-color: white;
+  box-shadow: 0 0 5px 10px white;
+  transform: rotate(35deg);
+  position: absolute;
+  top: -25px;
+  left: -40%;
+  transition: all 0.5s;
+}
+
+/* Disable button*/
+.btn-disable {
+  color: white;
+  text-transform: uppercase;
+  background-color: grey;
+}
+
+/* Danger button*/
+.btn-danger {
+  text-transform: uppercase;
+  background-color: $clr-danger;
+  color: white;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+}
+
+/* Quantity selecting button */
+.btn-qty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2em;
+  height: 2em;
+  padding: 0.25em;
+  border-radius: 50px;
+  background-color: #404040;
+  color: white;
+}
+
+@media (min-width: $screen-lg) {
+  .btn-primary:hover {
+    background-color: rgba($color: #000000, $alpha: 0.9);
+    color: $clr-primary-300;
+  }
+
+  .btn-cta:hover::before {
+    left: 120%;
+  }
+
+  .btn-danger:hover {
+    background-color: white;
+    color: $clr-danger;
+    border: 1px solid $clr-danger;
+  }
+}

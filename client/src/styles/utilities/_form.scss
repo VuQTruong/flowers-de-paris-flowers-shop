@@ -1,0 +1,103 @@
+.form__control {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+.form__input-box {
+  display: flex;
+  align-items: center;
+
+  position: relative;
+}
+
+.form__input-box i {
+  position: absolute;
+  left: 0.5em;
+
+  font-size: $fs-18;
+  font-weight: 300;
+  color: $clr-txt-secondary;
+}
+
+.form__input--text {
+  font-family: inherit;
+  font-size: inherit;
+
+  padding: 0.5em 1em 0.5em 2em;
+
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid rgba($color: #000000, $alpha: 0.2);
+  box-shadow: $box-shadow;
+}
+
+.form__label--hidden {
+  position: absolute;
+  left: 3em;
+  top: 35%;
+
+  font-size: 0.8em;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-40%);
+  transition: all 0.3s;
+}
+
+.form__input--text:not(:placeholder-shown) ~ .form__label--hidden {
+  top: 0;
+  left: 1em;
+  visibility: visible;
+  opacity: 1;
+  font-size: 0.75em;
+  background: linear-gradient(to top, white 60%, transparent);
+}
+
+.form-select {
+  width: 100%;
+  font: inherit;
+  padding: 0.5em;
+  border-radius: 5px;
+  border: none;
+  box-shadow: $box-shadow;
+}
+
+input::-webkit-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+input::-moz-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+input:-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+input::-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+input::placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+.form__error {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: $clr-danger;
+}
+
+// @media (max-width: 374px) {
+//   .form-input__text {
+//     padding: 0.25em 0.5em;
+//     margin-bottom: 0.75em;
+//   }
+// }
