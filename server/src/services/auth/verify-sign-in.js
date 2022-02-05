@@ -1,9 +1,9 @@
 const express = require('express');
-const isAuth = require('../../middlewares/is-auth');
+const verifyUser = require('../../middlewares/verify-user');
 
 const router = express.Router();
 
-router.get('/verify', isAuth, (req, res, next) => {
+router.get('/verify', verifyUser, (req, res, next) => {
   if (req.user) {
     return res.status(200).json({
       status: 'success',
@@ -13,8 +13,9 @@ router.get('/verify', isAuth, (req, res, next) => {
     });
   }
 
-  return res.status(401).json({
-    status: 'fail',
+  return res.status(200).json({
+    status: 'success',
+    message: 'User are not signing in',
     data: null,
   });
 });
