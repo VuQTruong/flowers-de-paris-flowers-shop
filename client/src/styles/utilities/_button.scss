@@ -7,6 +7,13 @@
   cursor: pointer;
 }
 
+.btn:disabled {
+  pointer-events: none;
+  color: white;
+  text-transform: uppercase;
+  background-color: grey;
+}
+
 /* Primary button */
 .btn-primary {
   text-transform: uppercase;
@@ -39,11 +46,11 @@
 }
 
 /* Disable button*/
-.btn-disable {
-  color: white;
-  text-transform: uppercase;
-  background-color: grey;
-}
+// .btn-disable {
+//   color: white;
+//   text-transform: uppercase;
+//   background-color: grey;
+// }
 
 /* Danger button*/
 .btn-danger {

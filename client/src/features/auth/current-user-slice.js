@@ -14,6 +14,19 @@ export const signIn = createAsyncThunk(
   }
 );
 
+export const signUp = createAsyncThunk(
+  'currentUser/signUp',
+  async (signUpValues, { rejectWithValue }) => {
+    try {
+      const { data } = await Axios.post('/auth/signup', signUpValues);
+
+      return data.data.user;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const signOut = createAsyncThunk(
   'currentUser/signout',
   async (_, { rejectWithValue }) => {
@@ -52,6 +65,7 @@ export const currentUserSlice = createSlice({
     /* user sign in */
     [signIn.pending]: (state) => {
       state.loading = true;
+      state.userInfo = null;
       state.error = '';
     },
     [signIn.fulfilled]: (state, action) => {
@@ -63,9 +77,25 @@ export const currentUserSlice = createSlice({
       state.error = action.payload;
     },
 
+    /* user sign up */
+    [signUp.pending]: (state) => {
+      state.loading = true;
+      state.userInfo = null;
+      state.error = '';
+    },
+    [signUp.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.userInfo = action.payload;
+    },
+    [signUp.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
     /* user sign out */
     [signOut.pending]: (state) => {
       state.loading = true;
+      state.userInfo = null;
       state.error = '';
     },
     [signOut.fulfilled]: (state, action) => {
@@ -80,6 +110,7 @@ export const currentUserSlice = createSlice({
     /* verify user */
     [verifyUser.pending]: (state) => {
       state.loading = true;
+      state.userInfo = null;
       state.error = '';
     },
     [verifyUser.fulfilled]: (state, action) => {

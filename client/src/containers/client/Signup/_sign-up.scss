@@ -1,0 +1,121 @@
+.signup__panel {
+  position: relative;
+}
+
+.signup__image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.signup__content {
+  display: grid;
+  justify-items: center;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 90%;
+  padding: 1em;
+
+  border-radius: 5px;
+  background: rgba($color: #fff, $alpha: 0.8);
+
+  h2 {
+    margin-bottom: 0.5em;
+  }
+}
+
+.signup__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.signup__footer {
+  margin-top: 2em;
+}
+
+.signup__link {
+  font-weight: 700;
+  font-style: italic;
+  color: blue;
+}
+
+.signup__captcha {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+@media (max-width: 374px) {
+  .signup__content {
+    width: 95%;
+    padding: 0.5em;
+  }
+
+  .signup__btn-signup {
+    min-width: 150px;
+    padding: 0.35em 1em;
+    margin-bottom: 0.5em;
+  }
+}
+
+@media (min-width: $screen-lg) {
+  .signup__bg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 1em;
+  }
+
+  .signup__bg::after {
+    content: '';
+    opacity: 0.3;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+    background-image: url('../../../assets/images/bg-welcome.jpg');
+    background-repeat: no-repeat;
+    background-size: auto;
+    // background-position: bottom;
+  }
+
+  .signup__panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    width: 60%;
+    margin: 2em auto;
+
+    box-shadow: $box-shadow;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .signup__content {
+    position: static;
+    transform: translate(0, 0);
+    width: 100%;
+
+    padding: 3em 1em;
+
+    border-radius: 0;
+    background: linear-gradient($clr-primary-300, white);
+
+    h2 {
+      text-shadow: 0 0 10px white;
+    }
+  }
+
+  .signup__btn-signup {
+    min-width: 150px;
+    align-self: center;
+  }
+}
