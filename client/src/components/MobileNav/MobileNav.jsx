@@ -149,7 +149,7 @@ function MobileNav(props) {
             {userInfo ? (
               <React.Fragment>
                 <Link
-                  to='/customer/account'
+                  to='/user/info'
                   className='mobile-nav__user flex'
                   onClick={closeNavHandler}
                 >
@@ -204,11 +204,11 @@ function MobileNav(props) {
       {/* Mobile User Info */}
       <div className='mobile-user flex'>
         <NavLink to='/user/fav' className={generateUserNavClasses}>
-          <i className='bx bxs-heart'></i>
+          <i className='bx bx-heart'></i>
           <span>Favorites</span>
         </NavLink>
         <NavLink to='/user/info' className={generateUserNavClasses}>
-          <i className='bx bxs-user'></i>
+          <i className='bx bx-user'></i>
           <span>My Account</span>
         </NavLink>
         <NavLink to='/user/orders' className={generateUserNavClasses}>

@@ -2,7 +2,7 @@
   text-align: center;
   font-size: $fs-16;
   color: white;
-  margin-bottom: 60px;
+  padding-bottom: 80px;
 }
 
 .main-footer {
@@ -94,7 +94,7 @@
 
 @media (min-width: $screen-lg) {
   .legit {
-    margin-bottom: 0;
+    padding-bottom: 0;
   }
 
   .main-footer {

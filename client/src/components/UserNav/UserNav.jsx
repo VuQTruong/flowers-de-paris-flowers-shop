@@ -50,7 +50,7 @@ function UserNav(props) {
             textSizeRatio={3.5}
           />
 
-          <Link to='/customer/account'>
+          <Link to='/user/info'>
             {getClientName()}
             &nbsp;
             <i className='bx bx-caret-down'></i>
@@ -58,17 +58,21 @@ function UserNav(props) {
           <ul className='dropdown-menu dropdown-menu--right'>
             {userInfo.isAdmin && (
               <Link to='/admin/dashboard' className='dropdown-item'>
-                <i className='bx bxs-dashboard'></i>
+                <i className='bx bx-dashboard'></i>
                 Dashboard
               </Link>
             )}
-            <Link to='/customer/orders/history' className='dropdown-item'>
-              <i className='bx bxs-spreadsheet'></i>
+            <Link to='/user/orders' className='dropdown-item'>
+              <i className='bx bx-spreadsheet'></i>
               My Orders
             </Link>
-            <Link to='/customer/account' className='dropdown-item'>
-              <i className='bx bxs-user'></i>
+            <Link to='/user/info' className='dropdown-item'>
+              <i className='bx bx-user'></i>
               My Account
+            </Link>
+            <Link to='/user/fav' className='dropdown-item'>
+              <i className='bx bx-heart'></i>
+              My Favorites
             </Link>
             <Link
               to='#signout'
