@@ -4,10 +4,10 @@ import UserSideBar from '../../../components/UserSideBar/UserSideBar';
 
 function UserLayout() {
   return (
-    <div className='container user__container'>
+    <main className='container user__container'>
       <UserSideBar />
       <Outlet />
-    </div>
+    </main>
   );
 }
 

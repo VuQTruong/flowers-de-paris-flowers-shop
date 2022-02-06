@@ -3,9 +3,9 @@ import { Outlet } from 'react-router-dom';
 
 function AdminLayout() {
   return (
-    <div>
+    <React.Fragment>
       <Outlet />
-    </div>
+    </React.Fragment>
   );
 }
 

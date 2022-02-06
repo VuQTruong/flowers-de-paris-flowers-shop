@@ -1,7 +1,7 @@
 import React from 'react';
 
 function UserFavorites() {
-  return <div>User Favorites</div>;
+  return <section>User Favorites</section>;
 }
 
 export default UserFavorites;

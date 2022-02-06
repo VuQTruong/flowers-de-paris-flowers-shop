@@ -8,10 +8,10 @@ function LoadingPage() {
   return (
     <div className='page-container'>
       <Header />
-      <div className='container flex col center loading-page-container'>
+      <main className='container flex col center loading-page-container'>
         <LoadingSVG className='loading-page__svg' />
         <Loading />
-      </div>
+      </main>
       <Footer />
     </div>
   );

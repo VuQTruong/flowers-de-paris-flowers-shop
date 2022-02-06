@@ -1,7 +1,7 @@
 import React from 'react';
 
 function UserInfo() {
-  return <div>User Info</div>;
+  return <section>User Info</section>;
 }
 
 export default UserInfo;

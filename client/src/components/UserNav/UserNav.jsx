@@ -75,7 +75,7 @@ function UserNav(props) {
               My Favorites
             </Link>
             <Link
-              to='#signout'
+              to='/#signout'
               className='dropdown-item'
               onClick={onSignOutClick}
             >

@@ -64,12 +64,12 @@ function Signin() {
   };
 
   return (
-    <div className='signin__bg'>
+    <main className='signin__bg'>
       <div className='container'>
-        <div className='signin__panel'>
+        <section className='signin__panel'>
           <img src={signInImg} alt='Sign In' className='signin__image' />
 
-          <div className='signin__content'>
+          <section className='signin__content'>
             <h2>Sign In</h2>
             <button
               className='btn signin__social google'
@@ -168,18 +168,18 @@ function Signin() {
               }}
             </Formik>
 
-            <section className='signin__footer'>
+            <footer className='signin__footer'>
               Not a member?{' '}
               <span>
                 <Link to='/signup' className='signin__link'>
                   Sign Up
                 </Link>
               </span>
-            </section>
-          </div>
-        </div>
+            </footer>
+          </section>
+        </section>
       </div>
-    </div>
+    </main>
   );
 }
 

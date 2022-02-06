@@ -69,7 +69,7 @@ function MobileNav(props) {
       </Link>
 
       {/* Mobile Sidebar */}
-      <div
+      <aside
         className={`mobile-nav ${mbNavActive ? 'active' : ''} flex mobile-view`}
       >
         <div className='mobile-nav__content'>
@@ -199,10 +199,10 @@ function MobileNav(props) {
         </div>
 
         <div className='mobile-nav__blank' onClick={closeNavHandler}></div>
-      </div>
+      </aside>
 
       {/* Mobile User Info */}
-      <div className='mobile-user flex'>
+      <nav className='mobile-user flex'>
         <NavLink to='/user/fav' className={generateUserNavClasses}>
           <i className='bx bx-heart'></i>
           <span>Favorites</span>
@@ -215,7 +215,7 @@ function MobileNav(props) {
           <i className='bx bx-notepad'></i>
           <span>My Oders</span>
         </NavLink>
-      </div>
+      </nav>
     </React.Fragment>
   );
 }

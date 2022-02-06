@@ -91,9 +91,9 @@ function Signup() {
   };
 
   return (
-    <div className='signup__bg'>
+    <main className='signup__bg'>
       <div className='container'>
-        <div className='signup__panel'>
+        <section className='signup__panel'>
           <div className='signup__content'>
             <h2>Sign Up</h2>
 
@@ -241,20 +241,20 @@ function Signup() {
               }}
             </Formik>
 
-            <section className='signup__footer'>
+            <footer className='signup__footer'>
               Already a member?{' '}
               <span>
                 <Link to='/signin' className='signup__link'>
                   Sign In
                 </Link>
               </span>
-            </section>
+            </footer>
           </div>
 
           <img src={signUpImg} alt='Sign In' className='signup__image' />
-        </div>
+        </section>
       </div>
-    </div>
+    </main>
   );
 }
 

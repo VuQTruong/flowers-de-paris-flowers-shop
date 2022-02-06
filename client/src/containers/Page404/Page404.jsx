@@ -8,7 +8,7 @@ function Page404() {
   return (
     <div className='page-container'>
       <Header />
-      <div className='container flex col center notfound__container'>
+      <main className='container flex col center notfound__container'>
         <Page404SVG className='notfound__svg' />
         <h2 className='notfound__title'>
           404 - Looks like you are getting lost!
@@ -17,7 +17,7 @@ function Page404() {
           <i className='bx bx-home'></i>
           Go back to Home page
         </Link>
-      </div>
+      </main>
       <Footer />
     </div>
   );
