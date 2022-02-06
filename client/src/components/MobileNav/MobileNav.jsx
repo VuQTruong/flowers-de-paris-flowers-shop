@@ -77,7 +77,7 @@ function MobileNav(props) {
             <Link to='/' className='brand brand--sidebar'>
               Flowers de Paris
             </Link>
-            <span className='mobile-nav__close' onClick={closeNavHandler}>
+            <span className='mobile-nav__btn-close' onClick={closeNavHandler}>
               &times;
             </span>
           </header>
@@ -177,14 +177,23 @@ function MobileNav(props) {
                 </Link>
               </React.Fragment>
             ) : (
-              <Link
-                to='/signin'
-                className='mobile-nav__user flex'
-                onClick={closeNavHandler}
-              >
-                <i className='bx bx-log-in-circle'></i>
-                Sign in
-              </Link>
+              <React.Fragment>
+                <Link
+                  to='/signin'
+                  className='mobile-nav__btn-signin flex center'
+                  onClick={closeNavHandler}
+                >
+                  <i className='bx bx-log-in-circle'></i>
+                  Sign In
+                </Link>
+                <Link
+                  to='/signup'
+                  className='mobile-nav__btn-signup'
+                  onClick={closeNavHandler}
+                >
+                  Sign Up
+                </Link>
+              </React.Fragment>
             )}
           </footer>
         </div>

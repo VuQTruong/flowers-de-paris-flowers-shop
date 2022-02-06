@@ -81,7 +81,14 @@ function UserNav(props) {
           </ul>
         </div>
       ) : (
-        <Link to='/signin'>Sign In</Link>
+        <React.Fragment>
+          <Link to='/signin' className='header-info__btn-signin'>
+            Sign In
+          </Link>
+          <Link to='/signup' className='header-info__btn-signup'>
+            Sign Up
+          </Link>
+        </React.Fragment>
       )}
     </div>
   );

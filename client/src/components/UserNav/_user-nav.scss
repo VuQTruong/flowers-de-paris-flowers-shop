@@ -11,12 +11,13 @@
   top: 3px;
   left: -5px;
   color: white;
-  font-size: $fs-22;
+  font-size: $fs-26;
 }
 
 .cart-notification {
   position: absolute;
-  top: -7px;
+  top: -5px;
+  left: 20px;
 
   font-size: $fs-14;
   text-align: center;
@@ -54,5 +55,13 @@
 
   .cart {
     width: 2em;
+  }
+
+  .header-info__btn-signup {
+    background-color: black;
+    color: $clr-primary-300 !important;
+    border-radius: 15px;
+    padding: 0.25em 0.75em;
+    margin-left: 1em;
   }
 }
