@@ -1,10 +1,11 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import UserSideBar from '../../../components/UserSideBar/UserSideBar';
 
 function UserLayout() {
   return (
-    <div>
-      <h2>My Account</h2>
+    <div className='container user__container'>
+      <UserSideBar />
       <Outlet />
     </div>
   );
