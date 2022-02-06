@@ -46,7 +46,11 @@ export const verifyUser = createAsyncThunk(
     try {
       const { data } = await Axios.get('/auth/verify');
 
-      return data.data.user;
+      if (data.data) {
+        return data.data.user;
+      }
+
+      return rejectWithValue(data);
     } catch (error) {
       return rejectWithValue(error.response.data);
     }

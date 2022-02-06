@@ -7,6 +7,7 @@ router.get('/verify', verifyUser, (req, res, next) => {
   if (req.user) {
     return res.status(200).json({
       status: 'success',
+      message: 'User is sigining in',
       data: {
         user: req.user,
       },
@@ -14,8 +15,8 @@ router.get('/verify', verifyUser, (req, res, next) => {
   }
 
   return res.status(200).json({
-    status: 'success',
-    message: 'User are not signing in',
+    status: 'fail',
+    message: 'User is not signing in',
     data: null,
   });
 });
