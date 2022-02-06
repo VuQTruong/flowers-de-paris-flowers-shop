@@ -70,7 +70,7 @@ function Footer() {
                   className='footer-social-item'
                   rel='noreferrer'
                 >
-                  <i className='bx bxl-facebook'></i>
+                  <i className='bx bxl-facebook-square'></i>
                 </a>
               </li>
               <li>
