@@ -7,7 +7,7 @@
   cursor: pointer;
 }
 
-.mobile-nav-content {
+.mobile-nav__content {
   display: grid;
   grid-template-rows: -webkit-max-content 1fr -webkit-max-content;
   grid-template-rows: max-content 1fr max-content;
@@ -22,7 +22,7 @@
   }
 }
 
-.mobile-nav-content::-webkit-scrollbar {
+.mobile-nav__content::-webkit-scrollbar {
   display: none;
 }
 
@@ -39,21 +39,21 @@
   &.active {
     transform: translateX(0);
 
-    .mobile-nav-blank {
+    .mobile-nav__blank {
       background-color: rgba($color: #000000, $alpha: 0.8);
     }
   }
 }
 
-.mobile-nav-blank {
+.mobile-nav__blank {
   background-color: transparent;
   flex-grow: 1;
   height: 100vh;
   transition: all 0.5s;
 }
 
-.mobile-nav-header,
-.mobile-nav-footer {
+.mobile-nav__header,
+.mobile-nav__footer {
   padding: 1em;
   align-items: center;
   justify-content: space-between;
@@ -64,14 +64,14 @@
   }
 }
 
-.mobile-nav-close {
+.mobile-nav__close {
   font-size: $fs-34;
   width: 1em;
   text-align: right;
   cursor: pointer;
 }
 
-.mobile-nav-main {
+.mobile-nav__main {
   width: 100%;
   height: 100%;
   background: url('../../assets/images/bg_sidebar.jpg');
@@ -100,12 +100,12 @@
   margin-right: 0.5em;
 }
 
-.mobile-nav-user {
+.mobile-nav__user {
   align-items: center;
   margin-right: auto;
 }
 
-.mobile-nav-user .bxs-user {
+.mobile-nav__user .bxs-user {
   font-size: $fs-32;
   color: $clr-txt-secondary;
   margin-right: 0.25em;
@@ -114,12 +114,12 @@
   border-radius: 5px;
 }
 
-.mobile-nav-user .bx-log-in {
+.mobile-nav__user .bx-log-in-circle {
   font-size: $fs-30;
   margin-right: 0.5em;
 }
 
-.mobile-nav-footer .bx-log-out {
+.mobile-nav__footer .bx-log-out {
   font-size: $fs-30 !important;
   position: relative;
   top: 0.125em;
@@ -153,8 +153,27 @@
   }
 }
 
+.mobile-user__item.active {
+  color: white;
+  text-shadow: 0 0 10px black;
+}
+
+.mobile-nav__btn-signout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mobile-nav__btn-signout i {
+  font-size: $fs-30;
+}
+
+.mobile-nav__btn-signout span {
+  font-size: 0.8rem;
+}
+
 @media (max-width: 800px) {
-  .mobile-nav-content {
+  .mobile-nav__content {
     width: 80%;
   }
 }

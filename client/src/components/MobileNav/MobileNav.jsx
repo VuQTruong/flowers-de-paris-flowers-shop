@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { signOut } from '../../features/auth/current-user-slice';
 
 function MobileNav(props) {
@@ -34,6 +34,17 @@ function MobileNav(props) {
     activeMobileNav(false);
   };
 
+  const generateUserNavClasses = (navData) => {
+    const { isActive } = navData;
+    let classesArray = ['mobile-user__item'];
+
+    if (isActive) {
+      classesArray.push('active');
+    }
+
+    return classesArray.join(' ');
+  };
+
   return (
     <React.Fragment>
       {/* Mobile Header */}
@@ -60,17 +71,17 @@ function MobileNav(props) {
       <div
         className={`mobile-nav ${mbNavActive ? 'active' : ''} flex mobile-view`}
       >
-        <div className='mobile-nav-content'>
-          <header className='mobile-nav-header bg-primary flex'>
+        <div className='mobile-nav__content'>
+          <header className='mobile-nav__header bg-primary flex'>
             <Link to='/' className='brand brand--sidebar'>
               Flowers de Paris
             </Link>
-            <span className='mobile-nav-close' onClick={closeNavHandler}>
+            <span className='mobile-nav__close' onClick={closeNavHandler}>
               &times;
             </span>
           </header>
 
-          <nav className='mobile-nav-main'>
+          <nav className='mobile-nav__main'>
             <ul className='mobile-category-list'>
               {userInfo && userInfo.isAdmin && (
                 <li>
@@ -133,12 +144,12 @@ function MobileNav(props) {
             </ul>
           </nav>
 
-          <footer className='mobile-nav-footer bg-primary flex'>
+          <footer className='mobile-nav__footer bg-primary flex'>
             {userInfo ? (
               <React.Fragment>
                 <Link
                   to='/customer/account'
-                  className='mobile-nav-user flex'
+                  className='mobile-nav__user flex'
                   onClick={closeNavHandler}
                 >
                   <i className='bx bxs-user'></i>
@@ -148,40 +159,45 @@ function MobileNav(props) {
                   </div>
                 </Link>
 
-                <Link to='#signout' onClick={onSignOutClick}>
-                  <i className='bx bx-log-out'></i>
+                <Link
+                  to='#signout'
+                  onClick={onSignOutClick}
+                  className='mobile-nav__btn-signout'
+                >
+                  <i className='bx bx-log-out-circle'></i>
+                  <span>Sign Out</span>
                 </Link>
               </React.Fragment>
             ) : (
               <Link
                 to='/signin'
-                className='mobile-nav-user flex'
+                className='mobile-nav__user flex'
                 onClick={closeNavHandler}
               >
-                <i className='bx bx-log-in'></i>
+                <i className='bx bx-log-in-circle'></i>
                 Sign in
               </Link>
             )}
           </footer>
         </div>
 
-        <div className='mobile-nav-blank' onClick={closeNavHandler}></div>
+        <div className='mobile-nav__blank' onClick={closeNavHandler}></div>
       </div>
 
       {/* Mobile User Info */}
       <div className='mobile-user flex'>
-        <Link to='/customer/favourite' className='mobile-user__item'>
+        <NavLink to='/user/fav' className={generateUserNavClasses}>
           <i className='bx bxs-heart'></i>
-          <span>Yêu thích</span>
-        </Link>
-        <Link to='/customer/account' className='mobile-user__item'>
+          <span>Favorites</span>
+        </NavLink>
+        <NavLink to='/user/info' className={generateUserNavClasses}>
           <i className='bx bxs-user'></i>
-          <span>Tài khoản</span>
-        </Link>
-        <Link to='/customer/orders/history' className='mobile-user__item'>
+          <span>My Account</span>
+        </NavLink>
+        <NavLink to='/user/orders' className={generateUserNavClasses}>
           <i className='bx bx-notepad'></i>
-          <span>Đơn hàng</span>
-        </Link>
+          <span>My Oders</span>
+        </NavLink>
       </div>
     </React.Fragment>
   );

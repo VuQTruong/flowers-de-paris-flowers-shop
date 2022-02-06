@@ -66,7 +66,7 @@ function UserNav(props) {
               className='dropdown-item'
               onClick={onSignOutClick}
             >
-              <i className='bx bx-log-out'></i>
+              <i className='bx bx-log-out-circle'></i>
               Sign Out
             </Link>
           </ul>
