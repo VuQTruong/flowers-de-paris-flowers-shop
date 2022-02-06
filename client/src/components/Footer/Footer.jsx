@@ -70,7 +70,7 @@ function Footer() {
                   className='footer-social-item'
                   rel='noreferrer'
                 >
-                  <i className='bx bxl-facebook-square'></i>
+                  <i className='bx bxl-facebook'></i>
                 </a>
               </li>
               <li>
@@ -80,7 +80,7 @@ function Footer() {
                   rel='noreferrer'
                   className='footer-social-item'
                 >
-                  <i className='bx bxl-instagram-alt'></i>
+                  <i className='bx bxl-instagram'></i>
                 </a>
               </li>
             </ul>
