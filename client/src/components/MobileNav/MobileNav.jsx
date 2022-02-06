@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import { signOut } from '../../features/auth/current-user-slice';
+import Avatar from 'react-avatar';
 
 function MobileNav(props) {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ function MobileNav(props) {
 
   const getClientName = () => {
     const nameArray = userInfo.name.split(' ');
-    return nameArray[nameArray.length - 1];
+    return nameArray[0];
   };
 
   const onSignOutClick = () => {
@@ -152,10 +153,17 @@ function MobileNav(props) {
                   className='mobile-nav__user flex'
                   onClick={closeNavHandler}
                 >
-                  <i className='bx bxs-user'></i>
+                  <Avatar
+                    className='mobile-nav__user-avatar'
+                    name={userInfo.name}
+                    round={true}
+                    size='50'
+                    textSizeRatio={3}
+                  />
+
                   <div>
                     <p>{getClientName()}</p>
-                    <p>My Account</p>
+                    <span>My Account</span>
                   </div>
                 </Link>
 

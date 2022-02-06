@@ -105,18 +105,17 @@
   margin-right: auto;
 }
 
-.mobile-nav__user .bxs-user {
-  font-size: $fs-32;
-  color: $clr-txt-secondary;
-  margin-right: 0.25em;
-  padding: 0.25em;
-  background-color: #f9f9f9;
-  border-radius: 5px;
+.mobile-nav__user-avatar {
+  margin-right: 0.5em;
 }
 
 .mobile-nav__user .bx-log-in-circle {
   font-size: $fs-30;
   margin-right: 0.5em;
+}
+
+.mobile-nav__user span {
+  font-weight: 400;
 }
 
 .mobile-nav__footer .bx-log-out {

@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { signOut } from '../../features/auth/current-user-slice';
+import Avatar from 'react-avatar';
 
 function UserNav(props) {
   const { activeMobileNav } = props;
@@ -19,7 +20,7 @@ function UserNav(props) {
 
   const getClientName = () => {
     const nameArray = userInfo.name.split(' ');
-    return nameArray[nameArray.length - 1];
+    return nameArray[0];
   };
 
   return (
@@ -41,6 +42,14 @@ function UserNav(props) {
 
       {userInfo ? (
         <div className='header-info__user dropdown'>
+          <Avatar
+            className='header-info__user-avatar'
+            name={userInfo.name}
+            round={true}
+            size='30'
+            textSizeRatio={3.5}
+          />
+
           <Link to='/customer/account'>
             {getClientName()}
             &nbsp;
