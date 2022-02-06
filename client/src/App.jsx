@@ -23,6 +23,10 @@ const Dashboard = lazy(() => import('./containers/admin/Dashboard/Dashboard'));
 const Signin = lazy(() => import('./containers/client/Signin/Signin'));
 const Signup = lazy(() => import('./containers/client/Signup/Signup'));
 const OAuthFail = lazy(() => import('./containers/client/OAuthFail/OAuthFail'));
+const Unauthorized = lazy(() =>
+  import('./containers/Unauthorized/Unauthorized')
+);
+const Forbidden = lazy(() => import('./containers/Forbidden/Forbidden'));
 
 function App() {
   const dispatch = useDispatch();
@@ -55,6 +59,9 @@ function App() {
           <Route path='/admin' element={<AdminLayout />}>
             <Route index element={<Dashboard />} />
           </Route>
+
+          <Route path='/warning/unauthorized' element={<Unauthorized />} />
+          <Route path='/warning/forbidden' element={<Forbidden />} />
 
           {/* page not found */}
           <Route path='*' element={<Page404 />} />

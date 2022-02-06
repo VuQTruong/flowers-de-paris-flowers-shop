@@ -1,0 +1,39 @@
+.forbidden__container {
+  margin: 4em 0;
+  align-self: center;
+}
+
+.forbidden__svg {
+  width: 75%;
+  height: auto;
+}
+
+.forbidden__title {
+  font-size: 1.5rem;
+  margin: 0.5em auto;
+  text-align: center;
+}
+
+.forbidden__back-home {
+  display: inline-flex;
+  align-items: flex-end;
+  color: $clr-txt-secondary;
+}
+
+.forbidden__back-home i {
+  font-size: 2rem;
+  margin-right: 0.25em;
+}
+
+@media (min-width: $screen-md) {
+  .forbidden__svg {
+    width: 35%;
+    height: auto;
+  }
+
+  .forbidden__title {
+    font-size: 2rem;
+    margin: 0.5em auto;
+    text-align: center;
+  }
+}

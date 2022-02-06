@@ -1,11 +1,17 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Navigate, Outlet } from 'react-router-dom';
 
 function AdminLayout() {
-  return (
-    <React.Fragment>
+  const currentUser = useSelector((state) => state.currentUser);
+  const { userInfo } = currentUser;
+
+  return userInfo && userInfo.isAdmin ? (
+    <main className='container'>
       <Outlet />
-    </React.Fragment>
+    </main>
+  ) : (
+    <Navigate replace to='/warning/forbidden' />
   );
 }
 

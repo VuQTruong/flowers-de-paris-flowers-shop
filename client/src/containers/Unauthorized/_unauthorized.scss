@@ -1,0 +1,39 @@
+.unauthorized__container {
+  margin: 4em 0;
+  align-self: center;
+}
+
+.unauthorized__svg {
+  width: 75%;
+  height: auto;
+}
+
+.unauthorized__title {
+  font-size: 1.5rem;
+  margin: 0.5em auto;
+  text-align: center;
+}
+
+.unauthorized__back-home {
+  display: inline-flex;
+  align-items: flex-end;
+  color: $clr-txt-secondary;
+}
+
+.unauthorized__back-home i {
+  font-size: 2rem;
+  margin-right: 0.25em;
+}
+
+@media (min-width: $screen-md) {
+  .unauthorized__svg {
+    width: 35%;
+    height: auto;
+  }
+
+  .unauthorized__title {
+    font-size: 2rem;
+    margin: 0.5em auto;
+    text-align: center;
+  }
+}
