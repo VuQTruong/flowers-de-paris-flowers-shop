@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { signOut } from '../../features/auth/current-user-slice';
 import Avatar from 'react-avatar';
+import { unwrapResult } from '@reduxjs/toolkit';
+import swal from 'sweetalert2';
 
 function UserNav(props) {
   const { activeMobileNav } = props;
@@ -13,9 +15,25 @@ function UserNav(props) {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
-  const onSignOutClick = () => {
-    dispatch(signOut());
+  const onSignOutClick = async () => {
     activeMobileNav(false);
+
+    try {
+      const actionResult = await dispatch(signOut());
+      unwrapResult(actionResult);
+
+      swal.fire({
+        icon: 'success',
+        title: 'Sign Out Successfully!',
+        text: 'Thanks for shopping with us! See you later!',
+      });
+    } catch (error) {
+      swal.fire({
+        icon: 'error',
+        title: 'Oops!...',
+        text: error.message,
+      });
+    }
   };
 
   const getClientName = () => {

@@ -43,7 +43,7 @@ function Signin() {
 
       swal.fire({
         icon: 'success',
-        title: `Woo hoo!!...`,
+        title: `Yay!..`,
         text: `Welcome back, ${data.name}!`,
       });
     } catch (error) {

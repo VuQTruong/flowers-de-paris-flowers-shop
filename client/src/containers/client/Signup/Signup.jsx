@@ -70,7 +70,7 @@ function Signup() {
 
       swal.fire({
         icon: 'success',
-        title: 'Congratulations!',
+        title: 'Woo hoo!!!...',
         text: `Welcome to our shop, ${data.name}!`,
       });
     } catch (error) {

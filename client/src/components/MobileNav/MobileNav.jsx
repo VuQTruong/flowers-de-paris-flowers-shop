@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import { signOut } from '../../features/auth/current-user-slice';
 import Avatar from 'react-avatar';
+import { unwrapResult } from '@reduxjs/toolkit';
+import swal from 'sweetalert2';
 
 function MobileNav(props) {
   const dispatch = useDispatch();
@@ -22,9 +24,25 @@ function MobileNav(props) {
     return nameArray[0];
   };
 
-  const onSignOutClick = () => {
-    dispatch(signOut());
+  const onSignOutClick = async () => {
     closeNavHandler();
+
+    try {
+      const actionResult = await dispatch(signOut());
+      unwrapResult(actionResult);
+
+      swal.fire({
+        icon: 'success',
+        title: 'Sign Out Successfully!',
+        text: 'Thanks for shopping with us! See you later!',
+      });
+    } catch (error) {
+      swal.fire({
+        icon: 'error',
+        title: 'Oops!...',
+        text: error.message,
+      });
+    }
   };
 
   const openNavHandler = () => {
