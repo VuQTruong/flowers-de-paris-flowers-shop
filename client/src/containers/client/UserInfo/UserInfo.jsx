@@ -1,13 +1,54 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import FormikControl from '../../../formik/FormikControl';
-import { dateFormat } from '../../../utilities/helpers';
 
-const validationSchema = Yup.object({});
+import swal from 'sweetalert2';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { updateUserInfo } from '../../../features/user/update-user';
+import { signOut } from '../../../features/user/sign-out';
+import { useNavigate } from 'react-router-dom';
+
+const genderOptions = [
+  { key: 'Select an option', value: '' },
+  { key: 'She/her', value: 'she' },
+  { key: 'He/him', value: 'he' },
+  { key: 'They/them', value: 'they' },
+  { key: 'Prefer not to response', value: 'not response' },
+];
+
+const changePasswordOptions = [
+  { key: 'Yes, I want to change the password', value: 'true' },
+  { key: 'No, keep the current password', value: 'false' },
+];
+
+const validationSchema = Yup.object({
+  name: Yup.string()
+    .matches(/^[A-Za-z ]*$/, 'Name must contain letters only')
+    .required('Name is required'),
+  email: Yup.string().email('Invalid email'),
+  phone: Yup.string().matches(/^[0-9]+$/, 'Invalid phone number'),
+  address: Yup.string(),
+  gender: Yup.string(),
+  password: Yup.string()
+    .min(8, 'Password must contain at least 8 characters')
+    .max(20, 'Password must contain at most 20 characters')
+    .matches(
+      /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]+$/,
+      'Password must contain at least 1 letter, 1 number, and 1 special character (!@#$%^&*)'
+    ),
+  confirmPassword: Yup.string().oneOf(
+    [Yup.ref('password'), null],
+    'Confirm password is not match'
+  ),
+  changePassword: Yup.string(),
+});
 
 function UserInfo() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const currentUser = useSelector((state) => state.currentUser);
   const { userInfo, loading } = currentUser;
 
@@ -20,9 +61,50 @@ function UserInfo() {
     dateOfBirth: userInfo ? Date.parse(userInfo.dateOfBirth) : '',
     password: '',
     confirmPassword: '',
+    changePassword: 'false',
   };
 
-  const updateInfoHandler = () => {};
+  const updateInfoHandler = async (values) => {
+    const { confirmPassword, changePassword, ...updateInfoValues } = values;
+
+    if (!userInfo.googleId && !userInfo.facebookId) {
+      delete updateInfoValues.email;
+      delete updateInfoValues.phone;
+    }
+
+    if (values.changePassword === 'false') {
+      delete updateInfoValues.password;
+    }
+
+    try {
+      const actionResult = await dispatch(updateUserInfo(updateInfoValues));
+      await unwrapResult(actionResult);
+
+      swal
+        .fire({
+          icon: 'success',
+          title: 'Congratulations!',
+          text:
+            values.changePassword === 'false'
+              ? 'You have been updated your profile successfully!'
+              : 'You have been updated your profile successfully! Please sign in again with your new password!',
+        })
+        .then(async () => {
+          if (values.changePassword === 'true') {
+            const actionResult = await dispatch(signOut());
+            await unwrapResult(actionResult);
+
+            navigate('/');
+          }
+        });
+    } catch (error) {
+      swal.fire({
+        icon: 'error',
+        title: 'Oops!...',
+        text: error.message,
+      });
+    }
+  };
 
   return (
     <section className='user-info__container'>
@@ -37,125 +119,56 @@ function UserInfo() {
           {(formik) => {
             return (
               <Form className='user-info__form'>
-                <div className='form-v2__control'>
-                  <label
-                    htmlFor='name'
-                    className='form-v2__label user-info__form-label'
-                  >
-                    Fullname
-                  </label>
-                  <div className='form-v2__input-box'>
-                    <i className='bx bx-user'></i>
-                    <Field
-                      type='input'
-                      id='name'
-                      name='name'
-                      placeholder='your fullname'
-                      className='form-v2__input--text'
-                    />
-                    <ErrorMessage name='name'>
-                      {(errorMsg) => (
-                        <div className='form__error'>{errorMsg}</div>
-                      )}
-                    </ErrorMessage>
-                  </div>
-                </div>
+                <FormikControl
+                  control='input'
+                  type='input'
+                  name='name'
+                  label='Fullname'
+                  placeholder='your fullname'
+                  labelClassName='user-info__form-label'
+                  icon='bx bx-user'
+                />
 
-                <div className='form-v2__control'>
-                  <label
-                    htmlFor='email'
-                    className='form-v2__label user-info__form-label'
-                  >
-                    Email
-                  </label>
-                  <div className='form-v2__input-box'>
-                    <i className='bx bx-envelope'></i>
-                    <Field
-                      type='email'
-                      id='email'
-                      name='email'
-                      placeholder='email'
-                      className='form-v2__input--text'
-                    />
-                    <ErrorMessage name='email'>
-                      {(errorMsg) => (
-                        <div className='form__error'>{errorMsg}</div>
-                      )}
-                    </ErrorMessage>
-                  </div>
-                </div>
+                <FormikControl
+                  control='input'
+                  type='email'
+                  name='email'
+                  label='Email'
+                  placeholder='example@gmail.com'
+                  labelClassName='user-info__form-label'
+                  icon='bx bx-envelope'
+                  disabled={!userInfo.googleId && !userInfo.facebookId}
+                />
 
-                <div className='form-v2__control'>
-                  <label
-                    htmlFor='phone'
-                    className='form-v2__label user-info__form-label'
-                  >
-                    Phone Number
-                  </label>
-                  <div className='form-v2__input-box'>
-                    <i className='bx bx-phone'></i>
-                    <Field
-                      type='input'
-                      id='phone'
-                      name='phone'
-                      placeholder='phone number'
-                      className='form-v2__input--text'
-                    />
-                    <ErrorMessage name='phone'>
-                      {(errorMsg) => (
-                        <div className='form__error'>{errorMsg}</div>
-                      )}
-                    </ErrorMessage>
-                  </div>
-                </div>
+                <FormikControl
+                  control='input'
+                  type='input'
+                  name='phone'
+                  label='Phone Number'
+                  placeholder='phone number'
+                  labelClassName='user-info__form-label'
+                  icon='bx bx-phone'
+                  disabled={!userInfo.googleId && !userInfo.facebookId}
+                />
 
-                <div className='form-v2__control'>
-                  <label
-                    htmlFor='address'
-                    className='form-v2__label user-info__form-label'
-                  >
-                    Address
-                  </label>
-                  <div className='form-v2__input-box'>
-                    <i className='bx bx-home'></i>
-                    <Field
-                      type='input'
-                      id='address'
-                      name='address'
-                      placeholder='address'
-                      className='form-v2__input--text'
-                    />
-                    <ErrorMessage name='address'>
-                      {(errorMsg) => (
-                        <div className='form__error'>{errorMsg}</div>
-                      )}
-                    </ErrorMessage>
-                  </div>
-                </div>
+                <FormikControl
+                  control='input'
+                  type='input'
+                  name='address'
+                  label='Address'
+                  placeholder='123 example street, example city, postal code'
+                  labelClassName='user-info__form-label'
+                  icon='bx bx-home'
+                />
 
-                <div className='form-v2__control'>
-                  <label
-                    htmlFor='gender'
-                    className='form-v2__label user-info__form-label'
-                  >
-                    Gender
-                  </label>
-                  <div className='form-v2__input-box'>
-                    <i className='bx bx-user'></i>
-                    <Field
-                      type='input'
-                      id='gender'
-                      name='gender'
-                      placeholder='gender'
-                      className='form-v2__input--text'
-                    />
-                    <ErrorMessage name='gender'>
-                      {(errorMsg) => (
-                        <div className='form__error'>{errorMsg}</div>
-                      )}
-                    </ErrorMessage>
-                  </div>
-                </div>
+                <FormikControl
+                  control='select'
+                  options={genderOptions}
+                  name='gender'
+                  label='Gender'
+                  labelClassName='user-info__form-label'
+                  icon='bx bx-user'
+                />
 
                 <FormikControl
                   control='date'
@@ -164,52 +177,40 @@ function UserInfo() {
                   labelClassName='user-info__form-label'
                 />
 
-                <div className='form-v2__control'>
-                  <label
-                    htmlFor='password'
-                    className='form-v2__label user-info__form-label'
-                  >
-                    Password
-                  </label>
-                  <div className='form-v2__input-box'>
-                    <i className='bx bx-lock'></i>
-                    <Field
-                      type='password'
-                      id='password'
-                      name='password'
-                      placeholder='new password'
-                      className='form-v2__input--text'
-                    />
-                    <ErrorMessage name='password'>
-                      {(errorMsg) => (
-                        <div className='form__error'>{errorMsg}</div>
-                      )}
-                    </ErrorMessage>
-                  </div>
-                </div>
+                <FormikControl
+                  control='radio'
+                  name='changePassword'
+                  label='Change Password?'
+                  options={changePasswordOptions}
+                  labelClassName='user-info__form-label'
+                />
 
-                <div className='form-v2__control'>
-                  <label
-                    htmlFor='confirmPassword'
-                    className='form-v2__label user-info__form-label'
-                  >
-                    Confirm Password
-                  </label>
-                  <div className='form-v2__input-box'>
-                    <i className='bx bx-lock'></i>
-                    <Field
-                      type='password'
-                      id='confirmPassword'
-                      name='confirmPassword'
-                      placeholder='confirm new password'
-                      className='form-v2__input--text'
-                    />
-                    <ErrorMessage name='confirmPassword'>
-                      {(errorMsg) => (
-                        <div className='form__error'>{errorMsg}</div>
-                      )}
-                    </ErrorMessage>
-                  </div>
+                <div
+                  className={
+                    formik.values.changePassword === 'false'
+                      ? 'user-info__password-section--hide'
+                      : ''
+                  }
+                >
+                  <FormikControl
+                    control='input'
+                    type='password'
+                    name='password'
+                    label='Password'
+                    placeholder='new password'
+                    labelClassName='user-info__form-label'
+                    icon='bx bx-lock'
+                  />
+
+                  <FormikControl
+                    control='input'
+                    type='password'
+                    name='confirmPassword'
+                    label='Confirm Password'
+                    placeholder='confirm new password'
+                    labelClassName='user-info__form-label'
+                    icon='bx bx-lock'
+                  />
                 </div>
 
                 <button

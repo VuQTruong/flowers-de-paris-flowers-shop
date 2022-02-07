@@ -10,7 +10,7 @@
 }
 
 .user-info__content {
-  width: 50%;
+  width: 90%;
 }
 
 .user-info__form {
@@ -28,4 +28,10 @@
 
 .user-info__password-section--hide {
   display: none;
+}
+
+@media (min-width: $screen-md) {
+  .user-info__content {
+    width: 50%;
+  }
 }
