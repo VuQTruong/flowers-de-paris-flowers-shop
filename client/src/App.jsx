@@ -7,16 +7,13 @@ import ScrollToTop from './components/ScrollToTop/ScropToTop';
 import LoadingPage from './containers/LoadingPage/LoadingPage';
 import ClientLayout from './containers/client/ClientLayout/ClientLayout';
 import AdminLayout from './containers/admin/AdminLayout/AdminLayout';
+import UserLayout from './containers/client/UserLayout/UserLayout';
 
 import Home from './containers/client/Home/Home';
 import Page404 from './containers/Page404/Page404';
 
 import { fetchCategories } from './features/categories/categories-slice';
-import { verifyUser } from './features/auth/current-user-slice';
-import UserLayout from './containers/client/UserLayout/UserLayout';
-import UserInfo from './containers/client/UserInfo/UserInfo';
-import UserFavorites from './containers/client/UserFavorites/UserFavorites';
-import UserOrders from './containers/client/UserOrders/UserOrders';
+import { verifyUser } from './features/user/verify-user';
 
 // lazy load components
 const Dashboard = lazy(() => import('./containers/admin/Dashboard/Dashboard'));
@@ -27,6 +24,13 @@ const Unauthorized = lazy(() =>
   import('./containers/Unauthorized/Unauthorized')
 );
 const Forbidden = lazy(() => import('./containers/Forbidden/Forbidden'));
+const UserInfo = lazy(() => import('./containers/client/UserInfo/UserInfo'));
+const UserFavorites = lazy(() =>
+  import('./containers/client/UserFavorites/UserFavorites')
+);
+const UserOrders = lazy(() =>
+  import('./containers/client/UserOrders/UserOrders')
+);
 
 function App() {
   const dispatch = useDispatch();

@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { signIn } from '../../../features/auth/current-user-slice';
+import { signIn } from '../../../features/user/sign-in';
 import { unwrapResult } from '@reduxjs/toolkit';
 import swal from 'sweetalert2';
 

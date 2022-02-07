@@ -1,61 +1,10 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import Axios from '../../config/axios';
+import { createSlice } from '@reduxjs/toolkit';
 
-export const signIn = createAsyncThunk(
-  'currentUser/signin',
-  async (signInInfo, { rejectWithValue }) => {
-    try {
-      const { data } = await Axios.post('/auth/signin', signInInfo);
-
-      return data.data.user;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
-
-export const signUp = createAsyncThunk(
-  'currentUser/signUp',
-  async (signUpValues, { rejectWithValue }) => {
-    try {
-      const { data } = await Axios.post('/auth/signup', signUpValues);
-
-      return data.data.user;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
-
-export const signOut = createAsyncThunk(
-  'currentUser/signout',
-  async (_, { rejectWithValue }) => {
-    try {
-      await Axios.get('/auth/signout');
-
-      return null;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
-
-export const verifyUser = createAsyncThunk(
-  'currentUser/verify',
-  async (_, { rejectWithValue }) => {
-    try {
-      const { data } = await Axios.get('/auth/verify');
-
-      if (data.data) {
-        return data.data.user;
-      }
-
-      return rejectWithValue(data);
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
+import { signIn } from './sign-in';
+import { signUp } from './sign-up';
+import { signOut } from './sign-out';
+import { verifyUser } from './verify-user';
+import { updateUserInfo } from './update-user';
 
 export const currentUserSlice = createSlice({
   name: 'currentUser',
@@ -122,6 +71,21 @@ export const currentUserSlice = createSlice({
       state.userInfo = action.payload;
     },
     [verifyUser.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    /* update user info */
+    [updateUserInfo.pending]: (state) => {
+      state.loading = true;
+      state.userInfo = null;
+      state.error = '';
+    },
+    [updateUserInfo.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.userInfo = action.payload;
+    },
+    [updateUserInfo.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },

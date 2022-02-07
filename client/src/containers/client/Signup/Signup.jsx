@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { signUp } from '../../../features/auth/current-user-slice';
+import { signUp } from '../../../features/user/sign-up';
 import signUpImg from '../../../assets/images/register.jpg';
 
 import swal from 'sweetalert2';

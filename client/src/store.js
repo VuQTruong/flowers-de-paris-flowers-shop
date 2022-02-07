@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import currentUserReducer from './features/user/current-user-slice';
 import categoriesReducer from './features/categories/categories-slice';
-import currentUserReducer from './features/auth/current-user-slice';
-import cartReducer from './features/user/cart-slice';
+import cartReducer from './features/cart/cart-slice';
 
 const store = configureStore({
   reducer: {
