@@ -1,3 +1,4 @@
+/* form_v1 */
 .form__control {
   display: flex;
   flex-direction: column;
@@ -64,6 +65,43 @@
   box-shadow: $box-shadow;
 }
 
+/* form_v2 */
+.form-v2__control {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.form-v2__input-box {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  flex: 1 1 auto;
+}
+
+.form-v2__input-box i {
+  position: absolute;
+  left: 0.5em;
+
+  font-size: $fs-18;
+  font-weight: 300;
+  color: $clr-txt-secondary;
+}
+
+.form-v2__input--text {
+  font-family: inherit;
+  font-size: inherit;
+
+  padding: 0.75em 1em 0.75em 2em;
+
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid rgba($color: #000000, $alpha: 0.2);
+  box-shadow: $box-shadow;
+}
+
+/* general */
 input::-webkit-input-placeholder {
   font-style: italic;
   font-size: 0.8rem;

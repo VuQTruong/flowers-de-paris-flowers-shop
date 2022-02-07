@@ -75,31 +75,41 @@ function UserNav(props) {
           </Link>
           <ul className='dropdown-menu dropdown-menu--right'>
             {userInfo.isAdmin && (
-              <Link to='/admin/dashboard' className='dropdown-item'>
-                <i className='bx bx-dashboard'></i>
-                Dashboard
-              </Link>
+              <li>
+                <Link to='/admin/dashboard' className='dropdown-item'>
+                  <i className='bx bx-dashboard'></i>
+                  Dashboard
+                </Link>
+              </li>
             )}
-            <Link to='/user/orders' className='dropdown-item'>
-              <i className='bx bx-spreadsheet'></i>
-              My Orders
-            </Link>
-            <Link to='/user/info' className='dropdown-item'>
-              <i className='bx bx-user'></i>
-              My Account
-            </Link>
-            <Link to='/user/fav' className='dropdown-item'>
-              <i className='bx bx-heart'></i>
-              My Favorites
-            </Link>
-            <Link
-              to='/#signout'
-              className='dropdown-item'
-              onClick={onSignOutClick}
-            >
-              <i className='bx bx-log-out-circle'></i>
-              Sign Out
-            </Link>
+            <li>
+              <Link to='/user/info' className='dropdown-item'>
+                <i className='bx bx-user'></i>
+                My Account
+              </Link>
+            </li>
+            <li>
+              <Link to='/user/fav' className='dropdown-item'>
+                <i className='bx bx-heart'></i>
+                My Favorites
+              </Link>
+            </li>
+            <li>
+              <Link to='/user/orders' className='dropdown-item'>
+                <i className='bx bx-spreadsheet'></i>
+                My Orders
+              </Link>
+            </li>
+            <li>
+              <Link
+                to='/#signout'
+                className='dropdown-item'
+                onClick={onSignOutClick}
+              >
+                <i className='bx bx-log-out-circle'></i>
+                Sign Out
+              </Link>
+            </li>
           </ul>
         </div>
       ) : (

@@ -5,11 +5,11 @@ import Header from '../../../components/Header/Header';
 
 function ClientLayout() {
   return (
-    <React.Fragment>
+    <div className='page-container'>
       <Header />
       <Outlet />
       <Footer />
-    </React.Fragment>
+    </div>
   );
 }
 
