@@ -72,17 +72,26 @@
   margin-bottom: 1em;
 }
 
+.form-v2__control.flex-start {
+  align-items: flex-start;
+}
+
 .form-v2__input-box {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   position: relative;
 
   flex: 1 1 auto;
 }
 
+.form-v2__input-box.flex-start {
+  align-items: flex-start;
+}
+
 .form-v2__input-box i {
   position: absolute;
   left: 0.5em;
+  top: 0.7em;
 
   font-size: $fs-18;
   font-weight: 300;
@@ -101,27 +110,416 @@
   box-shadow: $box-shadow;
 }
 
+.form-v2__input--textarea {
+  font-family: inherit;
+  font-size: inherit;
+
+  padding: 0.75em 1em 0.75em 2em;
+
+  width: 100%;
+  min-height: 60px;
+  border-radius: 5px;
+  border: 1px solid rgba($color: #000000, $alpha: 0.2);
+  box-shadow: $box-shadow;
+}
+
+.form-v2__cb-options,
+.form-v2__radio-options {
+  display: flex;
+}
+
+.form-v2__cb-options.row,
+.form-v2__radio-options.row {
+  flex-direction: row;
+}
+
+.form-v2__cb-options.column,
+.form-v2__radio-options.column {
+  flex-direction: column;
+}
+
+.form-v2__cb-item,
+.form-v2__radio-item {
+  display: flex;
+  align-items: center;
+}
+
+.form-v2__cb-item label,
+.form-v2__radio-item label {
+  margin-left: 0.5em;
+}
+
+.form-v2__cb-item.reverse label,
+.form-v2__radio-item.reverse label {
+  order: 1;
+  margin-left: 0;
+  margin-right: 0.5em;
+}
+
+.form-v2__cb-item.reverse input,
+.form-v2__radio-item.reverse input {
+  order: 2;
+}
+
 /* general */
+
+textarea::-webkit-input-placeholder,
 input::-webkit-input-placeholder {
   font-style: italic;
   font-size: 0.8rem;
 }
 
+textarea::-moz-placeholder,
 input::-moz-placeholder {
   font-style: italic;
   font-size: 0.8rem;
 }
 
+textarea:-ms-input-placeholder,
 input:-ms-input-placeholder {
   font-style: italic;
   font-size: 0.8rem;
 }
 
+textarea::-ms-input-placeholder,
 input::-ms-input-placeholder {
   font-style: italic;
   font-size: 0.8rem;
 }
 
+textarea::-webkit-input-placeholder,
+input::-webkit-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-moz-placeholder,
+input::-moz-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea:-ms-input-placeholder,
+input:-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-ms-input-placeholder,
+input::-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-webkit-input-placeholder,
+input::-webkit-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-moz-placeholder,
+input::-moz-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea:-ms-input-placeholder,
+input:-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-ms-input-placeholder,
+input::-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-webkit-input-placeholder,
+input::-webkit-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-moz-placeholder,
+input::-moz-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea:-ms-input-placeholder,
+input:-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-ms-input-placeholder,
+input::-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-webkit-input-placeholder,
+input::-webkit-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-moz-placeholder,
+input::-moz-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea:-ms-input-placeholder,
+input:-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-ms-input-placeholder,
+input::-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-webkit-input-placeholder,
+input::-webkit-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-moz-placeholder,
+input::-moz-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea:-ms-input-placeholder,
+input:-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-ms-input-placeholder,
+input::-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-webkit-input-placeholder,
+input::-webkit-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-moz-placeholder,
+input::-moz-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea:-ms-input-placeholder,
+input:-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-ms-input-placeholder,
+input::-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-webkit-input-placeholder,
+input::-webkit-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-moz-placeholder,
+input::-moz-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea:-ms-input-placeholder,
+input:-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-ms-input-placeholder,
+input::-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-webkit-input-placeholder,
+input::-webkit-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-moz-placeholder,
+input::-moz-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea:-ms-input-placeholder,
+input:-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-ms-input-placeholder,
+input::-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-webkit-input-placeholder,
+input::-webkit-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-moz-placeholder,
+input::-moz-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea:-ms-input-placeholder,
+input:-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-ms-input-placeholder,
+input::-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-webkit-input-placeholder,
+input::-webkit-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-moz-placeholder,
+input::-moz-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea:-ms-input-placeholder,
+input:-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-ms-input-placeholder,
+input::-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-webkit-input-placeholder,
+input::-webkit-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-moz-placeholder,
+input::-moz-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea:-ms-input-placeholder,
+input:-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-ms-input-placeholder,
+input::-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-webkit-input-placeholder,
+input::-webkit-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-moz-placeholder,
+input::-moz-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea:-ms-input-placeholder,
+input:-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-ms-input-placeholder,
+input::-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-webkit-input-placeholder,
+input::-webkit-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-moz-placeholder,
+input::-moz-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea:-ms-input-placeholder,
+input:-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-ms-input-placeholder,
+input::-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-webkit-input-placeholder, input::-webkit-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-moz-placeholder, input::-moz-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea:-ms-input-placeholder, input:-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::-ms-input-placeholder, input::-ms-input-placeholder {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+textarea::placeholder,
 input::placeholder {
   font-style: italic;
   font-size: 0.8rem;
