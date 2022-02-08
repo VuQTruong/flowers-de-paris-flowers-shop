@@ -9,7 +9,9 @@ import { updateUserInfo } from './update-user';
 export const currentUserSlice = createSlice({
   name: 'currentUser',
   initialState: {
-    userInfo: null,
+    userInfo: localStorage.getItem('userInfo')
+      ? JSON.parse(localStorage.getItem('userInfo'))
+      : null,
     loading: false,
     error: '',
   },
@@ -24,6 +26,9 @@ export const currentUserSlice = createSlice({
     [signIn.fulfilled]: (state, action) => {
       state.loading = false;
       state.userInfo = action.payload;
+
+      // save userInfo to localStorage
+      localStorage.setItem('userInfo', JSON.stringify(action.payload));
     },
     [signIn.rejected]: (state, action) => {
       state.loading = false;
@@ -39,6 +44,9 @@ export const currentUserSlice = createSlice({
     [signUp.fulfilled]: (state, action) => {
       state.loading = false;
       state.userInfo = action.payload;
+
+      // save userInfo to localStorage
+      localStorage.setItem('userInfo', JSON.stringify(action.payload));
     },
     [signUp.rejected]: (state, action) => {
       state.loading = false;
@@ -54,6 +62,9 @@ export const currentUserSlice = createSlice({
     [signOut.fulfilled]: (state, action) => {
       state.loading = false;
       state.userInfo = action.payload;
+
+      // remove userInfo from localStorage
+      localStorage.removeItem('userInfo');
     },
     [signOut.rejected]: (state, action) => {
       state.loading = false;
@@ -63,12 +74,15 @@ export const currentUserSlice = createSlice({
     /* verify user */
     [verifyUser.pending]: (state) => {
       state.loading = true;
-      state.userInfo = null;
+      // state.userInfo = null;
       state.error = '';
     },
     [verifyUser.fulfilled]: (state, action) => {
       state.loading = false;
       state.userInfo = action.payload;
+
+      // save userInfo to localStorage
+      localStorage.setItem('userInfo', JSON.stringify(action.payload));
     },
     [verifyUser.rejected]: (state, action) => {
       state.loading = false;

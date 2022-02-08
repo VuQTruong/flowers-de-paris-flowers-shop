@@ -36,7 +36,9 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // verify the validity of user's token (jwt) or session (oauth2) each time the application is reloaded and update the userInfo in the localStorage
     dispatch(verifyUser());
+
     dispatch(fetchCategories());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
