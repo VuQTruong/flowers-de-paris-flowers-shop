@@ -67,8 +67,11 @@ function UserInfo() {
   const updateInfoHandler = async (values) => {
     const { confirmPassword, changePassword, ...updateInfoValues } = values;
 
-    if (!userInfo.googleId && !userInfo.facebookId) {
+    if (userInfo.email) {
       delete updateInfoValues.email;
+    }
+
+    if (userInfo.phone) {
       delete updateInfoValues.phone;
     }
 
@@ -137,7 +140,7 @@ function UserInfo() {
                   placeholder='example@gmail.com'
                   labelClassName='user-info__form-label'
                   icon='bx bx-envelope'
-                  disabled={!userInfo.googleId && !userInfo.facebookId}
+                  disabled={userInfo.email}
                 />
 
                 <FormikControl
@@ -148,7 +151,7 @@ function UserInfo() {
                   placeholder='phone number'
                   labelClassName='user-info__form-label'
                   icon='bx bx-phone'
-                  disabled={!userInfo.googleId && !userInfo.facebookId}
+                  disabled={userInfo.phone}
                 />
 
                 <FormikControl

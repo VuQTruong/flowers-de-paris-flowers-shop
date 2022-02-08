@@ -45,6 +45,26 @@ router.patch(
       }
     }
 
+    if (req.user.googleId || req.user.facebookId) {
+      // Check for existing email
+      if (req.body.email) {
+        const existingEmail = await User.findOne({ email: req.body.email });
+        if (existingEmail) {
+          return next(AppError.badRequest('Email is already registered'));
+        }
+      }
+
+      // Check for exisiting phone number
+      if (req.body.phone) {
+        const existingPhoneNo = await User.findOne({ phone: req.body.phone });
+        if (existingPhoneNo) {
+          return next(
+            AppError.badRequest('Phone number is already registered')
+          );
+        }
+      }
+    }
+
     const updatedUser = await User.findByIdAndUpdate(userId, req.body, {
       new: true,
       runValidators: true,

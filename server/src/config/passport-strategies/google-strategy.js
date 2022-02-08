@@ -11,7 +11,6 @@ const options = {
 const strategy = new GoogleStrategy(
   options,
   async (req, accessToken, refreshToken, profile, done) => {
-    console.log('Inside google strategy');
     // ? Call of successful authentication
 
     // Check if the user is already exist in the database by the google id

@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import Axios from '../../config/axios';
 
 export const updateUserInfo = createAsyncThunk(
-  'currentUser',
+  'currentUser/update',
   async (updateInfo, { rejectWithValue }) => {
     try {
       const { data } = await Axios.patch('/users', updateInfo);

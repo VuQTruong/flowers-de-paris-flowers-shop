@@ -6,10 +6,12 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       unique: true,
+      default: '',
     },
     phone: {
       type: String,
       unique: true,
+      default: '',
     },
     password: {
       type: String,
@@ -29,7 +31,7 @@ const userSchema = new mongoose.Schema(
     },
     gender: {
       type: String,
-      default: 'Unknown',
+      default: '',
     },
     dateOfBirth: {
       type: Date,
