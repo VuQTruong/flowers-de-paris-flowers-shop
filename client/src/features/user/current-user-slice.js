@@ -92,7 +92,7 @@ export const currentUserSlice = createSlice({
     /* update user info */
     [updateUserInfo.pending]: (state) => {
       state.loading = true;
-      state.userInfo = null;
+      // state.userInfo = null;
       state.error = '';
     },
     [updateUserInfo.fulfilled]: (state, action) => {

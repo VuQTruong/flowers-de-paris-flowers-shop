@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
@@ -49,6 +49,8 @@ function UserInfo() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const formikRef = useRef(null);
+
   const currentUser = useSelector((state) => state.currentUser);
   const { userInfo, loading } = currentUser;
 
@@ -65,6 +67,16 @@ function UserInfo() {
   };
 
   const updateInfoHandler = async (values) => {
+    if (!formikRef.current.dirty) {
+      swal.fire({
+        icon: 'success',
+        title: 'Huh!?...',
+        text: 'There is nothing changed to be saved!',
+      });
+
+      return;
+    }
+
     const { confirmPassword, changePassword, ...updateInfoValues } = values;
 
     if (userInfo.email) {
@@ -118,6 +130,7 @@ function UserInfo() {
           validationSchema={validationSchema}
           onSubmit={updateInfoHandler}
           enableReinitialize
+          innerRef={formikRef}
         >
           {(formik) => {
             return (
