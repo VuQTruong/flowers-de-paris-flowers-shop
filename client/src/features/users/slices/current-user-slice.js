@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { signIn } from './sign-in';
-import { signUp } from './sign-up';
-import { signOut } from './sign-out';
-import { verifyUser } from './verify-user';
-import { updateUserInfo } from './update-user';
+import { signIn } from '../sign-in';
+import { signUp } from '../sign-up';
+import { signOut } from '../sign-out';
+import { verifyUser } from '../verify-user';
+import { updateUserInfo } from '../update-user';
 
 export const currentUserSlice = createSlice({
   name: 'currentUser',

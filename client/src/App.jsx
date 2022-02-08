@@ -12,7 +12,7 @@ import UserLayout from './containers/client/UserLayout/UserLayout';
 import Home from './containers/client/Home/Home';
 import Page404 from './containers/Page404/Page404';
 
-import { fetchCategories } from './features/categories/categories-slice';
+import { fetchCategories } from './features/categories/fetch-categories';
 import { verifyUser } from './features/users/verify-user';
 
 // lazy load components
