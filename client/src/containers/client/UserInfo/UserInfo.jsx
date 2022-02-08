@@ -6,8 +6,8 @@ import FormikControl from '../../../formik/FormikControl';
 
 import swal from 'sweetalert2';
 import { unwrapResult } from '@reduxjs/toolkit';
-import { updateUserInfo } from '../../../features/user/update-user';
-import { signOut } from '../../../features/user/sign-out';
+import { updateUserInfo } from '../../../features/users/update-user';
+import { signOut } from '../../../features/users/sign-out';
 import { useNavigate } from 'react-router-dom';
 
 const genderOptions = [

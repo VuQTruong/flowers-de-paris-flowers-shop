@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { signOut } from '../../features/user/sign-out';
+import { signOut } from '../../features/users/sign-out';
 import Avatar from 'react-avatar';
 import { unwrapResult } from '@reduxjs/toolkit';
 import swal from 'sweetalert2';

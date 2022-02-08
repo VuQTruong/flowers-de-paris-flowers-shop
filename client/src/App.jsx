@@ -13,7 +13,7 @@ import Home from './containers/client/Home/Home';
 import Page404 from './containers/Page404/Page404';
 
 import { fetchCategories } from './features/categories/categories-slice';
-import { verifyUser } from './features/user/verify-user';
+import { verifyUser } from './features/users/verify-user';
 
 // lazy load components
 const Dashboard = lazy(() => import('./containers/admin/Dashboard/Dashboard'));
