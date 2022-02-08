@@ -7,6 +7,7 @@ const validateRequest = require('../../../middlewares/validate-request');
 const catchAsync = require('../../../utilities/catch-async.util');
 const Product = require('../../../models/product.model');
 const Category = require('../../../models/category.model');
+const AppError = require('../../../errors/app-error');
 const router = express.Router();
 
 const requireFields = [
@@ -71,6 +72,11 @@ router.post(
 
     // !wire up relationship with related category
     const category = await Category.findById(req.body.category);
+
+    if (!category) {
+      return next(AppError.badRequest('Category is not exist!'));
+    }
+
     category.products.unshift(newProduct._id);
     await category.save();
 

@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { fetchProducts } from '../fetch-products';
+
 export const productsSlice = createSlice({
   name: 'products',
   initialState: {
@@ -8,7 +10,21 @@ export const productsSlice = createSlice({
     error: '',
   },
   reducers: {},
-  extraReducers: {},
+  extraReducers: {
+    [fetchProducts.pending]: (state) => {
+      state.loading = true;
+      state.error = '';
+      state.products = null;
+    },
+    [fetchProducts.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.products = action.payload;
+    },
+    [fetchProducts.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+  },
 });
 
 export default productsSlice.reducer;

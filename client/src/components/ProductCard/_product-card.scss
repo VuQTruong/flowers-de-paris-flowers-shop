@@ -1,0 +1,150 @@
+.product-card {
+  margin: 1em;
+  width: 100%;
+  max-width: 20em;
+  min-height: max-content;
+  position: relative;
+
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  box-shadow: $box-shadow;
+  overflow: hidden;
+
+  transition: transform 0.5s;
+
+  a {
+    color: $clr-txt-primary;
+  }
+
+  h2 {
+    font-size: $fs-20;
+  }
+}
+
+.product-card__image {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+
+  overflow: hidden;
+}
+
+.product-card__image::before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+.product-card__image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+
+  transition: transform 0.5s;
+}
+
+.product-card:hover img {
+  transform: scale(1.1);
+}
+
+.product-card__like {
+  position: absolute;
+  bottom: 0.5em;
+  right: 1em;
+
+  color: grey;
+  text-shadow: 0 0 5px transparent;
+  font-size: $fs-26;
+
+  cursor: pointer;
+
+  transition: all 0.3s;
+}
+
+.product-card__like.active {
+  color: tomato;
+  text-shadow: 0 0 5px tomato;
+}
+
+.product-card__body {
+  padding: 0 1em 1em;
+  width: 100%;
+}
+
+.product-card__size {
+  margin: 0.25em 0;
+}
+
+.product-card__size-icon {
+  display: inline-flex;
+  width: 1.75em;
+  height: 1.75em;
+  background-color: orangered;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: white;
+}
+
+.product-card__price {
+  margin: 0.5em 0;
+}
+
+.product-card__price--origin {
+  font-weight: 700;
+  color: tomato;
+}
+
+.product-card__price--origin.inactive {
+  font-weight: 400;
+  color: $clr-txt-primary;
+}
+
+.product-card__price--discount {
+  font-weight: 700;
+  color: tomato;
+}
+
+.product-card__sale-tag {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  z-index: 10;
+  background: linear-gradient(
+    to bottom right,
+    white 5%,
+    $clr-primary-300,
+    white 95%
+  );
+  padding: 0.5em 1.25em;
+
+  color: black;
+  font-weight: 700;
+  font-size: $fs-14;
+  text-transform: uppercase;
+
+  border-radius: 15px 0 15px 0;
+  box-shadow: 0 0 10px white;
+}
+
+@media (min-width: $screen-md) {
+  .product-card {
+    margin: 0.5em;
+    max-width: 18em;
+  }
+}
+
+@media (min-width: $screen-lg) {
+  .product-card {
+    margin: 0.25em;
+    max-width: 15em;
+  }
+
+  .rating-reviews {
+    font-size: $fs-14;
+  }
+}

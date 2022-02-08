@@ -17,11 +17,15 @@ const userRouter = require('./services/users');
 const blogRouter = require('./services/blogs');
 const productRouter = require('./services/products');
 const reviewRouter = require('./services/reviews');
+const mockRouter = require('./mock/create-mock-data');
 
 const app = express();
 
 // Pass the global passport object into the configuration function
 require('./config/passport')(passport);
+
+/* Serve public data */
+app.use('/', express.static('public'));
 
 /* Middlewares */
 app.use(
@@ -60,6 +64,9 @@ app.use('/api/contacts', contactRouter);
 app.use('/api/products', productRouter);
 app.use('/api/reviews', reviewRouter);
 app.use('/api/users', userRouter);
+
+// todo: remove this route before production
+app.use('/api/mock', mockRouter);
 
 /* Unhandle Routes */
 app.all('*', (req, res, next) => {

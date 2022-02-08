@@ -90,13 +90,7 @@ router.post(
     return res.status(201).json({
       status: 'success',
       data: {
-        user: {
-          _id: newUser._id,
-          name: newUser.name,
-          email: newUser.email,
-          phone: newUser.phone,
-          isAdmin: newUser.isAdmin,
-        },
+        user: newUser,
       },
     });
   })
