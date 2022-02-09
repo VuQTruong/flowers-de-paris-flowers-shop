@@ -8,14 +8,14 @@ const Review = require('../../models/review.model');
 const catchAsync = require('../../utilities/catch-async.util');
 const router = express.Router();
 
-const acceptFields = ['title', 'content', 'rating', 'reviewTags'];
+const acceptFields = ['title', 'content', 'rating', 'tags'];
 
 const validations = [
   param('reviewId').isMongoId(),
   body('title').isString().optional(),
   body('content').isString().optional(),
   body('rating').isNumeric().optional(),
-  body('reviewTags').isArray().optional(),
+  body('tags').isArray().optional(),
 ];
 
 router.patch(

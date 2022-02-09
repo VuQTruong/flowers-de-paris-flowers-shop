@@ -11,6 +11,7 @@
 @import './styles/utilities/dropdown';
 
 // components
+@import './components/LoadingIcon/loading-icon';
 @import './components/Loading/loading';
 @import './components/Header/header';
 @import './components/Footer/footer';
@@ -21,6 +22,9 @@
 @import './components/UserSideBar/user-side-bar';
 @import './components/ProductCard/product-card';
 @import './components/Rating/rating';
+@import './components/ProductReviews/product-reviews';
+@import './components/ReviewCard/review-card';
+@import './components/TagInput/tag-input';
 
 // containers
 @import './containers/LoadingPage/loading-page';
@@ -35,3 +39,4 @@
 @import './containers/client/UserInfo/user-info';
 @import './containers/client/UserFavorites/user-favorites';
 @import './containers/client/UserOrders/user-orders';
+@import './containers/client/ProductDetails/product-details';

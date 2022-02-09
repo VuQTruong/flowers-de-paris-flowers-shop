@@ -9,3 +9,34 @@ export const currencyFormat = new Intl.NumberFormat('en-EN', {
   style: 'currency',
   currency: 'CAD',
 });
+
+export const renderRatingStars = (rating) => {
+  let count = 0;
+  let content = [];
+
+  for (let i = 1; i <= rating; i++) {
+    content.push(
+      <span key={count++}>
+        <i className='bx bxs-star'></i>
+      </span>
+    );
+  }
+
+  if (!Number.isInteger(rating)) {
+    content.push(
+      <span key={count++}>
+        <i className='bx bxs-star-half'></i>
+      </span>
+    );
+  }
+
+  for (let i = 1; i <= 5 - rating; i++) {
+    content.push(
+      <span key={count++}>
+        <i className='bx bx-star'></i>
+      </span>
+    );
+  }
+
+  return content;
+};

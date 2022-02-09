@@ -1,19 +1,13 @@
 import React from 'react';
+import LoadingIcon from '../LoadingIcon/LoadingIcon';
+import { ReactComponent as LoadingSVG } from '../../assets/svgs/undraw_loading_re_5axr.svg';
 
-function Loading(props) {
+function Loading() {
   return (
-    <div className={props.className}>
-      <div className='loading-container'>
-        <div className='gooey'>
-          <span className='dot'></span>
-          <div className='dots'>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <main className='container flex col center loading__container'>
+      <LoadingSVG className='loading__svg' />
+      <LoadingIcon />
+    </main>
   );
 }
 

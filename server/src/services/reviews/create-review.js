@@ -3,14 +3,13 @@ const isAuth = require('../../middlewares/is-auth');
 const validateRequest = require('../../middlewares/validate-request');
 const validateFields = require('../../middlewares/validate-fields');
 const catchAsync = require('../../utilities/catch-async.util');
-const { param, body } = require('express-validator');
+const { body } = require('express-validator');
 const Review = require('../../models/review.model');
 const Product = require('../../models/product.model');
 const AppError = require('../../errors/app-error');
-const { roundHalf } = require('../../utilities/helpers.util');
 const router = express.Router();
 
-const acceptFields = ['title', 'content', 'rating', 'reviewTags', 'product'];
+const acceptFields = ['title', 'content', 'rating', 'tags', 'product'];
 
 const validations = [
   body('title').isString().notEmpty().withMessage('Comment title is missing'),
@@ -21,7 +20,7 @@ const validations = [
     .trim()
     .escape(),
   body('rating').isNumeric().notEmpty().withMessage('Rating is missing'),
-  body('reviewTags').isArray(),
+  body('tags').isArray(),
   body('product').isMongoId().notEmpty(),
 ];
 
