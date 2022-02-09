@@ -72,10 +72,6 @@
   margin-bottom: 1em;
 }
 
-.form-v2__control.flex-start {
-  align-items: flex-start;
-}
-
 .form-v2__input-box {
   display: flex;
   flex-direction: column;
@@ -84,14 +80,10 @@
   flex: 1 1 auto;
 }
 
-.form-v2__input-box.flex-start {
-  align-items: flex-start;
-}
-
 .form-v2__input-box i {
   position: absolute;
   left: 0.5em;
-  top: 0.7em;
+  top: 0.8em;
 
   font-size: $fs-18;
   font-weight: 300;
@@ -185,5 +177,13 @@ input::placeholder {
   .form-v2__control {
     flex-direction: row;
     align-items: center;
+  }
+
+  .form-v2__control.flex-start {
+    align-items: flex-start;
+  }
+
+  .form-v2__input-box.flex-start {
+    align-items: flex-start;
   }
 }

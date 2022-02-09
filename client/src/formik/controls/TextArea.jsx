@@ -13,7 +13,7 @@ import { ErrorMessage, Field } from 'formik';
 */
 
 function TextArea(props) {
-  const { label, name, labelClassName, ...rest } = props;
+  const { label, name, labelClassName, icon, ...rest } = props;
 
   return (
     <div className='form-v2__control flex-start'>
@@ -25,7 +25,11 @@ function TextArea(props) {
       </label>
 
       <div className='form-v2__input-box flex-start'>
-        <i className='bx bx-edit' style={{ top: '0.75em' }}></i>
+        {icon ? (
+          <i className={icon} style={{ top: '0.75em' }}></i>
+        ) : (
+          <i className='bx bx-edit' style={{ top: '0.75em' }}></i>
+        )}
         <Field
           as='textarea'
           id={name}

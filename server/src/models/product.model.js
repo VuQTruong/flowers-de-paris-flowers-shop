@@ -144,17 +144,19 @@ productSchema.pre('findOneAndUpdate', function (next) {
 
 // !update the review average when reviews changed
 productSchema.pre('save', async function (next) {
-  const product = await this.populate('reviews');
+  if (this.isModified('reviews')) {
+    const product = await this.populate('reviews');
 
-  const totalRating = product.reviews.reduce((accumulator, review) => {
-    return review.rating + accumulator;
-  }, 0);
+    const totalRating = product.reviews.reduce((accumulator, review) => {
+      return review.rating + accumulator;
+    }, 0);
 
-  if (this.get('reviews').length !== 0) {
-    const rating = roundHalf(totalRating / this.get('reviews').length);
-    this.set('averageRating', rating);
-  } else {
-    this.set('averageRating', 0);
+    if (this.get('reviews').length !== 0) {
+      const rating = roundHalf(totalRating / this.get('reviews').length);
+      this.set('averageRating', rating);
+    } else {
+      this.set('averageRating', 0);
+    }
   }
   next();
 });

@@ -14,6 +14,7 @@ import Page404 from './containers/Page404/Page404';
 
 import { fetchCategories } from './features/categories/fetch-categories';
 import { verifyUser } from './features/users/verify-user';
+import ProductDetails from './containers/client/ProductDetails/ProductDetails';
 
 // lazy load components
 const Dashboard = lazy(() => import('./containers/admin/Dashboard/Dashboard'));
@@ -58,6 +59,10 @@ function App() {
               <Route path='fav' element={<UserFavorites />} />
               <Route path='orders' element={<UserOrders />} />
             </Route>
+            <Route
+              path='products/:category/:product'
+              element={<ProductDetails />}
+            />
             <Route path='oauth/fail' element={<OAuthFail />} />
           </Route>
 

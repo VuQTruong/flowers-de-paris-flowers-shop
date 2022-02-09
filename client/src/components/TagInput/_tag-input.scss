@@ -1,0 +1,74 @@
+.tag-input__control {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+.tag-input__input-box {
+  flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  background-color: white;
+
+  padding: 0.75em 1em 0.75em 2em;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.3);
+}
+
+.tag-input__input-box > i {
+  position: absolute;
+  left: 0.5em;
+  top: 1.125em;
+
+  font-size: $fs-18;
+  font-weight: 300;
+  color: $clr-txt-secondary;
+}
+
+.tag-input__input-box:focus-within {
+  border: 2px solid $clr-primary-300;
+}
+
+.tag-input__tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.tag-input__tag-item {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 0.25em 0.5em;
+  border-radius: 5px;
+
+  cursor: pointer;
+  transition: all 0.3s;
+
+  background-color: $clr-primary-300;
+  color: black;
+}
+
+.tag-input__tag-item i {
+  font-size: $fs-22;
+  margin-left: 0.25em;
+}
+
+.tag-input__input {
+  outline: none;
+  border: none;
+  padding: 0.75em 0.25em;
+}
+
+@media (min-width: $screen-md) {
+  .tag-input__control {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .tag-input__control.flex-start {
+    align-items: flex-start;
+  }
+}

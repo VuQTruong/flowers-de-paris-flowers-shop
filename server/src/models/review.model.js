@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Product = require('./product.model');
-const { roundHalf } = require('../utilities/helpers.util');
 const User = require('./user.model');
 
 const reviewSchema = new mongoose.Schema(
@@ -9,7 +8,7 @@ const reviewSchema = new mongoose.Schema(
     title: String,
     content: String,
     rating: Number,
-    reviewTags: [String],
+    tags: [String],
     // ?user is used to store info about the creator and to populate the minimal info of the person
     user: {
       type: mongoose.Schema.Types.ObjectId,

@@ -1,0 +1,163 @@
+.product-review {
+  background-color: #f9f9f9;
+  padding: 1em;
+}
+
+.product-review__title {
+  margin-bottom: 1em;
+}
+
+.product-review__overview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: max-content;
+  margin: 0 auto;
+}
+
+.overview__rating-stars {
+  font-size: $fs-26;
+  color: $clr-primary-300;
+}
+
+.overview__rating-stars * {
+  margin: 0 0.125em;
+}
+
+.overview__rating-sub {
+  font-size: $fs-18;
+}
+
+.overview__num-reviews {
+  font-style: italic;
+}
+
+.product-review__input {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'header'
+    'rating'
+    'comment';
+  margin-top: 2em;
+}
+
+.product-review__header {
+  grid-area: header;
+}
+
+.product-review__rating {
+  grid-area: rating;
+  justify-self: center;
+  cursor: pointer;
+}
+
+.product-review__form {
+  grid-area: comment;
+  height: 100%;
+}
+
+.product-review__rating-stars {
+  color: $clr-primary-300;
+  font-size: $fs-22;
+}
+
+.product-review__rating-stars.active {
+  background-color: black;
+  border-radius: 5px;
+}
+
+.product-review__rating-stars * {
+  margin: 0 0.25em;
+}
+
+.product-review__form {
+  flex-grow: 1;
+}
+
+.product-review__tag-input {
+  margin-bottom: 1em;
+}
+
+.product-review__tag {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 0.25em 0.5em;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+  background-color: #ddd;
+  border-radius: 5px;
+
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.product-review__tag i {
+  font-size: $fs-22;
+  margin-left: 0.25em;
+}
+
+.product-review__tag.active {
+  background-color: $clr-primary-300;
+  color: black;
+}
+
+.product-review__signin {
+  width: max-content;
+  margin: 2em auto;
+}
+
+@media (min-width: $screen-md) {
+  .product-review {
+    padding: 2em;
+  }
+
+  .product-review__input {
+    grid-template-columns: max-content 1fr;
+    grid-template-areas:
+      'header header'
+      'rating comment';
+
+    width: 70%;
+    margin: 2em auto 0;
+  }
+
+  .product-review__rating {
+    margin-right: 1em;
+  }
+
+  .product-review__rating-stars {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.25em;
+    padding: 0.25em;
+
+    transition: all 0.3s;
+  }
+
+  .product-review__rating-stars * {
+    margin: 0 0.125em;
+  }
+
+  .product-review__form {
+    margin-top: 0.5em;
+  }
+
+  .product-review__form-label {
+    width: 5em;
+  }
+}
+
+@media (min-width: $screen-lg) {
+  .product-review__tag:hover {
+    background-color: $clr-primary-300;
+    color: black;
+  }
+
+  .product-review__rating-stars:hover {
+    background-color: black;
+    border-radius: 5px;
+  }
+}
