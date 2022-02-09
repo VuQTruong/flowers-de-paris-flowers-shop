@@ -112,19 +112,23 @@ function ProductDetails() {
               Add to cart
             </button>
 
-            <h2>Tags</h2>
-            <ul>
-              {product.tags.map((tag, index) => (
-                <Link
-                  to={`/products?tag=${tag.tagSlug}`}
-                  className={'product-review__prouct-tag'}
-                  key={index}
-                >
-                  <i className='bx bx-purchase-tag'></i>
-                  <span>{tag.name}</span>
-                </Link>
-              ))}
-            </ul>
+            {product.tags.length !== 0 && (
+              <React.Fragment>
+                <h2>Tags</h2>
+                <ul>
+                  {product.tags.map((tag, index) => (
+                    <Link
+                      to={`/products?tag=${tag.tagSlug}`}
+                      className={'product-review__prouct-tag'}
+                      key={index}
+                    >
+                      <i className='bx bx-purchase-tag'></i>
+                      <span>{tag.name}</span>
+                    </Link>
+                  ))}
+                </ul>
+              </React.Fragment>
+            )}
           </div>
 
           {/* Product Description */}

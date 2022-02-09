@@ -24,3 +24,20 @@
   background: linear-gradient(to top right, $clr-primary-900, $clr-primary-300);
   //background-color: $clr-primary-300;
 }
+
+.product-price {
+  font-weight: 900;
+  font-size: $fs-24;
+  color: orangered;
+  margin-right: 1em;
+}
+
+.product-price.inactive {
+  font-weight: 400;
+  font-size: $fs-20;
+  color: $clr-txt-primary;
+}
+
+.product-price--small {
+  font-size: inherit;
+}
