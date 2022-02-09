@@ -118,12 +118,12 @@ function ProductDetails() {
                 <ul>
                   {product.tags.map((tag, index) => (
                     <Link
-                      to={`/products?tag=${tag.tagSlug}`}
+                      to={`/products?tag=${tag}`}
                       className={'product-review__prouct-tag'}
                       key={index}
                     >
                       <i className='bx bx-purchase-tag'></i>
-                      <span>{tag.name}</span>
+                      <span>{tag}</span>
                     </Link>
                   ))}
                 </ul>
