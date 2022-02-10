@@ -158,8 +158,8 @@ function ProductReviews(props) {
                 control='input'
                 type='input'
                 name='title'
-                label='Title'
-                placeholder='comment title'
+                label='Title(*)'
+                placeholder='comment title (required)'
                 labelClassName='product-review__form-label'
                 icon='bx bx-edit'
               />
@@ -168,7 +168,7 @@ function ProductReviews(props) {
                 control='textarea'
                 name='content'
                 label='Comment'
-                placeholder='place holder'
+                placeholder='review content (optional)'
                 labelClassName='product-review__form-label'
                 icon='bx bx-comment-detail'
               />

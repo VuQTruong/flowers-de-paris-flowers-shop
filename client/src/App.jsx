@@ -1,6 +1,6 @@
 import { Suspense, lazy } from 'react';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import ScrollToTop from './components/ScrollToTop/ScropToTop';
@@ -13,7 +13,8 @@ import Home from './containers/client/Home/Home';
 import Page404 from './containers/Page404/Page404';
 
 import { fetchCategories } from './features/categories/fetch-categories';
-import { verifyUser } from './features/users/verify-user';
+// import { verifyUser } from './features/users/verify-user';
+import { setUpAxiosResponseInterceptor } from './config/axios';
 import ProductDetails from './containers/client/ProductDetails/ProductDetails';
 
 // lazy load components
@@ -36,9 +37,14 @@ const UserOrders = lazy(() =>
 function App() {
   const dispatch = useDispatch();
 
+  const { userInfo } = useSelector((state) => state.currentUser);
+
   useEffect(() => {
     // verify the validity of user's token (jwt) or session (oauth2) each time the application is reloaded and update the userInfo in the localStorage
-    dispatch(verifyUser());
+    // dispatch(verifyUser());
+
+    // set up axios response interceptor to check the expiration of user's session
+    setUpAxiosResponseInterceptor(userInfo, dispatch);
 
     dispatch(fetchCategories());
     // eslint-disable-next-line react-hooks/exhaustive-deps
