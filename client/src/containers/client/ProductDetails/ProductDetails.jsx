@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Loading from '../../../components/Loading/Loading';
 import {
   currencyFormat,
@@ -9,25 +9,26 @@ import {
 } from '../../../utilities/helpers';
 import ReactHtmlParser from 'react-html-parser';
 import ReviewCard from '../../../components/ReviewCard/ReviewCard';
-import { getProductById } from '../../../features/products/get-product-by-id';
+import { getProductBySlug } from '../../../features/products/get-product-by-slug';
 
 import ProductReviews from '../../../components/ProductReviews/ProductReviews';
 
 function ProductDetails() {
   const dispatch = useDispatch();
+  const { productSlug } = useParams();
 
   const [qty, setQty] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
   const [reviews, setReviews] = useState([]);
 
   const currentProduct = useSelector((state) => state.currentProduct);
-  const { productId, product, loading } = currentProduct;
+  const { product, loading } = currentProduct;
 
   const { userInfo } = useSelector((state) => state.currentUser);
 
   useEffect(() => {
-    dispatch(getProductById(productId));
-  }, [dispatch, productId]);
+    dispatch(getProductBySlug(productSlug));
+  }, [dispatch, productSlug]);
 
   useEffect(() => {
     if (product) {

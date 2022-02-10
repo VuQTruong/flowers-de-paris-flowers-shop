@@ -1,33 +1,23 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setProductId } from '../../features/products/slices/current-product-slice';
 import { currencyFormat } from '../../utilities/helpers';
 import Rating from '../Rating/Rating';
 
 function ProductCard(props) {
   const product = props.data;
-  const dispatch = useDispatch();
-
-  const onSelectHandler = () => {
-    dispatch(setProductId(product._id));
-  };
 
   return (
     <div className='product-card'>
       <Link
         to={`/products/${product.category.slug}/${product.slug}`}
         className='product-card__image'
-        onClick={onSelectHandler}
       >
         <img src={product.images[0]} alt={product.name} />
       </Link>
 
       <div className='product-card__body'>
-        <Link
-          to={`/products/${product.category.slug}/${product.slug}`}
-          onClick={onSelectHandler}
-        >
+        <Link to={`/products/${product.category.slug}/${product.slug}`}>
           <h2>{product.name}</h2>
         </Link>
         <Rating

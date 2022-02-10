@@ -1,20 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getProductById } from '../get-product-by-id';
+import { getProductBySlug } from '../get-product-by-slug';
 
 export const currentProductSlice = createSlice({
   name: 'currentProduct',
   initialState: {
-    productId: null,
     product: null,
     loading: true,
     error: '',
   },
-  reducers: {
-    setProductId: (state, action) => {
-      state.productId = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: {
+    /* get product by product id */
     [getProductById.pending]: (state) => {
       state.loading = true;
       state.error = '';
@@ -25,6 +22,21 @@ export const currentProductSlice = createSlice({
       state.product = action.payload;
     },
     [getProductById.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    /* get product by product slug */
+    [getProductBySlug.pending]: (state) => {
+      state.loading = true;
+      state.error = '';
+      state.product = null;
+    },
+    [getProductBySlug.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.product = action.payload;
+    },
+    [getProductBySlug.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },

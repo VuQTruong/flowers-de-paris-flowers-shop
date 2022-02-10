@@ -66,7 +66,7 @@ function App() {
               <Route path='orders' element={<UserOrders />} />
             </Route>
             <Route
-              path='products/:category/:product'
+              path='products/:categorySlug/:productSlug'
               element={<ProductDetails />}
             />
             <Route path='oauth/fail' element={<OAuthFail />} />
