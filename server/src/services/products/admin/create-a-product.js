@@ -13,10 +13,11 @@ const router = express.Router();
 const requireFields = [
   'name',
   'category',
+  'categoryName',
   'images',
   'coverImage',
   'price',
-  'discountAmount',
+  'saleOffPrice',
   'size',
   'summary',
   'description',
@@ -26,8 +27,9 @@ const requireFields = [
 
 const validations = [
   body('name').isString().notEmpty().withMessage('Name of product is missing'),
-  body('category')
-    .isMongoId()
+  body('category').isMongoId().notEmpty().withMessage('Category Id is missing'),
+  body('categoryName')
+    .isString()
     .notEmpty()
     .withMessage('Category of product is missing'),
   body('images')
@@ -42,7 +44,7 @@ const validations = [
     .isNumeric()
     .notEmpty()
     .withMessage('Price of product is missing'),
-  body('discountAmount').isNumeric().optional(),
+  body('saleOffPrice').isNumeric().optional(),
   body('size').isString().optional(),
   body('summary')
     .isString()

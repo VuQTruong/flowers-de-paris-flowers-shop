@@ -3,6 +3,7 @@ const data = [
   {
     name: 'Flowers de Paris Signature',
     category: '6202b715e4cc7dc816878547',
+    categoryName: 'Wedding',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_4_bv58to.jpg',
@@ -12,7 +13,7 @@ const data = [
     coverImage:
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_4_bv58to.jpg',
     price: 500000,
-    discountAmount: 0,
+    saleOffPrice: 0,
     size: 'M',
     colors: ['red', 'yellow'],
     tags: ['rose', 'sunflower'],
@@ -22,6 +23,7 @@ const data = [
   {
     name: 'Sweetie',
     category: '6202b715e4cc7dc816878547',
+    categoryName: 'Wedding',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_1_qfoowm.jpg',
@@ -31,7 +33,7 @@ const data = [
     coverImage:
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_1_qfoowm.jpg',
     price: 500000,
-    discountAmount: 0,
+    saleOffPrice: 0,
     size: 'M',
     colors: ['red', 'yellow'],
     tags: ['rose', 'sunflower'],
@@ -41,6 +43,7 @@ const data = [
   {
     name: 'Royal Juliet',
     category: '6202b715e4cc7dc816878547',
+    categoryName: 'Wedding',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_3_s51z6f.jpg',
@@ -50,7 +53,7 @@ const data = [
     coverImage:
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_3_s51z6f.jpg',
     price: 500000,
-    discountAmount: 0,
+    saleOffPrice: 0,
     size: 'M',
     colors: ['red', 'yellow'],
     tags: ['rose', 'sunflower'],
@@ -62,6 +65,7 @@ const data = [
   {
     name: 'Colourful Life',
     category: '6202b71de4cc7dc81687854a',
+    categoryName: 'Birthday',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_5_haozk2.jpg',
@@ -71,7 +75,7 @@ const data = [
     coverImage:
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_5_haozk2.jpg',
     price: 500000,
-    discountAmount: 0,
+    saleOffPrice: 0,
     size: 'M',
     colors: ['red', 'yellow'],
     tags: ['rose', 'sunflower'],
@@ -81,6 +85,7 @@ const data = [
   {
     name: 'Thousands of Words',
     category: '6202b71de4cc7dc81687854a',
+    categoryName: 'Birthday',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_5_agcfyj.jpg',
@@ -90,7 +95,7 @@ const data = [
     coverImage:
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_5_agcfyj.jpg',
     price: 500000,
-    discountAmount: 0,
+    saleOffPrice: 0,
     size: 'M',
     colors: ['red', 'yellow'],
     tags: ['rose', 'sunflower'],
@@ -100,6 +105,7 @@ const data = [
   {
     name: 'Million Secrets',
     category: '6202b71de4cc7dc81687854a',
+    categoryName: 'Birthday',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_2_acwblc.jpg',
@@ -109,7 +115,7 @@ const data = [
     coverImage:
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_2_acwblc.jpg',
     price: 500000,
-    discountAmount: 0,
+    saleOffPrice: 0,
     size: 'M',
     colors: ['red', 'yellow'],
     tags: ['rose', 'sunflower'],
@@ -121,6 +127,7 @@ const data = [
   {
     name: 'Flower 1',
     category: '6202b72ce4cc7dc81687854d',
+    categoryName: 'Sympathy',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_2_acwblc.jpg',
@@ -130,7 +137,7 @@ const data = [
     coverImage:
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_2_acwblc.jpg',
     price: 500000,
-    discountAmount: 0,
+    saleOffPrice: 0,
     size: 'M',
     colors: ['purple', 'white'],
     tags: ['violet'],
@@ -140,6 +147,7 @@ const data = [
   {
     name: 'Flower 2',
     category: '6202b72ce4cc7dc81687854d',
+    categoryName: 'Sympathy',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_4_ybozi6.jpg',
@@ -149,7 +157,7 @@ const data = [
     coverImage:
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_4_ybozi6.jpg',
     price: 500000,
-    discountAmount: 0,
+    saleOffPrice: 0,
     size: 'M',
     colors: ['purple', 'white'],
     tags: ['violet'],
@@ -159,6 +167,7 @@ const data = [
   {
     name: 'Flower 3',
     category: '6202b72ce4cc7dc81687854d',
+    categoryName: 'Sympathy',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340346/products/flowerbasket_3_bbchpc.jpg',
@@ -168,7 +177,7 @@ const data = [
     coverImage:
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_5_agcfyj.jpg',
     price: 500000,
-    discountAmount: 0,
+    saleOffPrice: 0,
     size: 'M',
     colors: ['purple', 'white'],
     tags: ['violet'],
@@ -180,6 +189,7 @@ const data = [
   {
     name: 'Grateful',
     category: '6202b80be4cc7dc816878555',
+    categoryName: 'Gifts',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340382/products/gift_4_pnh4g4.png',
@@ -189,7 +199,7 @@ const data = [
     coverImage:
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340383/products/gift_2_enab3n.png',
     price: 500000,
-    discountAmount: 200,
+    saleOffPrice: 200,
     size: 'M',
     colors: ['red', 'yellow'],
     tags: [],
@@ -199,6 +209,7 @@ const data = [
   {
     name: 'Thousand Hugs',
     category: '6202b80be4cc7dc816878555',
+    categoryName: 'Gifts',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340382/products/gift_4_pnh4g4.png',
@@ -208,7 +219,7 @@ const data = [
     coverImage:
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340382/products/gift_4_pnh4g4.png',
     price: 500000,
-    discountAmount: 0,
+    saleOffPrice: 0,
     size: 'S',
     colors: ['red', 'yellow'],
     tags: [],
@@ -218,6 +229,7 @@ const data = [
   {
     name: 'Healthy Life',
     category: '6202b80be4cc7dc816878555',
+    categoryName: 'Gifts',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340383/products/gift_2_enab3n.png',
@@ -227,7 +239,7 @@ const data = [
     coverImage:
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340383/products/gift_2_enab3n.png',
     price: 500000,
-    discountAmount: 0,
+    saleOffPrice: 0,
     size: 'M',
     colors: ['red', 'yellow'],
     tags: [],
@@ -237,6 +249,7 @@ const data = [
   {
     name: 'Sweetie Kisses',
     category: '6202b80be4cc7dc816878555',
+    categoryName: 'Gifts',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340383/products/gift_1_v1oxa1.png',
@@ -246,7 +259,7 @@ const data = [
     coverImage:
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340383/products/gift_1_v1oxa1.png',
     price: 500000,
-    discountAmount: 0,
+    saleOffPrice: 0,
     size: 'L',
     colors: ['red', 'yellow'],
     tags: [],
@@ -256,6 +269,7 @@ const data = [
   {
     name: 'Glamour',
     category: '6202b80be4cc7dc816878555',
+    categoryName: 'Gifts',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340383/products/gift_5_dqjan1.png',
@@ -265,7 +279,7 @@ const data = [
     coverImage:
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340383/products/gift_5_dqjan1.png',
     price: 500000,
-    discountAmount: 0,
+    saleOffPrice: 0,
     size: 'M',
     colors: ['red', 'yellow'],
     tags: [],

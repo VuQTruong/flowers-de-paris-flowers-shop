@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 
 exports.connectToDB = () => {
   return mongoose
-    .connect(process.env.MONGODB_URL)
+    .connect(process.env.MONGODB_URL, {
+      autoIndex: false,
+    })
     .then(() => {
       console.log('Database Connected! 🎉✨');
     })

@@ -94,14 +94,14 @@ function ProductDetails() {
 
           <div className='product-info col-7'>
             <h2 className='product-title'>{product.name}</h2>
-            {product.discountAmount !== 0 ? (
+            {product.saleOffPrice !== 0 ? (
               <React.Fragment>
                 <span className='product-price inactive'>
                   <strike>{currencyFormat.format(product.price)}</strike>
                 </span>
 
                 <span className='product-price'>
-                  {currencyFormat.format(product.discountAmount)}
+                  {currencyFormat.format(product.saleOffPrice)}
                 </span>
               </React.Fragment>
             ) : (

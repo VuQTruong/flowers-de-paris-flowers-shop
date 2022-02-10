@@ -15,13 +15,17 @@ const productSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Category',
     },
+    categoryName: {
+      type: String,
+      index: true,
+    },
     images: [String],
     coverImage: String,
     price: {
       type: Number,
       required: true,
     },
-    discountAmount: {
+    saleOffPrice: {
       type: Number,
       default: 0,
     },
@@ -36,7 +40,10 @@ const productSchema = new mongoose.Schema(
     },
     summary: String,
     description: String,
-    slug: String,
+    slug: {
+      type: String,
+      index: true,
+    },
     soldQty: {
       type: Number,
       default: 0,
@@ -133,12 +140,19 @@ productSchema.pre('findOneAndUpdate', async function (next) {
 
 // !calculate discount percentage on discount price saved
 productSchema.pre('save', function (next) {
-  if (this.isModified('discountAmount') && this.get('discountAmount') !== 0) {
-    const price = this.get('price') * 1;
-    const discountAmount = this.get('discountAmount') * 1;
-    const percentage = Math.ceil((discountAmount / price) * 100).toFixed(0);
+  if (this.isModified('saleOffPrice')) {
+    const price = this.get('price');
+    const saleOffPrice = this.get('saleOffPrice');
 
-    this.set('discountPercentage', percentage);
+    if (saleOffPrice !== 0) {
+      const percentage = Math.ceil(
+        ((price - saleOffPrice) / price) * 100
+      ).toFixed(0);
+
+      this.set('discountPercentage', percentage);
+    } else {
+      this.set('discountPercentage', 0);
+    }
   }
 
   next();
@@ -146,16 +160,19 @@ productSchema.pre('save', function (next) {
 
 // !calculate discount percentage on discount price updated
 productSchema.pre('findOneAndUpdate', function (next) {
-  if (
-    this._update &&
-    this._update.discountAmount &&
-    this._update.discountAmount !== 0
-  ) {
-    const price = this.get('price') * 1;
-    const discountAmount = this._update.discountAmount * 1;
-    const percentage = Math.ceil((discountAmount / price) * 100).toFixed(0);
+  if (this._update && this._update.hasOwnProperty('saleOffPrice')) {
+    const price = this._update.price;
+    const saleOffPrice = this._update.saleOffPrice;
 
-    this._update.discountPercentage = percentage;
+    if (saleOffPrice !== 0) {
+      const percentage = Math.ceil(
+        ((price - saleOffPrice) / price) * 100
+      ).toFixed(0);
+
+      this._update.discountPercentage = percentage;
+    } else {
+      this._update.discountPercentage = 0;
+    }
   }
 
   next();

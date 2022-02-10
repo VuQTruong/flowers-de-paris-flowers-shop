@@ -1,20 +1,13 @@
 const express = require('express');
-const { param } = require('express-validator');
-const validateRequest = require('../../middlewares/validate-request');
 const Product = require('../../models/product.model');
-const { findById } = require('../../models/user.model');
 const catchAsync = require('../../utilities/catch-async.util');
 const router = express.Router();
 
-const validations = [param('id').isMongoId()];
-
 router.get(
-  '/:id',
-  validations,
-  validateRequest,
+  '/slug/:slug',
   catchAsync(async (req, res, next) => {
-    const productId = req.params.id;
-    const product = await Product.findById(productId).populate(
+    const slug = req.params.slug;
+    const product = await Product.findOne({ slug: slug }).populate(
       'category reviews'
     );
     product.views += 1;
