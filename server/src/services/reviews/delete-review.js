@@ -6,7 +6,7 @@ const validateRequest = require('../../middlewares/validate-request');
 const Product = require('../../models/product.model');
 const Review = require('../../models/review.model');
 const catchAsync = require('../../utilities/catch-async.util');
-const { roundHalf } = require('../../utilities/helpers.util');
+const User = require('../../models/user.model');
 const router = express.Router();
 
 const validations = [param('reviewId').isMongoId()];
@@ -19,7 +19,15 @@ router.delete(
   catchAsync(async (req, res, next) => {
     const reviewId = req.params.reviewId;
     const review = await Review.findById(reviewId);
-    const user = req.user;
+
+    let user = req.user;
+
+    // !the user request delete is an admin
+    // !req.user is the info of the admin
+    // !we need to fetch the info of the author to be able to remove the review on the author's info
+    if (String(user._id) !== String(review.user)) {
+      user = await User.findById(review.user);
+    }
 
     if (!review) {
       return next(AppError.badRequest('Review does not exist'));
