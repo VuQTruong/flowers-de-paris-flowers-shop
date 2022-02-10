@@ -77,7 +77,7 @@ function UserNav(props) {
             {userInfo.isAdmin && (
               <li>
                 <Link to='/admin/dashboard' className='dropdown-item'>
-                  <i className='bx bx-dashboard'></i>
+                  <i className='bx bxs-dashboard'></i>
                   Dashboard
                 </Link>
               </li>
