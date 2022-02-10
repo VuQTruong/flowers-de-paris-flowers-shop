@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Loading from '../../../components/Loading/Loading';
-import { currencyFormat, renderRatingStars } from '../../../utilities/helpers';
+import {
+  currencyFormat,
+  renderRatingStars,
+  roundHalf,
+} from '../../../utilities/helpers';
 import ReactHtmlParser from 'react-html-parser';
 import ReviewCard from '../../../components/ReviewCard/ReviewCard';
 import { getProductById } from '../../../features/products/get-product-by-id';
@@ -14,6 +18,7 @@ function ProductDetails() {
 
   const [qty, setQty] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [reviews, setReviews] = useState([]);
 
   const currentProduct = useSelector((state) => state.currentProduct);
   const { productId, product, loading } = currentProduct;
@@ -23,6 +28,12 @@ function ProductDetails() {
   useEffect(() => {
     dispatch(getProductById(productId));
   }, [dispatch, productId]);
+
+  useEffect(() => {
+    if (product) {
+      setReviews(product.reviews);
+    }
+  }, [product]);
 
   const decreaseQty = () => {
     if (qty !== 1) {
@@ -36,6 +47,19 @@ function ProductDetails() {
 
   const selectImageHandler = (index) => {
     setSelectedImage(index);
+  };
+
+  const calculateAverageRating = () => {
+    const totalRating = reviews.reduce((accumulator, review) => {
+      return review.rating + accumulator;
+    }, 0);
+
+    if (reviews.length !== 0) {
+      const rating = roundHalf(totalRating / reviews.length);
+      return rating;
+    } else {
+      return 0;
+    }
   };
 
   const addToCartHandler = () => {
@@ -148,31 +172,47 @@ function ProductDetails() {
 
             <div className='product-review__overview'>
               <div className='overview__rating-stars'>
-                {renderRatingStars(product.averageRating)}
+                {renderRatingStars(calculateAverageRating())}
               </div>
               <div className='overview__rating-sub'>
-                Rated {product.averageRating} over 5 stars{' '}
+                Rated {calculateAverageRating()} over 5 stars{' '}
               </div>
               <div className='overview__num-reviews'>
-                {product.numReviews > 1
-                  ? `(${product.numReviews}) reviews`
-                  : `(${product.numReviews}) review`}
+                {reviews.length > 1
+                  ? `(${reviews.length}) reviews`
+                  : `(${reviews.length}) review`}
               </div>
             </div>
 
             <div className='product-review__content'>
-              {product.reviews.length === 0 && (
+              {reviews.length === 0 ? (
                 <p className='review-card'>
                   Uh oh...! There are no comments on this product.
                 </p>
+              ) : (
+                <React.Fragment>
+                  {reviews.map((review, index) => (
+                    <ReviewCard
+                      key={index}
+                      data={review}
+                      onChange={(reviewId) => {
+                        const newReviews = reviews.filter((review) => {
+                          return review._id !== reviewId;
+                        });
+
+                        setReviews(newReviews);
+                      }}
+                    />
+                  ))}
+                </React.Fragment>
               )}
-              {product.reviews.map((review, index) => (
-                <ReviewCard key={index} data={review} />
-              ))}
             </div>
 
             {userInfo ? (
-              <ProductReviews product={product} />
+              <ProductReviews
+                product={product}
+                onChange={(newReview) => setReviews([newReview, ...reviews])}
+              />
             ) : (
               <p className='product-review__signin'>
                 <Link

@@ -13,12 +13,7 @@ const acceptFields = ['title', 'content', 'rating', 'tags', 'product'];
 
 const validations = [
   body('title').isString().notEmpty().withMessage('Comment title is missing'),
-  body('content')
-    .isString()
-    .notEmpty()
-    .withMessage('Comment content is missing')
-    .trim()
-    .escape(),
+  body('content').isString().trim().escape(),
   body('rating').isNumeric().notEmpty().withMessage('Rating is missing'),
   body('tags').isArray(),
   body('product').isMongoId().notEmpty(),

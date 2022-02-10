@@ -19,7 +19,7 @@ import React, { useState } from 'react';
 function TagInput(props) {
   const { label, placeholder, tags, onUpdate, labelClassname, icon } = props;
 
-  const [tagInput, setTagInput] = useState();
+  const [tagInput, setTagInput] = useState('');
 
   const removeTag = (tagName) => {
     const newTagsArray = tags.filter((tag) => tag !== tagName);
@@ -27,7 +27,7 @@ function TagInput(props) {
   };
 
   const editTags = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && tagInput !== '') {
       if (tagInput !== '' && !tags.includes(tagInput)) {
         const newTagsArray = [...tags, tagInput];
         onUpdate(newTagsArray);
@@ -41,6 +41,12 @@ function TagInput(props) {
         newTagsArray.pop();
         onUpdate(newTagsArray);
       }
+    }
+  };
+
+  const onKeyPressHandler = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
     }
   };
 
@@ -75,6 +81,7 @@ function TagInput(props) {
           value={tagInput}
           onChange={(e) => setTagInput(e.target.value)}
           onKeyUp={editTags}
+          onKeyPress={onKeyPressHandler}
           autoComplete='off'
           className='tag-input__input'
         />

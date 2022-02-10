@@ -10,6 +10,10 @@ export const currencyFormat = new Intl.NumberFormat('en-EN', {
   currency: 'CAD',
 });
 
+export const roundHalf = (num) => {
+  return Math.round(num * 2) / 2;
+};
+
 export const renderRatingStars = (rating) => {
   let count = 0;
   let content = [];

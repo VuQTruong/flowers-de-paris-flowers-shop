@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form } from 'formik';
 import FormikControl from '../../formik/FormikControl';
 import * as Yup from 'yup';
 import TagInput from '../TagInput/TagInput';
+import { useDispatch, useSelector } from 'react-redux';
 
 import swal from 'sweetalert2';
 import Axios from '../../config/axios';
+import { fetchTags } from '../../features/reviews/fetch-tags';
 
 const formInitialValues = {
   title: '',
@@ -18,12 +20,21 @@ const validationSchema = Yup.object({
 });
 
 function ProductReviews(props) {
-  const { product } = props;
+  const { product, onChange } = props;
+  const dispatch = useDispatch();
 
+  const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState(3);
   const [tags, setTags] = useState([]);
 
-  const reviewTagOptions = ['Affordable price', 'Quick delivery', 'Friendly'];
+  const commentTags = useSelector((state) => state.commentTags);
+  const { tags: commentTagsOptions } = commentTags;
+
+  useEffect(() => {
+    if (!commentTagsOptions) {
+      dispatch(fetchTags());
+    }
+  }, [commentTagsOptions, dispatch]);
 
   const addReviewTag = (e) => {
     setTags([...tags, e.target.innerHTML]);
@@ -33,7 +44,7 @@ function ProductReviews(props) {
     setTags(tags.filter((tag) => tag !== e.target.dataset.tag));
   };
 
-  const submitReviewHandler = async (values) => {
+  const submitReviewHandler = async (values, { resetForm }) => {
     try {
       const reviewInfo = {
         ...values,
@@ -42,7 +53,17 @@ function ProductReviews(props) {
         product: product._id,
       };
 
-      await Axios.post('/reviews', reviewInfo);
+      setLoading(true);
+      const { data } = await Axios.post('/reviews', reviewInfo);
+
+      // reset the form after submitting successfully
+      resetForm();
+      setTags([]);
+
+      // update the list of reviews locally for instant view
+      onChange(data.data.review);
+
+      setLoading(false);
 
       swal.fire({
         icon: 'success',
@@ -55,6 +76,7 @@ function ProductReviews(props) {
         title: 'Oops!...',
         text: error.response.data.message,
       });
+      setLoading(false);
     }
   };
 
@@ -129,56 +151,69 @@ function ProductReviews(props) {
         validationSchema={validationSchema}
         onSubmit={submitReviewHandler}
       >
-        <Form className='product-review__form'>
-          <FormikControl
-            control='input'
-            type='input'
-            name='title'
-            label='Title'
-            placeholder='comment title'
-            labelClassName='product-review__form-label'
-            icon='bx bx-edit'
-          />
+        {(formik) => {
+          return (
+            <Form className='product-review__form'>
+              <FormikControl
+                control='input'
+                type='input'
+                name='title'
+                label='Title'
+                placeholder='comment title'
+                labelClassName='product-review__form-label'
+                icon='bx bx-edit'
+              />
 
-          <FormikControl
-            control='textarea'
-            name='content'
-            label='Comment'
-            placeholder='place holder'
-            labelClassName='product-review__form-label'
-            icon='bx bx-comment-detail'
-          />
+              <FormikControl
+                control='textarea'
+                name='content'
+                label='Comment'
+                placeholder='place holder'
+                labelClassName='product-review__form-label'
+                icon='bx bx-comment-detail'
+              />
 
-          <TagInput
-            label='Tags'
-            placeholder='type and press enter'
-            tags={tags}
-            onUpdate={(newTags) => setTags(newTags)}
-            labelClassname='product-review__form-label'
-          />
+              <TagInput
+                label='Tags'
+                placeholder='type and press enter'
+                tags={tags}
+                onUpdate={(newTags) => setTags(newTags)}
+                labelClassname='product-review__form-label'
+              />
 
-          <div className='product-review__tag-input'>
-            {reviewTagOptions.map((option, index) => (
-              <div
-                className={`product-review__tag ${
-                  tags.includes(option) ? 'active' : ''
-                }`}
-                key={index}
-              >
-                <span onClick={addReviewTag}>{option}</span>
-                <i
-                  className='bx bx-x'
-                  data-tag={option}
-                  onClick={removeReviewTag}
-                ></i>
+              <div className='product-review__tag-input'>
+                {commentTagsOptions &&
+                  commentTagsOptions.map((option, index) => (
+                    <div
+                      className={`product-review__tag ${
+                        tags.includes(option.tag) ? 'active' : ''
+                      }`}
+                      key={index}
+                    >
+                      <span onClick={addReviewTag}>{option.tag}</span>
+                      <i
+                        className='bx bx-x'
+                        data-tag={option.tag}
+                        onClick={removeReviewTag}
+                      ></i>
+                    </div>
+                  ))}
               </div>
-            ))}
-          </div>
 
-          <button className='btn btn-primary' type='submit'>
-            Submit
-          </button>
-        </Form>
+              <button
+                className='btn btn-primary product-review__btn-submit'
+                type='submit'
+                disabled={loading || !formik.isValid}
+              >
+                {loading ? (
+                  <i className='bx bx-loader-alt bx-spin bx-rotate-90'></i>
+                ) : (
+                  'Submit'
+                )}
+              </button>
+            </Form>
+          );
+        }}
       </Formik>
     </div>
   );

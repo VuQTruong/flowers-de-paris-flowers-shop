@@ -59,8 +59,9 @@ router.delete(
 async function cascadeDelete(review, user) {
   const product = await Product.findById(review.product).populate('reviews');
 
-  product.reviews = product.reviews.filter((review) => {
-    return String(review._id) !== String(review._id);
+  product.reviews = product.reviews.filter((item) => {
+    const id = item._id;
+    return String(id) !== String(review._id);
   });
   await product.save();
 
