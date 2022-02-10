@@ -13,7 +13,7 @@ import Home from './containers/client/Home/Home';
 import Page404 from './containers/Page404/Page404';
 
 import { fetchCategories } from './features/categories/fetch-categories';
-// import { verifyUser } from './features/users/verify-user';
+import { verifyUser } from './features/users/verify-user';
 import { setUpAxiosResponseInterceptor } from './config/axios';
 import ProductDetails from './containers/client/ProductDetails/ProductDetails';
 
@@ -41,7 +41,7 @@ function App() {
 
   useEffect(() => {
     // verify the validity of user's token (jwt) or session (oauth2) each time the application is reloaded and update the userInfo in the localStorage
-    // dispatch(verifyUser());
+    dispatch(verifyUser());
 
     // set up axios response interceptor to check the expiration of user's session
     setUpAxiosResponseInterceptor(userInfo, dispatch);
