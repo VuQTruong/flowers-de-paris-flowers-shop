@@ -31,6 +31,7 @@ router.patch(
       lower: true,
       trim: true,
       locale: 'vi',
+      strict: true,
     });
 
     const categoryInfo = {

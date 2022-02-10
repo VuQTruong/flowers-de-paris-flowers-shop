@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Review = require('./review.model');
 const slugify = require('slugify');
 const { roundHalf } = require('../utilities/helpers.util');
+const { nanoid } = require('nanoid');
 
 const productSchema = new mongoose.Schema(
   {
@@ -84,12 +85,21 @@ productSchema.virtual('numReviews').get(function () {
 });
 
 // !generate slug on create
-productSchema.pre('save', function (next) {
+productSchema.pre('save', async function (next) {
   if (this.isModified('name')) {
-    const slug = slugify(this.get('name'), {
+    let name = this.get('name');
+    const products = await Product.find({ name: name });
+
+    if (products.length) {
+      const uniqueId = nanoid(5);
+      name = `${name} ${uniqueId}`;
+    }
+
+    const slug = slugify(name, {
       trim: true,
       lower: true,
       locale: 'vi',
+      strict: true,
     });
 
     this.set('slug', slug);
@@ -98,12 +108,21 @@ productSchema.pre('save', function (next) {
 });
 
 // !generate slug on update
-productSchema.pre('findOneAndUpdate', function (next) {
+productSchema.pre('findOneAndUpdate', async function (next) {
   if (this._update.name) {
-    const slug = slugify(this._update.name, {
+    let name = this._update.name;
+    const products = await Product.find({ name: name });
+
+    if (products.length) {
+      const uniqueId = nanoid(5);
+      name = `${name} ${uniqueId}`;
+    }
+
+    const slug = slugify(name, {
       trim: true,
       lower: true,
       locale: 'vi',
+      strict: true,
     });
 
     this._update.slug = slug;

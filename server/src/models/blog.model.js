@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
+const { nanoid } = require('nanoid');
 
 const blogSchema = new mongoose.Schema(
   {
@@ -35,15 +36,47 @@ const blogSchema = new mongoose.Schema(
   }
 );
 
-blogSchema.pre('save', function (next) {
+blogSchema.pre('save', async function (next) {
   if (this.isModified('title')) {
-    const slug = slugify(this.get('title'), {
+    let title = this.get('title');
+    const blogs = await Blog.find({ title: title });
+
+    if (blogs.length) {
+      const uniqueId = nanoid(5);
+      title = `${title} ${uniqueId}`;
+    }
+
+    const slug = slugify(title, {
       trim: true,
       lower: true,
       locale: 'vi',
+      strict: true,
     });
 
     this.set('slug', slug);
+  }
+
+  next();
+});
+
+// !update slug on blog updated
+blogSchema.pre('findOneAndUpdate', async function (next) {
+  if (this._update.title) {
+    let title = this._update.title;
+    const blogs = await Blog.find({ title: title });
+
+    if (blogs.length) {
+      const uniqueId = nanoid(5);
+      title = `${title} ${uniqueId}`;
+    }
+    const slug = slugify(title, {
+      trim: true,
+      lower: true,
+      locale: 'vi',
+      strict: true,
+    });
+
+    this._update.slug = slug;
   }
 
   next();
