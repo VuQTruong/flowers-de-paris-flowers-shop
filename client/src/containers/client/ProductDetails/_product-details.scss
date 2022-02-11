@@ -68,7 +68,7 @@
   margin-bottom: 0.5em;
 }
 
-.product-review__prouct-tag {
+.product-review__product-tag {
   display: inline-flex;
   align-items: center;
 
@@ -82,9 +82,10 @@
 
   background-color: $clr-primary-300;
   color: black;
+  font-weight: 400;
 }
 
-.product-review__prouct-tag i {
+.product-review__product-tag i {
   font-size: $fs-22;
   margin-right: 0.25em;
 }

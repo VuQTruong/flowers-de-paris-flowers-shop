@@ -143,8 +143,8 @@ function ProductDetails() {
                 <ul>
                   {product.tags.map((tag, index) => (
                     <Link
-                      to={`/products?tag=${tag}`}
-                      className={'product-review__prouct-tag'}
+                      to={`/search?tag=${product.tagSlugs[index]}`}
+                      className={'product-review__product-tag'}
                       key={index}
                     >
                       <i className='bx bx-purchase-tag'></i>
@@ -176,7 +176,9 @@ function ProductDetails() {
                 {renderRatingStars(calculateAverageRating())}
               </div>
               <div className='overview__rating-sub'>
-                Rated {calculateAverageRating()} over 5 stars{' '}
+                {reviews.length === 0
+                  ? 'There are no ratings on this product'
+                  : `Rated ${calculateAverageRating()} over 5 stars`}
               </div>
               <div className='overview__num-reviews'>
                 {reviews.length > 1

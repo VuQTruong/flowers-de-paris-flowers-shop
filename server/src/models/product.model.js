@@ -50,6 +50,7 @@ const productSchema = new mongoose.Schema(
     },
     colors: [String],
     tags: [String],
+    tagSlugs: [String],
     averageRating: {
       type: Number,
       default: 0,
@@ -111,6 +112,20 @@ productSchema.pre('save', async function (next) {
 
     this.set('slug', slug);
   }
+
+  if (this.isModified('tags')) {
+    const tags = this.get('tags');
+    const tagSlugs = tags.map((tag) => {
+      return slugify(tag, {
+        trim: true,
+        lower: true,
+        locale: 'vi',
+        strict: true,
+      });
+    });
+
+    this.set('tagSlugs', tagSlugs);
+  }
   next();
 });
 
@@ -135,6 +150,19 @@ productSchema.pre('findOneAndUpdate', async function (next) {
     this._update.slug = slug;
   }
 
+  if (this._update.tags) {
+    const tags = this._update.tags;
+    const tagSlugs = tags.map((tag) => {
+      return slugify(tag, {
+        trim: true,
+        lower: true,
+        locale: 'vi',
+        strict: true,
+      });
+    });
+
+    this._update.tagSlugs = tagSlugs;
+  }
   next();
 });
 
