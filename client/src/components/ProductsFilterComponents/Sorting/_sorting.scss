@@ -1,0 +1,28 @@
+.filter__sort-field {
+  flex-direction: column;
+
+  label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5em;
+
+    i {
+      font-size: $fs-22;
+      margin-right: 0.25em;
+    }
+  }
+}
+
+.filter__sort-title {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.filter__select-input {
+  font: inherit;
+  padding: 0.5em 1em;
+
+  border: none;
+  border-radius: 5px;
+  box-shadow: $box-shadow;
+}

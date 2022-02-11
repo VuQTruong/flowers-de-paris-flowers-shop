@@ -1,0 +1,29 @@
+.filter-color__options {
+  margin: 0.5em 0;
+}
+
+.filter-color,
+.filter-size {
+  display: flex;
+  align-items: center;
+}
+
+.filter__label-color,
+.filter__label-size {
+  margin-left: 0.5em;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.filter__label-color::before {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: none;
+  border-radius: 10px;
+  box-shadow: $box-shadow;
+  background-color: var(--filter-color-bg);
+  margin-right: 0.5em;
+}

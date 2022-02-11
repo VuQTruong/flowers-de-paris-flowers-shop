@@ -15,7 +15,6 @@ import Page404 from './containers/Page404/Page404';
 import { fetchCategories } from './features/categories/fetch-categories';
 import { verifyUser } from './features/users/verify-user';
 import { setUpAxiosResponseInterceptor } from './config/axios';
-import ProductDetails from './containers/client/ProductDetails/ProductDetails';
 
 // lazy load components
 const Dashboard = lazy(() => import('./containers/admin/Dashboard/Dashboard'));
@@ -32,6 +31,12 @@ const UserFavorites = lazy(() =>
 );
 const UserOrders = lazy(() =>
   import('./containers/client/UserOrders/UserOrders')
+);
+const ProductsList = lazy(() =>
+  import('./containers/client/ProductsList/ProductsList')
+);
+const ProductDetails = lazy(() =>
+  import('./containers/client/ProductDetails/ProductDetails')
 );
 
 function App() {
@@ -65,6 +70,7 @@ function App() {
               <Route path='fav' element={<UserFavorites />} />
               <Route path='orders' element={<UserOrders />} />
             </Route>
+            <Route path='products/:categorySlug' element={<ProductsList />} />
             <Route
               path='products/:categorySlug/:productSlug'
               element={<ProductDetails />}

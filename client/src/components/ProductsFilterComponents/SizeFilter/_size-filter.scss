@@ -1,0 +1,19 @@
+.filter-size {
+  display: flex;
+  align-items: center;
+}
+.filter__label-size::before {
+  content: attr(data-size);
+  display: inline-block;
+  font: inherit;
+  font-size: 0.8em;
+  color: white;
+  width: 1.5em;
+  height: 1.5em;
+  margin-right: 0.5em;
+  background-color: orangered;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

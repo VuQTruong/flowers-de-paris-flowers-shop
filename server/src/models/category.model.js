@@ -33,9 +33,10 @@ const categorySchema = new mongoose.Schema(
   }
 );
 
-// !generate slug on category created
+// !generate and update slug
 categorySchema.pre('save', async function (next) {
   if (this.isModified('name')) {
+    // !assign slug
     let name = this.get('name');
     const categories = await Category.find({ name: name });
 
@@ -52,31 +53,15 @@ categorySchema.pre('save', async function (next) {
     });
 
     this.set('slug', slug);
+
+    // todo: get all related roducts and update their categorySlug
+    await Product.updateMany(
+      { category: this._id },
+      {
+        $set: { categorySlug: slug },
+      }
+    );
   }
-  next();
-});
-
-// !update slug on category updated
-categorySchema.pre('findOneAndUpdate', async function (next) {
-  if (this._update.name) {
-    let name = this._update.name;
-    const categories = await Category.find({ name: name });
-
-    if (categories.length) {
-      const uniqueId = nanoid(5);
-      name = `${name} ${uniqueId}`;
-    }
-
-    const slug = slugify(name, {
-      trim: true,
-      lower: true,
-      locale: 'vi',
-      strict: true,
-    });
-
-    this._update.slug = slug;
-  }
-
   next();
 });
 

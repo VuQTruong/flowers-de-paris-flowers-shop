@@ -1,0 +1,66 @@
+.filter-panel {
+  display: grid;
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+  overflow-y: scroll;
+
+  position: fixed;
+  top: 0;
+  z-index: 999999;
+
+  transform: translateX(100%);
+  transition: all 0.5s;
+
+  &.active {
+    transform: translateX(0);
+  }
+}
+
+.filter-panel::-webkit-scrollbar {
+  display: none;
+}
+
+.close-filter-btn {
+  max-height: 3em;
+}
+
+.filter-btn {
+  font-size: 1em;
+  margin: 0 1em 1em;
+  padding: 0.75em 1.25em;
+}
+
+.filter-item {
+  padding: 1em;
+}
+
+.filter-item:not(:last-child) {
+  border-bottom: 1px solid rgba($color: #000000, $alpha: 0.2);
+}
+
+.filter-item__header {
+  font-size: $fs-16;
+  text-transform: uppercase;
+}
+
+@media (min-width: $screen-lg) {
+  .product-filter {
+    border: 1px solid rgba($color: #000000, $alpha: 0.2);
+  }
+
+  .filter-panel {
+    position: static;
+    height: max-content;
+
+    transform: translateX(0);
+  }
+
+  .close-filter-btn {
+    display: none;
+  }
+
+  .filter-btn {
+    display: none;
+  }
+}

@@ -1,0 +1,37 @@
+.filter-rating {
+  display: flex;
+  align-items: center;
+  padding: 0.25em 0.5em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.filter-rating.active {
+  background-color: black;
+
+  span {
+    color: $clr-primary-300;
+  }
+}
+
+.filter-rating i {
+  color: $clr-primary-300;
+  font-size: $fs-20;
+  margin-right: 0.1em;
+}
+
+.filter-rating span {
+  font-style: italic;
+  margin-left: 0.5em;
+}
+
+@media (min-width: $screen-lg) {
+  .filter-rating:hover {
+    background-color: black;
+
+    span {
+      color: $clr-primary-300;
+    }
+  }
+}

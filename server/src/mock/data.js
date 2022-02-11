@@ -3,7 +3,7 @@ const data = [
   {
     name: 'Flowers de Paris Signature',
     category: '6202b715e4cc7dc816878547',
-    categoryName: 'Wedding',
+    categorySlug: 'wedding',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_4_bv58to.jpg',
@@ -23,7 +23,7 @@ const data = [
   {
     name: 'Sweetie',
     category: '6202b715e4cc7dc816878547',
-    categoryName: 'Wedding',
+    categorySlug: 'wedding',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_1_qfoowm.jpg',
@@ -43,7 +43,7 @@ const data = [
   {
     name: 'Royal Juliet',
     category: '6202b715e4cc7dc816878547',
-    categoryName: 'Wedding',
+    categorySlug: 'wedding',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_3_s51z6f.jpg',
@@ -65,7 +65,7 @@ const data = [
   {
     name: 'Colourful Life',
     category: '6202b71de4cc7dc81687854a',
-    categoryName: 'Birthday',
+    categorySlug: 'birthday',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_5_haozk2.jpg',
@@ -85,7 +85,7 @@ const data = [
   {
     name: 'Thousands of Words',
     category: '6202b71de4cc7dc81687854a',
-    categoryName: 'Birthday',
+    categorySlug: 'birthday',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_5_agcfyj.jpg',
@@ -105,7 +105,7 @@ const data = [
   {
     name: 'Million Secrets',
     category: '6202b71de4cc7dc81687854a',
-    categoryName: 'Birthday',
+    categorySlug: 'birthday',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_2_acwblc.jpg',
@@ -127,7 +127,7 @@ const data = [
   {
     name: 'Flower 1',
     category: '6202b72ce4cc7dc81687854d',
-    categoryName: 'Sympathy',
+    categorySlug: 'sympathy',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_2_acwblc.jpg',
@@ -147,7 +147,7 @@ const data = [
   {
     name: 'Flower 2',
     category: '6202b72ce4cc7dc81687854d',
-    categoryName: 'Sympathy',
+    categorySlug: 'sympathy',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_4_ybozi6.jpg',
@@ -167,7 +167,7 @@ const data = [
   {
     name: 'Flower 3',
     category: '6202b72ce4cc7dc81687854d',
-    categoryName: 'Sympathy',
+    categorySlug: 'sympathy',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340346/products/flowerbasket_3_bbchpc.jpg',
@@ -189,7 +189,7 @@ const data = [
   {
     name: 'Grateful',
     category: '6202b80be4cc7dc816878555',
-    categoryName: 'Gifts',
+    categorySlug: 'gifts',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340382/products/gift_4_pnh4g4.png',
@@ -209,7 +209,7 @@ const data = [
   {
     name: 'Thousand Hugs',
     category: '6202b80be4cc7dc816878555',
-    categoryName: 'Gifts',
+    categorySlug: 'gifts',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340382/products/gift_4_pnh4g4.png',
@@ -229,7 +229,7 @@ const data = [
   {
     name: 'Healthy Life',
     category: '6202b80be4cc7dc816878555',
-    categoryName: 'Gifts',
+    categorySlug: 'gifts',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340383/products/gift_2_enab3n.png',
@@ -249,7 +249,7 @@ const data = [
   {
     name: 'Sweetie Kisses',
     category: '6202b80be4cc7dc816878555',
-    categoryName: 'Gifts',
+    categorySlug: 'gifts',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340383/products/gift_1_v1oxa1.png',
@@ -269,7 +269,7 @@ const data = [
   {
     name: 'Glamour',
     category: '6202b80be4cc7dc816878555',
-    categoryName: 'Gifts',
+    categorySlug: 'gifts',
     subCategory: '',
     images: [
       'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340383/products/gift_5_dqjan1.png',

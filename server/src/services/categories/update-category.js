@@ -27,26 +27,10 @@ router.patch(
     const categoryId = req.params.id;
 
     const { name } = req.body;
-    const slug = slugify(name, {
-      lower: true,
-      trim: true,
-      locale: 'vi',
-      strict: true,
-    });
 
-    const categoryInfo = {
-      name,
-      slug,
-    };
-
-    const updatedCategory = await Category.findByIdAndUpdate(
-      categoryId,
-      categoryInfo,
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
+    let category = await Category.findById(categoryId);
+    category.name = name;
+    const updatedCategory = await category.save();
 
     return res.status(200).json({
       status: 'success',
