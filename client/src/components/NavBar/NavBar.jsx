@@ -17,11 +17,8 @@ function NavBar() {
             {categories &&
               categories.map((category) => {
                 return (
-                  <li key={category.slug}>
-                    <Link
-                      to={`/products/${category.slug}`}
-                      className='dropdown-item'
-                    >
+                  <li key={category.slug} className='dropdown-item'>
+                    <Link to={`/products/${category.slug}`}>
                       {category.name}
                     </Link>
                   </li>
