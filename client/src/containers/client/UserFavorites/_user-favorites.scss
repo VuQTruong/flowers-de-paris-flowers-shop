@@ -1,4 +1,29 @@
 .user-fav__container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
+}
+
+.user-fav__title {
+  font-size: 1.75rem;
+  margin-bottom: 0.25em;
+}
+
+.user-fav__list {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: $screen-md) {
+  .user-fav__list {
+    margin: 0 auto;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
 }

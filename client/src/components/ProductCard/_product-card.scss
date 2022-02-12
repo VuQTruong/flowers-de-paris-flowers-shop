@@ -1,8 +1,8 @@
 .product-card {
   flex-shrink: 0;
   margin: 1em;
-  width: 100%;
-  max-width: 20em;
+  width: 20em;
+
   min-height: max-content;
   position: relative;
 
@@ -141,14 +141,14 @@
 @media (min-width: $screen-md) {
   .product-card {
     margin: 0.5em;
-    max-width: 18em;
+    width: 18em;
   }
 }
 
 @media (min-width: $screen-lg) {
   .product-card {
     margin: 0.25em;
-    max-width: 15em;
+    width: 15em;
   }
 
   .rating-reviews {

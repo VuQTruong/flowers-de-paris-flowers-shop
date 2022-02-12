@@ -123,7 +123,7 @@ function UserInfo() {
 
   return (
     <section className='user-info__container'>
-      <h3 className='user-info__title'>User Information</h3>
+      <h3 className='user-info__title'>My Information</h3>
       <div className='user-info__content'>
         <Formik
           initialValues={formInitialValues}
