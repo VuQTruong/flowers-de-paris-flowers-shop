@@ -26,8 +26,6 @@ function ProductsFilter() {
     }
   };
 
-  console.log(size);
-
   return (
     <div>
       <button
