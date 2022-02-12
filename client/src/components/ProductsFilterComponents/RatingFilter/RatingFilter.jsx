@@ -25,7 +25,7 @@ function RatingFilter() {
           <i className='bx bxs-star'></i>
           <i className='bx bxs-star'></i>
           <i className='bx bxs-star'></i>
-          <span>from 5 stars</span>
+          <span>5 stars</span>
         </div>
 
         <div
@@ -37,7 +37,7 @@ function RatingFilter() {
           <i className='bx bxs-star'></i>
           <i className='bx bxs-star'></i>
           <i className='bx bx-star'></i>
-          <span>from 4 stars</span>
+          <span>4 stars</span>
         </div>
 
         <div
@@ -49,7 +49,7 @@ function RatingFilter() {
           <i className='bx bxs-star'></i>
           <i className='bx bx-star'></i>
           <i className='bx bx-star'></i>
-          <span>from 3 stars</span>
+          <span>3 stars</span>
         </div>
       </main>
     </div>

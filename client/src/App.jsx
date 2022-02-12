@@ -70,6 +70,7 @@ function App() {
               <Route path='fav' element={<UserFavorites />} />
               <Route path='orders' element={<UserOrders />} />
             </Route>
+            <Route path='products' element={<ProductsList />} />
             <Route path='products/:categorySlug' element={<ProductsList />} />
             <Route
               path='products/:categorySlug/:productSlug'

@@ -6,6 +6,7 @@ import ProductCard from '../../../components/ProductCard/ProductCard';
 import ProductsFilter from '../ProductsFilter/ProductsFilter';
 import { getProductsByCategorySlug } from '../../../features/products/get-products-by-category-slug';
 import Paginator from '../../../components/Paginator/Paginator';
+import { getAllProducts } from '../../../features/products/get-all-products';
 
 function ProductsList() {
   const dispatch = useDispatch();
@@ -15,7 +16,11 @@ function ProductsList() {
   const { products, loading } = allProducts;
 
   useEffect(() => {
-    dispatch(getProductsByCategorySlug(categorySlug));
+    if (categorySlug) {
+      dispatch(getProductsByCategorySlug(categorySlug));
+    } else {
+      dispatch(getAllProducts());
+    }
   }, [categorySlug, dispatch]);
 
   const pageHandler = (page) => {};
@@ -46,7 +51,7 @@ function ProductsList() {
                     className='products__paginator'
                     onChange={(page) => pageHandler(page)}
                     totalPages={20}
-                    currentPage={4}
+                    currentPage={3}
                   />
                 </React.Fragment>
               )}

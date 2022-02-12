@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchProducts } from '../fetch-products';
+import { getAllProducts } from '../get-all-products';
 import { getProductsByCategorySlug } from '../get-products-by-category-slug';
 
 export const productsSlice = createSlice({
@@ -13,16 +13,16 @@ export const productsSlice = createSlice({
   reducers: {},
   extraReducers: {
     /* get all products */
-    [fetchProducts.pending]: (state) => {
+    [getAllProducts.pending]: (state) => {
       state.loading = true;
       state.error = '';
       state.products = null;
     },
-    [fetchProducts.fulfilled]: (state, action) => {
+    [getAllProducts.fulfilled]: (state, action) => {
       state.loading = false;
       state.products = action.payload;
     },
-    [fetchProducts.rejected]: (state, action) => {
+    [getAllProducts.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },

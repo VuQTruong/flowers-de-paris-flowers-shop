@@ -5,7 +5,8 @@
 }
 
 .products__filter-panel {
-  width: 16em;
+  width: 15em;
+  flex-shrink: 0;
 }
 
 .products__panel {
