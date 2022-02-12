@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { currencyFormat } from '../../utilities/helpers';
 import Rating from '../Rating/Rating';
 import { updateUserFavorites } from '../../features/users/updateUserFavorites';
+import swal from 'sweetalert2';
 
 function ProductCard(props) {
   const product = props.data;
@@ -15,23 +16,36 @@ function ProductCard(props) {
   const { userInfo } = useSelector((state) => state.currentUser);
 
   useEffect(() => {
-    userInfo.favorites.includes(product._id) && setIsLiked(true);
+    if (userInfo) {
+      userInfo.favorites.includes(product._id) && setIsLiked(true);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const likeHandler = () => {
-    let favorites = [...userInfo.favorites];
+    if (userInfo) {
+      let favorites = [...userInfo.favorites];
 
-    if (favorites.includes(product._id)) {
-      setIsLiked(false);
-      favorites = favorites.filter((item) => item !== product._id);
+      if (favorites.includes(product._id)) {
+        setIsLiked(false);
+        favorites = favorites.filter((item) => item !== product._id);
+      } else {
+        setIsLiked(true);
+        favorites.push(product._id);
+      }
+
+      // update user's favorites
+      dispatch(updateUserFavorites(favorites));
     } else {
-      setIsLiked(true);
-      favorites.push(product._id);
+      swal.fire({
+        icon: 'info',
+        title: 'You almost there!...',
+        html: `
+          <p>Let's sign in to save this wonderful product to your favorites!</p>
+        `,
+        footer: `<a href='/signin'>Sign In Here!</a>`,
+      });
     }
-
-    // update user's favorites
-    dispatch(updateUserFavorites(favorites));
   };
 
   return (
