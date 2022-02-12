@@ -46,10 +46,12 @@ function MobileNav(props) {
   };
 
   const openNavHandler = () => {
+    document.body.style.overflow = 'hidden';
     activeMobileNav(true);
   };
 
   const closeNavHandler = () => {
+    document.body.style.overflow = 'auto';
     activeMobileNav(false);
   };
 
@@ -109,6 +111,7 @@ function MobileNav(props) {
                     to='/admin/dashboard'
                     onClick={closeNavHandler}
                   >
+                    <i className='bx bxs-dashboard'></i>
                     Dashboard
                   </Link>
                 </li>

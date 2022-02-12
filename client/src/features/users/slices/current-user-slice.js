@@ -5,6 +5,7 @@ import { signUp } from '../sign-up';
 import { signOut } from '../sign-out';
 import { verifyUser } from '../verify-user';
 import { updateUserInfo } from '../update-user';
+import { updateUserFavorites } from '../updateUserFavorites';
 
 export const currentUserSlice = createSlice({
   name: 'currentUser',
@@ -100,6 +101,20 @@ export const currentUserSlice = createSlice({
       state.userInfo = action.payload;
     },
     [updateUserInfo.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    /* update user's favorites */
+    [updateUserFavorites.pending]: (state) => {
+      state.loading = true;
+      state.error = '';
+    },
+    [updateUserFavorites.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.userInfo = action.payload;
+    },
+    [updateUserFavorites.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },

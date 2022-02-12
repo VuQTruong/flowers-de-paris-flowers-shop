@@ -1,10 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { currencyFormat } from '../../utilities/helpers';
 import Rating from '../Rating/Rating';
+import { updateUserFavorites } from '../../features/users/updateUserFavorites';
 
 function ProductCard(props) {
   const product = props.data;
+
+  const dispatch = useDispatch();
+  const [isLiked, setIsLiked] = useState(false);
+
+  const { userInfo } = useSelector((state) => state.currentUser);
+
+  useEffect(() => {
+    userInfo.favorites.includes(product._id) && setIsLiked(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const likeHandler = () => {
+    let favorites = [...userInfo.favorites];
+
+    if (favorites.includes(product._id)) {
+      setIsLiked(false);
+      favorites = favorites.filter((item) => item !== product._id);
+    } else {
+      setIsLiked(true);
+      favorites.push(product._id);
+    }
+
+    // update user's favorites
+    dispatch(updateUserFavorites(favorites));
+  };
 
   return (
     <div className='product-card'>
@@ -55,12 +83,12 @@ function ProductCard(props) {
         <div className='product-card__sale-tag'>Sale</div>
       )}
 
-      {/* <div
+      <div
         className={`product-card__like ${isLiked ? 'active' : ''}`}
         onClick={likeHandler}
       >
         <i className='bx bxs-heart'></i>
-      </div> */}
+      </div>
     </div>
   );
 }

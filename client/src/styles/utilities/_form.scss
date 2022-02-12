@@ -100,6 +100,8 @@
   border-radius: 5px;
   border: 1px solid rgba($color: #000000, $alpha: 0.2);
   box-shadow: $box-shadow;
+
+  background-color: white;
 }
 
 .form-v2__input--textarea {
@@ -113,6 +115,10 @@
   border-radius: 5px;
   border: 1px solid rgba($color: #000000, $alpha: 0.2);
   box-shadow: $box-shadow;
+}
+
+.form-v2__input--text:disabled {
+  background-color: rgb(238, 238, 238);
 }
 
 .form-v2__cb-options,
