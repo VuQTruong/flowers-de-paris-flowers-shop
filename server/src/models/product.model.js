@@ -92,6 +92,14 @@ productSchema.virtual('numReviews').get(function () {
   return this.reviews.length;
 });
 
+productSchema.pre('save', function (next) {
+  if (this.isModified('size')) {
+    const size = this.get('size').toUpperCase();
+    this.set('size', size);
+  }
+  next();
+});
+
 // !generate slug on create
 productSchema.pre('save', async function (next) {
   if (this.isModified('name')) {

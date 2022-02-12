@@ -1,24 +1,18 @@
-import React, { useState } from 'react';
-
-function RatingFilter() {
-  const [rating, setRating] = useState(0);
-
-  const ratingFilterHandler = (ratingValue) => {};
-
+function RatingFilter({ value, onChange }) {
   return (
     <div className='filter-item'>
       <h2 className='filter-item__header'>Average Rating</h2>
       <main className='filter-item__content flex col'>
         <div
-          className={`filter-rating ${rating === 0 ? 'active' : ''}`}
-          onClick={() => ratingFilterHandler(0)}
+          className={`filter-rating ${value === 0 ? 'active' : ''}`}
+          onClick={() => onChange(0)}
         >
           <span>All products</span>
         </div>
 
         <div
-          className={`filter-rating ${rating === 5 ? 'active' : ''}`}
-          onClick={() => ratingFilterHandler(5)}
+          className={`filter-rating ${value === 5 ? 'active' : ''}`}
+          onClick={() => onChange(5)}
         >
           <i className='bx bxs-star'></i>
           <i className='bx bxs-star'></i>
@@ -29,8 +23,8 @@ function RatingFilter() {
         </div>
 
         <div
-          className={`filter-rating ${rating === 4 ? 'active' : ''}`}
-          onClick={() => ratingFilterHandler(4)}
+          className={`filter-rating ${value === 4 ? 'active' : ''}`}
+          onClick={() => onChange(4)}
         >
           <i className='bx bxs-star'></i>
           <i className='bx bxs-star'></i>
@@ -41,8 +35,8 @@ function RatingFilter() {
         </div>
 
         <div
-          className={`filter-rating ${rating === 3 ? 'active' : ''}`}
-          onClick={() => ratingFilterHandler(3)}
+          className={`filter-rating ${value === 3 ? 'active' : ''}`}
+          onClick={() => onChange(3)}
         >
           <i className='bx bxs-star'></i>
           <i className='bx bxs-star'></i>

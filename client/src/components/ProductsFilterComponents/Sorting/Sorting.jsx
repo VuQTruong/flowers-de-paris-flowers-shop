@@ -1,10 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-function Sorting() {
-  const [sortBy, setSortBy] = useState('-createdAt');
-
-  const sortHandler = (e) => {};
-
+function Sorting({ value, onChange }) {
   return (
     <div className='filter-item'>
       <main className='filter-item__content flex col'>
@@ -15,8 +11,8 @@ function Sorting() {
           <select
             id='sortField'
             className='filter__select-input'
-            value={sortBy}
-            onChange={(e) => sortHandler(e)}
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
           >
             <option value='-createdAt'>New Products</option>
             <option value='-price'>Price: high-low</option>

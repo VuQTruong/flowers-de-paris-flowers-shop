@@ -7,24 +7,32 @@ import Sorting from '../../../components/ProductsFilterComponents/Sorting/Sortin
 import TagsFilter from '../../../components/ProductsFilterComponents/TagsFilter/TagsFilter';
 
 function ProductsFilter() {
-  const [color, setColor] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
-  const [colorString, setColorString] = useState('');
-  const [size, setSize] = useState('all');
+  const [sortBy, setSortBy] = useState('-createdAt');
+  const [price, setPrice] = useState({ low: null, high: null });
+  const [tags, setTags] = useState('');
+  const [colors, setColors] = useState([]);
+  const [size, setSize] = useState('All');
+  const [rating, setRating] = useState(0);
+
   const [toggleFilterPanel, setToggleFilterPanel] = useState(false);
+
+  const toggleFilterPanelHandler = (value) => {
+    setToggleFilterPanel(value);
+
+    if (value === true) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  };
+
+  console.log(size);
 
   return (
     <div>
       <button
         className='btn btn-primary filter-btn'
-        onClick={() => setToggleFilterPanel(true)}
+        onClick={() => toggleFilterPanelHandler(true)}
       >
         Filters
       </button>
@@ -32,17 +40,17 @@ function ProductsFilter() {
         {/* Toggle Filter Panel on Mobile Mode */}
         <button
           className='btn btn-primary close-filter-btn'
-          onClick={() => setToggleFilterPanel(false)}
+          onClick={() => toggleFilterPanelHandler(false)}
         >
           Close
         </button>
 
-        <Sorting />
-        <PriceFilter />
-        <TagsFilter />
-        <ColorsFilter />
-        <SizeFilter />
-        <RatingFilter />
+        <Sorting value={sortBy} onChange={(value) => setSortBy(value)} />
+        <PriceFilter value={price} onChange={(value) => setPrice(value)} />
+        <TagsFilter value={tags} onChange={(value) => setTags(value)} />
+        <ColorsFilter value={colors} onChange={(value) => setColors(value)} />
+        <SizeFilter value={size} onChange={(value) => setSize(value)} />
+        <RatingFilter value={rating} onChange={(value) => setRating(value)} />
       </div>
     </div>
   );

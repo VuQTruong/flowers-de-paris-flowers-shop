@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-function TagsFilter() {
+function TagsFilter({ value, onChange }) {
   const [tags, setTags] = useState('');
 
-  const tagFilterHandler = () => {};
+  useEffect(() => {
+    if (value !== tags) {
+      setTags(value);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className='filter-item filter-flower'>
@@ -14,11 +19,11 @@ function TagsFilter() {
           name='filter-tag'
           id='filter-tag'
           className='filter-tag__input'
-          placeholder='eg. rose,sunflower'
+          placeholder='eg. rose, sunflower'
           value={tags}
           onChange={(e) => setTags(e.target.value)}
         />
-        <button className='btn btn-primary' onClick={tagFilterHandler}>
+        <button className='btn btn-primary' onClick={() => onChange(tags)}>
           Apply
         </button>
       </main>
