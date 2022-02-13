@@ -1,5 +1,6 @@
 const express = require('express');
 const { param } = require('express-validator');
+const AppError = require('../../errors/app-error');
 const validateRequest = require('../../middlewares/validate-request');
 const Product = require('../../models/product.model');
 const catchAsync = require('../../utilities/catch-async.util');
@@ -16,6 +17,11 @@ router.get(
     const product = await Product.findById(productId).populate(
       'category reviews'
     );
+
+    if (!product.isActive) {
+      return next(AppError.notFound('Product is not found'));
+    }
+
     product.views += 1;
     product.save();
 

@@ -6,7 +6,9 @@ const router = express.Router();
 router.get(
   '/',
   catchAsync(async (req, res, next) => {
-    const products = await Product.find().populate('category');
+    const products = await Product.find({
+      isActive: true,
+    }).populate('category');
 
     return res.status(200).json({
       status: 'success',

@@ -29,7 +29,7 @@ function UserFavorites() {
         <React.Fragment>
           {favorites.length === 0 ? (
             <div className='user-fav__list'>
-              <p>There are no favorites</p>
+              <p>There are no items to show</p>
             </div>
           ) : (
             <div className='user-fav__list'>

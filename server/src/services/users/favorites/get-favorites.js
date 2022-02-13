@@ -10,12 +10,14 @@ router.get(
   catchAsync(async (req, res, next) => {
     const user = await User.findById(req.user._id).populate('favorites');
 
+    const favorites = user.favorites.filter((item) => item.isActive === true);
+
     return res.status(200).json({
       status: 'success',
       message: 'Retrieve all favorites',
       data: {
         results: user.favorites.length,
-        favorites: user.favorites,
+        favorites,
       },
     });
   })

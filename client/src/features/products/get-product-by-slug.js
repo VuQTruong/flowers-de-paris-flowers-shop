@@ -9,7 +9,7 @@ export const getProductBySlug = createAsyncThunk(
 
       return data.data.product;
     } catch (error) {
-      rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data);
     }
   }
 );

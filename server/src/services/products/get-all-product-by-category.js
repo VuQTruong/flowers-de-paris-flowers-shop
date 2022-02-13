@@ -11,6 +11,7 @@ router.get(
 
     const products = await Product.find({
       categorySlug: categorySlug,
+      isActive: true,
     }).populate('category');
 
     return res.status(200).json({

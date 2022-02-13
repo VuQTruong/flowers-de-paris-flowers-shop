@@ -1,4 +1,5 @@
 const express = require('express');
+const AppError = require('../../errors/app-error');
 const Product = require('../../models/product.model');
 const catchAsync = require('../../utilities/catch-async.util');
 const router = express.Router();
@@ -10,6 +11,11 @@ router.get(
     const product = await Product.findOne({ slug: slug }).populate(
       'category reviews'
     );
+
+    if (!product.isActive) {
+      return next(AppError.notFound('Product is not found'));
+    }
+
     product.views += 1;
     product.save();
 
