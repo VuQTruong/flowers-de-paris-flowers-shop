@@ -25,6 +25,10 @@ const categorySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   {
     timestamps: true,
@@ -63,6 +67,17 @@ categorySchema.pre('save', async function (next) {
       { category: this._id },
       {
         $set: { categorySlug: slug },
+      }
+    );
+  }
+
+  if (this.isModified('isActive')) {
+    const isActive = this.get('isActive');
+
+    await Product.updateMany(
+      { category: this._id },
+      {
+        $set: { isActive: isActive },
       }
     );
   }

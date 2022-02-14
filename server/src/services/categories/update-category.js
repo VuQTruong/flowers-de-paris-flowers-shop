@@ -9,12 +9,13 @@ const Category = require('../../models/category.model');
 const validateFields = require('../../middlewares/validate-fields');
 const router = express.Router();
 
-const requireFields = ['name', 'coverImage'];
+const requireFields = ['name', 'coverImage', 'isActive'];
 
 const validations = [
   param('id').isMongoId(),
   body('name').isString().optional(),
   body('coverImage').isString().optional(),
+  body('isActive').isBoolean().optional(),
 ];
 
 router.patch(
@@ -27,10 +28,16 @@ router.patch(
   catchAsync(async (req, res, next) => {
     const categoryId = req.params.id;
 
-    const { name } = req.body;
+    const { name, coverImage, isActive } = req.body;
 
     let category = await Category.findById(categoryId);
-    category.name = name;
+
+    category.name = name ? name : category.name;
+    category.coverImage = coverImage ? coverImage : category.coverImage;
+    category.isActive = req.body.hasOwnProperty('isActive')
+      ? isActive
+      : category.isActive;
+
     const updatedCategory = await category.save();
 
     return res.status(200).json({
