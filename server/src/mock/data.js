@@ -250,7 +250,7 @@ const data = {
       ],
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340383/products/gift_2_enab3n.png',
-      price: 150,
+      price: 239.99,
       saleOffPrice: 200,
       size: 'M',
       colors: ['red', 'yellow'],

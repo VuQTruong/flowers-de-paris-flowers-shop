@@ -6,11 +6,7 @@ const validateFields = (requiredFields) => {
 
     for (const key of keys) {
       if (!requiredFields.includes(key)) {
-        next(
-          AppError.badRequest(
-            'Invalid request - One or more fields are missing'
-          )
-        );
+        next(AppError.badRequest(`Invalid request - Unexpected field: ${key}`));
       }
     }
 

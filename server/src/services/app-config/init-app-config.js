@@ -1,0 +1,102 @@
+const express = require('express');
+const isAuth = require('../../middlewares/is-auth');
+const isAdmin = require('../../middlewares/is-admin');
+const LayoutConfig = require('../../models/layout-config.model');
+const SlideConfig = require('../../models/slide-config.model');
+const catchAsync = require('../../utilities/catch-async.util');
+const router = express.Router();
+
+router.post(
+  '/init',
+  isAuth,
+  isAdmin,
+  catchAsync(async (req, res, next) => {
+    const slides = [
+      {
+        order: 1,
+        image:
+          'https://res.cloudinary.com/flowersdeparis/image/upload/v1644770230/slides/slide_6_t9hsfd.jpg',
+        title: `Be my <span className='emphasize'>Valentine!</span>`,
+        subTitile: `Express your <span className='emphasize'>Feelings</span>`,
+        content: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam,
+        ut. Lorem ipsum dolor sit amet consectetur, adipisicing elit.`,
+        url: '',
+      },
+      {
+        order: 2,
+        image:
+          'https://res.cloudinary.com/flowersdeparis/image/upload/v1644770230/slides/slide_2_yx53ea.jpg',
+        title: `It's Your <span className='emphasize'>Special</span> Day!`,
+        subTitile: `Be <span className='emphasize'>Together</span> for <span className='emphasize'>Life</span>`,
+        content: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam,
+        ut. Lorem ipsum dolor sit amet consectetur, adipisicing elit.`,
+        url: '',
+      },
+      {
+        order: 3,
+        image:
+          'https://res.cloudinary.com/flowersdeparis/image/upload/v1644770230/slides/slide_3_ln9b3v.jpg',
+        title: `Best way to say you <span className='emphasize'>Care</span>`,
+        subTitile: `Sending <span className='emphasize'>Love</span>`,
+        content: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam,
+        ut. Lorem ipsum dolor sit amet consectetur, adipisicing elit.`,
+        url: '',
+      },
+      {
+        order: 4,
+        image:
+          'https://res.cloudinary.com/flowersdeparis/image/upload/v1644770230/slides/slide_4_t7ump6.jpg',
+        title: `Let's us arrange a <span className='emphasize'>Smile</span> for
+        you`,
+        subTitile: `Sending <span className='emphasize'>Love</span>`,
+        content: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam,
+        ut. Lorem ipsum dolor sit amet consectetur, adipisicing elit.`,
+        url: '',
+      },
+    ];
+
+    const features = [
+      {
+        order: 1,
+        category: 'Bouquets',
+        categorySlug: 'bouquets',
+        title: `Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+        Pariatur, impedit.`,
+      },
+      {
+        order: 2,
+        category: 'Flower Baskets',
+        categorySlug: 'flower-baskets',
+        title: `Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+        Pariatur, impedit.`,
+        reverseLayout: true,
+      },
+      {
+        order: 3,
+        category: 'Gifts',
+        categorySlug: 'gifts',
+        title: `Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+        Pariatur, impedit.`,
+      },
+    ];
+
+    // remove previous version of config
+    await SlideConfig.deleteMany();
+    await LayoutConfig.deleteMany();
+
+    const slideConfig = await SlideConfig.insertMany(slides);
+
+    const layoutConfig = await LayoutConfig.insertMany(features);
+
+    return res.status(201).json({
+      status: 'success',
+      message: 'Initialize application config successfully',
+      data: {
+        slideConfig,
+        layoutConfig,
+      },
+    });
+  })
+);
+
+module.exports = router;

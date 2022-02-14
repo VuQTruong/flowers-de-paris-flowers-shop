@@ -19,6 +19,7 @@ const productRouter = require('./services/products');
 const reviewRouter = require('./services/reviews');
 
 const mockRouter = require('./mock');
+const appConfigRouter = require('./services/app-config');
 
 const app = express();
 
@@ -57,6 +58,7 @@ app.get('/healthcheck', (req, res) => {
 });
 
 /* Routes */
+app.use('/api/config', appConfigRouter);
 app.use('/api/about', aboutRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/blogs', blogRouter);
