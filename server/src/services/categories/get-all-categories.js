@@ -6,7 +6,7 @@ const router = express.Router();
 router.get(
   '/',
   catchAsync(async (req, res, next) => {
-    const categories = await Category.find();
+    const categories = await Category.find({ isActive: true });
 
     return res.status(200).json({
       status: 'success',
