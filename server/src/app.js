@@ -17,7 +17,8 @@ const userRouter = require('./services/users');
 const blogRouter = require('./services/blogs');
 const productRouter = require('./services/products');
 const reviewRouter = require('./services/reviews');
-const mockRouter = require('./mock/create-mock-data');
+
+const mockRouter = require('./mock');
 
 const app = express();
 
@@ -65,7 +66,7 @@ app.use('/api/products', productRouter);
 app.use('/api/reviews', reviewRouter);
 app.use('/api/users', userRouter);
 
-// todo: remove this route before production
+// todo: remove these routes before production
 app.use('/api/mock', mockRouter);
 
 /* Unhandle Routes */

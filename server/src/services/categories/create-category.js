@@ -8,10 +8,14 @@ const Category = require('../../models/category.model');
 const validateFields = require('../../middlewares/validate-fields');
 const router = express.Router();
 
-const requireFields = ['name'];
+const requireFields = ['name', 'coverImage'];
 
 const validations = [
   body('name').isString().notEmpty().withMessage('Category name is missing'),
+  body('coverImage')
+    .isString()
+    .notEmpty()
+    .withMessage('Category image is missing'),
 ];
 
 router.post(

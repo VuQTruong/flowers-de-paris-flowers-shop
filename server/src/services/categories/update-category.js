@@ -9,11 +9,12 @@ const Category = require('../../models/category.model');
 const validateFields = require('../../middlewares/validate-fields');
 const router = express.Router();
 
-const requireFields = ['name'];
+const requireFields = ['name', 'coverImage'];
 
 const validations = [
   param('id').isMongoId(),
-  body('name').isString().notEmpty().withMessage('Category name is missing'),
+  body('name').isString().optional(),
+  body('coverImage').isString().optional(),
 ];
 
 router.patch(

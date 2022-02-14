@@ -21,6 +21,10 @@ const categorySchema = new mongoose.Schema(
         ref: 'Product',
       },
     ],
+    coverImage: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
@@ -54,7 +58,7 @@ categorySchema.pre('save', async function (next) {
 
     this.set('slug', slug);
 
-    // todo: get all related roducts and update their categorySlug
+    // get all related roducts and update their categorySlug
     await Product.updateMany(
       { category: this._id },
       {
