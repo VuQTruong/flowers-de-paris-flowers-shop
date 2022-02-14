@@ -8,25 +8,6 @@ import FeatureImg_2 from '../../../assets/features/feature_2.jpg';
 import { Link } from 'react-router-dom';
 
 function Home() {
-  // Todo: Plan for improvement - Making the home page customizable
-  // ?Create APIs that manage the configuration which define what slide images are and the categories to be shown
-  // ?The format may in this form:
-  // config = {
-  //   slides: [{
-  //     image: 'img-url',
-  //     title: 'title',
-  //     subTitile: 'sub-title',
-  //     content: 'content',
-  //     url: 'url-to-the-feature-if-there-is-one'
-  //   }, ...],
-  //   features: [{
-  //     category: 'category-name', // for fetching products belong to the category
-  //     categorySlug: 'slug',  //for linking to the category page
-  //     summary: 'category-summary',
-  //     reverseLayout: true/false // to place the cover image to left (defaul) or right
-  //   }, ...]
-  // }
-
   useEffect(() => {
     const fetchCategoriesData = async () => {};
 

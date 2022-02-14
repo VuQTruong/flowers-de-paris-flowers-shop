@@ -2,6 +2,8 @@ import { Suspense, lazy } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import swal from 'sweetalert2';
+import { unwrapResult } from '@reduxjs/toolkit';
 
 import ScrollToTop from './components/ScrollToTop/ScropToTop';
 import LoadingPage from './containers/LoadingPage/LoadingPage';
@@ -15,6 +17,8 @@ import Page404 from './containers/Page404/Page404';
 import { fetchCategories } from './features/categories/fetch-categories';
 import { verifyUser } from './features/users/verify-user';
 import { setUpAxiosResponseInterceptor } from './config/axios';
+import { useState } from 'react';
+import Loading from './components/Loading/Loading';
 
 // lazy load components
 const Dashboard = lazy(() => import('./containers/admin/Dashboard/Dashboard'));
@@ -41,21 +45,36 @@ const ProductDetails = lazy(() =>
 
 function App() {
   const dispatch = useDispatch();
+  const [isInitialzing, setIsInitialzing] = useState(true);
 
   const { userInfo } = useSelector((state) => state.currentUser);
 
   useEffect(() => {
-    // verify the validity of user's token (jwt) or session (oauth2) each time the application is reloaded and update the userInfo in the localStorage
-    dispatch(verifyUser());
+    const initApp = async () => {
+      // verify the validity of user's token (jwt) or session (oauth2) each time the application is reloaded and update the userInfo in the localStorage
+      dispatch(verifyUser());
 
-    // set up axios response interceptor to check the expiration of user's session
-    setUpAxiosResponseInterceptor(userInfo, dispatch);
+      // fetch categories
+      dispatch(fetchCategories());
 
-    dispatch(fetchCategories());
+      // set up axios response interceptor to check the expiration of user's session
+      setUpAxiosResponseInterceptor(userInfo, dispatch);
+
+      setIsInitialzing(false);
+    };
+
+    initApp();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
+  return isInitialzing ? (
+    <main className='container flex center col' style={{ height: '100vh' }}>
+      <Loading />
+      <h2 style={{ marginTop: '-2em' }}>
+        Our website will be ready to serve you in just a moment...
+      </h2>
+    </main>
+  ) : (
     <Router>
       <ScrollToTop />
       <Suspense fallback={<LoadingPage />}>
