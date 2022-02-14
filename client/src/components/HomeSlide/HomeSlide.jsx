@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import Slider from 'react-slick';
+import ReactHtmlParser from 'react-html-parser';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function NextButton(props) {
   // const { className, style, onClick } = props;
@@ -27,6 +30,8 @@ function PrevButton(props) {
 function HomeSlide() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  const { slides } = useSelector((state) => state.config);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -47,102 +52,39 @@ function HomeSlide() {
   return (
     <div className='slide-container'>
       <Slider {...settings}>
-        <div className={`slide ${currentSlide === 0 ? 'active' : ''}`}>
-          <img
-            src='https://res.cloudinary.com/flowersdeparis/image/upload/v1644770230/slides/slide_6_t9hsfd.jpg'
-            alt='Slide 6'
-            className='slide__img'
-          />
-          <div className='slide__typo slide__typo--left'>
-            <h2 className='slide__title slide__animate slide__animate-delay--1'>
-              Be my <span className='emphasize'>Valentine!</span>
-            </h2>
-            <h3 className='slide__subtitle  slide__animate slide__animate-delay--2'>
-              Express your <span className='emphasize'>Feelings</span>
-            </h3>
-            <p className='slide__content  slide__animate slide__animate-delay--3'>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam,
-              ut. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            </p>
-            <div className='slide__animate slide__animate-delay--4'>
-              <button className='btn slide__btn'>Explore Now</button>
+        {slides.map((slide, index) => {
+          return (
+            <div className={`slide ${currentSlide === index ? 'active' : ''}`}>
+              <img
+                src={slide.image}
+                alt={`Slide ${index}`}
+                className='slide__img'
+              />
+              <div className='slide__typo slide__typo--left'>
+                <h2 className='slide__title slide__animate slide__animate-delay--1'>
+                  {ReactHtmlParser(slide.title)}
+                </h2>
+                {slide.subTitle && (
+                  <h3 className='slide__subtitle  slide__animate slide__animate-delay--2'>
+                    {ReactHtmlParser(slide.subTitle)}
+                  </h3>
+                )}
+                {slide.content && (
+                  <p className='slide__content  slide__animate slide__animate-delay--3'>
+                    {ReactHtmlParser(slide.content)}
+                  </p>
+                )}
+                {slide.url && (
+                  <div className='slide__animate slide__animate-delay--4'>
+                    <Link to={slide.url} className='btn slide__btn'>
+                      Explore Now
+                    </Link>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        </div>
-
-        <div className={`slide ${currentSlide === 1 ? 'active' : ''}`}>
-          <img
-            src='https://res.cloudinary.com/flowersdeparis/image/upload/v1644770230/slides/slide_2_yx53ea.jpg'
-            alt='Slide 2'
-            className='slide__img'
-          />
-          <div className='slide__typo slide__typo--left'>
-            <h2 className='slide__title slide__animate slide__animate-delay--1'>
-              It's Your <span className='emphasize'>Special</span> Day!
-            </h2>
-            <h3 className='slide__subtitle slide__animate slide__animate-delay--2'>
-              Be <span className='emphasize'>Together</span> for{' '}
-              <span className='emphasize'>Life</span>
-            </h3>
-            <p className='slide__content slide__animate slide__animate-delay--3'>
-              A special collection specifically for your{' '}
-              <span className='emphasize'>
-                <strong>meaningful</strong>
-              </span>{' '}
-              day
-            </p>
-            <div className='slide__animate slide__animate-delay--4'>
-              <button className='btn slide__btn'>Explore Now</button>
-            </div>
-          </div>
-        </div>
-
-        <div className={`slide ${currentSlide === 2 ? 'active' : ''}`}>
-          <img
-            src='https://res.cloudinary.com/flowersdeparis/image/upload/v1644770230/slides/slide_3_ln9b3v.jpg'
-            alt='Slide 3'
-            className='slide__img'
-          />
-          <div className='slide__typo slide__typo--left'>
-            <h2 className='slide__title slide__animate slide__animate-delay--1'>
-              Best way to say you <span className='emphasize'>Care</span>
-            </h2>
-            <h3 className='slide__subtitle slide__animate slide__animate-delay--2'>
-              Sending <span className='emphasize'>Love</span>
-            </h3>
-            <p className='slide__content slide__animate slide__animate-delay--3'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-              eum mollitia molestiae, reiciendis amet voluptatem.
-            </p>
-            <div className='slide__animate slide__animate-delay--4'>
-              <button className='btn slide__btn'>Explore Now</button>
-            </div>
-          </div>
-        </div>
-
-        <div className={`slide ${currentSlide === 3 ? 'active' : ''}`}>
-          <img
-            src='https://res.cloudinary.com/flowersdeparis/image/upload/v1644770230/slides/slide_4_t7ump6.jpg'
-            alt='Slide 4'
-            className='slide__img'
-          />
-          <div className='slide__typo slide__typo--left'>
-            <h2 className='slide__title slide__animate slide__animate-delay--1'>
-              Let's us arrange a <span className='emphasize'>Smile</span> for
-              you
-            </h2>
-            <h3 className='slide__subtitle slide__animate slide__animate-delay--2'>
-              Sending <span className='emphasize'>Love</span>
-            </h3>
-            <p className='slide__content slide__animate slide__animate-delay--3'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-              eum mollitia molestiae, reiciendis amet voluptatem.
-            </p>
-            <div className='slide__animate slide__animate-delay--4'>
-              <button className='btn slide__btn'>Explore Now</button>
-            </div>
-          </div>
-        </div>
+          );
+        })}
       </Slider>
     </div>
   );

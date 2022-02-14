@@ -19,6 +19,7 @@ import { verifyUser } from './features/users/verify-user';
 import { setUpAxiosResponseInterceptor } from './config/axios';
 import { useState } from 'react';
 import Loading from './components/Loading/Loading';
+import { fetchSlidesInfo } from './features/config/fetch-slides-info';
 
 // lazy load components
 const Dashboard = lazy(() => import('./containers/admin/Dashboard/Dashboard'));
@@ -51,6 +52,9 @@ function App() {
 
   useEffect(() => {
     const initApp = async () => {
+      // fetch app config
+      dispatch(fetchSlidesInfo());
+
       // verify the validity of user's token (jwt) or session (oauth2) each time the application is reloaded and update the userInfo in the localStorage
       dispatch(verifyUser());
 

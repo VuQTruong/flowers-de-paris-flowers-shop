@@ -16,8 +16,8 @@ router.post(
         order: 1,
         image:
           'https://res.cloudinary.com/flowersdeparis/image/upload/v1644770230/slides/slide_6_t9hsfd.jpg',
-        title: `Be my <span className='emphasize'>Valentine!</span>`,
-        subTitile: `Express your <span className='emphasize'>Feelings</span>`,
+        title: `Be my <span class='emphasize'>Valentine!</span>`,
+        subTitle: `Express your <span class='emphasize'>Feelings</span>`,
         content: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam,
         ut. Lorem ipsum dolor sit amet consectetur, adipisicing elit.`,
         url: '',
@@ -26,8 +26,8 @@ router.post(
         order: 2,
         image:
           'https://res.cloudinary.com/flowersdeparis/image/upload/v1644770230/slides/slide_2_yx53ea.jpg',
-        title: `It's Your <span className='emphasize'>Special</span> Day!`,
-        subTitile: `Be <span className='emphasize'>Together</span> for <span className='emphasize'>Life</span>`,
+        title: `It's Your <span class='emphasize'>Special</span> Day!`,
+        subTitle: `Be <span class='emphasize'>Together</span> for <span class='emphasize'>Life</span>`,
         content: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam,
         ut. Lorem ipsum dolor sit amet consectetur, adipisicing elit.`,
         url: '',
@@ -36,8 +36,8 @@ router.post(
         order: 3,
         image:
           'https://res.cloudinary.com/flowersdeparis/image/upload/v1644770230/slides/slide_3_ln9b3v.jpg',
-        title: `Best way to say you <span className='emphasize'>Care</span>`,
-        subTitile: `Sending <span className='emphasize'>Love</span>`,
+        title: `Best way to say you <span class='emphasize'>Care</span>`,
+        subTitle: `Sending <span class='emphasize'>Love</span>`,
         content: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam,
         ut. Lorem ipsum dolor sit amet consectetur, adipisicing elit.`,
         url: '',
@@ -46,9 +46,9 @@ router.post(
         order: 4,
         image:
           'https://res.cloudinary.com/flowersdeparis/image/upload/v1644770230/slides/slide_4_t7ump6.jpg',
-        title: `Let's us arrange a <span className='emphasize'>Smile</span> for
+        title: `Let's us arrange a <span class='emphasize'>Smile</span> for
         you`,
-        subTitile: `Sending <span className='emphasize'>Love</span>`,
+        subTitle: `Sending <span class='emphasize'>Love</span>`,
         content: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam,
         ut. Lorem ipsum dolor sit amet consectetur, adipisicing elit.`,
         url: '',

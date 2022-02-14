@@ -13,7 +13,7 @@ const SlideConfigSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  subTitile: String,
+  subTitle: String,
   content: String,
   url: {
     type: String,

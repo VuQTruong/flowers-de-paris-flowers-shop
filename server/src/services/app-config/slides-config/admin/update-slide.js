@@ -15,7 +15,7 @@ const validations = [
   body('order').isNumeric().optional(),
   body('image').isString().optional(),
   body('title').isString().optional(),
-  body('subTitile').isString().optional(),
+  body('subTitle').isString().optional(),
   body('content').isString().optional(),
   body('url').isString().optional(),
 ];
