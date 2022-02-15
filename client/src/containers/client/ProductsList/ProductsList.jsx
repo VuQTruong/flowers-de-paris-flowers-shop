@@ -1,27 +1,13 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import Loading from '../../../components/Loading/Loading';
 import ProductCard from '../../../components/ProductCard/ProductCard';
 import ProductsFilter from '../ProductsFilter/ProductsFilter';
-import { getProductsByCategorySlug } from '../../../features/products/get-products-by-category-slug';
 import Paginator from '../../../components/Paginator/Paginator';
-import { getAllProducts } from '../../../features/products/get-all-products';
 
 function ProductsList() {
-  const dispatch = useDispatch();
-  const { categorySlug } = useParams();
-
   const allProducts = useSelector((state) => state.allProducts);
   const { products, loading } = allProducts;
-
-  useEffect(() => {
-    if (categorySlug) {
-      dispatch(getProductsByCategorySlug(categorySlug));
-    } else {
-      dispatch(getAllProducts());
-    }
-  }, [categorySlug, dispatch]);
 
   const pageHandler = (page) => {};
 

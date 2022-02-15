@@ -6,7 +6,7 @@ import {
   useNavigate,
   useSearchParams,
 } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ColorsFilter from '../../../components/ProductsFilterComponents/ColorsFilter/ColorsFilter';
 import PriceFilter from '../../../components/ProductsFilterComponents/PriceFilter/PriceFilter';
@@ -35,6 +35,8 @@ function ProductsFilter() {
 
   const [toggleFilterPanel, setToggleFilterPanel] = useState(false);
 
+  const { loading } = useSelector((state) => state.allProducts);
+
   // !deserialize search query
   useEffect(() => {
     if (searchParams.toString()) {
@@ -43,6 +45,7 @@ function ProductsFilter() {
 
       let queryStr = searchParams.toString();
 
+      console.log('dispatch with query');
       if (categorySlug) {
         queryStr = `categorySlug=${categorySlug}&${queryStr}`;
         dispatch(getAllProducts(queryStr));
@@ -66,7 +69,7 @@ function ProductsFilter() {
     // !reset the filters if the pathname is changed (e.g. change to another category)
     if (currentPathname.current !== location.pathname) {
       resetFilters();
-
+      console.log('reset');
       currentPathname.current = location.pathname;
     } else {
       const queryStr = querySerialize({
@@ -78,13 +81,17 @@ function ProductsFilter() {
         rating,
       });
 
-      if (queryStr) {
-        // ?when the filters' value is changed and a new queryStr is generated
-        // ?if the queryStr is the same, which make the url is the same
-        // ?navigate will not be called
-        navigate(`${location.pathname}?${queryStr}`);
-      } else {
-        navigate(location.pathname);
+      if (!loading) {
+        if (queryStr) {
+          console.log('navigate with query');
+          // ?when the filters' value is changed and a new queryStr is generated
+          // ?if the queryStr is the same, which make the url is the same
+          // ?navigate will not be called
+          navigate(`${location.pathname}?${queryStr}`);
+        } else {
+          console.log('navigate without query');
+          navigate(location.pathname);
+        }
       }
     }
 
@@ -121,14 +128,14 @@ function ProductsFilter() {
     setPrice(priceObj);
 
     // !tags filter
-    if (queryObj['tags[all]']) {
-      const tagsStr = queryObj['tags[all]'].split(',').join(', ');
+    if (queryObj['tags']) {
+      const tagsStr = queryObj['tags'].split(',').join(', ');
       setTags(tagsStr);
     }
 
     // !colors filter
-    if (queryObj['colors[all]']) {
-      const colorsArr = queryObj['colors[all]'].split(',');
+    if (queryObj['colors']) {
+      const colorsArr = queryObj['colors'].split(',');
       setColors(colorsArr);
     }
 
@@ -136,7 +143,7 @@ function ProductsFilter() {
     queryObj.size && setSize(queryObj.size);
 
     // !rating filter
-    queryObj['rating[gte]'] && setRating(queryObj['rating[gte]'] * 1);
+    queryObj['rating'] && setRating(queryObj['rating'] * 1);
   };
 
   return (

@@ -1,70 +1,57 @@
+// ?to add additional fields follow the examples below
 const querySerialize = (queryObj) => {
-  let queryStr = '';
+  let queryArr = [];
 
-  const { sortBy, price, tags, colors, size, rating } = queryObj;
+  const { name, title, sortBy, price, tags, colors, size, rating } = queryObj;
+
+  // !search by name
+  if (name) {
+    const modifiedName = name.replace(/ /g, '+');
+    queryArr.push(`name=${modifiedName}`);
+  }
+
+  // !search by title
+  if (title) {
+    const modifiedNaTitle = title.replace(/ /g, '+');
+    queryArr.push(`title=${modifiedNaTitle}`);
+  }
 
   // !sorting
   if (sortBy !== '-createdAt') {
-    queryStr += `sort=${sortBy}`;
-
-    if (price.low || price.high) {
-      queryStr += '&';
-    }
+    queryArr.push(`sort=${sortBy}`);
   }
 
   // !price filter
-  if (price.low || price.high) {
-    if (price.low) {
-      queryStr += `price[gt]=${price.low}`;
-    }
+  if (price.low) {
+    queryArr.push(`price[gt]=${price.low}`);
+  }
 
-    if (price.low && price.high) {
-      queryStr += '&';
-    }
-
-    if (price.high) {
-      queryStr += `price[lte]=${price.high}`;
-    }
-
-    if (tags) {
-      queryStr += '&';
-    }
+  if (price.high) {
+    queryArr.push(`price[lte]=${price.high}`);
   }
 
   // !tags filter
   if (tags) {
     let modifiedTags = tags.replace(/ /g, '+').split(',+').join(',');
-    queryStr += `tags[all]=${modifiedTags}`;
-
-    if (colors.length !== 0) {
-      queryStr += '&';
-    }
+    queryArr.push(`tags=${modifiedTags}`);
   }
 
   // !colors filter
   if (colors.length !== 0) {
-    queryStr += `colors[all]=${colors.join(',')}`;
-
-    if (size !== 'All') {
-      queryStr += '&';
-    }
+    queryArr.push(`colors=${colors.join(',')}`);
   }
 
   // !size filter
   if (size !== 'All') {
-    queryStr += `size=${size}`;
-
-    if (rating) {
-      queryStr += '&';
-    }
+    queryArr.push(`size=${size}`);
   }
 
   // !rating filter
   if (rating) {
-    queryStr += `rating[gte]=${rating}`;
+    queryArr.push(`rating=${rating}`);
   }
 
-  return queryStr;
+  return queryArr.join('&');
 };
 
 export default querySerialize;
