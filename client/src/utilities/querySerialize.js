@@ -61,7 +61,7 @@ const querySerialize = (queryObj) => {
 
   // !rating filter
   if (rating) {
-    queryStr += `averageRating[gte]=${rating}`;
+    queryStr += `rating[gte]=${rating}`;
   }
 
   return queryStr;

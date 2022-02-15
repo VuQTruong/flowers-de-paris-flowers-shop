@@ -20,6 +20,7 @@ import { getAllProducts } from '../../../features/products/get-all-products';
 function ProductsFilter() {
   const dispatch = useDispatch();
 
+  const { categorySlug } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const [searchParams] = useSearchParams();
@@ -40,10 +41,21 @@ function ProductsFilter() {
       const queryObj = Object.fromEntries([...searchParams]);
       setFilters(queryObj);
 
-      console.log('💥💥💥 dispatch action');
+      let queryStr = searchParams.toString();
+
+      if (categorySlug) {
+        queryStr = `categorySlug=${categorySlug}&${queryStr}`;
+        dispatch(getAllProducts(queryStr));
+      } else {
+        dispatch(getAllProducts(queryStr));
+      }
     } else {
-      // !reset the filters if there is no query
-      resetFilters();
+      if (categorySlug) {
+        const queryStr = `categorySlug=${categorySlug}`;
+        dispatch(getAllProducts(queryStr));
+      } else {
+        dispatch(getAllProducts());
+      }
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -67,12 +79,12 @@ function ProductsFilter() {
       });
 
       if (queryStr) {
-        console.log('🔥🔥🔥 serialize');
-
         // ?when the filters' value is changed and a new queryStr is generated
         // ?if the queryStr is the same, which make the url is the same
         // ?navigate will not be called
         navigate(`${location.pathname}?${queryStr}`);
+      } else {
+        navigate(location.pathname);
       }
     }
 
@@ -124,8 +136,7 @@ function ProductsFilter() {
     queryObj.size && setSize(queryObj.size);
 
     // !rating filter
-    queryObj['averageRating[gte]'] &&
-      setRating(queryObj['averageRating[gte]'] * 1);
+    queryObj['rating[gte]'] && setRating(queryObj['rating[gte]'] * 1);
   };
 
   return (

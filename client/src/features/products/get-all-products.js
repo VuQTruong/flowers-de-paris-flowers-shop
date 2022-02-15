@@ -3,9 +3,11 @@ import Axios from '../../config/axios';
 
 export const getAllProducts = createAsyncThunk(
   'products/getAllProducts',
-  async (_, { rejectWithValue }) => {
+  async (queryStr = '', { rejectWithValue }) => {
     try {
-      const { data } = await Axios.get('/products');
+      const { data } = await Axios.get(
+        `/products${queryStr ? '?' + queryStr : ''}`
+      );
 
       return data.data.products;
     } catch (error) {

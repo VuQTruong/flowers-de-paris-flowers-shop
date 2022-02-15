@@ -7,6 +7,9 @@ export const productsSlice = createSlice({
   name: 'products',
   initialState: {
     products: null,
+    totalProducts: 0,
+    totalPages: 0,
+    currentPage: 1,
     loading: true,
     error: '',
   },

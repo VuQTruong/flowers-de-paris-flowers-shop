@@ -6,6 +6,8 @@ const router = express.Router();
 router.get(
   '/',
   catchAsync(async (req, res, next) => {
+    console.log(req.query);
+
     const products = await Product.find({
       isActive: true,
     }).populate('category');
