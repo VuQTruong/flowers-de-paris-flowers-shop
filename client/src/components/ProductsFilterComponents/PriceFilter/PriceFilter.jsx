@@ -15,9 +15,9 @@ function PriceFilter({ value, onChange }) {
           </li>
           <li
             className={`filter-price__item ${
-              value.low === 0 && value.high === 100 ? 'active' : ''
+              value.low === null && value.high === 100 ? 'active' : ''
             }`}
-            onClick={() => onChange({ low: 0, high: 100 })}
+            onClick={() => onChange({ low: null, high: 100 })}
           >
             Below $100
           </li>

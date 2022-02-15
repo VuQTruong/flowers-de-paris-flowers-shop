@@ -1,5 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useEffect } from 'react';
+import {
+  useParams,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 import ColorsFilter from '../../../components/ProductsFilterComponents/ColorsFilter/ColorsFilter';
 import PriceFilter from '../../../components/ProductsFilterComponents/PriceFilter/PriceFilter';
 import RatingFilter from '../../../components/ProductsFilterComponents/RatingFilter/RatingFilter';
@@ -7,8 +15,16 @@ import SizeFilter from '../../../components/ProductsFilterComponents/SizeFilter/
 import Sorting from '../../../components/ProductsFilterComponents/Sorting/Sorting';
 import TagsFilter from '../../../components/ProductsFilterComponents/TagsFilter/TagsFilter';
 import querySerialize from '../../../utilities/querySerialize';
+import { getAllProducts } from '../../../features/products/get-all-products';
 
 function ProductsFilter() {
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const currentPathname = useRef(location.pathname);
+
   const [sortBy, setSortBy] = useState('-createdAt');
   const [price, setPrice] = useState({ low: null, high: null });
   const [tags, setTags] = useState('');
@@ -18,11 +34,50 @@ function ProductsFilter() {
 
   const [toggleFilterPanel, setToggleFilterPanel] = useState(false);
 
+  // !deserialize search query
   useEffect(() => {
-    const query = querySerialize();
+    if (searchParams.toString()) {
+      const queryObj = Object.fromEntries([...searchParams]);
+      setFilters(queryObj);
 
-    console.log(query);
-  }, [sortBy, price, tags, colors, size, rating]);
+      console.log('💥💥💥 dispatch action');
+    } else {
+      // !reset the filters if there is no query
+      resetFilters();
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
+
+  // !serialize search query
+  useEffect(() => {
+    // !reset the filters if the pathname is changed (e.g. change to another category)
+    if (currentPathname.current !== location.pathname) {
+      resetFilters();
+
+      currentPathname.current = location.pathname;
+    } else {
+      const queryStr = querySerialize({
+        sortBy,
+        price,
+        tags,
+        colors,
+        size,
+        rating,
+      });
+
+      if (queryStr) {
+        console.log('🔥🔥🔥 serialize');
+
+        // ?when the filters' value is changed and a new queryStr is generated
+        // ?if the queryStr is the same, which make the url is the same
+        // ?navigate will not be called
+        navigate(`${location.pathname}?${queryStr}`);
+      }
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sortBy, price, tags, colors, size, rating, navigate]);
 
   const toggleFilterPanelHandler = (value) => {
     setToggleFilterPanel(value);
@@ -32,6 +87,45 @@ function ProductsFilter() {
     } else {
       document.body.style.overflow = 'auto';
     }
+  };
+
+  const resetFilters = () => {
+    setSortBy('-createdAt');
+    setPrice({ low: null, high: null });
+    setTags('');
+    setColors([]);
+    setSize('All');
+    setRating(0);
+  };
+
+  const setFilters = (queryObj) => {
+    // !sorting
+    queryObj.sort && setSortBy(queryObj.sort);
+
+    // !price filter
+    const priceObj = { low: null, high: null };
+    queryObj['price[gt]'] && (priceObj.low = queryObj['price[gt]'] * 1);
+    queryObj['price[lte]'] && (priceObj.high = queryObj['price[lte]'] * 1);
+    setPrice(priceObj);
+
+    // !tags filter
+    if (queryObj['tags[all]']) {
+      const tagsStr = queryObj['tags[all]'].split(',').join(', ');
+      setTags(tagsStr);
+    }
+
+    // !colors filter
+    if (queryObj['colors[all]']) {
+      const colorsArr = queryObj['colors[all]'].split(',');
+      setColors(colorsArr);
+    }
+
+    // !size filter
+    queryObj.size && setSize(queryObj.size);
+
+    // !rating filter
+    queryObj['averageRating[gte]'] &&
+      setRating(queryObj['averageRating[gte]'] * 1);
   };
 
   return (

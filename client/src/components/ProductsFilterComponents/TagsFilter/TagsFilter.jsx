@@ -8,7 +8,7 @@ function TagsFilter({ value, onChange }) {
       setTags(value);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [value]);
 
   return (
     <div className='filter-item filter-flower'>
