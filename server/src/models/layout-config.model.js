@@ -5,6 +5,10 @@ const layoutConfigSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  coverImage: {
+    type: String,
+    required: true,
+  },
   // category for displaying on the cover
   category: {
     type: String,

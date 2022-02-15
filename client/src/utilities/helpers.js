@@ -14,6 +14,18 @@ export const roundHalf = (num) => {
   return Math.round(num * 2) / 2;
 };
 
+export const sortByOrder = (a, b) => {
+  if (a.order < b.order) {
+    return -1;
+  }
+
+  if (a.order > b.order) {
+    return 1;
+  }
+
+  return 0;
+};
+
 export const renderRatingStars = (rating) => {
   let count = 0;
   let content = [];

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchLayoutInfo } from '../fetch-layout-info';
 import { fetchSlidesInfo } from '../fetch-slides-info';
 
 export const configSlice = createSlice({
@@ -11,6 +12,7 @@ export const configSlice = createSlice({
   },
   reducers: {},
   extraReducers: {
+    /* fetch slides info */
     [fetchSlidesInfo.pending]: (state) => {
       state.loading = true;
       state.error = null;
@@ -20,6 +22,20 @@ export const configSlice = createSlice({
       state.slides = action.payload;
     },
     [fetchSlidesInfo.pending]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    /* fetch layout info */
+    [fetchLayoutInfo.pending]: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    [fetchLayoutInfo.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.layout = action.payload;
+    },
+    [fetchLayoutInfo.pending]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },

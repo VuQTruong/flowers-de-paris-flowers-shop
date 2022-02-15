@@ -58,6 +58,8 @@ router.post(
     const features = [
       {
         order: 1,
+        coverImage:
+          'https://res.cloudinary.com/flowersdeparis/image/upload/v1644772905/categories/bouquet-cover_pu0vj2.jpg',
         category: 'Bouquets',
         categorySlug: 'bouquets',
         title: `Lorem ipsum, dolor sit amet consectetur adipisicing elit.
@@ -65,6 +67,8 @@ router.post(
       },
       {
         order: 2,
+        coverImage:
+          'https://res.cloudinary.com/flowersdeparis/image/upload/v1644772905/categories/flowerbasket-cover_urfquj.jpg',
         category: 'Flower Baskets',
         categorySlug: 'flower-baskets',
         title: `Lorem ipsum, dolor sit amet consectetur adipisicing elit.
@@ -73,6 +77,8 @@ router.post(
       },
       {
         order: 3,
+        coverImage:
+          'https://res.cloudinary.com/flowersdeparis/image/upload/v1644772905/categories/gift-cover_enp08u.jpg',
         category: 'Gifts',
         categorySlug: 'gifts',
         title: `Lorem ipsum, dolor sit amet consectetur adipisicing elit.

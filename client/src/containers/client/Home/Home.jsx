@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import HomeSlide from '../../../components/HomeSlide/HomeSlide';
 import HeartIcon from '../../../assets/icons/heart-bullet.png';
 import DividerImg from '../../../assets/quote-images/divider.png';
@@ -6,13 +6,78 @@ import FeatureImg_1 from '../../../assets/features/feature_1.jpg';
 import FeatureImg_2 from '../../../assets/features/feature_2.jpg';
 
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import Axios from '../../../config/axios';
+import ProductSlide from '../../../components/ProductSlide/ProductSlide';
 
 function Home() {
-  useEffect(() => {
-    const fetchCategoriesData = async () => {};
+  const [productsArr, setProductsArr] = useState([]);
+  const { layout } = useSelector((state) => state.config);
 
-    fetchCategoriesData();
-  }, []);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const fetchPromises = layout.map((feature) => {
+        return Axios.get(`/products/category/${feature.categorySlug}`);
+      });
+
+      const promiseResults = await Promise.all(fetchPromises);
+
+      const results = [];
+      for (let result of promiseResults) {
+        results.push(result.data.data.products);
+      }
+
+      setProductsArr(results);
+    };
+
+    if (layout) {
+      fetchProducts();
+    }
+  }, [layout]);
+
+  const renderFeature = (feature, index) => {
+    return (
+      <section
+        className={`product-slideshow ${
+          feature.reverseLayout ? 'product-slideshow--reverse' : ''
+        }`}
+        key={feature._id}
+      >
+        <div className='product-cover'>
+          <img
+            src={feature.coverImage}
+            alt='Bouquet Cover'
+            className='product-cover__img'
+          />
+          <div className='product-cover__content'>
+            <h2 className='product-cover__title'>{feature.category}</h2>
+            {feature.title && <p>{feature.title}</p>}
+            <Link
+              to={`/products/${feature.categorySlug}`}
+              className='btn btn-primary product-cover__btn'
+            >
+              See more
+            </Link>
+          </div>
+        </div>
+        <div className='product-slide'>
+          {productsArr.length !== 0 && (
+            <ProductSlide products={productsArr[index]} />
+          )}
+        </div>
+      </section>
+    );
+  };
+
+  const renderRestFeatures = () => {
+    let features = [];
+
+    for (let i = 2; i < layout.length; i++) {
+      features.push(renderFeature(layout[i], i));
+    }
+
+    return features;
+  };
 
   return (
     <main className='container home__container'>
@@ -59,35 +124,7 @@ function Home() {
       </section>
 
       {/* Product slides */}
-      <section className='product-slideshow'>
-        <div className='product-cover'>
-          <img
-            src='https://res.cloudinary.com/flowersdeparis/image/upload/v1644772905/features/bouquet-cover_pu0vj2.jpg'
-            alt='Bouquet Cover'
-            className='product-cover__img'
-          />
-          <div className='product-cover__content'>
-            <h2 className='product-cover__title'>Bouquets</h2>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Pariatur, impedit.
-            </p>
-            <Link
-              to='/products/bouquets'
-              className='btn btn-primary product-cover__btn'
-            >
-              See more
-            </Link>
-          </div>
-        </div>
-        {/* {loading ? (
-          <Loading />
-        ) : error ? (
-          <MessageBox variant='danger'>{error}</MessageBox>
-        ) : (
-          <div className='product-slide'>{bouquets && <ProductSlide products={bouquets} />}</div>
-        )} */}
-      </section>
+      {layout && layout.length !== 0 && renderFeature(layout[0], 0)}
 
       {/* Quote */}
       <section className='home-quote home-quote--bg-1'>
@@ -102,39 +139,7 @@ function Home() {
       </section>
 
       {/* Product slides */}
-      <section className='product-slideshow product-slideshow--reverse'>
-        <div className='product-cover'>
-          <img
-            src='https://res.cloudinary.com/flowersdeparis/image/upload/v1644772905/features/flowerbasket-cover_urfquj.jpg'
-            alt='Flower Baskets Cover'
-            className='product-cover__img'
-          />
-          <div className='product-cover__content'>
-            <h2 className='product-cover__title'>Flower Baskets</h2>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Pariatur, impedit.
-            </p>
-            <Link
-              to='/products/flowerbaskets'
-              className='btn btn-primary  product-cover__btn'
-            >
-              See more
-            </Link>
-          </div>
-        </div>
-        {/* {loading ? (
-          <Loading className='product-slide' />
-        ) : error ? (
-          <MessageBox variant='danger' className='product-slide'>
-            {error}
-          </MessageBox>
-        ) : (
-          <div className='product-slide'>
-            {flowerbaskets && <ProductSlide products={flowerbaskets} />}
-          </div>
-        )} */}
-      </section>
+      {layout && layout.length !== 0 && renderFeature(layout[1], 1)}
 
       {/* Quote */}
       <section className='home-quote home-quote--bg-2'>
@@ -145,35 +150,7 @@ function Home() {
       </section>
 
       {/* Product slides */}
-      <section className='product-slideshow'>
-        <div className='product-cover'>
-          <img
-            src='https://res.cloudinary.com/flowersdeparis/image/upload/v1644772905/features/gift-cover_enp08u.jpg'
-            alt='Gifts Cover'
-            className='product-cover__img'
-          />
-          <div className='product-cover__content'>
-            <h2 className='product-cover__title'>Gifts</h2>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Pariatur, impedit.
-            </p>
-            <Link
-              to='/products/gifts'
-              className='btn btn-primary product-cover__btn'
-            >
-              See more
-            </Link>
-          </div>
-        </div>
-        {/* {loading ? (
-          <Loading />
-        ) : error ? (
-          <MessageBox variant='danger'>{error}</MessageBox>
-        ) : (
-          <div className='product-slide'>{gifts && <ProductSlide products={gifts} />}</div>
-        )} */}
-      </section>
+      {layout && layout.length !== 0 && renderRestFeatures()}
 
       {/* Blog Section */}
       <section className='home-blog'>

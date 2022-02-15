@@ -1,9 +1,8 @@
+import { useState } from 'react';
 import { Suspense, lazy } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import swal from 'sweetalert2';
-import { unwrapResult } from '@reduxjs/toolkit';
 
 import ScrollToTop from './components/ScrollToTop/ScropToTop';
 import LoadingPage from './containers/LoadingPage/LoadingPage';
@@ -14,12 +13,12 @@ import UserLayout from './containers/client/UserLayout/UserLayout';
 import Home from './containers/client/Home/Home';
 import Page404 from './containers/Page404/Page404';
 
+import { fetchSlidesInfo } from './features/config/fetch-slides-info';
+import { fetchLayoutInfo } from './features/config/fetch-layout-info';
 import { fetchCategories } from './features/categories/fetch-categories';
 import { verifyUser } from './features/users/verify-user';
 import { setUpAxiosResponseInterceptor } from './config/axios';
-import { useState } from 'react';
 import Loading from './components/Loading/Loading';
-import { fetchSlidesInfo } from './features/config/fetch-slides-info';
 
 // lazy load components
 const Dashboard = lazy(() => import('./containers/admin/Dashboard/Dashboard'));
@@ -54,6 +53,7 @@ function App() {
     const initApp = async () => {
       // fetch app config
       dispatch(fetchSlidesInfo());
+      dispatch(fetchLayoutInfo());
 
       // verify the validity of user's token (jwt) or session (oauth2) each time the application is reloaded and update the userInfo in the localStorage
       dispatch(verifyUser());

@@ -54,7 +54,10 @@ function HomeSlide() {
       <Slider {...settings}>
         {slides.map((slide, index) => {
           return (
-            <div className={`slide ${currentSlide === index ? 'active' : ''}`}>
+            <div
+              key={slide._id}
+              className={`slide ${currentSlide === index ? 'active' : ''}`}
+            >
               <img
                 src={slide.image}
                 alt={`Slide ${index}`}
