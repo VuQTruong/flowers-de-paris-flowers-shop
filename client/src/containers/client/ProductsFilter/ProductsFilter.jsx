@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import ColorsFilter from '../../../components/ProductsFilterComponents/ColorsFilter/ColorsFilter';
 import PriceFilter from '../../../components/ProductsFilterComponents/PriceFilter/PriceFilter';
 import RatingFilter from '../../../components/ProductsFilterComponents/RatingFilter/RatingFilter';
 import SizeFilter from '../../../components/ProductsFilterComponents/SizeFilter/SizeFilter';
 import Sorting from '../../../components/ProductsFilterComponents/Sorting/Sorting';
 import TagsFilter from '../../../components/ProductsFilterComponents/TagsFilter/TagsFilter';
+import querySerialize from '../../../utilities/querySerialize';
 
 function ProductsFilter() {
   const [sortBy, setSortBy] = useState('-createdAt');
@@ -15,6 +17,12 @@ function ProductsFilter() {
   const [rating, setRating] = useState(0);
 
   const [toggleFilterPanel, setToggleFilterPanel] = useState(false);
+
+  useEffect(() => {
+    const query = querySerialize();
+
+    console.log(query);
+  }, [sortBy, price, tags, colors, size, rating]);
 
   const toggleFilterPanelHandler = (value) => {
     setToggleFilterPanel(value);

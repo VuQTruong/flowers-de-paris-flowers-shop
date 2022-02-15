@@ -131,12 +131,11 @@
 /* Product Slide */
 .product-slideshow {
   display: grid;
-  margin-bottom: 4em;
+  margin-bottom: 2em;
 }
 
 .product-cover {
   position: relative;
-  width: 18em;
 }
 
 .product-cover__img {
@@ -180,6 +179,7 @@
     grid-template-columns: 25% 1fr;
     column-gap: 2em;
     padding: 0 1em;
+    margin-bottom: 4em;
   }
 
   .product-slideshow--reverse {
@@ -188,6 +188,10 @@
 
   .product-slideshow--reverse .product-slide {
     order: -1;
+  }
+
+  .product-cover {
+    width: 18em;
   }
 }
 

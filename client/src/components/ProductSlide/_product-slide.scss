@@ -36,15 +36,23 @@
 }
 
 .product-slide__btn--next {
-  right: 0;
+  right: 0.5em;
 }
 
 .product-slide__btn--prev {
-  left: 0;
+  left: 0.5em;
 }
 
 @media (min-width: $screen-md) {
   .product-slide__content .slick-slide > div {
     padding: 0;
+  }
+
+  .product-slide__btn--next {
+    right: 0;
+  }
+
+  .product-slide__btn--prev {
+    left: 0;
   }
 }
