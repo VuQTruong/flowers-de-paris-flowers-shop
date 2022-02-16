@@ -2,32 +2,19 @@
 const querySerialize = (queryObj) => {
   let queryArr = [];
 
-  const { name, title, sortBy, price, tags, colors, size, rating, page } =
-    queryObj;
-
-  // !search by name
-  if (name) {
-    const modifiedName = name.replace(/ /g, '+');
-    queryArr.push(`name=${modifiedName}`);
-  }
-
-  // !search by title
-  if (title) {
-    const modifiedNaTitle = title.replace(/ /g, '+');
-    queryArr.push(`title=${modifiedNaTitle}`);
-  }
+  const { sortBy, price, tags, colors, size, rating, page } = queryObj;
 
   // !sorting
-  if (sortBy !== '-createdAt') {
+  if (sortBy && sortBy !== '-createdAt') {
     queryArr.push(`sort=${sortBy}`);
   }
 
   // !price filter
-  if (price.low) {
+  if (price && price.low) {
     queryArr.push(`price[gt]=${price.low}`);
   }
 
-  if (price.high) {
+  if (price && price.high) {
     queryArr.push(`price[lte]=${price.high}`);
   }
 
@@ -38,12 +25,12 @@ const querySerialize = (queryObj) => {
   }
 
   // !colors filter
-  if (colors.length !== 0) {
+  if (colors && colors.length !== 0) {
     queryArr.push(`colors=${colors.join(',')}`);
   }
 
   // !size filter
-  if (size !== 'All') {
+  if (size && size !== 'All') {
     queryArr.push(`size=${size}`);
   }
 

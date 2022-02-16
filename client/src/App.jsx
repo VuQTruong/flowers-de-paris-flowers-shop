@@ -42,6 +42,7 @@ const ProductsList = lazy(() =>
 const ProductDetails = lazy(() =>
   import('./containers/client/ProductDetails/ProductDetails')
 );
+const Search = lazy(() => import('./containers/client/Search/Search'));
 
 function App() {
   const dispatch = useDispatch();
@@ -99,6 +100,7 @@ function App() {
               path='products/:categorySlug/:productSlug'
               element={<ProductDetails />}
             />
+            <Route path='search' element={<Search />} />
             <Route path='oauth/fail' element={<OAuthFail />} />
           </Route>
 

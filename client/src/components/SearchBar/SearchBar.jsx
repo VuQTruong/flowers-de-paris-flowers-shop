@@ -7,7 +7,7 @@ function SearchBar() {
 
   const searchHandler = (e) => {
     if (e.code === 'Enter') {
-      navigate(`/search?name[regex]=${searchValue}`);
+      navigate(`/search?name=${searchValue}`);
       setSearchValue('');
     }
   };

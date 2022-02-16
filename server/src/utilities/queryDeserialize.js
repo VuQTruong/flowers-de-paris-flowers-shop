@@ -70,6 +70,12 @@ const queryDeserialize = (requestQuery) => {
       continue;
     }
 
+    // !category filter
+    if (filter === 'category') {
+      filtersObj.categorySlug = filters.category;
+      continue;
+    }
+
     // !other filters
     filtersObj[filter] = filters[filter];
   }
