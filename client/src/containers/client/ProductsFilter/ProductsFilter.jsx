@@ -16,6 +16,15 @@ import Sorting from '../../../components/ProductsFilterComponents/Sorting/Sortin
 import TagsFilter from '../../../components/ProductsFilterComponents/TagsFilter/TagsFilter';
 import querySerialize from '../../../utilities/querySerialize';
 import { getAllProducts } from '../../../features/products/get-all-products';
+import {
+  resetFilters,
+  setColors,
+  setPrice,
+  setRating,
+  setSize,
+  setSortBy,
+  setTags,
+} from '../../../features/query/slice/query-slice';
 
 function ProductsFilter() {
   const dispatch = useDispatch();
@@ -26,16 +35,12 @@ function ProductsFilter() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
-  const [sortBy, setSortBy] = useState('-createdAt');
-  const [price, setPrice] = useState({ low: null, high: null });
-  const [tags, setTags] = useState('');
-  const [colors, setColors] = useState([]);
-  const [size, setSize] = useState('All');
-  const [rating, setRating] = useState(0);
-
   const [toggleFilterPanel, setToggleFilterPanel] = useState(false);
 
   const { loading } = useSelector((state) => state.allProducts);
+  const { sortBy, price, tags, colors, size, rating, page } = useSelector(
+    (state) => state.query
+  );
 
   const toggleFilterPanelHandler = (value) => {
     setToggleFilterPanel(value);
@@ -58,6 +63,7 @@ function ProductsFilter() {
         colors,
         size,
         rating,
+        page,
       });
 
       if (!loading) {
@@ -72,14 +78,14 @@ function ProductsFilter() {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [colors, price, rating, size, sortBy, tags]);
+  }, [colors, price, rating, size, sortBy, tags, page]);
 
   useEffect(() => {
     if (location.search) {
       const queryObj = Object.fromEntries([...searchParams]);
       setFilters(queryObj);
     } else {
-      resetFilters();
+      dispatch(resetFilters());
     }
 
     isFirstRun.current = false;
@@ -88,40 +94,31 @@ function ProductsFilter() {
 
   const setFilters = (queryObj) => {
     // !sorting
-    queryObj.sort && setSortBy(queryObj.sort);
+    queryObj.sort && dispatch(setSortBy(queryObj.sort));
 
     // !price filter
     const priceObj = { low: null, high: null };
     queryObj['price[gt]'] && (priceObj.low = queryObj['price[gt]'] * 1);
     queryObj['price[lte]'] && (priceObj.high = queryObj['price[lte]'] * 1);
-    setPrice(priceObj);
+    dispatch(setPrice(priceObj));
 
     // !tags filter
     if (queryObj['tags']) {
       const tagsStr = queryObj['tags'].split(',').join(', ');
-      setTags(tagsStr);
+      dispatch(setTags(tagsStr));
     }
 
     // !colors filter
     if (queryObj['colors']) {
       const colorsArr = queryObj['colors'].split(',');
-      setColors(colorsArr);
+      dispatch(setColors(colorsArr));
     }
 
     // !size filter
-    queryObj.size && setSize(queryObj.size);
+    queryObj.size && dispatch(setSize(queryObj.size));
 
     // !rating filter
-    queryObj['rating'] && setRating(queryObj['rating'] * 1);
-  };
-
-  const resetFilters = () => {
-    setSortBy('-createdAt');
-    setPrice({ low: null, high: null });
-    setTags('');
-    setColors([]);
-    setSize('All');
-    setRating(0);
+    queryObj['rating'] && dispatch(setRating(queryObj['rating'] * 1));
   };
 
   return (
@@ -141,12 +138,30 @@ function ProductsFilter() {
           Close
         </button>
 
-        <Sorting value={sortBy} onChange={(value) => setSortBy(value)} />
-        <PriceFilter value={price} onChange={(value) => setPrice(value)} />
-        <TagsFilter value={tags} onChange={(value) => setTags(value)} />
-        <ColorsFilter value={colors} onChange={(value) => setColors(value)} />
-        <SizeFilter value={size} onChange={(value) => setSize(value)} />
-        <RatingFilter value={rating} onChange={(value) => setRating(value)} />
+        <Sorting
+          value={sortBy}
+          onChange={(value) => dispatch(setSortBy(value))}
+        />
+        <PriceFilter
+          value={price}
+          onChange={(value) => dispatch(setPrice(value))}
+        />
+        <TagsFilter
+          value={tags}
+          onChange={(value) => dispatch(setTags(value))}
+        />
+        <ColorsFilter
+          value={colors}
+          onChange={(value) => dispatch(setColors(value))}
+        />
+        <SizeFilter
+          value={size}
+          onChange={(value) => dispatch(setSize(value))}
+        />
+        <RatingFilter
+          value={rating}
+          onChange={(value) => dispatch(setRating(value))}
+        />
       </div>
     </div>
   );

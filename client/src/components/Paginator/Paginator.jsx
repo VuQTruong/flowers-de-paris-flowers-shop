@@ -1,14 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { getAllProducts } from '../../features/products/get-all-products';
+import { setPage } from '../../features/query/slice/query-slice';
 
 function Paginator(props) {
   const { className, totalPages, currentPage } = props;
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const onPageClickHandler = (e) => {
     pageHandler(e.target.innerText);
@@ -23,14 +20,7 @@ function Paginator(props) {
   };
 
   const pageHandler = (page) => {
-    const currentQuery = location.search;
-
-    if (currentQuery) {
-      navigate(`${location.pathname}${location.search}&page=${page}`);
-    } else {
-      navigate(`${location.pathname}&page=${page}`);
-    }
-    // dispatch(getAllProducts(modifiedQuery));
+    dispatch(setPage(page));
   };
 
   const renderPaginator = () => {

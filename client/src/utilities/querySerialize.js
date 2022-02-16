@@ -2,7 +2,8 @@
 const querySerialize = (queryObj) => {
   let queryArr = [];
 
-  const { name, title, sortBy, price, tags, colors, size, rating } = queryObj;
+  const { name, title, sortBy, price, tags, colors, size, rating, page } =
+    queryObj;
 
   // !search by name
   if (name) {
@@ -49,6 +50,13 @@ const querySerialize = (queryObj) => {
   // !rating filter
   if (rating) {
     queryArr.push(`rating=${rating}`);
+  }
+
+  // !paginate
+  if (page) {
+    if (page !== 1) {
+      queryArr.push(`page=${page}`);
+    }
   }
 
   return queryArr.join('&');
