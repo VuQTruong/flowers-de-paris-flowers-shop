@@ -4,6 +4,7 @@ import Loading from '../../../components/Loading/Loading';
 import ProductCard from '../../../components/ProductCard/ProductCard';
 import ProductsFilter from '../ProductsFilter/ProductsFilter';
 import Paginator from '../../../components/Paginator/Paginator';
+import MessageBox from '../../../components/MessageBox/MessageBox';
 
 function ProductsList() {
   const allProducts = useSelector((state) => state.allProducts);
@@ -22,7 +23,9 @@ function ProductsList() {
           ) : (
             <React.Fragment>
               {products && products.length === 0 ? (
-                <p>There are no products on this category</p>
+                <MessageBox fullWidth>
+                  Uh oh!...There are no products meeting your requirements
+                </MessageBox>
               ) : (
                 <React.Fragment>
                   <div className='products__list'>

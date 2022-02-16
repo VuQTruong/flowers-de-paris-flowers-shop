@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Loading from '../../../components/Loading/Loading';
+import MessageBox from '../../../components/MessageBox/MessageBox';
 import ProductCard from '../../../components/ProductCard/ProductCard';
 import Axios from '../../../config/axios';
 
@@ -28,8 +30,13 @@ function UserFavorites() {
       ) : (
         <React.Fragment>
           {favorites.length === 0 ? (
-            <div className='user-fav__list'>
-              <p>There are no items to show</p>
+            <div className='user-fav__message'>
+              <MessageBox>
+                Sorry, you don't have any favorite items yet!{' '}
+              </MessageBox>
+              <Link to={'/products'} className='btn btn-primary'>
+                Go Shopping
+              </Link>
             </div>
           ) : (
             <div className='user-fav__list'>
