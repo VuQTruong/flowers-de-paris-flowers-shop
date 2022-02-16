@@ -1,26 +1,18 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { setPage } from '../../features/query/slice/query-slice';
 
 function Paginator(props) {
-  const { className, totalPages, currentPage } = props;
-
-  const dispatch = useDispatch();
+  const { className, onChange, totalPages, currentPage } = props;
 
   const onPageClickHandler = (e) => {
-    pageHandler(e.target.innerText);
+    onChange(e.target.innerText);
   };
 
   const nextPageHandler = () => {
-    pageHandler(currentPage + 1);
+    onChange(currentPage + 1);
   };
 
   const prevPageHandler = () => {
-    pageHandler(currentPage - 1);
-  };
-
-  const pageHandler = (page) => {
-    dispatch(setPage(page));
+    onChange(currentPage - 1);
   };
 
   const renderPaginator = () => {
