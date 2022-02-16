@@ -92,12 +92,14 @@ function Search() {
   const setFilters = (queryObj) => {
     queryObj.category ? setCategory(queryObj.category) : setCategory('all');
 
-    if (queryObj.sort && queryObj.sort.includes('-')) {
-      setSortField(queryObj.sort.replace('-', ''));
-      setSortOrder('desc');
-    } else {
-      setSortField(queryObj.sort);
-      setSortOrder('asc');
+    if (queryObj.sort) {
+      if (queryObj.sort.includes('-')) {
+        setSortField(queryObj.sort.replace('-', ''));
+        setSortOrder('desc');
+      } else {
+        setSortField(queryObj.sort);
+        setSortOrder('asc');
+      }
     }
   };
 
