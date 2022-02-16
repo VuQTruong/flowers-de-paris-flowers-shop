@@ -7,9 +7,7 @@ import Paginator from '../../../components/Paginator/Paginator';
 
 function ProductsList() {
   const allProducts = useSelector((state) => state.allProducts);
-  const { products, loading } = allProducts;
-
-  const pageHandler = (page) => {};
+  const { products, totalPages, currentPage, loading } = allProducts;
 
   return (
     <main className='container'>
@@ -35,9 +33,8 @@ function ProductsList() {
 
                   <Paginator
                     className='products__paginator'
-                    onChange={(page) => pageHandler(page)}
-                    totalPages={20}
-                    currentPage={3}
+                    totalPages={totalPages}
+                    currentPage={currentPage}
                   />
                 </React.Fragment>
               )}

@@ -1,23 +1,40 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { getAllProducts } from '../../features/products/get-all-products';
 
 function Paginator(props) {
-  const { className, onChange, totalPages, currentPage } = props;
+  const { className, totalPages, currentPage } = props;
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const onPageClickHandler = (e) => {
-    onChange(e.target.innerText);
+    pageHandler(e.target.innerText);
   };
 
   const nextPageHandler = () => {
-    onChange(currentPage + 1);
+    pageHandler(currentPage + 1);
   };
 
   const prevPageHandler = () => {
-    onChange(currentPage - 1);
+    pageHandler(currentPage - 1);
+  };
+
+  const pageHandler = (page) => {
+    const currentQuery = location.search;
+
+    if (currentQuery) {
+      navigate(`${location.pathname}${location.search}&page=${page}`);
+    } else {
+      navigate(`${location.pathname}&page=${page}`);
+    }
+    // dispatch(getAllProducts(modifiedQuery));
   };
 
   const renderPaginator = () => {
     let nodes = [];
-    const pagesLeft = totalPages - currentPage;
 
     if (totalPages <= 7) {
       for (let i = 1; i <= totalPages; i++) {

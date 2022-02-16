@@ -20,10 +20,16 @@ export const productsSlice = createSlice({
       state.loading = true;
       state.error = '';
       state.products = null;
+      state.totalProducts = 0;
+      state.totalPages = 0;
+      state.currentPage = 1;
     },
     [getAllProducts.fulfilled]: (state, action) => {
       state.loading = false;
-      state.products = action.payload;
+      state.products = action.payload.products;
+      state.totalProducts = action.payload.totalProducts;
+      state.totalPages = action.payload.totalPages;
+      state.currentPage = action.payload.currentPage;
     },
     [getAllProducts.rejected]: (state, action) => {
       state.loading = false;

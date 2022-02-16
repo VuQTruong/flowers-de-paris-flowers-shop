@@ -17,7 +17,7 @@ const queryDeserialize = (requestQuery) => {
 
   // !paginate
   const tempPage = page * 1 || 1;
-  const tempLimit = limit * 1 || 100;
+  const tempLimit = limit * 1 || 10;
   const skip = (tempPage - 1) * tempLimit;
   deserializedQuery.skip = skip;
   deserializedQuery.limit = tempLimit;

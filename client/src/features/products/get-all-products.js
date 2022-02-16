@@ -9,7 +9,7 @@ export const getAllProducts = createAsyncThunk(
         `/products${queryStr ? '?' + queryStr : ''}`
       );
 
-      return data.data.products;
+      return data.data;
     } catch (error) {
       return rejectWithValue(error.repsonse.data);
     }
