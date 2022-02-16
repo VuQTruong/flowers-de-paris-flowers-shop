@@ -19,12 +19,12 @@ import { getAllProducts } from '../../../features/products/get-all-products';
 
 function ProductsFilter() {
   const dispatch = useDispatch();
-
   const { categorySlug } = useParams();
-  const navigate = useNavigate();
+  const isFirstRun = useRef(true);
+
   const location = useLocation();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const currentPathname = useRef(location.pathname);
 
   const [sortBy, setSortBy] = useState('-createdAt');
   const [price, setPrice] = useState({ low: null, high: null });
@@ -37,67 +37,6 @@ function ProductsFilter() {
 
   const { loading } = useSelector((state) => state.allProducts);
 
-  // !deserialize search query
-  useEffect(() => {
-    if (searchParams.toString()) {
-      const queryObj = Object.fromEntries([...searchParams]);
-      setFilters(queryObj);
-
-      let queryStr = searchParams.toString();
-
-      console.log('dispatch with query');
-      if (categorySlug) {
-        queryStr = `categorySlug=${categorySlug}&${queryStr}`;
-        dispatch(getAllProducts(queryStr));
-      } else {
-        dispatch(getAllProducts(queryStr));
-      }
-    } else {
-      if (categorySlug) {
-        const queryStr = `categorySlug=${categorySlug}`;
-        dispatch(getAllProducts(queryStr));
-      } else {
-        dispatch(getAllProducts());
-      }
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams]);
-
-  // !serialize search query
-  useEffect(() => {
-    // !reset the filters if the pathname is changed (e.g. change to another category)
-    if (currentPathname.current !== location.pathname) {
-      resetFilters();
-      console.log('reset');
-      currentPathname.current = location.pathname;
-    } else {
-      const queryStr = querySerialize({
-        sortBy,
-        price,
-        tags,
-        colors,
-        size,
-        rating,
-      });
-
-      if (!loading) {
-        if (queryStr) {
-          console.log('navigate with query');
-          // ?when the filters' value is changed and a new queryStr is generated
-          // ?if the queryStr is the same, which make the url is the same
-          // ?navigate will not be called
-          navigate(`${location.pathname}?${queryStr}`);
-        } else {
-          console.log('navigate without query');
-          navigate(location.pathname);
-        }
-      }
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortBy, price, tags, colors, size, rating, navigate]);
-
   const toggleFilterPanelHandler = (value) => {
     setToggleFilterPanel(value);
 
@@ -108,14 +47,44 @@ function ProductsFilter() {
     }
   };
 
-  const resetFilters = () => {
-    setSortBy('-createdAt');
-    setPrice({ low: null, high: null });
-    setTags('');
-    setColors([]);
-    setSize('All');
-    setRating(0);
-  };
+  useEffect(() => {
+    // !if this is the first run, don't do anything and wait
+    // !because the filters may be changed depending on location.search
+    if (!isFirstRun.current) {
+      const queryStr = querySerialize({
+        sortBy,
+        price,
+        tags,
+        colors,
+        size,
+        rating,
+      });
+
+      if (!loading) {
+        if (categorySlug) {
+          dispatch(getAllProducts(`categorySlug=${categorySlug}&${queryStr}`));
+        } else {
+          dispatch(getAllProducts(queryStr));
+        }
+
+        navigate(`${location.pathname}?${queryStr}`);
+      }
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [colors, price, rating, size, sortBy, tags]);
+
+  useEffect(() => {
+    if (location.search) {
+      const queryObj = Object.fromEntries([...searchParams]);
+      setFilters(queryObj);
+    } else {
+      resetFilters();
+    }
+
+    isFirstRun.current = false;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
 
   const setFilters = (queryObj) => {
     // !sorting
@@ -144,6 +113,15 @@ function ProductsFilter() {
 
     // !rating filter
     queryObj['rating'] && setRating(queryObj['rating'] * 1);
+  };
+
+  const resetFilters = () => {
+    setSortBy('-createdAt');
+    setPrice({ low: null, high: null });
+    setTags('');
+    setColors([]);
+    setSize('All');
+    setRating(0);
   };
 
   return (

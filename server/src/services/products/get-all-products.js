@@ -8,6 +8,7 @@ router.get(
   '/',
   catchAsync(async (req, res, next) => {
     const queryObj = queryDeserialize(req.query);
+    console.log(queryObj);
 
     const products = await Product.find({
       ...queryObj.filters,

@@ -17,7 +17,7 @@ const queryDeserialize = (requestQuery) => {
 
   // !paginate
   const tempPage = page * 1 || 1;
-  const tempLimit = limit * 1 || 10;
+  const tempLimit = limit * 1 || 100;
   const skip = (tempPage - 1) * tempLimit;
   deserializedQuery.skip = skip;
   deserializedQuery.limit = tempLimit;
@@ -27,7 +27,6 @@ const queryDeserialize = (requestQuery) => {
   // ?otherwise, fields will be added to filtersObj without any modification
   const filtersObj = { isActive: true };
   for (let filter in filters) {
-    console.log(filters[filter]);
     // !search by name or title (for blogs)
     if (filter === 'name' || filter === 'title') {
       const searchObj = {

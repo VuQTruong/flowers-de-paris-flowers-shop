@@ -19,7 +19,7 @@ function ProductsList() {
         </div>
 
         <div className='products__panel'>
-          {loading ? (
+          {loading || !products ? (
             <Loading />
           ) : (
             <React.Fragment>

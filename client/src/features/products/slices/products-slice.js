@@ -10,7 +10,7 @@ export const productsSlice = createSlice({
     totalProducts: 0,
     totalPages: 0,
     currentPage: 1,
-    loading: true,
+    loading: false,
     error: '',
   },
   reducers: {},
