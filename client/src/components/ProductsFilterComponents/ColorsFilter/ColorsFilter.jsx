@@ -1,4 +1,7 @@
-function ColorFilter({ value, onChange }) {
+import { useDispatch, useSelector } from 'react-redux';
+import { setColors, setPage } from '../../../features/query/slice/query-slice';
+
+function ColorFilter() {
   const options = [
     { key: 'Red', value: 'red' },
     { key: 'Orange', value: 'orange' },
@@ -9,18 +12,23 @@ function ColorFilter({ value, onChange }) {
     { key: 'White', value: 'white' },
   ];
 
+  const dispatch = useDispatch();
+  const { colors } = useSelector((state) => state.query);
+
   const colorChangeHandler = (color) => {
     if (color === 'clear') {
-      onChange([]);
+      dispatch(setColors([]));
       return;
     }
 
-    if (value.includes(color)) {
-      const newColors = value.filter((item) => item !== color);
-      onChange(newColors);
+    if (colors.includes(color)) {
+      const newColors = colors.filter((item) => item !== color);
+      dispatch(setColors(newColors));
     } else {
-      onChange([...value, color]);
+      dispatch(setColors([...colors, color]));
     }
+
+    dispatch(setPage(1));
   };
 
   return (
@@ -38,7 +46,7 @@ function ColorFilter({ value, onChange }) {
                   value={option.value}
                   data-index={index}
                   onChange={(e) => colorChangeHandler(e.target.value)}
-                  checked={value.includes(option.value)}
+                  checked={colors.includes(option.value)}
                 />
                 <label
                   htmlFor={option.value}

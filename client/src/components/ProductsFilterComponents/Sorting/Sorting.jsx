@@ -1,6 +1,16 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSortBy, setPage } from '../../../features/query/slice/query-slice';
 
-function Sorting({ value, onChange }) {
+function Sorting() {
+  const dispatch = useDispatch();
+  const { sortBy } = useSelector((state) => state.query);
+
+  const onChangeHandler = (e) => {
+    dispatch(setSortBy(e.target.value));
+    dispatch(setPage(1));
+  };
+
   return (
     <div className='filter-item'>
       <main className='filter-item__content flex col'>
@@ -11,8 +21,8 @@ function Sorting({ value, onChange }) {
           <select
             id='sortField'
             className='filter__select-input'
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
+            value={sortBy}
+            onChange={onChangeHandler}
           >
             <option value='-createdAt'>New Products</option>
             <option value='-price'>Price: high-low</option>

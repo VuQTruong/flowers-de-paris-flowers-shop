@@ -1,14 +1,24 @@
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setTags, setPage } from '../../../features/query/slice/query-slice';
 
-function TagsFilter({ value, onChange }) {
-  const [tags, setTags] = useState('');
+function TagsFilter() {
+  const dispatch = useDispatch();
+  const { tags } = useSelector((state) => state.query);
+
+  const [localTags, setLocalTags] = useState('');
 
   useEffect(() => {
-    if (value !== tags) {
-      setTags(value);
+    if (tags !== localTags) {
+      setLocalTags(tags);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value]);
+  }, [tags]);
+
+  const onApplyHandler = () => {
+    dispatch(setTags(localTags));
+    dispatch(setPage(1));
+  };
 
   return (
     <div className='filter-item filter-flower'>
@@ -20,10 +30,10 @@ function TagsFilter({ value, onChange }) {
           id='filter-tag'
           className='filter-tag__input'
           placeholder='eg. rose, sunflower'
-          value={tags}
-          onChange={(e) => setTags(e.target.value)}
+          value={localTags}
+          onChange={(e) => setLocalTags(e.target.value)}
         />
-        <button className='btn btn-primary' onClick={() => onChange(tags)}>
+        <button className='btn btn-primary' onClick={onApplyHandler}>
           Apply
         </button>
       </main>

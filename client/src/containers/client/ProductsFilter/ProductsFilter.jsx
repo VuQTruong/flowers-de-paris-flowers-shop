@@ -138,30 +138,12 @@ function ProductsFilter() {
           Close
         </button>
 
-        <Sorting
-          value={sortBy}
-          onChange={(value) => dispatch(setSortBy(value))}
-        />
-        <PriceFilter
-          value={price}
-          onChange={(value) => dispatch(setPrice(value))}
-        />
-        <TagsFilter
-          value={tags}
-          onChange={(value) => dispatch(setTags(value))}
-        />
-        <ColorsFilter
-          value={colors}
-          onChange={(value) => dispatch(setColors(value))}
-        />
-        <SizeFilter
-          value={size}
-          onChange={(value) => dispatch(setSize(value))}
-        />
-        <RatingFilter
-          value={rating}
-          onChange={(value) => dispatch(setRating(value))}
-        />
+        <Sorting />
+        <PriceFilter />
+        <TagsFilter />
+        <ColorsFilter />
+        <SizeFilter />
+        <RatingFilter />
       </div>
     </div>
   );

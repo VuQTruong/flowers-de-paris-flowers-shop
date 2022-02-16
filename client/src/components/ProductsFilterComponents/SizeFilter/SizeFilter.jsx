@@ -1,12 +1,22 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSize, setPage } from '../../../features/query/slice/query-slice';
 
-function SizeFilter({ value, onChange }) {
+function SizeFilter() {
   const options = [
     { key: 'All products', value: 'All' },
     { key: 'Small', value: 'S' },
     { key: 'Medium', value: 'M' },
     { key: 'Large', value: 'L' },
   ];
+
+  const dispatch = useDispatch();
+  const { size } = useSelector((state) => state.query);
+
+  const onChangeHandler = (e) => {
+    dispatch(setSize(e.target.value));
+    dispatch(setPage(1));
+  };
 
   return (
     <div className='filter-item'>
@@ -21,8 +31,8 @@ function SizeFilter({ value, onChange }) {
                 id={option.value}
                 name='size'
                 value={option.value}
-                onChange={(e) => onChange(e.target.value)}
-                checked={value === option.value}
+                onChange={onChangeHandler}
+                checked={size === option.value}
               />
               <label
                 htmlFor={option.value}
