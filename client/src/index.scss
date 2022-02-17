@@ -35,6 +35,7 @@
 @import './components/Paginator/paginator';
 @import './components/HomeSlide/home-slide';
 @import './components/ProductSlide/product-slide';
+@import './components/CartItem/cart-item';
 
 // containers
 @import './containers/LoadingPage/loading-page';
@@ -53,3 +54,4 @@
 @import './containers/client/ProductDetails/product-details';
 @import './containers/client/ProductsFilter/products-filter';
 @import './containers/client/Search/search';
+@import './containers/client/Cart/cart';

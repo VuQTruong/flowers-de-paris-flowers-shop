@@ -19,6 +19,7 @@ import { fetchCategories } from './features/categories/fetch-categories';
 import { verifyUser } from './features/users/verify-user';
 import { setUpAxiosResponseInterceptor } from './config/axios';
 import Loading from './components/Loading/Loading';
+import Cart from './containers/client/Cart/Cart';
 
 // lazy load components
 const Dashboard = lazy(() => import('./containers/admin/Dashboard/Dashboard'));
@@ -101,6 +102,7 @@ function App() {
               element={<ProductDetails />}
             />
             <Route path='search' element={<Search />} />
+            <Route path='cart' element={<Cart />} />
             <Route path='oauth/fail' element={<OAuthFail />} />
           </Route>
 
