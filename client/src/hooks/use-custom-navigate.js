@@ -5,9 +5,12 @@ const useCustomNavigate = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
-  return (key, value) => {
+  return (filtersObj) => {
     const queryObj = Object.fromEntries([...searchParams]);
-    queryObj[key] = value;
+
+    for (let filter in filtersObj) {
+      queryObj[filter] = filtersObj[filter];
+    }
 
     const queryStr = Object.keys(queryObj)
       .map((key) => `${key}=${queryObj[key]}`)

@@ -5,10 +5,19 @@ import ProductCard from '../../../components/ProductCard/ProductCard';
 import ProductsFilter from '../ProductsFilter/ProductsFilter';
 import Paginator from '../../../components/Paginator/Paginator';
 import MessageBox from '../../../components/MessageBox/MessageBox';
+import useCustomNavigate from '../../../hooks/use-custom-navigate';
 
 function ProductsList() {
+  const customNavigate = useCustomNavigate();
+
   const allProducts = useSelector((state) => state.allProducts);
   const { products, totalPages, currentPage, loading } = allProducts;
+
+  const pageChangeHandler = (value) => {
+    customNavigate({
+      page: value,
+    });
+  };
 
   return (
     <main className='container'>
@@ -38,6 +47,7 @@ function ProductsList() {
                     className='products__paginator'
                     totalPages={totalPages}
                     currentPage={currentPage}
+                    onChange={(value) => pageChangeHandler(value)}
                   />
                 </React.Fragment>
               )}

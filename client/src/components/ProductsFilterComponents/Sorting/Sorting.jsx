@@ -1,14 +1,18 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSortBy, setPage } from '../../../features/query/slice/query-slice';
+import { setSortBy } from '../../../features/query/slice/query-slice';
+import useCustomNavigate from '../../../hooks/use-custom-navigate';
 
 function Sorting() {
   const dispatch = useDispatch();
+  const customNavigate = useCustomNavigate();
+
   const { sortBy } = useSelector((state) => state.query);
 
   const onChangeHandler = (e) => {
-    dispatch(setSortBy(e.target.value));
-    dispatch(setPage(1));
+    const value = e.target.value;
+    dispatch(setSortBy(value));
+    customNavigate('sort', value);
   };
 
   return (

@@ -11,6 +11,10 @@
   outline-color: $clr-primary-300;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: $ff-primary;
   font-size: 1rem;
