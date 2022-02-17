@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import ScrollToTop from './components/ScrollToTop/ScropToTop';
 import LoadingPage from './containers/LoadingPage/LoadingPage';
 import ClientLayout from './containers/client/ClientLayout/ClientLayout';
 import AdminLayout from './containers/admin/AdminLayout/AdminLayout';
@@ -82,7 +81,6 @@ function App() {
     </main>
   ) : (
     <Router>
-      <ScrollToTop />
       <Suspense fallback={<LoadingPage />}>
         <Routes>
           {/* client routes */}

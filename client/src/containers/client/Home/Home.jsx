@@ -15,9 +15,11 @@ function Home() {
   const { layout } = useSelector((state) => state.config);
 
   useEffect(() => {
+    window.scroll(0, 0);
+
     const fetchProducts = async () => {
       const fetchPromises = layout.map((feature) => {
-        return Axios.get(`/products/category/${feature.categorySlug}`);
+        return Axios.get(`/products?category=${feature.categorySlug}&limit=5`);
       });
 
       const promiseResults = await Promise.all(fetchPromises);
