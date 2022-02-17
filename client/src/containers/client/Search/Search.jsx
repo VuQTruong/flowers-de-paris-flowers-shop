@@ -126,7 +126,9 @@ function Search() {
   };
 
   const pageChangeHandler = (value) => {
-    customNavigate('page', value);
+    customNavigate({
+      page: value,
+    });
   };
 
   return (

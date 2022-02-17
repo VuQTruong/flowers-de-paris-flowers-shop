@@ -12,7 +12,12 @@ function Sorting() {
   const onChangeHandler = (e) => {
     const value = e.target.value;
     dispatch(setSortBy(value));
-    customNavigate('sort', value);
+    customNavigate(
+      {
+        sort: value,
+      },
+      ['page']
+    );
   };
 
   return (
