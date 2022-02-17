@@ -1,13 +1,21 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { setRating, setPage } from '../../../features/query/slice/query-slice';
+import useCustomNavigate from '../../../hooks/use-custom-navigate';
 
-function RatingFilter() {
-  const dispatch = useDispatch();
-  const { rating } = useSelector((state) => state.query);
+function RatingFilter({ value, onChange }) {
+  const customNavigate = useCustomNavigate();
 
   const onClickHandler = (value) => {
-    dispatch(setRating(value));
-    dispatch(setPage(1));
+    onChange(value);
+
+    if (value === 0) {
+      customNavigate({}, ['page', 'rating']);
+    } else {
+      customNavigate(
+        {
+          rating: value,
+        },
+        ['page']
+      );
+    }
   };
 
   return (
@@ -15,14 +23,14 @@ function RatingFilter() {
       <h2 className='filter-item__header'>Average Rating</h2>
       <main className='filter-item__content flex col'>
         <div
-          className={`filter-rating ${rating === 0 ? 'active' : ''}`}
+          className={`filter-rating ${value === 0 ? 'active' : ''}`}
           onClick={() => onClickHandler(0)}
         >
           <span>All products</span>
         </div>
 
         <div
-          className={`filter-rating ${rating === 5 ? 'active' : ''}`}
+          className={`filter-rating ${value === 5 ? 'active' : ''}`}
           onClick={() => onClickHandler(5)}
         >
           <i className='bx bxs-star'></i>
@@ -34,7 +42,7 @@ function RatingFilter() {
         </div>
 
         <div
-          className={`filter-rating ${rating === 4 ? 'active' : ''}`}
+          className={`filter-rating ${value === 4 ? 'active' : ''}`}
           onClick={() => onClickHandler(4)}
         >
           <i className='bx bxs-star'></i>
@@ -46,7 +54,7 @@ function RatingFilter() {
         </div>
 
         <div
-          className={`filter-rating ${rating === 3 ? 'active' : ''}`}
+          className={`filter-rating ${value === 3 ? 'active' : ''}`}
           onClick={() => onClickHandler(3)}
         >
           <i className='bx bxs-star'></i>

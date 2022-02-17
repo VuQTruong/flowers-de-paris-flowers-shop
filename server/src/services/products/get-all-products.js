@@ -7,7 +7,6 @@ const router = express.Router();
 router.get(
   '/',
   catchAsync(async (req, res, next) => {
-    console.log('get request');
     const queryObj = queryDeserialize(req.query);
 
     const products = await Product.find({

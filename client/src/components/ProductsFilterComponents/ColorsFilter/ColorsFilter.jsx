@@ -1,7 +1,6 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { setColors, setPage } from '../../../features/query/slice/query-slice';
+import useCustomNavigate from '../../../hooks/use-custom-navigate';
 
-function ColorFilter() {
+function ColorFilter({ value, onChange }) {
   const options = [
     { key: 'Red', value: 'red' },
     { key: 'Orange', value: 'orange' },
@@ -12,23 +11,33 @@ function ColorFilter() {
     { key: 'White', value: 'white' },
   ];
 
-  const dispatch = useDispatch();
-  const { colors } = useSelector((state) => state.query);
+  const customNavigate = useCustomNavigate();
 
   const colorChangeHandler = (color) => {
     if (color === 'clear') {
-      dispatch(setColors([]));
+      onChange([]);
+      customNavigate({}, ['page', 'colors']);
       return;
     }
 
-    if (colors.includes(color)) {
-      const newColors = colors.filter((item) => item !== color);
-      dispatch(setColors(newColors));
+    if (value.includes(color)) {
+      const newColors = value.filter((item) => item !== color);
+      onChange(newColors);
+      customNavigate(
+        {
+          colors: newColors.join(','),
+        },
+        ['page']
+      );
     } else {
-      dispatch(setColors([...colors, color]));
+      onChange([...value, color]);
+      customNavigate(
+        {
+          colors: [...value, color].join(','),
+        },
+        ['page']
+      );
     }
-
-    dispatch(setPage(1));
   };
 
   return (
@@ -46,7 +55,7 @@ function ColorFilter() {
                   value={option.value}
                   data-index={index}
                   onChange={(e) => colorChangeHandler(e.target.value)}
-                  checked={colors.includes(option.value)}
+                  checked={value.includes(option.value)}
                 />
                 <label
                   htmlFor={option.value}

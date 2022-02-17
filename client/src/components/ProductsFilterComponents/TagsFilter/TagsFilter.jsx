@@ -1,23 +1,31 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setTags, setPage } from '../../../features/query/slice/query-slice';
+import useCustomNavigate from '../../../hooks/use-custom-navigate';
 
-function TagsFilter() {
-  const dispatch = useDispatch();
-  const { tags } = useSelector((state) => state.query);
+function TagsFilter({ value, onChange }) {
+  const customNavigate = useCustomNavigate();
 
-  const [localTags, setLocalTags] = useState('');
+  const [tags, setTags] = useState('');
 
   useEffect(() => {
-    if (tags !== localTags) {
-      setLocalTags(tags);
+    if (value !== tags) {
+      setTags(value);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tags]);
+  }, [value]);
 
   const onApplyHandler = () => {
-    dispatch(setTags(localTags));
-    dispatch(setPage(1));
+    onChange(tags);
+
+    if (tags) {
+      customNavigate(
+        {
+          tags: tags,
+        },
+        ['page']
+      );
+    } else {
+      customNavigate({}, ['page', 'tags']);
+    }
   };
 
   return (
@@ -30,8 +38,8 @@ function TagsFilter() {
           id='filter-tag'
           className='filter-tag__input'
           placeholder='eg. rose, sunflower'
-          value={localTags}
-          onChange={(e) => setLocalTags(e.target.value)}
+          value={tags}
+          onChange={(e) => setTags(e.target.value)}
         />
         <button className='btn btn-primary' onClick={onApplyHandler}>
           Apply

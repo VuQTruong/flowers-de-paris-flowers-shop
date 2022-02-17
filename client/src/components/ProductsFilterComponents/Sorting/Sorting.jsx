@@ -1,17 +1,13 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setSortBy } from '../../../features/query/slice/query-slice';
 import useCustomNavigate from '../../../hooks/use-custom-navigate';
 
-function Sorting() {
-  const dispatch = useDispatch();
+function Sorting({ value, onChange }) {
   const customNavigate = useCustomNavigate();
-
-  const { sortBy } = useSelector((state) => state.query);
 
   const onChangeHandler = (e) => {
     const value = e.target.value;
-    dispatch(setSortBy(value));
+    onChange(value);
+
     customNavigate(
       {
         sort: value,
@@ -30,7 +26,7 @@ function Sorting() {
           <select
             id='sortField'
             className='filter__select-input'
-            value={sortBy}
+            value={value}
             onChange={onChangeHandler}
           >
             <option value='-createdAt'>New Products</option>

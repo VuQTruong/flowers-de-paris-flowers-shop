@@ -1,13 +1,36 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { setPrice, setPage } from '../../../features/query/slice/query-slice';
+import useCustomNavigate from '../../../hooks/use-custom-navigate';
 
-function PriceFilter() {
-  const dispatch = useDispatch();
-  const { price } = useSelector((state) => state.query);
+function PriceFilter({ value, onChange }) {
+  const customNavigate = useCustomNavigate();
 
   const onClickHandler = (price) => {
-    dispatch(setPrice(price));
-    dispatch(setPage(1));
+    onChange(price);
+
+    if (price.low && price.high) {
+      customNavigate(
+        {
+          'price[gt]': price.low,
+          'price[lte]': price.high,
+        },
+        ['page']
+      );
+    } else if (price.low) {
+      customNavigate(
+        {
+          'price[gt]': price.low,
+        },
+        ['price[lte]', 'page']
+      );
+    } else if (price.high) {
+      customNavigate(
+        {
+          'price[lte]': price.high,
+        },
+        ['price[gt]', 'page']
+      );
+    } else {
+      customNavigate({}, ['price[gt]', 'price[lte]']);
+    }
   };
 
   return (
@@ -18,7 +41,7 @@ function PriceFilter() {
         <ul className='filter-price'>
           <li
             className={`filter-price__item ${
-              price.low === null && price.high === null ? 'active' : ''
+              value.low === null && value.high === null ? 'active' : ''
             }`}
             onClick={() => onClickHandler({ low: null, high: null })}
           >
@@ -26,7 +49,7 @@ function PriceFilter() {
           </li>
           <li
             className={`filter-price__item ${
-              price.low === null && price.high === 100 ? 'active' : ''
+              value.low === null && value.high === 100 ? 'active' : ''
             }`}
             onClick={() => onClickHandler({ low: null, high: 100 })}
           >
@@ -34,7 +57,7 @@ function PriceFilter() {
           </li>
           <li
             className={`filter-price__item ${
-              price.low === 100 && price.high === 200 ? 'active' : ''
+              value.low === 100 && value.high === 200 ? 'active' : ''
             }`}
             onClick={() => onClickHandler({ low: 100, high: 200 })}
           >
@@ -42,7 +65,7 @@ function PriceFilter() {
           </li>
           <li
             className={`filter-price__item ${
-              price.low === 200 && price.high === 300 ? 'active' : ''
+              value.low === 200 && value.high === 300 ? 'active' : ''
             }`}
             onClick={() => onClickHandler({ low: 200, high: 300 })}
           >
@@ -50,7 +73,7 @@ function PriceFilter() {
           </li>
           <li
             className={`filter-price__item ${
-              price.low === 300 && price.high === 500 ? 'active' : ''
+              value.low === 300 && value.high === 500 ? 'active' : ''
             }`}
             onClick={() => onClickHandler({ low: 300, high: 500 })}
           >
@@ -58,7 +81,7 @@ function PriceFilter() {
           </li>
           <li
             className={`filter-price__item ${
-              price.low === 500 && price.high === null ? 'active' : ''
+              value.low === 500 && value.high === null ? 'active' : ''
             }`}
             onClick={() => onClickHandler({ low: 500, high: null })}
           >

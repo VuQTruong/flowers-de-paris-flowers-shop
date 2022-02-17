@@ -1,8 +1,6 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setSize, setPage } from '../../../features/query/slice/query-slice';
+import useCustomNavigate from '../../../hooks/use-custom-navigate';
 
-function SizeFilter() {
+function SizeFilter({ value, onChange }) {
   const options = [
     { key: 'All products', value: 'All' },
     { key: 'Small', value: 'S' },
@@ -10,12 +8,22 @@ function SizeFilter() {
     { key: 'Large', value: 'L' },
   ];
 
-  const dispatch = useDispatch();
-  const { size } = useSelector((state) => state.query);
+  const customNavigate = useCustomNavigate();
 
   const onChangeHandler = (e) => {
-    dispatch(setSize(e.target.value));
-    dispatch(setPage(1));
+    const value = e.target.value;
+    onChange(value);
+
+    if (value === 'All') {
+      customNavigate({}, ['page', 'size']);
+    } else {
+      customNavigate(
+        {
+          size: value,
+        },
+        ['page']
+      );
+    }
   };
 
   return (
@@ -32,7 +40,7 @@ function SizeFilter() {
                 name='size'
                 value={option.value}
                 onChange={onChangeHandler}
-                checked={size === option.value}
+                checked={value === option.value}
               />
               <label
                 htmlFor={option.value}
