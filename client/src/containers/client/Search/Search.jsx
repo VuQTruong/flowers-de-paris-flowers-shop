@@ -6,8 +6,10 @@ import MessageBox from '../../../components/MessageBox/MessageBox';
 import Paginator from '../../../components/Paginator/Paginator';
 import ProductCard from '../../../components/ProductCard/ProductCard';
 import { getAllProducts } from '../../../features/products/get-all-products';
+import useCustomNavigate from '../../../hooks/use-custom-navigate';
 
 function Search() {
+  const customNavigate = useCustomNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
@@ -122,14 +124,7 @@ function Search() {
   };
 
   const pageChangeHandler = (value) => {
-    const queryObj = Object.fromEntries([...searchParams]);
-    queryObj.page = value;
-
-    const queryStr = Object.keys(queryObj)
-      .map((key) => `${key}=${queryObj[key]}`)
-      .join('&');
-
-    navigate(`${location.pathname}?${queryStr}`);
+    customNavigate('page', value);
   };
 
   return (
@@ -197,26 +192,31 @@ function Search() {
       </div>
 
       <div className='search__results product-panel'>
-        {loading && <Loading />}
-        {products && products.length !== 0 ? (
-          <React.Fragment>
-            <div className='product-panel__list flex'>
-              {products.map((product) => (
-                <ProductCard data={product} key={product._id} />
-              ))}
-            </div>
-
-            <Paginator
-              className='search__paginator'
-              totalPages={totalPages}
-              currentPage={currentPage}
-              onChange={(value) => pageChangeHandler(value)}
-            />
-          </React.Fragment>
+        {loading ? (
+          <Loading />
         ) : (
-          <MessageBox variant='info'>
-            Uh oh!...There are no products with this name: {searchName}
-          </MessageBox>
+          <React.Fragment>
+            {products && products.length !== 0 ? (
+              <React.Fragment>
+                <div className='product-panel__list flex'>
+                  {products.map((product) => (
+                    <ProductCard data={product} key={product._id} />
+                  ))}
+                </div>
+
+                <Paginator
+                  className='search__paginator'
+                  totalPages={totalPages}
+                  currentPage={currentPage}
+                  onChange={(value) => pageChangeHandler(value)}
+                />
+              </React.Fragment>
+            ) : (
+              <MessageBox variant='info'>
+                Uh oh!...There are no products with this name: {searchName}
+              </MessageBox>
+            )}
+          </React.Fragment>
         )}
       </div>
     </main>
