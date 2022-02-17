@@ -28,6 +28,8 @@ function Search() {
 
   // !dispatch action whenever the query string is changed
   useEffect(() => {
+    window.scroll(0, 0);
+
     if (location.search) {
       // ?get search name
       const queryObj = Object.fromEntries([...searchParams]);

@@ -6,7 +6,7 @@ function SearchBar() {
   const [searchValue, setSearchValue] = useState('');
 
   const searchHandler = (e) => {
-    if (e.code === 'Enter') {
+    if (e.code === 'Enter' || e.code === 'NumpadEnter') {
       navigate(`/search?name=${searchValue}`);
       setSearchValue('');
     }
