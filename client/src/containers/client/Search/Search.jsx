@@ -34,7 +34,7 @@ function Search() {
       // ?set up filters
       setFilters(queryObj);
 
-      dispatch(getAllProducts(searchParams.toString() + '&limit=5'));
+      dispatch(getAllProducts(searchParams.toString() + '&limit=12'));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, location.search]);
