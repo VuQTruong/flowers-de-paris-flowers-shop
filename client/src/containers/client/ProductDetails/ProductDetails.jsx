@@ -31,6 +31,7 @@ function ProductDetails() {
   const { userInfo } = useSelector((state) => state.currentUser);
 
   useEffect(() => {
+    window.scroll(0, 0);
     dispatch(getProductBySlug(productSlug));
   }, [dispatch, productSlug]);
 

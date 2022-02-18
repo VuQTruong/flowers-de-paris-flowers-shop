@@ -55,6 +55,8 @@ function Signup() {
   const redirect = location.search ? location.search.split('=')[1] : '/';
 
   useEffect(() => {
+    window.scroll(0, 0);
+
     if (userInfo) {
       navigate(redirect);
     }
