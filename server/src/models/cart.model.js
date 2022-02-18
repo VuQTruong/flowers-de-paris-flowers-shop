@@ -11,14 +11,6 @@ const CartItemSchema = new mongoose.Schema(
       required: true,
       min: [1, 'Quantity must be 1 as the minimum'],
     },
-    price: {
-      type: Number,
-      required: true,
-    },
-    total: {
-      type: Number,
-      required: true,
-    },
   },
   {
     timestamps: true,
@@ -30,10 +22,6 @@ const cartSchema = new mongoose.Schema(
     items: {
       type: [CartItemSchema],
       default: [],
-    },
-    subTotal: {
-      type: Number,
-      default: 0,
     },
   },
   {

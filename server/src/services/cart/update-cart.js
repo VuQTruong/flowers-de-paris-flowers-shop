@@ -7,7 +7,7 @@ const Cart = require('../../models/cart.model');
 const catchAsync = require('../../utilities/catch-async.util');
 const router = express.Router();
 
-const requiredFields = ['items', 'subTotal'];
+const requiredFields = ['items'];
 
 const validations = [
   body('items').isArray().notEmpty().withMessage('List of items is missing'),
@@ -19,10 +19,6 @@ const validations = [
     .isNumeric()
     .notEmpty()
     .withMessage('Quantity is missing'),
-  body('item.*.price').isNumeric().notEmpty().withMessage('Price is missing'),
-  body('item.*.total').isNumeric().notEmpty().withMessage('Total is missing'),
-
-  body('subTotal').isNumeric().notEmpty().withMessage('Sub total is missing'),
 ];
 
 router.patch(

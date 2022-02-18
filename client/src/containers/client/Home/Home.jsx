@@ -111,7 +111,7 @@ function Home() {
           <ul className='home-feature__content'>
             <li className='home-feature__list-item'>
               <img src={HeartIcon} alt='Heart Icon' />
-              Express Feelings To Your Loved Ones
+              Express Feelings To Your Beloved
             </li>
             <li className='home-feature__list-item'>
               <img src={HeartIcon} alt='Heart Icon' />

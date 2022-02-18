@@ -17,6 +17,7 @@ import { fetchLayoutInfo } from './features/config/fetch-layout-info';
 import { fetchCategories } from './features/categories/fetch-categories';
 import { verifyUser } from './features/users/verify-user';
 import { setUpAxiosResponseInterceptor } from './config/axios';
+import { getCart } from './features/cart/get-cart';
 import Loading from './components/Loading/Loading';
 import Cart from './containers/client/Cart/Cart';
 
@@ -71,6 +72,13 @@ function App() {
     initApp();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // ?get user's cart items if the user is signed in
+  useEffect(() => {
+    if (userInfo) {
+      dispatch(getCart());
+    }
+  }, [dispatch, userInfo]);
 
   return isInitialzing ? (
     <main className='container flex center col' style={{ height: '100vh' }}>

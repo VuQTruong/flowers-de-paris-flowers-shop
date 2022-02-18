@@ -41,6 +41,16 @@ function UserNav(props) {
     return nameArray[0];
   };
 
+  const calculateTotalItems = () => {
+    let totalQuantity = 0;
+
+    for (let item of cartItems) {
+      totalQuantity += item.quantity;
+    }
+
+    return totalQuantity;
+  };
+
   return (
     <div className='header-info'>
       <Link to='/cart' className='cart'>
@@ -48,13 +58,7 @@ function UserNav(props) {
 
         {/* render notification */}
         {cartItems && (
-          <span
-            className={`cart-notification ${
-              cartItems.length > 0 ? '' : 'hidden'
-            }`}
-          >
-            {cartItems.length}
-          </span>
+          <span className='cart-notification'>{calculateTotalItems()}</span>
         )}
       </Link>
 

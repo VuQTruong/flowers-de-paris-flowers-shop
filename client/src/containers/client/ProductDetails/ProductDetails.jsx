@@ -12,13 +12,16 @@ import ReviewCard from '../../../components/ReviewCard/ReviewCard';
 import { getProductBySlug } from '../../../features/products/get-product-by-slug';
 
 import ProductReviews from '../../../components/ProductReviews/ProductReviews';
+import { addItemToCart } from '../../../features/cart/add-item';
+import { unwrapResult } from '@reduxjs/toolkit';
+import swal from 'sweetalert2';
 
 function ProductDetails() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { productSlug } = useParams();
 
-  const [qty, setQty] = useState(1);
+  const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
   const [reviews, setReviews] = useState([]);
 
@@ -37,14 +40,14 @@ function ProductDetails() {
     }
   }, [navigate, product]);
 
-  const decreaseQty = () => {
-    if (qty !== 1) {
-      setQty(qty - 1);
+  const decreaseQuantity = () => {
+    if (quantity !== 1) {
+      setQuantity(quantity - 1);
     }
   };
 
-  const increaseQty = () => {
-    setQty(qty + 1);
+  const increaseQuantity = () => {
+    setQuantity(quantity + 1);
   };
 
   const selectImageHandler = (index) => {
@@ -64,8 +67,23 @@ function ProductDetails() {
     }
   };
 
-  const addToCartHandler = () => {
-    // dispatch(addToCart(product, qty));
+  const addToCartHandler = async () => {
+    try {
+      const actionResult = await dispatch(addItemToCart({ product, quantity }));
+      unwrapResult(actionResult);
+
+      swal.fire({
+        icon: 'success',
+        title: `Yay!..`,
+        text: `${product.name} is added to your cart!`,
+      });
+    } catch (error) {
+      swal.fire({
+        icon: 'error',
+        title: 'Oops!...',
+        text: error.message,
+      });
+    }
   };
 
   return (
@@ -112,7 +130,7 @@ function ProductDetails() {
                   </React.Fragment>
                 ) : (
                   <p className='product-price'>
-                    {currencyFormat.format(product.price * qty)}
+                    {currencyFormat.format(product.price * quantity)}
                   </p>
                 )}
 
@@ -122,16 +140,16 @@ function ProductDetails() {
                 </div>
 
                 <div className='quantity-selector flex'>
-                  <button onClick={decreaseQty} className='btn btn-qty'>
+                  <button onClick={decreaseQuantity} className='btn btn-qty'>
                     <i className='bx bx-minus'></i>
                   </button>
                   <input
                     type='text'
-                    value={qty}
+                    value={quantity}
                     className='quantity-value'
                     readOnly
                   ></input>
-                  <button onClick={increaseQty} className='btn btn-qty'>
+                  <button onClick={increaseQuantity} className='btn btn-qty'>
                     <i className='bx bx-plus'></i>
                   </button>
                 </div>
