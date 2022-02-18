@@ -20,6 +20,7 @@ const reviewRouter = require('./services/reviews');
 
 const mockRouter = require('./mock');
 const appConfigRouter = require('./services/app-config');
+const cartRouter = require('./services/cart');
 
 const app = express();
 
@@ -67,6 +68,7 @@ app.use('/api/contacts', contactRouter);
 app.use('/api/products', productRouter);
 app.use('/api/reviews', reviewRouter);
 app.use('/api/users', userRouter);
+app.use('/api/cart', cartRouter);
 
 // todo: remove these routes before production
 app.use('/api/mock', mockRouter);

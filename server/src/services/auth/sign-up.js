@@ -1,6 +1,7 @@
 const express = require('express');
 const AppError = require('../../errors/app-error');
 const User = require('../../models/user.model');
+const Cart = require('../../models/cart.model');
 const catchAsync = require('../../utilities/catch-async.util');
 const { signJWT } = require('../../utilities/jwt.util');
 const { body } = require('express-validator');
@@ -60,12 +61,16 @@ router.post(
       return next(AppError.badRequest('Phone number is already registered'));
     }
 
+    // Assign a cart to the user
+    const cart = await Cart.create({});
+
     const userInfo = {
       email,
       phone,
       name,
       password,
       isAdmin: false,
+      cart: cart._id,
     };
 
     const newUser = await User.create(userInfo);

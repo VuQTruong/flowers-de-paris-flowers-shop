@@ -43,6 +43,10 @@ const userSchema = new mongoose.Schema(
         ref: 'Product',
       },
     ],
+    cart: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Cart',
+    },
     // ?list of previews to be able to populate user's related reviews
     reviews: [
       {

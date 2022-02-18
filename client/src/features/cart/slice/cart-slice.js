@@ -1,9 +1,11 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 export const cartSlice = createSlice({
   name: 'cart',
   initialState: {
-    cartItems: null,
+    cartItems: localStorage.getItem('cart')
+      ? JSON.parse(localStorage.getItem('cart'))
+      : null,
     loading: false,
     error: '',
   },
