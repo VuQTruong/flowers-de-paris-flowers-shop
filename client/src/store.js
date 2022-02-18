@@ -7,7 +7,7 @@ import productsReducer from './features/products/slices/products-slice';
 import currentProductReducer from './features/products/slices/current-product-slice';
 import commentTagsReducer from './features/reviews/slice/comment-tags-slice';
 import cartReducer from './features/cart/slice/cart-slice';
-import recipientReducer from './features/cart/slice/recipient-slice';
+import deliverySlice from './features/cart/slice/delivery-slice';
 
 const store = configureStore({
   reducer: {
@@ -18,7 +18,7 @@ const store = configureStore({
     currentProduct: currentProductReducer,
     commentTags: commentTagsReducer,
     cart: cartReducer,
-    recipient: recipientReducer,
+    delivery: deliverySlice,
   },
 });
 

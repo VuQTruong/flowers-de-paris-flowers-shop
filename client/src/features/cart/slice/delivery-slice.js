@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const recipientSlice = createSlice({
+export const deliverySlice = createSlice({
   name: 'recipient',
   initialState: {
     recipientInfo: null,
@@ -9,4 +9,4 @@ export const recipientSlice = createSlice({
   extraReducers: {},
 });
 
-export default recipientSlice.reducer;
+export default deliverySlice.reducer;

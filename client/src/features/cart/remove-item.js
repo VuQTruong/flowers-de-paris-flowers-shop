@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import Axios from '../../config/axios';
 
 export const removeItemFromCart = createAsyncThunk(
   'cart/removeItem',
@@ -12,11 +13,20 @@ export const removeItemFromCart = createAsyncThunk(
       // ?remove item from cart
       let modifiedCartItems = [...cartItems];
       modifiedCartItems = modifiedCartItems.filter(
-        (item) => item._id !== productId
+        (item) => item.product._id !== productId
       );
 
       // ?send a request to update the cart
       if (userInfo) {
+        const cartInfo = modifiedCartItems.map((item) => {
+          return {
+            product: item.product._id,
+            quantity: item.quantity,
+          };
+        });
+
+        console.log(cartInfo);
+        await Axios.patch('/cart', { items: cartInfo });
       }
 
       return modifiedCartItems;

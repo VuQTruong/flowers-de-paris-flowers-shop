@@ -11,10 +11,7 @@ const requiredFields = ['items'];
 
 const validations = [
   body('items').isArray().notEmpty().withMessage('List of items is missing'),
-  body('items.*.productId')
-    .isMongoId()
-    .notEmpty()
-    .withMessage('Product Id is missing'),
+  body('items.*.product').notEmpty().withMessage('Product is missing'),
   body('item.*.quantity')
     .isNumeric()
     .notEmpty()
@@ -29,16 +26,15 @@ router.patch(
   validateRequest,
   catchAsync(async (req, res, next) => {
     const user = req.user;
-    const updatedCart = await Cart.findByIdAndUpdate(user.cart, req.body, {
-      new: true,
-      runValidators: true,
-    });
+    const updatedCart = await Cart.findById(user.cart);
+    updatedCart.items = req.body.items;
+    await updatedCart.save();
 
     return res.status(200).json({
       status: 'success',
       message: 'Cart is updated successfully',
       data: {
-        cart: updatedCart,
+        items: updatedCart.items,
       },
     });
   })

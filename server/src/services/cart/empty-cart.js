@@ -13,7 +13,6 @@ router.delete(
       user.cart,
       {
         items: [],
-        subTotal: 0,
       },
       {
         new: true,

@@ -7,21 +7,23 @@ import { currencyFormat } from '../../utilities/helpers';
 import swal from 'sweetalert2';
 
 function CartItem(props) {
-  const product = props.data;
+  const item = props.data;
 
   const dispatch = useDispatch();
-  const [quantity, setQuantity] = useState(product.quantity);
+  const [quantity, setQuantity] = useState(item.quantity);
 
   const decreaseQuantity = () => {
     if (quantity !== 1) {
       setQuantity(quantity - 1);
-      dispatch(addItemToCart({ product, quantity: quantity - 1 }));
+      dispatch(
+        addItemToCart({ product: item.product, quantity: quantity - 1 })
+      );
     }
   };
 
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
-    dispatch(addItemToCart({ product, quantity: quantity + 1 }));
+    dispatch(addItemToCart({ roduct: item.product, quantity: quantity + 1 }));
   };
 
   const deleteProductHandler = () => {
@@ -29,29 +31,29 @@ function CartItem(props) {
       .fire({
         icon: 'warning',
         title: 'Watch out!...',
-        text: `Are you sure you want to remove ${product.name} from your cart?`,
+        text: `Are you sure you want to remove ${item.product.name} from your cart?`,
         showCancelButton: true,
         showConfirmButton: true,
       })
       .then((result) => {
         if (result.isConfirmed) {
-          dispatch(removeItemFromCart(product._id));
+          dispatch(removeItemFromCart(item.product._id));
         }
       });
   };
   return (
     <div className='cart-item'>
       <img
-        src={product.images[0]}
-        alt={product.name}
+        src={item.product.images[0]}
+        alt={item.product.name}
         className='cart-item__image'
       />
       <Link
-        to={`/products/${product.categorySlug}/${product.slug}`}
+        to={`/products/${item.product.categorySlug}/${item.product.slug}`}
         target='_blank'
         className='cart-item__link'
       >
-        {product.name}
+        {item.product.name}
       </Link>
       <div className='cart-item__qty flex'>
         <button onClick={decreaseQuantity} className='btn btn-qty'>
@@ -68,7 +70,7 @@ function CartItem(props) {
         </button>
       </div>
       <span className='cart-item__price product-price'>
-        {currencyFormat.format(product.price * quantity)}
+        {currencyFormat.format(item.product.price * quantity)}
       </span>
       <button
         type='button'

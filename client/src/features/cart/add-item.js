@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import Axios from '../../config/axios';
 
 export const addItemToCart = createAsyncThunk(
   'cart/addItem',
@@ -9,11 +10,13 @@ export const addItemToCart = createAsyncThunk(
       const { cartItems } = state.cart;
       const { product, quantity } = payload;
 
-      const addItem = { ...product, quantity };
+      const addItem = { product, quantity };
       let modifiedCartItems = [...cartItems];
 
       // ?check if the item is already added
-      const itemIndex = cartItems.findIndex((item) => item._id === product._id);
+      const itemIndex = cartItems.findIndex(
+        (item) => item.product._id === product._id
+      );
 
       // ?if no, add the item to the cartItems
       if (itemIndex === -1) {
@@ -22,7 +25,7 @@ export const addItemToCart = createAsyncThunk(
       // ?if yes, replace the product with a new version of it with a modified quantity
       else {
         modifiedCartItems = modifiedCartItems.map((item) => {
-          if (item._id === addItem._id) {
+          if (item.product._id === addItem.product._id) {
             return addItem;
           } else {
             return item;
@@ -34,12 +37,12 @@ export const addItemToCart = createAsyncThunk(
         // send request to update cart items
         const cartInfo = modifiedCartItems.map((item) => {
           return {
-            productId: item._id,
+            product: item.product._id,
             quantity: item.quantity,
           };
         });
 
-        // todo: send a request to update cart
+        await Axios.patch('/cart', { items: cartInfo });
       }
 
       return modifiedCartItems;

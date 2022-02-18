@@ -5,6 +5,7 @@ import { signOut } from '../../features/users/sign-out';
 import Avatar from 'react-avatar';
 import { unwrapResult } from '@reduxjs/toolkit';
 import swal from 'sweetalert2';
+import { clearCartStore } from '../../features/cart/slice/cart-slice';
 
 function MobileNav(props) {
   const dispatch = useDispatch();
@@ -30,6 +31,8 @@ function MobileNav(props) {
     try {
       const actionResult = await dispatch(signOut());
       unwrapResult(actionResult);
+
+      dispatch(clearCartStore());
 
       swal.fire({
         icon: 'success',

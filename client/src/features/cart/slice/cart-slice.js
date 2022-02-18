@@ -1,15 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { addItemToCart } from '../add-item';
+import { emptyCart } from '../empty-cart';
 import { getCart } from '../get-cart';
 import { removeItemFromCart } from '../remove-item';
-
-// cart item
-// {
-//   productId:
-//   quantity:
-//   price:
-//   total:
-// }
 
 export const cartSlice = createSlice({
   name: 'cart',
@@ -20,22 +13,27 @@ export const cartSlice = createSlice({
     loading: false,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    clearCartStore: (state) => {
+      state.cartItems = [];
+      localStorage.removeItem('cart');
+    },
+  },
   extraReducers: {
-    // [getCart.pending]: (state, action) => {
-    //   state.loading = true;
-    //   state.error = null;
-    // },
-    // [getCart.fulfilled]: (state, action) => {
-    //   state.loading = false;
-    //   state.cartItems = [...state.cartItems, ...action.payload.items];
+    [getCart.pending]: (state, action) => {
+      state.loading = true;
+      state.error = null;
+    },
+    [getCart.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.cartItems = action.payload;
 
-    //   localStorage.setItem('cart', JSON.stringify(state.cartItems));
-    // },
-    // [getCart.rejected]: (state, action) => {
-    //   state.loading = true;
-    //   state.error = action.payload;
-    // },
+      localStorage.setItem('cart', JSON.stringify(state.cartItems));
+    },
+    [getCart.rejected]: (state, action) => {
+      state.loading = true;
+      state.error = action.payload;
+    },
 
     // !add item to cart
     [addItemToCart.pending]: (state, action) => {
@@ -68,7 +66,24 @@ export const cartSlice = createSlice({
       state.loading = true;
       state.error = action.payload;
     },
+
+    // !empty cart
+    [emptyCart.pending]: (state, action) => {
+      state.loading = true;
+      state.error = null;
+    },
+    [emptyCart.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.cartItems = action.payload;
+
+      localStorage.removeItem('cart');
+    },
+    [emptyCart.rejected]: (state, action) => {
+      state.loading = true;
+      state.error = action.payload;
+    },
   },
 });
 
+export const { clearCartStore } = cartSlice.actions;
 export default cartSlice.reducer;

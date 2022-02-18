@@ -9,13 +9,13 @@ router.get(
   isAuth,
   catchAsync(async (req, res, next) => {
     const user = req.user;
-    const cart = await Cart.findById(user.cart).populate('items.productId');
+    const cart = await Cart.findById(user.cart).populate('items.product');
 
     return res.status(200).json({
       status: 'success',
       message: 'Retrieve cart successfully',
       data: {
-        cart,
+        items: cart.items,
       },
     });
   })

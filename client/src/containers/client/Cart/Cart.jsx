@@ -13,7 +13,7 @@ function Cart() {
   const calculateTotalPrice = () => {
     let totalPrice = 0;
     cart.cartItems.forEach(
-      (item) => (totalPrice += item.price * item.quantity)
+      (item) => (totalPrice += item.product.price * item.quantity)
     );
     return totalPrice;
   };

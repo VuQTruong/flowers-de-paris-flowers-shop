@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const CartItemSchema = new mongoose.Schema(
   {
-    productId: {
+    product: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Product',
     },
@@ -13,7 +13,12 @@ const CartItemSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true,
+    toJSON: {
+      transform(doc, ret) {
+        delete ret._id;
+        delete ret.__v;
+      },
+    },
   }
 );
 
