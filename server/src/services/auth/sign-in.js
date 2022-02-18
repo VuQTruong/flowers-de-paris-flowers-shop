@@ -24,7 +24,7 @@ router.post(
       if (!userInfo.isActive) {
         return next(
           AppError.unauthorized(
-            'Unable to sign in! Your account is unactivated!'
+            'Unable to sign in! Your account is inactivated!'
           )
         );
       }

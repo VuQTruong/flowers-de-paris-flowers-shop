@@ -1,4 +1,5 @@
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const Cart = require('../../models/cart.model');
 const User = require('../../models/user.model');
 
 const options = {
@@ -19,19 +20,31 @@ const strategy = new GoogleStrategy(
     );
 
     if (existingUser) {
+      // check if user is active or not
+      if (!existingUser.isActive) {
+        return done(null, null, {
+          message: 'Unable to sign in! Your account is inactivated!',
+        });
+      }
+
       // If yes, sign the user in by passing user data to Serialization step(serialize user into session)
       done(null, existingUser);
     } else {
-      // If no, insert new user to the databases
+      // If no, insert a new user to the database
+
+      // Assign a cart to the user
+      const cart = await Cart.create({});
+
       const userInfo = {
         isAdmin: false,
         name: profile.displayName,
         googleId: profile.id,
+        cart: cart._id,
       };
 
-      const newUser = await User.create(userInfo).catch((error) =>
-        done(error, null)
-      );
+      const newUser = await User.create(userInfo).catch((error) => {
+        return done(error, null);
+      });
 
       // Pass user data to Serialization step
       done(null, newUser);

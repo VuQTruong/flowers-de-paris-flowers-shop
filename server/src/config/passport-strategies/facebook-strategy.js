@@ -1,4 +1,5 @@
 const FacebookStrategy = require('passport-facebook').Strategy;
+const Cart = require('../../models/cart.model');
 const User = require('../../models/user.model');
 
 const options = {
@@ -17,12 +18,23 @@ const strategy = new FacebookStrategy(
     );
 
     if (existingUser) {
+      // check if user is active or not
+      if (!existingUser.isActive) {
+        return done(null, null, {
+          message: 'Unable to sign in! Your account is inactivated!',
+        });
+      }
+
       done(null, existingUser);
     } else {
+      // Assign a cart to the user
+      const cart = await Cart.create({});
+
       const userInfo = {
         isAdmin: false,
         name: profile.displayName,
         facebookId: profile.id,
+        cart: cart._id,
       };
 
       const newUser = await User.create(userInfo).catch((error) =>
