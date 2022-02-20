@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert2';
 import CheckoutSteps from '../../../components/CheckoutSteps/CheckoutSteps';
-import PaymentMethods from '../../../components/PaymentMethods/PaymentMethods';
+import PaymentMethods from '../../../components/PaymentComponents/PaymentMethods/PaymentMethods';
 
 function Payment() {
   const navigate = useNavigate();
