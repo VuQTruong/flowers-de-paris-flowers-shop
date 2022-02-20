@@ -27,6 +27,11 @@ function PaymentMethods({ value, onChange }) {
 
   const onChangeHandler = (e) => {
     onChange(e.target.value);
+
+    const checkoutInfo =
+      JSON.parse(sessionStorage.getItem('checkoutInfo')) || {};
+    checkoutInfo.paymentMethod = e.target.value;
+    sessionStorage.setItem('checkoutInfo', JSON.stringify(checkoutInfo));
   };
 
   return (

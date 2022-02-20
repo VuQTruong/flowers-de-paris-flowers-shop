@@ -1,0 +1,21 @@
+.accordion {
+  overflow: hidden;
+  opacity: 0;
+  max-height: 0;
+  transition: max-height 0.7s, opacity 0.5s;
+  position: relative;
+}
+
+.accordion.box {
+  padding: 0 1em;
+  border-radius: 5px;
+}
+
+.accordion.active {
+  opacity: 1;
+  max-height: max-content;
+}
+
+.accordion.active.box {
+  border: 1px dashed grey;
+}

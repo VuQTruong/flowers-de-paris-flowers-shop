@@ -1,0 +1,22 @@
+.info__container {
+  grid-area: gift;
+  margin: 0 0.5em 1em;
+  padding: 1em;
+  box-shadow: $box-shadow;
+}
+
+.info__item {
+  margin: 0.75em 0;
+}
+
+.info__label {
+  margin-left: 0.5em;
+}
+
+.info__input-label {
+  width: 5em;
+}
+
+.info__card-item {
+  margin: 0.5em 0;
+}

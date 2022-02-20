@@ -1,0 +1,22 @@
+.payment__panel {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'method'
+    'gift'
+    'info';
+}
+
+@media (min-width: $screen-lg) {
+  .payment__panel {
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+      'method info'
+      'gift info';
+    margin-bottom: 2em;
+  }
+
+  .checkout-info {
+    align-self: flex-start;
+  }
+}

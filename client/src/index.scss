@@ -9,6 +9,7 @@
 @import './styles/utilities/form';
 @import './styles/utilities/button';
 @import './styles/utilities/dropdown';
+@import './styles/utilities/accordion';
 
 // components
 @import './components/LoadingIcon/loading-icon';
@@ -38,6 +39,8 @@
 @import './components/CartItem/cart-item';
 @import './components/CheckoutSteps/checkout-steps';
 @import './components/PaymentComponents/PaymentMethods/payment-methods';
+@import './components/PaymentComponents/AdditionalInfo/additional-info';
+@import './components/PaymentComponents/PaymentReview/payment-review';
 
 // containers
 @import './containers/LoadingPage/loading-page';
@@ -58,3 +61,4 @@
 @import './containers/client/Search/search';
 @import './containers/client/Cart/cart';
 @import './containers/client/Delivery/delivery';
+@import './containers/client/Payment/payment';

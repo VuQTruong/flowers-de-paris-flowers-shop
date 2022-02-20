@@ -3,7 +3,9 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert2';
 import CheckoutSteps from '../../../components/CheckoutSteps/CheckoutSteps';
+import AdditionalInfo from '../../../components/PaymentComponents/AdditionalInfo/AdditionalInfo';
 import PaymentMethods from '../../../components/PaymentComponents/PaymentMethods/PaymentMethods';
+import PaymentReview from '../../../components/PaymentComponents/PaymentReview/PaymentReview';
 
 function Payment() {
   const navigate = useNavigate();
@@ -12,7 +14,26 @@ function Payment() {
   const { cartItems } = useSelector((state) => state.cart);
   const { deliveryInfo } = useSelector((state) => state.delivery);
 
-  const [payment, setPayment] = useState('');
+  const checkoutInfo = JSON.parse(sessionStorage.getItem('checkoutInfo'));
+
+  const [payment, setPayment] = useState(
+    (checkoutInfo.paymentMethod && checkoutInfo.paymentMethod) || ''
+  );
+  const [sender, setSender] = useState(
+    (checkoutInfo.sender && checkoutInfo.sender) || ''
+  );
+  const [message, setMessage] = useState(
+    (checkoutInfo.message && checkoutInfo.message) || ''
+  );
+  const [note, setNote] = useState(
+    (checkoutInfo.note && checkoutInfo.note) || ''
+  );
+  const [useCard, setUseCard] = useState(
+    (checkoutInfo.useCard && checkoutInfo.useCard) || false
+  );
+  const [card, setCard] = useState(
+    (checkoutInfo.card && checkoutInfo.card) || ''
+  );
 
   useEffect(() => {
     if (!userInfo) {
@@ -46,6 +67,7 @@ function Payment() {
           navigate('/signin?redirect=delivery');
         });
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -53,11 +75,25 @@ function Payment() {
     <div className='container'>
       <CheckoutSteps step1 step2 step3 />
 
-      <div className='payment-panel'>
+      <div className='payment__panel'>
         <PaymentMethods
           value={payment}
           onChange={(value) => setPayment(value)}
         />
+        <AdditionalInfo
+          sender={sender}
+          message={message}
+          note={note}
+          useCard={useCard}
+          card={card}
+          setSender={setSender}
+          setMessage={setMessage}
+          setNote={setNote}
+          setUseCard={setUseCard}
+          setCard={setCard}
+        />
+
+        <PaymentReview useCard={useCard} card={card} />
       </div>
     </div>
   );
