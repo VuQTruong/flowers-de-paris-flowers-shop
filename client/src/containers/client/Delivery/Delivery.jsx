@@ -229,7 +229,7 @@ function Delivery() {
                   control='reactselect'
                   name='province'
                   label='State/Province'
-                  placeholder='province'
+                  placeholder='state/province'
                   labelClassName='delivery__form-label'
                   icon='bx bx-home'
                   options={getProvinces(formik.values)}
@@ -239,7 +239,7 @@ function Delivery() {
                   control='reactselect'
                   name='city'
                   label='City/District'
-                  placeholder='city'
+                  placeholder='city/district'
                   labelClassName='delivery__form-label'
                   icon='bx bx-home'
                   options={getCities(formik.values)}
