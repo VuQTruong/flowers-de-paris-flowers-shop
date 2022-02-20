@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.24.0",
     "buffer": "^6.0.3",
+    "country-state-city": "^3.0.1",
     "formik": "^2.2.9",
     "node-sass": "^7.0.0",
     "react": "^17.0.2",
@@ -20,8 +21,10 @@
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "react-select": "^5.2.2",
     "react-slick": "^0.28.1",
     "slick-carousel": "^1.8.1",
+    "sub-vn": "0.0.2",
     "sweetalert2": "^11.3.10",
     "web-vitals": "^2.1.2",
     "yup": "^0.32.11"

@@ -36,6 +36,7 @@
 @import './components/HomeSlide/home-slide';
 @import './components/ProductSlide/product-slide';
 @import './components/CartItem/cart-item';
+@import './components/CheckoutSteps/checkout-steps';
 
 // containers
 @import './containers/LoadingPage/loading-page';
@@ -55,3 +56,4 @@
 @import './containers/client/ProductsFilter/products-filter';
 @import './containers/client/Search/search';
 @import './containers/client/Cart/cart';
+@import './containers/client/Delivery/delivery';

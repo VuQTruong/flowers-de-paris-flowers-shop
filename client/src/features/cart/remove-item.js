@@ -25,7 +25,6 @@ export const removeItemFromCart = createAsyncThunk(
           };
         });
 
-        console.log(cartInfo);
         await Axios.patch('/cart', { items: cartInfo });
       }
 

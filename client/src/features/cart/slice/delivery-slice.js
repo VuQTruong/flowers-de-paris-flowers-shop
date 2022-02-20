@@ -1,12 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export const deliverySlice = createSlice({
-  name: 'recipient',
+  name: 'delivery',
   initialState: {
-    recipientInfo: null,
+    deliveryInfo: null,
   },
-  reducers: {},
+  reducers: {
+    saveDeliveryInfo: (state, action) => {
+      state.deliveryInfo = action.payload.deliveryInfo;
+    },
+  },
   extraReducers: {},
 });
 
+export const { saveDeliveryInfo } = deliverySlice.actions;
 export default deliverySlice.reducer;

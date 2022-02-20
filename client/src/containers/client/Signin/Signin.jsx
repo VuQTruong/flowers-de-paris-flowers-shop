@@ -34,7 +34,7 @@ function Signin() {
     window.scroll(0, 0);
 
     if (userInfo) {
-      navigate(redirect);
+      navigate(`/${redirect}`);
     }
   }, [navigate, redirect, userInfo]);
 
@@ -45,7 +45,7 @@ function Signin() {
 
       swal.fire({
         icon: 'success',
-        title: `Yay!..`,
+        title: `Yay!...`,
         text: `Welcome back, ${data.name}!`,
       });
     } catch (error) {

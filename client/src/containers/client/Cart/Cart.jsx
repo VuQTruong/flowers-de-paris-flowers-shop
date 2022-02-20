@@ -1,14 +1,16 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CartItem from '../../../components/CartItem/CartItem';
 import MessageBox from '../../../components/MessageBox/MessageBox';
 import { currencyFormat } from '../../../utilities/helpers';
 
 function Cart() {
+  const navigate = useNavigate();
+
   const cart = useSelector((state) => state.cart);
-  // const { recipientAddress } = cart;
-  // const { userInfo } = useSelector((state) => state.currentUser);
+  const { deliveryInfo } = useSelector((state) => state.delivery);
+  const { userInfo } = useSelector((state) => state.currentUser);
 
   const calculateTotalPrice = () => {
     let totalPrice = 0;
@@ -24,7 +26,17 @@ function Cart() {
     return totalProduct;
   };
 
-  const recipientInfoHandler = () => {};
+  const deliveryInfoHandler = () => {
+    if (!userInfo) {
+      navigate('/signin?redirect=delivery');
+    } else {
+      if (!deliveryInfo) {
+        navigate('/delivery');
+      } else {
+        navigate('/payment');
+      }
+    }
+  };
 
   return (
     <main className='container cart__panel flex'>
@@ -70,7 +82,7 @@ function Cart() {
           <button
             type='button'
             className='btn btn-disable'
-            onClick={recipientInfoHandler}
+            onClick={deliveryInfoHandler}
             disabled
           >
             Order
@@ -79,7 +91,7 @@ function Cart() {
           <button
             type='button'
             className='btn btn-cta'
-            onClick={recipientInfoHandler}
+            onClick={deliveryInfoHandler}
           >
             Order
           </button>

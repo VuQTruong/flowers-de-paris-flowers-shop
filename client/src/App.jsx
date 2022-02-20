@@ -11,6 +11,7 @@ import UserLayout from './containers/client/UserLayout/UserLayout';
 
 import Home from './containers/client/Home/Home';
 import Page404 from './containers/Page404/Page404';
+import Loading from './components/Loading/Loading';
 
 import { fetchSlidesInfo } from './features/config/fetch-slides-info';
 import { fetchLayoutInfo } from './features/config/fetch-layout-info';
@@ -18,8 +19,6 @@ import { fetchCategories } from './features/categories/fetch-categories';
 import { verifyUser } from './features/users/verify-user';
 import { setUpAxiosResponseInterceptor } from './config/axios';
 import { getCart } from './features/cart/get-cart';
-import Loading from './components/Loading/Loading';
-import Cart from './containers/client/Cart/Cart';
 
 // lazy load components
 const Dashboard = lazy(() => import('./containers/admin/Dashboard/Dashboard'));
@@ -44,6 +43,8 @@ const ProductDetails = lazy(() =>
   import('./containers/client/ProductDetails/ProductDetails')
 );
 const Search = lazy(() => import('./containers/client/Search/Search'));
+const Cart = lazy(() => import('./containers/client/Cart/Cart'));
+const Delivery = lazy(() => import('./containers/client/Delivery/Delivery'));
 
 function App() {
   const dispatch = useDispatch();
@@ -109,6 +110,7 @@ function App() {
             />
             <Route path='search' element={<Search />} />
             <Route path='cart' element={<Cart />} />
+            <Route path='delivery' element={<Delivery />} />
             <Route path='oauth/fail' element={<OAuthFail />} />
           </Route>
 

@@ -52,7 +52,7 @@
   left: 1em;
   visibility: visible;
   opacity: 1;
-  font-size: 0.75em;
+  font-size: 0.75rem;
   background: linear-gradient(to top, transparent, white 60%, transparent);
 }
 
@@ -84,6 +84,7 @@
   position: absolute;
   left: 0.5em;
   top: 0.8em;
+  z-index: 1;
 
   font-size: $fs-18;
   font-weight: 300;

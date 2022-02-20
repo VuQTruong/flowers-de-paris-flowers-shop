@@ -1,0 +1,55 @@
+.delivery__panel {
+  position: relative;
+  background: url('../../../assets/images/bg-recipient-md.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 1em;
+}
+
+.delivery__content {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 95%;
+  padding: 0.5em 1em;
+  background-color: rgba($color: #fff, $alpha: 0.8);
+  box-shadow: $box-shadow;
+}
+
+.delivery__form {
+  margin: 1em 0;
+}
+
+.delivery__form-label {
+  width: 8em;
+}
+
+.delivery__btn {
+  width: 100%;
+}
+
+@media (max-width: 350px) {
+  .delivery__panel {
+    padding: 1em 0.5em;
+  }
+
+  .delivery__content {
+    width: 100%;
+    padding: 0.5em 0.75em;
+  }
+}
+
+@media (min-width: $screen-md) {
+  .delivery__content {
+    width: 70%;
+    padding: 0.5em 1.5em;
+  }
+}
+
+@media (min-width: $screen-lg) {
+  .delivery__content {
+    width: 50%;
+  }
+}

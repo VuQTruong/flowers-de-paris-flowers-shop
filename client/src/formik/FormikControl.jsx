@@ -5,6 +5,7 @@ import Select from './controls/Select';
 import RadioButton from './controls/RadioButton';
 import CheckBox from './controls/CheckBox';
 import DatePicker from './controls/DatePicker';
+import ReactSelect from './controls/ReactSelect';
 
 function FormikControl(props) {
   const { control, ...rest } = props;
@@ -16,6 +17,8 @@ function FormikControl(props) {
       return <TextArea {...rest} />;
     case 'select':
       return <Select {...rest} />;
+    case 'reactselect':
+      return <ReactSelect {...rest} />;
     case 'radio':
       return <RadioButton {...rest} />;
     case 'checkbox':
