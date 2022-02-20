@@ -45,6 +45,7 @@ const ProductDetails = lazy(() =>
 const Search = lazy(() => import('./containers/client/Search/Search'));
 const Cart = lazy(() => import('./containers/client/Cart/Cart'));
 const Delivery = lazy(() => import('./containers/client/Delivery/Delivery'));
+const Payment = lazy(() => import('./containers/client/Payment/Payment'));
 
 function App() {
   const dispatch = useDispatch();
@@ -111,6 +112,7 @@ function App() {
             <Route path='search' element={<Search />} />
             <Route path='cart' element={<Cart />} />
             <Route path='delivery' element={<Delivery />} />
+            <Route path='payment' element={<Payment />} />
             <Route path='oauth/fail' element={<OAuthFail />} />
           </Route>
 

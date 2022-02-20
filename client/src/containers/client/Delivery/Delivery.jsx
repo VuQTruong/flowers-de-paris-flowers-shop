@@ -44,8 +44,18 @@ function Delivery() {
   };
 
   useEffect(() => {
+    window.scroll(0, 0);
+
     if (!userInfo) {
-      navigate('/signin?redirect=delivery');
+      swal
+        .fire({
+          icon: 'warning',
+          title: 'Oops!...',
+          text: 'Please sign in to access this page',
+        })
+        .then(() => {
+          navigate('/signin?redirect=delivery');
+        });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
