@@ -1,7 +1,7 @@
 import React from 'react';
-import CashIcon from '../../assets/icons/payment-icons/cash-icon.png';
-import VisaMasterIcon from '../../assets/icons/payment-icons/credit-debit-icon.png';
-import PaypalIcon from '../../assets/icons/payment-icons/paypal-icon.png';
+import CashIcon from '../../../assets/icons/payment-icons/cash-icon.png';
+import VisaMasterIcon from '../../../assets/icons/payment-icons/credit-debit-icon.png';
+import PaypalIcon from '../../../assets/icons/payment-icons/paypal-icon.png';
 
 function PaymentMethods({ value, onChange }) {
   const options = [
