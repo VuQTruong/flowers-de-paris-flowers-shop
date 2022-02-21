@@ -13,7 +13,7 @@ import { unwrapResult } from '@reduxjs/toolkit';
 
 const validationSchema = Yup.object({
   name: Yup.string()
-    .matches(/^[A-Za-z ]*$/, 'Name must contain letters only')
+    .matches(/^[^\d\.]*$/, 'Name must contain letters only')
     .required('Name is required'),
   phone: Yup.string().matches(/^[0-9]+$/, 'Invalid phone number'),
   country: Yup.mixed().required('Country is missing'),
