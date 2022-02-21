@@ -174,7 +174,7 @@ function Delivery() {
       .fire({
         icon: 'success',
         title: `Awesome!...`,
-        text: `Your beautiful  flowers are just one more step away to your beloved!`,
+        text: `Your beautiful flowers are just one more step away from your beloved!`,
       })
       .then(() => {
         navigate('/payment');
