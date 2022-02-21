@@ -8,7 +8,7 @@ export const getCart = createAsyncThunk(
       const { cartItems } = getState().cart;
       let modifiedCartItems = [...cartItems];
 
-      const { data } = await Axios.get('/cart');
+      const { data } = await Axios.get('/carts');
 
       // ?if cartItems is empty, update the cart with items from db
       if (cartItems.length === 0) {

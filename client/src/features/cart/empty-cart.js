@@ -5,7 +5,7 @@ export const emptyCart = createAsyncThunk(
   'cart/emptyCart',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await Axios.delete('/cart');
+      const { data } = await Axios.delete('/carts');
 
       return data.data.cart.items;
     } catch (error) {

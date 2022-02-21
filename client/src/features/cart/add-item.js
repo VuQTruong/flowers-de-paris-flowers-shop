@@ -42,7 +42,7 @@ export const addItemToCart = createAsyncThunk(
           };
         });
 
-        await Axios.patch('/cart', { items: cartInfo });
+        await Axios.patch('/carts', { items: cartInfo });
       }
 
       return modifiedCartItems;
