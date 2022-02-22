@@ -1,9 +1,13 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import CashIcon from '../../../assets/icons/payment-icons/cash-icon.png';
 import VisaMasterIcon from '../../../assets/icons/payment-icons/credit-debit-icon.png';
 import PaypalIcon from '../../../assets/icons/payment-icons/paypal-icon.png';
+import { updateCheckoutInfo } from '../../../features/checkout/slice/checkout-slice';
 
 function PaymentMethods({ value, onChange }) {
+  const dispatch = useDispatch();
+
   const options = [
     {
       id: 'cash',
@@ -27,11 +31,7 @@ function PaymentMethods({ value, onChange }) {
 
   const onChangeHandler = (e) => {
     onChange(e.target.value);
-
-    const checkoutInfo =
-      JSON.parse(sessionStorage.getItem('checkoutInfo')) || {};
-    checkoutInfo.paymentMethod = e.target.value;
-    sessionStorage.setItem('checkoutInfo', JSON.stringify(checkoutInfo));
+    dispatch(updateCheckoutInfo({ paymentMethod: e.target.value }));
   };
 
   return (

@@ -1,13 +1,17 @@
 import React from 'react';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateCheckoutInfo } from '../../../features/checkout/slice/checkout-slice';
 
 function AdditionalInfo(props) {
+  const dispatch = useDispatch();
   const { sender, message, note, useCard, card } = props;
   const { setSender, setMessage, setNote, setUseCard, setCard } = props;
 
-  const checkoutInfo = JSON.parse(sessionStorage.getItem('checkoutInfo'));
+  const { checkoutInfo } = useSelector((state) => state.checkout);
+
   const [isAnonymous, setIsAnonymous] = useState(
-    (checkoutInfo && checkoutInfo.isAnonymous) || false
+    checkoutInfo.isAnonymous || true
   );
 
   const cardOptions = [
@@ -32,18 +36,22 @@ function AdditionalInfo(props) {
     if (e.target.checked) {
       setIsAnonymous(true);
       setSender('Anonymous');
+      dispatch(
+        updateCheckoutInfo({
+          isAnonymous: true,
+          sender: 'Anonymous',
+        })
+      );
     } else {
       setIsAnonymous(false);
       setSender('');
+      dispatch(
+        updateCheckoutInfo({
+          isAnonymous: false,
+          sender: '',
+        })
+      );
     }
-    setValueToStorage('isAnonymous', e.target.checked);
-  };
-
-  const setValueToStorage = (field, value) => {
-    const checkoutInfo =
-      JSON.parse(sessionStorage.getItem('checkoutInfo')) || {};
-    checkoutInfo[field] = value;
-    sessionStorage.setItem('checkoutInfo', JSON.stringify(checkoutInfo));
   };
 
   return (
@@ -57,7 +65,11 @@ function AdditionalInfo(props) {
           name='wrap'
           onChange={(e) => {
             setUseCard(e.target.checked);
-            setValueToStorage('useCard', e.target.value);
+            dispatch(
+              updateCheckoutInfo({
+                useCard: e.target.value,
+              })
+            );
           }}
           checked={useCard}
         />
@@ -81,7 +93,11 @@ function AdditionalInfo(props) {
                 checked={card === option.value}
                 onChange={(e) => {
                   setCard(e.target.value);
-                  setValueToStorage('card', e.target.value);
+                  dispatch(
+                    updateCheckoutInfo({
+                      card: e.target.value,
+                    })
+                  );
                 }}
               />
               <label htmlFor={option.id} className='info__label'>
@@ -122,7 +138,11 @@ function AdditionalInfo(props) {
               value={sender}
               onChange={(e) => {
                 setSender(e.target.value);
-                setValueToStorage('sender', e.target.value);
+                dispatch(
+                  updateCheckoutInfo({
+                    sender: e.target.value,
+                  })
+                );
               }}
               disabled={isAnonymous ? true : false}
             ></input>
@@ -146,7 +166,11 @@ function AdditionalInfo(props) {
               value={message}
               onChange={(e) => {
                 setMessage(e.target.value);
-                setValueToStorage('message', e.target.value);
+                dispatch(
+                  updateCheckoutInfo({
+                    message: e.target.value,
+                  })
+                );
               }}
             ></textarea>
           </div>
@@ -166,7 +190,11 @@ function AdditionalInfo(props) {
               value={note}
               onChange={(e) => {
                 setNote(e.target.value);
-                setValueToStorage('note', e.target.value);
+                dispatch(
+                  updateCheckoutInfo({
+                    note: e.target.value,
+                  })
+                );
               }}
             ></textarea>
           </div>

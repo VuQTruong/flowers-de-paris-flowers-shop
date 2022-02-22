@@ -13,26 +13,14 @@ function Payment() {
   const { userInfo } = useSelector((state) => state.currentUser);
   const { cartItems } = useSelector((state) => state.cart);
   const { deliveryInfo } = useSelector((state) => state.delivery);
+  const { checkoutInfo } = useSelector((state) => state.checkout);
 
-  const checkoutInfo = JSON.parse(sessionStorage.getItem('checkoutInfo'));
-
-  const [payment, setPayment] = useState(
-    (checkoutInfo &&
-      checkoutInfo.paymentMethod &&
-      checkoutInfo.paymentMethod) ||
-      ''
-  );
-  const [sender, setSender] = useState(
-    (checkoutInfo && checkoutInfo.sender) || ''
-  );
-  const [message, setMessage] = useState(
-    (checkoutInfo && checkoutInfo.message) || ''
-  );
-  const [note, setNote] = useState((checkoutInfo && checkoutInfo.note) || '');
-  const [useCard, setUseCard] = useState(
-    (checkoutInfo && checkoutInfo.useCard) || false
-  );
-  const [card, setCard] = useState((checkoutInfo && checkoutInfo.card) || '');
+  const [payment, setPayment] = useState(checkoutInfo.paymentMethod || '');
+  const [sender, setSender] = useState(checkoutInfo.sender || 'Anonymous');
+  const [message, setMessage] = useState(checkoutInfo.message || '');
+  const [note, setNote] = useState(checkoutInfo.note || '');
+  const [useCard, setUseCard] = useState(checkoutInfo.useCard || false);
+  const [card, setCard] = useState(checkoutInfo.card || '');
 
   useEffect(() => {
     window.scroll(0, 0);
