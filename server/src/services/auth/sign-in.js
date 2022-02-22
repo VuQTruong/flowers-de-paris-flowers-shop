@@ -57,7 +57,7 @@ router.post(
       }
     }
 
-    next(AppError.unauthorized('Invalid credential'));
+    next(AppError.unauthorized('Email/Phone Number or Password is incorrect'));
   })
 );
 
