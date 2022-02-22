@@ -34,7 +34,7 @@ function Signin() {
     window.scroll(0, 0);
 
     if (userInfo) {
-      navigate(`/${redirect}`);
+      navigate(`/${redirect === '/' ? '' : redirect}`);
     }
   }, [navigate, redirect, userInfo]);
 

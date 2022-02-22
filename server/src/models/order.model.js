@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema(
   {
-    orderId: { type: Number, required: true },
+    orderId: {
+      type: Number,
+      required: true,
+      index: true,
+    },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
@@ -10,41 +14,43 @@ const orderSchema = new mongoose.Schema(
     },
     orderItems: [
       {
-        name: { type: String, required: true },
-        qty: { type: Number, required: true },
-        image: { type: String, required: true },
-        price: { type: Number, required: true },
-        size: { type: String },
-        category: { type: String, required: true },
         productId: {
           type: mongoose.Schema.Types.ObjectId,
           ref: 'Product',
           required: true,
         },
+        name: { type: String, required: true },
+        quantity: { type: Number, required: true },
+        image: { type: String, required: true },
+        price: { type: Number, required: true },
       },
     ],
-    shippingAddress: {
+    deliveryInfo: {
       recipient: { type: String, required: true },
-      address: { type: String, required: true },
+      phone: Number,
+      country: { type: String, required: true },
+      province: { type: String, required: true },
       city: { type: String, required: true },
-      district: { type: String, required: true },
       ward: { type: String, required: true },
-      country: { type: String, default: 'Việt Nam' },
+      address: { type: String, required: true },
+      postalCode: String,
     },
     sender: { type: String, required: true },
-    recipient: String,
     message: { type: String },
     note: { type: String },
-    greetingCard: { type: String },
+    card: {
+      name: String,
+      price: Number,
+    },
     paymentMethod: { type: String, required: true },
-    itemsPrice: { type: Number, required: true },
+    price: { type: Number, required: true },
     shippingPrice: { type: Number, required: true },
     totalPrice: { type: Number, required: true },
     isPaid: { type: Boolean, default: false },
     paidAt: { type: Date },
     isDelivered: { type: Boolean, default: false },
     deliveredAt: { type: Date },
-    status: { type: String, default: 'Đang xác nhận' },
+    status: { type: String, default: 'Pending' },
   },
   {
     timestamps: true,

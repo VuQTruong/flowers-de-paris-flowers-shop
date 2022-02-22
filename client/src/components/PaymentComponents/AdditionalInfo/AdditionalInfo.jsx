@@ -7,7 +7,7 @@ function AdditionalInfo(props) {
 
   const checkoutInfo = JSON.parse(sessionStorage.getItem('checkoutInfo'));
   const [isAnonymous, setIsAnonymous] = useState(
-    (checkoutInfo.isAnonymous && checkoutInfo.isAnonymous) || false
+    (checkoutInfo && checkoutInfo.isAnonymous) || false
   );
 
   const cardOptions = [

@@ -17,25 +17,26 @@ function Payment() {
   const checkoutInfo = JSON.parse(sessionStorage.getItem('checkoutInfo'));
 
   const [payment, setPayment] = useState(
-    (checkoutInfo.paymentMethod && checkoutInfo.paymentMethod) || ''
+    (checkoutInfo &&
+      checkoutInfo.paymentMethod &&
+      checkoutInfo.paymentMethod) ||
+      ''
   );
   const [sender, setSender] = useState(
-    (checkoutInfo.sender && checkoutInfo.sender) || ''
+    (checkoutInfo && checkoutInfo.sender) || ''
   );
   const [message, setMessage] = useState(
-    (checkoutInfo.message && checkoutInfo.message) || ''
+    (checkoutInfo && checkoutInfo.message) || ''
   );
-  const [note, setNote] = useState(
-    (checkoutInfo.note && checkoutInfo.note) || ''
-  );
+  const [note, setNote] = useState((checkoutInfo && checkoutInfo.note) || '');
   const [useCard, setUseCard] = useState(
-    (checkoutInfo.useCard && checkoutInfo.useCard) || false
+    (checkoutInfo && checkoutInfo.useCard) || false
   );
-  const [card, setCard] = useState(
-    (checkoutInfo.card && checkoutInfo.card) || ''
-  );
+  const [card, setCard] = useState((checkoutInfo && checkoutInfo.card) || '');
 
   useEffect(() => {
+    window.scroll(0, 0);
+
     if (!userInfo) {
       swal
         .fire({
@@ -93,7 +94,7 @@ function Payment() {
           setCard={setCard}
         />
 
-        <PaymentReview useCard={useCard} card={card} />
+        <PaymentReview useCard={useCard} card={card} paymentMethod={payment} />
       </div>
     </div>
   );

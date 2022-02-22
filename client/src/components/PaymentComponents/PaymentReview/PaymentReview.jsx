@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { currencyFormat } from '../../../utilities/helpers';
+import PaymentButton from '../PaymentButton/PaymentButton';
 
 function PaymentReview(props) {
-  const { useCard, card } = props;
+  const { useCard, card, paymentMethod } = props;
 
   const navigate = useNavigate();
   const [showItems, setShowItems] = useState(false);
@@ -43,8 +44,6 @@ function PaymentReview(props) {
 
     return totalPrice;
   };
-
-  const placeOrderHandler = () => {};
 
   return (
     <div className='checkout-info'>
@@ -157,9 +156,7 @@ function PaymentReview(props) {
       </div>
 
       <div className='checkout-info__section'>
-        <button className='btn btn-cta btn-payment' onClick={placeOrderHandler}>
-          Place Order
-        </button>
+        <PaymentButton paymentMethod={paymentMethod} />
         <p style={{ fontSize: '.875rem', fontStyle: 'italic' }}>
           (Please check your order before proceeding to payment)
         </p>
