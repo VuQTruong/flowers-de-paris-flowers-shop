@@ -1,8 +1,13 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ReactComponent as FailSVG } from '../../../assets/svgs/undraw_warning_cyit.svg';
 
 function OAuthFail() {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+
   return (
     <main className='container flex col center oauth-fail__container'>
       <FailSVG className='oauth-fail__svg' />

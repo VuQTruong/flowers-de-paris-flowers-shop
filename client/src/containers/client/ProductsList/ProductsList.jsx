@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Loading from '../../../components/Loading/Loading';
 import ProductCard from '../../../components/ProductCard/ProductCard';
@@ -12,6 +12,10 @@ function ProductsList() {
 
   const allProducts = useSelector((state) => state.allProducts);
   const { products, totalPages, currentPage, loading } = allProducts;
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   const pageChangeHandler = (value) => {
     customNavigate({

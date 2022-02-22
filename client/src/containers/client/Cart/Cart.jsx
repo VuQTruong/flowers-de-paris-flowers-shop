@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import CartItem from '../../../components/CartItem/CartItem';
@@ -11,6 +11,10 @@ function Cart() {
   const cart = useSelector((state) => state.cart);
   const { deliveryInfo } = useSelector((state) => state.delivery);
   const { userInfo } = useSelector((state) => state.currentUser);
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   const calculateTotalPrice = () => {
     let totalPrice = 0;
