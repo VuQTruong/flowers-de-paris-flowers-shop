@@ -16,7 +16,7 @@ function Payment() {
   const { checkoutInfo } = useSelector((state) => state.checkout);
 
   const [payment, setPayment] = useState(checkoutInfo.paymentMethod || '');
-  const [sender, setSender] = useState(checkoutInfo.sender || 'Anonymous');
+  const [sender, setSender] = useState(checkoutInfo.sender);
   const [message, setMessage] = useState(checkoutInfo.message || '');
   const [note, setNote] = useState(checkoutInfo.note || '');
   const [useCard, setUseCard] = useState(checkoutInfo.useCard || false);

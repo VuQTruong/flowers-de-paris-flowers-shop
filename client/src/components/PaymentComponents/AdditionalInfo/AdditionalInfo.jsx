@@ -10,9 +10,7 @@ function AdditionalInfo(props) {
 
   const { checkoutInfo } = useSelector((state) => state.checkout);
 
-  const [isAnonymous, setIsAnonymous] = useState(
-    checkoutInfo.isAnonymous || true
-  );
+  const [isAnonymous, setIsAnonymous] = useState(checkoutInfo.isAnonymous);
 
   // todo: create APIs to create, update, get, and delete cards
   // todo: replace cardOptions by data getting from the server
