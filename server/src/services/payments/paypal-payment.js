@@ -45,15 +45,15 @@ router.post(
 
     if (card) {
       purchaseItems.push({
-        name: card,
+        name: card.name,
         unit_amount: {
           currency_code: 'CAD',
-          value: 5,
+          value: card.price,
         },
         quantity: 1,
       });
 
-      total += 5;
+      total += card.price;
     }
 
     const request = new paypal.orders.OrdersCreateRequest();

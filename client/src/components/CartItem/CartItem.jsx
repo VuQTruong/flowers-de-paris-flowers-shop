@@ -23,7 +23,7 @@ function CartItem(props) {
 
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
-    dispatch(addItemToCart({ roduct: item.product, quantity: quantity + 1 }));
+    dispatch(addItemToCart({ product: item.product, quantity: quantity + 1 }));
   };
 
   const deleteProductHandler = () => {

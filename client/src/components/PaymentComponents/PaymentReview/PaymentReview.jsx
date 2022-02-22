@@ -25,7 +25,7 @@ function PaymentReview(props) {
     let totalProduct = 0;
     cartItems.forEach((item) => (totalProduct += item.quantity));
 
-    if (useCard && card !== '') {
+    if (useCard && card !== {}) {
       totalProduct += 1;
     }
 
@@ -38,8 +38,8 @@ function PaymentReview(props) {
       (item) => (totalPrice += item.product.price * item.quantity)
     );
 
-    if (useCard && card !== '') {
-      totalPrice += 5;
+    if (useCard && card !== {}) {
+      totalPrice += card.price;
     }
 
     return totalPrice;
@@ -124,12 +124,12 @@ function PaymentReview(props) {
             </div>
           ))}
 
-          {useCard && card !== '' && (
+          {useCard && card !== {} && (
             <div className='item-details'>
-              <span className='item-details__name'>{card}</span>
+              <span className='item-details__name'>{card.name}</span>
               <span className='item-details__qty'>x1</span>
               <span className='item-details__price'>
-                {currencyFormat.format(5)}
+                {currencyFormat.format(card.price)}
               </span>
             </div>
           )}

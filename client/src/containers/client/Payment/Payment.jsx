@@ -20,7 +20,7 @@ function Payment() {
   const [message, setMessage] = useState(checkoutInfo.message || '');
   const [note, setNote] = useState(checkoutInfo.note || '');
   const [useCard, setUseCard] = useState(checkoutInfo.useCard || false);
-  const [card, setCard] = useState(checkoutInfo.card || '');
+  const [card, setCard] = useState(checkoutInfo.card || {});
 
   useEffect(() => {
     window.scroll(0, 0);

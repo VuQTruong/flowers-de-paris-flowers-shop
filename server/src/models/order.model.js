@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const orderSchema = new mongoose.Schema(
   {
     orderId: {
-      type: Number,
+      type: String,
       required: true,
       index: true,
     },
@@ -26,12 +26,36 @@ const orderSchema = new mongoose.Schema(
       },
     ],
     deliveryInfo: {
-      recipient: { type: String, required: true },
+      name: { type: String, required: true },
       phone: Number,
-      country: { type: String, required: true },
-      province: { type: String, required: true },
-      city: { type: String, required: true },
-      ward: { type: String, required: true },
+      country: {
+        type: {
+          code: String,
+          name: String,
+        },
+        required: true,
+      },
+      province: {
+        type: {
+          code: String,
+          name: String,
+        },
+        required: true,
+      },
+      city: {
+        type: {
+          code: String,
+          name: String,
+        },
+        required: true,
+      },
+      ward: {
+        type: {
+          code: String,
+          name: String,
+        },
+        required: true,
+      },
       address: { type: String, required: true },
       postalCode: String,
     },

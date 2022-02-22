@@ -14,20 +14,31 @@ function AdditionalInfo(props) {
     checkoutInfo.isAnonymous || true
   );
 
+  // todo: create APIs to create, update, get, and delete cards
+  // todo: replace cardOptions by data getting from the server
   const cardOptions = [
     {
       id: 'birthday',
-      value: 'Birthday Card',
+      value: {
+        name: 'Birthday Card',
+        price: 5,
+      },
       label: 'Birthday Card',
     },
     {
       id: 'congratulation',
-      value: 'Congratulation Card',
+      value: {
+        name: 'Congratulation Card',
+        price: 5,
+      },
       label: 'Congratulation Card',
     },
     {
       id: 'condolatory',
-      value: 'Condolatory Card',
+      value: {
+        name: 'Condolatory Card',
+        price: 5,
+      },
       label: 'Condolatory Card',
     },
   ];
@@ -83,19 +94,20 @@ function AdditionalInfo(props) {
         style={{ margin: '0 2rem' }}
       >
         {cardOptions.map((option) => {
+          const optionValue = JSON.stringify(option.value);
           return (
             <div className='info__card-item' key={option.id}>
               <input
                 type='radio'
                 id={option.id}
                 name='greeting'
-                value={option.value}
-                checked={card === option.value}
+                value={optionValue}
+                checked={JSON.stringify(card) === optionValue}
                 onChange={(e) => {
-                  setCard(e.target.value);
+                  setCard(JSON.parse(e.target.value));
                   dispatch(
                     updateCheckoutInfo({
-                      card: e.target.value,
+                      card: JSON.parse(e.target.value),
                     })
                   );
                 }}

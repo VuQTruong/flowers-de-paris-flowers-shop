@@ -4,10 +4,14 @@ export const checkoutSlice = createSlice({
   name: 'checkout',
   initialState: {
     checkoutInfo: sessionStorage.getItem('checkoutInfo')
-      ? JSON.parse(sessionStorage.getItem('checkoutInfo'))
+      ? {
+          ...JSON.parse(sessionStorage.getItem('checkoutInfo')),
+          isAnonymous: true,
+          sender: 'Anonymous',
+        }
       : {
           isAnonymous: true,
-          sender: '',
+          sender: 'Anonymous',
         },
   },
   reducers: {
@@ -17,6 +21,7 @@ export const checkoutSlice = createSlice({
     },
     updateCheckoutInfo: (state, action) => {
       state.checkoutInfo = { ...state.checkoutInfo, ...action.payload };
+
       sessionStorage.setItem(
         'checkoutInfo',
         JSON.stringify(state.checkoutInfo)

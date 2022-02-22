@@ -1,19 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Axios from '../../../config/axios';
 import swal from 'sweetalert2';
 import { dateFormat } from '../../../utilities/helpers';
+import { clearCheckoutInfo } from '../../../features/checkout/slice/checkout-slice';
 
 function PaymentButton({ paymentMethod }) {
   const paypal = useRef();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [sdkReady, setSdkReady] = useState(false);
 
   const { userInfo } = useSelector((state) => state.currentUser);
   const { cartItems } = useSelector((state) => state.cart);
   const { deliveryInfo } = useSelector((state) => state.delivery);
-  const checkoutInfo = JSON.parse(sessionStorage.getItem('checkoutInfo'));
+  const { checkoutInfo } = useSelector((state) => state.checkout);
 
   useEffect(() => {
     const addPaypalScript = () => {
@@ -40,7 +42,7 @@ function PaymentButton({ paymentMethod }) {
     const createOrderHandler = async () => {
       try {
         const items = getItems();
-        const card = (checkoutInfo && checkoutInfo.card) || null;
+        const card = checkoutInfo.card || {};
 
         const { data } = await Axios.post('/payments/paypal', {
           items,
@@ -101,9 +103,9 @@ function PaymentButton({ paymentMethod }) {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [paymentMethod, sdkReady]);
+  }, [paymentMethod, sdkReady, checkoutInfo]);
 
-  const placeOrderHandler = async (isPaid = false, paidAt = null) => {
+  const placeOrderHandler = async (isPaid, paidAt) => {
     // !if user choose to pay by cash on delivery
     // !force the user to update and confirm phone number before proceeding
     if (paymentMethod === 'cash' && !userInfo.phone) {
@@ -140,38 +142,56 @@ function PaymentButton({ paymentMethod }) {
     });
 
     let totalPrice = price;
-    if (checkoutInfo && checkoutInfo.card) {
-      totalPrice += 5;
+    if (checkoutInfo.card) {
+      totalPrice += checkoutInfo.card.price;
     }
 
     const orderInfo = {
       orderItems,
       deliveryInfo,
-      sender: checkoutInfo && checkoutInfo.sender,
-      message: checkoutInfo && checkoutInfo.message,
-      note: checkoutInfo && checkoutInfo.note,
-      card: (checkoutInfo && checkoutInfo.card) || '',
+      sender: checkoutInfo.sender || '',
+      message: checkoutInfo.message || '',
+      note: checkoutInfo.note || '',
+      card: checkoutInfo.card || {},
       paymentMethod,
       price,
       shippingPrice: 0,
       totalPrice,
       isPaid,
-      paidAt: isPaid ? paidAt : null,
+      paidAt,
     };
-
-    // !clear checkout info in sessionStorage
 
     // !send request to create a new order in the database
     try {
-      const { data } = await Axios.post('/orders', orderInfo);
+      swal.fire({
+        title: `We're working on your order`,
+        allowOutsideClick: false,
+        didOpen: () => {
+          swal.showLoading();
+        },
+      });
 
-      console.log(data.data);
+      const { data } = await Axios.post('/orders', orderInfo);
+      const order = data.data.order;
+
+      swal.close();
+      swal
+        .fire({
+          icon: 'success',
+          title: 'Huray!...',
+          text: `Your beautiful flowers will reach your beloved as fast as the lightning ❤`,
+        })
+        .then(() => {
+          // !clear checkout info in sessionStorage
+          dispatch(clearCheckoutInfo());
+          navigate(`/orders/${order.orderId}`, { replace: true });
+        });
     } catch (error) {
       console.log(error);
       swal.fire({
         icon: 'error',
         title: 'Oops!...',
-        text: error.response,
+        text: 'Sorry! Something wrong happened. Please try again later!',
       });
     }
   };
@@ -181,7 +201,10 @@ function PaymentButton({ paymentMethod }) {
       Please select a payment method
     </button>
   ) : paymentMethod === 'cash' ? (
-    <button className='btn btn-cta btn-payment' onClick={placeOrderHandler}>
+    <button
+      className='btn btn-cta btn-payment'
+      onClick={() => placeOrderHandler(false, '')}
+    >
       Checkout
     </button>
   ) : (
