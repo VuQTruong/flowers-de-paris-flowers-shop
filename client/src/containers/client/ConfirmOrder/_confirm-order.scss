@@ -1,0 +1,146 @@
+.order-confirm__container {
+  flex: 1 1 auto;
+  padding: 2em 1em;
+}
+
+.order-confirm__title {
+  text-transform: uppercase;
+}
+
+.order-confirm__order-info {
+  display: flex;
+  margin-top: 1em;
+}
+
+.order-confirm__status {
+  margin-left: 2em;
+  display: flex;
+  align-items: center;
+}
+
+.order-confirm__status::before {
+  content: '';
+  display: inline-block;
+  width: 0.75em;
+  height: 0.75em;
+  border-radius: 50%;
+  background-color: var(--status-color);
+  box-shadow: 0 0 10px var(--status-color);
+  margin-right: 0.5em;
+}
+
+.order-confirm__panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-confirm__payment-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-confirm__payment-info > * {
+  margin-bottom: 2em;
+}
+
+.order-confirm__delivery,
+.order-confirm__payment,
+.order-confirm__order-items {
+  border: none;
+  box-shadow: $box-shadow;
+
+  margin: 2em 0;
+  padding: 2em;
+}
+
+.order-confirm__payment,
+.order-confirm__summary {
+  border: none;
+  box-shadow: $box-shadow;
+
+  padding: 2em;
+}
+
+.order-confirm__label {
+  text-transform: uppercase;
+  margin-bottom: 0.5em;
+}
+
+.order-confirm__sub-label {
+  margin-bottom: 0.25em;
+}
+
+.order-confirm__notification {
+  display: flex;
+  align-items: center;
+}
+
+.order-confirm__danger-icon {
+  font-size: 1.5rem;
+  margin-right: 0.25em;
+}
+
+.order-confirm__success-icon {
+  font-size: 1.125rem;
+  margin-right: 0.5em;
+}
+
+.order-confirm__item {
+  display: flex;
+  align-items: center;
+  padding: 0 1em 1em;
+}
+
+.order-confirm__item:not(:last-child) {
+  margin-bottom: 1em;
+  border-bottom: 1px dashed gray;
+}
+
+.order-confirm__item-img {
+  width: 5em;
+  height: 5em;
+  object-fit: cover;
+
+  border-radius: 10px;
+  box-shadow: $box-shadow;
+}
+
+.order-confirm__item-name {
+  flex: 1 1 auto;
+  margin-left: 1em;
+  font-weight: 700;
+}
+
+.order-confirm__price {
+  color: tomato;
+  font-weight: 700;
+}
+
+.order-confirm__summary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em 0;
+}
+
+.order-confirm__summary-item:not(:last-child) {
+  border-bottom: 1px dashed gray;
+}
+
+.order-confirm__btn {
+  width: 100%;
+}
+
+@media (min-width: $screen-md) {
+  .order-confirm__panel {
+    flex-direction: row;
+  }
+
+  .order-confirm__payment-info {
+    min-width: 25em;
+    margin-left: 2em;
+  }
+
+  .order-confirm__payment {
+    margin-top: 2em;
+  }
+}

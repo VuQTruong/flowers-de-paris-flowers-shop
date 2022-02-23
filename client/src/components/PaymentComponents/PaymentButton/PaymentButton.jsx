@@ -5,6 +5,7 @@ import Axios from '../../../config/axios';
 import swal from 'sweetalert2';
 import { dateFormat } from '../../../utilities/helpers';
 import { clearCheckoutInfo } from '../../../features/checkout/slice/checkout-slice';
+import { emptyCart } from '../../../features/cart/empty-cart';
 
 function PaymentButton({ paymentMethod }) {
   const paypal = useRef();
@@ -103,7 +104,7 @@ function PaymentButton({ paymentMethod }) {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [paymentMethod, sdkReady, checkoutInfo]);
+  }, [paymentMethod, sdkReady, checkoutInfo.card]);
 
   const placeOrderHandler = async (isPaid, paidAt) => {
     // !if user choose to pay by cash on delivery
@@ -135,6 +136,8 @@ function PaymentButton({ paymentMethod }) {
       return {
         productId: item.product._id,
         name: item.product.name,
+        slug: item.product.slug,
+        categorySlug: item.product.categorySlug,
         quantity: item.quantity,
         image: item.product.coverImage,
         price: item.product.price,
@@ -184,6 +187,10 @@ function PaymentButton({ paymentMethod }) {
         .then(() => {
           // !clear checkout info in sessionStorage
           dispatch(clearCheckoutInfo());
+
+          // !empty the cart
+          dispatch(emptyCart());
+
           navigate(`/orders/${order.orderId}`, { replace: true });
         });
     } catch (error) {

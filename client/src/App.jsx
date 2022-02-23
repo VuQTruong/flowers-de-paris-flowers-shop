@@ -19,6 +19,7 @@ import { fetchCategories } from './features/categories/fetch-categories';
 import { verifyUser } from './features/users/verify-user';
 import { setUpAxiosResponseInterceptor } from './config/axios';
 import { getCart } from './features/cart/get-cart';
+import ConfirmOrder from './containers/client/ConfirmOrder/ConfirmOrder';
 
 // lazy load components
 const Dashboard = lazy(() => import('./containers/admin/Dashboard/Dashboard'));
@@ -113,6 +114,7 @@ function App() {
             <Route path='cart' element={<Cart />} />
             <Route path='delivery' element={<Delivery />} />
             <Route path='payment' element={<Payment />} />
+            <Route path='orders/:orderId' element={<ConfirmOrder />} />
             <Route path='oauth/fail' element={<OAuthFail />} />
           </Route>
 
