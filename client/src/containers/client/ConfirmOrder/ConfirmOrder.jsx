@@ -58,7 +58,7 @@ function ConfirmOrder() {
       fetchOrder();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [orderId, userInfo]);
+  }, [orderId]);
 
   return (
     <main className='container order-confirm__container'>
