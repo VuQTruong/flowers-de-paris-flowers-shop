@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
@@ -53,6 +53,10 @@ function UserInfo() {
 
   const currentUser = useSelector((state) => state.currentUser);
   const { userInfo, loading } = currentUser;
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   const formInitialValues = {
     name: userInfo ? userInfo.name : '',
