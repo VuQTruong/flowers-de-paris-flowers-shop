@@ -77,7 +77,7 @@ function ConfirmOrder() {
                     ? '#f0ad4e'
                     : order.status === 'Delivered'
                     ? '#6bc839'
-                    : order.status === 'Cancel' && '#d9534f'
+                    : order.status === 'Cancelled' && '#d9534f'
                 }`,
               }}
             >
