@@ -5,8 +5,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import Loading from '../../../components/Loading/Loading';
 import MessageBox from '../../../components/MessageBox/MessageBox';
 import Axios from '../../../config/axios';
-import { ReactComponent as SuccessSVG } from '../../../assets/icons/success.svg';
-import { ReactComponent as DangerSVG } from '../../../assets/icons/circle-x.svg';
+
 import { ReactComponent as DefaultPhotoSVG } from '../../../assets/svgs/undraw_photos_re_pvh3.svg';
 import { currencyFormat, dateFormat } from '../../../utilities/helpers';
 import swal from 'sweetalert2';
@@ -132,7 +131,6 @@ function ConfirmOrder() {
                     className='order-confirm__notification'
                     fullWidth
                   >
-                    <SuccessSVG className='order-confirm__success-icon' />
                     Delivered
                   </MessageBox>
                 ) : (
@@ -141,7 +139,6 @@ function ConfirmOrder() {
                     className='order-confirm__notification'
                     fullWidth
                   >
-                    <DangerSVG className='order-confirm__danger-icon' />
                     Not delivered
                   </MessageBox>
                 )}
@@ -206,7 +203,6 @@ function ConfirmOrder() {
                     className='order-confirm__notification'
                     fullWidth
                   >
-                    <SuccessSVG className='order-confirm__success-icon' />
                     Paid on {dateFormat.format(Date.parse(order.paidAt))}
                   </MessageBox>
                 ) : (
@@ -215,7 +211,6 @@ function ConfirmOrder() {
                     className='order-confirm__notification'
                     fullWidth
                   >
-                    <DangerSVG className='order-confirm__danger-icon' />
                     Not Paid
                   </MessageBox>
                 )}

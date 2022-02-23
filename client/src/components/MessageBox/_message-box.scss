@@ -3,6 +3,9 @@
   padding: 0.5em 1em;
   border-radius: 5px;
   width: max-content;
+
+  display: flex;
+  align-items: center;
 }
 
 .alert--full-width {
@@ -31,4 +34,25 @@
   color: $clr-warning;
   background-color: rgba($color: $clr-warning, $alpha: 0.1);
   border: 1px solid $clr-warning;
+}
+
+/* icons */
+.message-box__danger-icon {
+  font-size: 1.5rem;
+  margin-right: 0.25em;
+}
+
+.message-box__success-icon {
+  font-size: 1.125rem;
+  margin-right: 0.5em;
+}
+
+.message-box__warning-icon {
+  font-size: 1.125rem;
+  margin-right: 0.375em;
+}
+
+.message-box__info-icon {
+  font-size: 1.125rem;
+  margin-right: 0.375em;
 }
