@@ -11,6 +11,7 @@ import ReactHtmlParser from 'react-html-parser';
 import ReviewCard from '../../../components/ReviewCard/ReviewCard';
 import { getProductBySlug } from '../../../features/products/get-product-by-slug';
 
+import { ReactComponent as Page404SVG } from '../../../assets/svgs/undraw_lost_re_xqjt.svg';
 import ProductReviews from '../../../components/ProductReviews/ProductReviews';
 import { addItemToCart } from '../../../features/cart/add-item';
 import { unwrapResult } from '@reduxjs/toolkit';
@@ -88,13 +89,22 @@ function ProductDetails() {
   };
 
   return (
-    <div className='container'>
+    <div className='container product-details__container'>
       {loading ? (
         <Loading />
       ) : (
         <React.Fragment>
           {!product ? (
-            <h2>Product not found</h2>
+            <main className='container flex col center notfound__container'>
+              <Page404SVG className='notfound__svg' />
+              <h2 className='notfound__title'>
+                Sorry! We cannot find this product
+              </h2>
+              <Link to='/' className='notfound__back-home'>
+                <i className='bx bx-home'></i>
+                Go back to Home page
+              </Link>
+            </main>
           ) : (
             <div className='product-details flex'>
               {/* Product Images */}
