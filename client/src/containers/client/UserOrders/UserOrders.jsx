@@ -67,7 +67,7 @@ function UserOrders() {
                       <p>{generateProducts(order.orderItems)}</p>
                     </td>
                     <td data-label='Total Price'>
-                      <p className='order-confirm__price'>
+                      <p className='order-details__price'>
                         {currencyFormat.format(order.totalPrice)}
                       </p>
                     </td>
