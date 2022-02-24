@@ -59,7 +59,7 @@ function Cart() {
         ) : (
           <div className='cart__info'>
             <MessageBox>There are no products in your cart</MessageBox>
-            <Link to='/product' className='btn btn-primary'>
+            <Link to='/products' className='btn btn-primary'>
               Go Shopping Now
             </Link>
           </div>

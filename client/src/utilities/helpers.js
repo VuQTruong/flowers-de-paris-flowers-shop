@@ -5,6 +5,12 @@ export const dateFormat = new Intl.DateTimeFormat('en-EN', {
   day: '2-digit',
 });
 
+export const dateWithoutWeekdayFormat = new Intl.DateTimeFormat('en-EN', {
+  year: 'numeric',
+  month: 'numeric',
+  day: '2-digit',
+});
+
 export const currencyFormat = new Intl.NumberFormat('en-EN', {
   style: 'currency',
   currency: 'CAD',

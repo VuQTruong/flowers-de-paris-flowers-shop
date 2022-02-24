@@ -8,7 +8,9 @@ router.get(
   '/all',
   isAuth,
   catchAsync(async (req, res, next) => {
-    const orders = await Order.find({ user: req.user._id });
+    const orders = await Order.find({ user: req.user._id }).select(
+      'orderId totalPrice status orderItems createdAt'
+    );
 
     return res.status(200).json({
       status: 'success',
