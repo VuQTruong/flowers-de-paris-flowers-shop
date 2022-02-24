@@ -1,0 +1,126 @@
+.order-details__order-info {
+  display: flex;
+  margin-top: 1em;
+}
+
+.order-details__status {
+  margin-left: 2em;
+  display: flex;
+  align-items: center;
+}
+
+.order-details__status::before {
+  content: '';
+  display: inline-block;
+  width: 0.75em;
+  height: 0.75em;
+  border-radius: 50%;
+  background-color: var(--status-color);
+  box-shadow: 0 0 10px var(--status-color);
+  margin-right: 0.5em;
+}
+
+.order-details__panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-details__payment-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-details__payment-info > * {
+  margin-bottom: 2em;
+}
+
+.order-details__delivery,
+.order-details__order-items {
+  border: none;
+  box-shadow: $box-shadow;
+
+  margin: 2em 0;
+  padding: 2em;
+}
+
+.order-details__payment,
+.order-details__summary {
+  border: none;
+  box-shadow: $box-shadow;
+
+  padding: 2em;
+}
+
+.order-details__label {
+  text-transform: uppercase;
+  margin-bottom: 0.5em;
+}
+
+.order-details__sub-label {
+  margin-bottom: 0.25em;
+}
+
+.order-details__notification {
+  display: flex;
+  align-items: center;
+}
+
+.order-details__item {
+  display: flex;
+  align-items: center;
+  padding: 0 1em 1em;
+}
+
+.order-details__item:not(:last-child) {
+  margin-bottom: 1em;
+  border-bottom: 1px dashed gray;
+}
+
+.order-details__item-img {
+  width: 5em;
+  height: 5em;
+  object-fit: cover;
+
+  border-radius: 10px;
+  box-shadow: $box-shadow;
+}
+
+.order-details__item-name {
+  flex: 1 1 auto;
+  margin-left: 1em;
+  font-weight: 700;
+}
+
+.order-details__price {
+  color: tomato;
+  font-weight: 700;
+}
+
+.order-details__summary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em 0;
+}
+
+.order-details__summary-item:not(:last-child) {
+  border-bottom: 1px dashed gray;
+}
+
+.order-details__btn {
+  width: 100%;
+}
+
+@media (min-width: $screen-md) {
+  .order-details__panel {
+    flex-direction: row;
+  }
+
+  .order-details__payment-info {
+    min-width: 25em;
+    margin-left: 2em;
+  }
+
+  .order-details__payment {
+    margin-top: 2em;
+  }
+}

@@ -19,7 +19,6 @@ import { fetchCategories } from './features/categories/fetch-categories';
 import { verifyUser } from './features/users/verify-user';
 import { setUpAxiosResponseInterceptor } from './config/axios';
 import { getCart } from './features/cart/get-cart';
-import ConfirmOrder from './containers/client/ConfirmOrder/ConfirmOrder';
 
 // lazy load components
 const Dashboard = lazy(() => import('./containers/admin/Dashboard/Dashboard'));
@@ -47,6 +46,12 @@ const Search = lazy(() => import('./containers/client/Search/Search'));
 const Cart = lazy(() => import('./containers/client/Cart/Cart'));
 const Delivery = lazy(() => import('./containers/client/Delivery/Delivery'));
 const Payment = lazy(() => import('./containers/client/Payment/Payment'));
+const ConfirmOrder = lazy(() =>
+  import('./containers/client/ConfirmOrder/ConfirmOrder')
+);
+const UserOrderDetails = lazy(() =>
+  import('./containers/client/UserOrderDetails/UserOrderDetails')
+);
 
 function App() {
   const dispatch = useDispatch();
@@ -103,6 +108,7 @@ function App() {
               <Route path='info' element={<UserInfo />} />
               <Route path='fav' element={<UserFavorites />} />
               <Route path='orders' element={<UserOrders />} />
+              <Route path='orders/:orderId' element={<UserOrderDetails />} />
             </Route>
             <Route path='products' element={<ProductsList />} />
             <Route path='products/:categorySlug' element={<ProductsList />} />

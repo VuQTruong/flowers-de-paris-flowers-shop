@@ -8,7 +8,7 @@ import Axios from '../../../config/axios';
 import swal from 'sweetalert2';
 import OrderDetails from '../../../components/OrderDetails/OrderDetails';
 
-function ConfirmOrder() {
+function UserOrderDetails() {
   const { orderId } = useParams();
   const navigate = useNavigate();
   const { userInfo } = useSelector((state) => state.currentUser);
@@ -58,18 +58,23 @@ function ConfirmOrder() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderId]);
 
+  const goBackHandler = () => {
+    navigate(-1);
+  };
+
   return (
-    <main className='container order-confirm__container'>
+    <section className='user-order-details__container'>
       {(loading || error) && <Loading />}
       {order && !error && (
         <React.Fragment>
-          <h2 className='order-confirm__title'>Order confirmation</h2>
-
+          <button className='btn btn-primary' onClick={goBackHandler}>
+            Go back
+          </button>
           <OrderDetails order={order} />
         </React.Fragment>
       )}
-    </main>
+    </section>
   );
 }
 
-export default ConfirmOrder;
+export default UserOrderDetails;

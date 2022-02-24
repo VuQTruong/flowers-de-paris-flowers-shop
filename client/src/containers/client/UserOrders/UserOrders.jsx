@@ -73,7 +73,7 @@ function UserOrders() {
                     </td>
                     <td data-label='Status'>
                       <p
-                        className='order-confirm__status user-orders__status'
+                        className='order-details__status user-orders__status'
                         style={{
                           '--status-color': `${
                             order.status === 'Pending'
@@ -89,7 +89,7 @@ function UserOrders() {
                     </td>
                     <td data-label='' className='user-orders__table-details'>
                       <Link
-                        to={`/orders/${order.orderId}`}
+                        to={`/user/orders/${order.orderId}`}
                         className='btn btn-primary '
                       >
                         Details
