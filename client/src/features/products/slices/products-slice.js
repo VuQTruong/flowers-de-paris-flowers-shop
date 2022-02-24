@@ -44,7 +44,10 @@ export const productsSlice = createSlice({
     },
     [getProductsByCategorySlug.fulfilled]: (state, action) => {
       state.loading = false;
-      state.products = action.payload;
+      state.products = action.payload.products;
+      state.totalProducts = action.payload.totalProducts;
+      state.totalPages = action.payload.totalPages;
+      state.currentPage = action.payload.currentPage;
     },
     [getProductsByCategorySlug.rejected]: (state, action) => {
       state.loading = false;

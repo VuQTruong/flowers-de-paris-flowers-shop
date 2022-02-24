@@ -11,6 +11,7 @@ router.get(
 
     const products = await Product.find({
       ...queryObj.filters,
+      isActive: true,
     })
       .sort(queryObj.sort)
       .skip(queryObj.skip)
@@ -19,6 +20,7 @@ router.get(
 
     const totalProducts = await Product.find({
       ...queryObj.filters,
+      isActive: true,
     }).countDocuments();
 
     const { page, limit } = req.query;

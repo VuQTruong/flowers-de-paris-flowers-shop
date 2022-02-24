@@ -14,12 +14,23 @@ router.get(
       isActive: true,
     }).populate('category');
 
+    const totalProducts = await Product.find({
+      categorySlug: categorySlug,
+      isActive: true,
+    }).countDocuments();
+
+    const { page, limit } = req.query;
+    const totalPages = Math.ceil(totalProducts / (limit ? limit : 10));
+
     return res.status(200).json({
       status: 'success',
       message: 'Retrieve all products by category',
       data: {
         results: products.length,
         products,
+        totalProducts,
+        totalPages,
+        currentPage: page * 1 || 1,
       },
     });
   })

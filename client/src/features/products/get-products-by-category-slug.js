@@ -7,7 +7,7 @@ export const getProductsByCategorySlug = createAsyncThunk(
     try {
       const { data } = await Axios.get(`/products/category/${categorySlug}`);
 
-      return data.data.products;
+      return data.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
