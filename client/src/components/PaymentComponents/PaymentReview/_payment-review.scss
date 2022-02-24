@@ -55,8 +55,14 @@
 }
 
 .checkout-items__details {
-  padding: 0.5em 0.75em !important;
   margin: 0.5em 0;
+}
+
+.checkout-items__details > :first-child {
+  margin-top: 0.5em;
+}
+.checkout-items__details > :last-child {
+  margin-bottom: 0.5em;
 }
 
 .item-details {
