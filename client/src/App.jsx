@@ -53,6 +53,29 @@ const UserOrderDetails = lazy(() =>
   import('./containers/client/UserOrderDetails/UserOrderDetails')
 );
 
+const AdAnalytic = lazy(() =>
+  import('./containers/admin/AdAnalytic/AdAnalytic')
+);
+const AdOrders = lazy(() => import('./containers/admin/AdOrders/AdOrders'));
+const AdCategories = lazy(() =>
+  import('./containers/admin/AdCategories/AdCategories')
+);
+const AdProducts = lazy(() =>
+  import('./containers/admin/AdProducts/AdProducts')
+);
+const AdAccounts = lazy(() =>
+  import('./containers/admin/AdAccounts/AdAccounts')
+);
+const AdBlogs = lazy(() => import('./containers/admin/AdBlogs/AdBlogs'));
+const AdAboutUs = lazy(() => import('./containers/admin/AdAboutUs/AdAboutUs'));
+const AdContacts = lazy(() =>
+  import('./containers/admin/AdContacts/AdContacts')
+);
+const AdHiring = lazy(() => import('./containers/admin/AdHiring/AdHiring'));
+const AdAppConfig = lazy(() =>
+  import('./containers/admin/AdAppConfig/AdAppConfig')
+);
+
 function App() {
   const dispatch = useDispatch();
   const [isInitialzing, setIsInitialzing] = useState(true);
@@ -127,6 +150,16 @@ function App() {
           {/* admin routes */}
           <Route path='/admin' element={<AdminLayout />}>
             <Route index element={<Dashboard />} />
+            <Route path='analytic' element={<AdAnalytic />} />
+            <Route path='orders' element={<AdOrders />} />
+            <Route path='categories' element={<AdCategories />} />
+            <Route path='products' element={<AdProducts />} />
+            <Route path='accounts' element={<AdAccounts />} />
+            <Route path='blogs' element={<AdBlogs />} />
+            <Route path='about' element={<AdAboutUs />} />
+            <Route path='contacts' element={<AdContacts />} />
+            <Route path='hiring' element={<AdHiring />} />
+            <Route path='config' element={<AdAppConfig />} />
           </Route>
 
           <Route path='/warning/unauthorized' element={<Unauthorized />} />

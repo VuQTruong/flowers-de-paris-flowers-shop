@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Dashboard() {
-  return <main>Dashboard</main>;
+  return <main className='dashboard__container'>Dashboard</main>;
 }
 
 export default Dashboard;

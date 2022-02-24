@@ -8,7 +8,7 @@ import swal from 'sweetalert2';
 import { clearCartStore } from '../../features/cart/slice/cart-slice';
 
 function UserNav(props) {
-  const { activeMobileNav } = props;
+  const { activeMobileNav, disableCart } = props;
 
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.currentUser);
@@ -56,14 +56,16 @@ function UserNav(props) {
 
   return (
     <div className='header-info'>
-      <Link to='/cart' className='cart'>
-        <i className='bx bx-cart'></i>
+      {!disableCart && (
+        <Link to='/cart' className='cart'>
+          <i className='bx bx-cart'></i>
 
-        {/* render notification */}
-        {cartItems && (
-          <span className='cart-notification'>{calculateTotalItems()}</span>
-        )}
-      </Link>
+          {/* render notification */}
+          {cartItems && (
+            <span className='cart-notification'>{calculateTotalItems()}</span>
+          )}
+        </Link>
+      )}
 
       {userInfo ? (
         <div className='header-info__user dropdown'>
@@ -83,7 +85,7 @@ function UserNav(props) {
           <ul className='dropdown-menu dropdown-menu--right'>
             {userInfo.isAdmin && (
               <li>
-                <Link to='/admin/dashboard' className='dropdown-item'>
+                <Link to='/admin' className='dropdown-item'>
                   <i className='bx bxs-dashboard'></i>
                   Dashboard
                 </Link>

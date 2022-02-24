@@ -44,12 +44,14 @@
 @import './components/PaymentComponents/AdditionalInfo/additional-info';
 @import './components/PaymentComponents/PaymentReview/payment-review';
 @import './components/OrderDetails/order-details';
+@import './components/Admin/AdSideBar/ad-side-bar';
 
 // containers
 @import './containers/LoadingPage/loading-page';
 @import './containers/Page404/page404';
 @import './containers/Unauthorized/unauthorized';
 @import './containers/Forbidden/forbidden';
+@import './containers/admin/AdminLayout/admin-layout';
 @import './containers/client/OAuthFail/oauth-fail';
 @import './containers/client/Home/home';
 @import './containers/client/Signin/sign-in';
@@ -67,3 +69,14 @@
 @import './containers/client/Delivery/delivery';
 @import './containers/client/Payment/payment';
 @import './containers/client/ConfirmOrder/confirm-order';
+@import './containers/admin/Dashboard/dashboard';
+@import './containers/admin/AdAnalytic/ad-analytic';
+@import './containers/admin/AdOrders/ad-orders';
+@import './containers/admin/AdCategories/ad-categories';
+@import './containers/admin/AdProducts/ad-products';
+@import './containers/admin/AdAccounts/ad-accounts';
+@import './containers/admin/AdBlogs/ad-blogs';
+@import './containers/admin/AdAboutUs/ad-about-us';
+@import './containers/admin/AdContacts/ad-contacts';
+@import './containers/admin/AdHiring/ad-hiring';
+@import './containers/admin/AdAppConfig/ad-app-config';
