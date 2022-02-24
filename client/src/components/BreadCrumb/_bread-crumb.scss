@@ -1,0 +1,21 @@
+.breadcrumb {
+  padding: 1em 1em 0;
+}
+
+.breadcrumb__item {
+  align-items: center;
+}
+
+.breadcrumb__link {
+  font-weight: 700;
+}
+
+.breadcrumb__link:hover {
+  color: orangered;
+}
+
+.breadcrumb__divider {
+  position: relative;
+  top: 1px;
+  padding: 0 0.5em;
+}

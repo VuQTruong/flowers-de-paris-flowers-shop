@@ -36,7 +36,7 @@ function ProductsList() {
           ) : (
             <React.Fragment>
               {products && products.length === 0 ? (
-                <MessageBox fullWidth>
+                <MessageBox variant='info' fullWidth>
                   Uh oh!...There are no products meeting your requirements
                 </MessageBox>
               ) : (
