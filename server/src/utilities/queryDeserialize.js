@@ -25,7 +25,7 @@ const queryDeserialize = (requestQuery) => {
   // !filtering
   // ?to add additional exceptions, follow the examples with tags, colors, etc.
   // ?otherwise, fields will be added to filtersObj without any modification
-  const filtersObj = { isActive: true };
+  const filtersObj = {};
   for (let filter in filters) {
     // !search by name or title (for blogs)
     if (filter === 'name' || filter === 'title') {

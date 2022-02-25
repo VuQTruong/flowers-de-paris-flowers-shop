@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { adGetAllProducts } from '../ad-get-all-products';
 
 import { getAllProducts } from '../get-all-products';
 import { getProductsByCategorySlug } from '../get-products-by-category-slug';
@@ -32,6 +33,27 @@ export const productsSlice = createSlice({
       state.currentPage = action.payload.currentPage;
     },
     [getAllProducts.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    /* get all products */
+    [adGetAllProducts.pending]: (state) => {
+      state.loading = true;
+      state.error = '';
+      state.products = null;
+      state.totalProducts = 0;
+      state.totalPages = 0;
+      state.currentPage = 1;
+    },
+    [adGetAllProducts.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.products = action.payload.products;
+      state.totalProducts = action.payload.totalProducts;
+      state.totalPages = action.payload.totalPages;
+      state.currentPage = action.payload.currentPage;
+    },
+    [adGetAllProducts.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
