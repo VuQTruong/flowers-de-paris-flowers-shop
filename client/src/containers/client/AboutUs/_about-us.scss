@@ -1,0 +1,42 @@
+.about-us__container {
+  flex: 1 1 auto;
+}
+
+.about-us__header {
+  background-image: url('../../../assets/images/bg_about.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 6em 0;
+}
+
+.about-us__title {
+  font-size: $fs-34;
+  letter-spacing: 0.125em;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.3);
+}
+
+.about-us__content {
+  width: 100%;
+  padding: 2em 1em;
+}
+
+@media (min-width: $screen-md) {
+  .about-us__container {
+    box-shadow: $box-shadow;
+  }
+}
+
+@media (min-width: $screen-lg) {
+  .about-us__content {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 2em;
+  }
+}

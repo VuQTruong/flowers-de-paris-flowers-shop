@@ -75,6 +75,7 @@ const AdHiring = lazy(() => import('./containers/admin/AdHiring/AdHiring'));
 const AdAppConfig = lazy(() =>
   import('./containers/admin/AdAppConfig/AdAppConfig')
 );
+const AboutUs = lazy(() => import('./containers/client/AboutUs/AboutUs'));
 
 function App() {
   const dispatch = useDispatch();
@@ -144,6 +145,7 @@ function App() {
             <Route path='delivery' element={<Delivery />} />
             <Route path='payment' element={<Payment />} />
             <Route path='orders/:orderId' element={<ConfirmOrder />} />
+            <Route path='about' element={<AboutUs />} />
             <Route path='oauth/fail' element={<OAuthFail />} />
           </Route>
 
