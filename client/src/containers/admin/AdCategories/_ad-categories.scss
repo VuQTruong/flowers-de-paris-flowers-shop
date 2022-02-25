@@ -1,3 +1,7 @@
-.ad-categories__container {
-  margin-left: 50px;
+.ad-categories__img {
+  width: 5em;
+  height: 7em;
+  object-fit: cover;
+  box-shadow: $box-shadow;
+  border-radius: 5px;
 }

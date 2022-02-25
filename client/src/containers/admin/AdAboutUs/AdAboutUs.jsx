@@ -54,7 +54,7 @@ function AdAboutUs() {
   };
 
   return (
-    <div className='dashboard__container'>
+    <main className='dashboard__container'>
       <div className='dashboard__header'>
         <h2 className='dashboard__title'>About us</h2>
         <button
@@ -108,7 +108,7 @@ function AdAboutUs() {
           />
         </div>
       )}
-    </div>
+    </main>
   );
 }
 
