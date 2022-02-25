@@ -1,3 +1,148 @@
+/* common classes for other features */
 .dashboard__container {
   margin-left: 50px;
+  width: 100%;
+  background-color: #f9f9f9;
+  padding: 1em;
+  padding-bottom: 5em;
+  overflow: hidden;
+}
+
+.dashboard__header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.dashboard__title {
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.dashboard__btn {
+  display: flex;
+  align-items: center;
+}
+
+.dashboard__btn i {
+  font-size: 1.5rem;
+  margin-right: 0.25em;
+}
+
+/* dashboard specific classes */
+.dashboard-panel {
+}
+
+.dashboard__filter {
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+.dashboard__filter i {
+  font-size: $fs-22;
+  margin-right: 0.25em;
+}
+
+.dashboard__filter > * {
+  margin-bottom: 1em;
+}
+
+.dashboard__search {
+  display: flex;
+  border-radius: 5px;
+  box-shadow: $box-shadow;
+  margin-right: 1em;
+}
+
+.dashboard__search-input {
+  width: 100%;
+  padding: 0.5em 1em;
+
+  outline: none;
+  border: none;
+  border-radius: 5px 0 0 5px;
+
+  font-size: inherit;
+  font-family: inherit;
+
+  overflow: hidden;
+}
+
+.dashboard__search-btn {
+  padding: 0 1em;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  background-color: $clr-primary-300;
+
+  cursor: pointer;
+  transition: all 0.3s;
+
+  i {
+    margin: 0 auto;
+  }
+}
+
+.dashboard__search-btn:hover {
+  background-color: black;
+  color: $clr-primary-300;
+}
+
+.dashboard__sort-field,
+.dashboard__sort-order,
+.dashboard__search-by {
+  flex-direction: column;
+
+  label {
+    display: flex;
+    align-items: center;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+  }
+}
+
+.dashboard__select-input {
+  font: inherit;
+  padding: 0.5em;
+  border: none;
+  border-radius: 5px;
+  box-shadow: $box-shadow;
+}
+
+@media (max-width: 450px) {
+  .dashboard-panel {
+    margin: 0;
+  }
+}
+
+@media (min-width: $screen-md) {
+  .dashboard__container {
+    padding: 2em;
+  }
+
+  .dashboard__header {
+    flex-direction: row;
+  }
+
+  .dashboard__filter {
+    flex-direction: row;
+  }
+
+  .dashboard__search-input {
+    width: 350px;
+  }
+
+  .dashboard__sort-field,
+  .dashboard__sort-order,
+  .dashboard__search-by {
+    flex-direction: row;
+    align-items: center;
+    margin-right: 1em;
+
+    label {
+      margin-bottom: 0;
+    }
+  }
 }

@@ -10,6 +10,7 @@ import cartReducer from './features/cart/slice/cart-slice';
 import deliveryReducer from './features/cart/slice/delivery-slice';
 import checkoutReducer from './features/checkout/slice/checkout-slice';
 import ordersReducer from './features/orders/slice/orders-slice';
+import aboutReducer from './features/about/slice/about-slice';
 
 const store = configureStore({
   reducer: {
@@ -23,6 +24,7 @@ const store = configureStore({
     delivery: deliveryReducer,
     checkout: checkoutReducer,
     allOrders: ordersReducer,
+    about: aboutReducer,
   },
 });
 

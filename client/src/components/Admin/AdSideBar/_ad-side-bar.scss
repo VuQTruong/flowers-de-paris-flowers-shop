@@ -1,10 +1,13 @@
 .admin-sidebar {
   position: absolute;
   top: 0;
-  bottom: 50px;
+  bottom: 0;
   right: calc(100% - 50px);
   left: 0;
   overflow: auto;
+  z-index: 10;
+
+  padding-bottom: 70px;
 
   display: flex;
   flex-wrap: nowrap;

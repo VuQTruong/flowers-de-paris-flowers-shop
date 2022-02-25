@@ -30,7 +30,7 @@ function AdSideBar() {
         </li>
 
         <li className='admin-sidebar__item'>
-          <NavLink to='/admin' className={generateAdSideBarClasses}>
+          <NavLink to='/admin/dashboard' className={generateAdSideBarClasses}>
             <i className='bx bxs-dashboard'></i>
             Dashboard
           </NavLink>

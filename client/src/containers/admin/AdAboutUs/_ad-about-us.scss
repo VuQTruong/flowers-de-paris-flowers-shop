@@ -1,3 +1,29 @@
-.ad-about__container {
-  margin-left: 50px;
+.ad-about__panel {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.ad-about__editor {
+  width: 100%;
+}
+
+.ad-about__preview-btn {
+  margin: 1.5em 1em;
+}
+
+.ad-about__preview {
+  background-color: white;
+  padding: 0.5em;
+  box-shadow: 5px 5px 10px grey;
+  width: 100%;
+}
+
+@media (min-width: $screen-md) {
+  .ad-about__preview {
+    width: 100%;
+    max-width: 80%;
+    padding: 2em;
+  }
 }
