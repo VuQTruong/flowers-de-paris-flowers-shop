@@ -8,7 +8,7 @@ function AdHeader() {
 
   return (
     <header className='header-container bg-primary'>
-      <div className='main-header container flex'>
+      <div className='main-header flex ad-header__container'>
         <Link to='/' className='brand'>
           Flowers de Paris
         </Link>
