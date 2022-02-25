@@ -19,7 +19,7 @@ function TagsFilter({ value, onChange }) {
     if (tags) {
       customNavigate(
         {
-          tags: tags,
+          tags: tags.split(', ').join(','),
         },
         ['page']
       );
