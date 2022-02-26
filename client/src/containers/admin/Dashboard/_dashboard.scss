@@ -46,6 +46,22 @@
   margin-bottom: 1em;
 }
 
+.dashboard__status {
+  display: flex;
+  align-items: center;
+}
+
+.dashboard__status::before {
+  content: '';
+  display: block;
+  width: 0.75em;
+  height: 0.75em;
+  margin-right: 0.5em;
+  background-color: var(--status-color);
+  box-shadow: 0 0 10px var(--status-color);
+  border-radius: 50%;
+}
+
 /* dashboard specific classes */
 .dashboard-panel {
 }

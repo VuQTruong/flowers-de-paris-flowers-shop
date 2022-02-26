@@ -1,5 +1,5 @@
 const express = require('express');
-const { body, param } = require('express-validator');
+const { param, body } = require('express-validator');
 const AppError = require('../../../errors/app-error');
 const isAdmin = require('../../../middlewares/is-admin');
 const isAuth = require('../../../middlewares/is-auth');
@@ -9,16 +9,16 @@ const User = require('../../../models/user.model');
 const catchAsync = require('../../../utilities/catch-async.util');
 const router = express.Router();
 
-const validations = [param('id').isMongoId()];
+const validations = [param('userId').isMongoId()];
 
 router.patch(
-  '/block/:id',
+  '/setadmin/:userId',
   isAuth,
   isAdmin,
   validations,
   validateRequest,
   catchAsync(async (req, res, next) => {
-    const userId = req.params.id;
+    const userId = req.params.userId;
 
     const user = await User.findById(userId);
 
@@ -26,12 +26,12 @@ router.patch(
       return next(AppError.badRequest('Sorry, we cannot find the user'));
     }
 
-    user.isActive = !user.isActive;
+    user.isAdmin = !user.isAdmin;
     await user.save();
 
     return res.status(200).json({
       status: 'success',
-      message: 'User is blocked',
+      message: `User's administration is set successfully`,
       data: {
         user,
       },

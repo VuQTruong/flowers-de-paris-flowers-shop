@@ -1,39 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useLocation, useSearchParams } from 'react-router-dom';
-import { adGetAllProducts } from '../../../features/products/ad-get-all-products';
+import { getAllUsers } from '../../../features/users/get-all-users';
 import useCustomNavigate from '../../../hooks/use-custom-navigate';
 
-function AdProductsFilter() {
+function AdAccountsFilter() {
   const dispatch = useDispatch();
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const customNavigate = useCustomNavigate();
 
-  const [searchBy, setSearchBy] = useState('name');
+  const [searchBy, setSearchBy] = useState('email');
   const [searchValue, setSearchValue] = useState('');
-  const [sortField, setSortField] = useState('createdAt');
+  const [sortField, setSortField] = useState('-createdAt');
   const [sortOrder, setSortOrder] = useState('desc');
   const [limit, setLimit] = useState(10);
 
-  const { categories } = useSelector((state) => state.allCategories);
-
   const setFilters = (queryObj) => {
     // !search
-    if (queryObj.name) {
-      setSearchBy('name');
-      setSearchValue(queryObj.name);
+    if (queryObj.email) {
+      setSearchBy('email');
+      setSearchValue(queryObj.email);
     }
 
-    if (queryObj.category) {
-      setSearchBy('category');
-      setSearchValue(queryObj.category);
+    if (queryObj.phone) {
+      setSearchBy('phone');
+      setSearchValue(queryObj.phone);
     }
 
-    if (queryObj['tags']) {
-      const tagsStr = queryObj['tags'].split(',').join(', ');
-      setSearchBy('tags');
-      setSearchValue(tagsStr);
+    if (queryObj._id) {
+      setSearchBy('_id');
+      setSearchValue(queryObj._id);
     }
 
     // !sort
@@ -58,9 +55,9 @@ function AdProductsFilter() {
       const queryObj = Object.fromEntries([...searchParams]);
       setFilters(queryObj);
 
-      dispatch(adGetAllProducts(searchParams.toString()));
+      dispatch(getAllUsers(searchParams.toString()));
     } else {
-      dispatch(adGetAllProducts(location.search));
+      dispatch(getAllUsers(location.search));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, location.search]);
@@ -77,7 +74,7 @@ function AdProductsFilter() {
   const searchHandler = () => {
     if (searchValue) {
       const queryObj = {};
-      queryObj[searchBy] = searchValue.split(', ').join(',');
+      queryObj[searchBy] = searchValue;
 
       customNavigate(queryObj);
       setSearchValue('');
@@ -143,6 +140,7 @@ function AdProductsFilter() {
   const renderSortOrder = () => {
     switch (sortField) {
       case 'name':
+      case 'email':
         return (
           <React.Fragment>
             <option value='desc'>Z - A</option>
@@ -156,38 +154,28 @@ function AdProductsFilter() {
             <option value='asc'>Oldest First</option>
           </React.Fragment>
         );
+      case 'isAdmin':
+        return (
+          <React.Fragment>
+            <option value='desc'>Admins First</option>
+            <option value='asc'>Users First</option>
+          </React.Fragment>
+        );
+      case 'isActive':
+        return (
+          <React.Fragment>
+            <option value='desc'>Active First</option>
+            <option value='asc'>Inactive First</option>
+          </React.Fragment>
+        );
       default:
         return (
           <React.Fragment>
-            <option value='desc'>Decending</option>
+            <option value='desc'>Descending</option>
             <option value='asc'>Ascending</option>
           </React.Fragment>
         );
     }
-  };
-
-  const renderCategoryOptions = () => {
-    let options = [];
-
-    let option = (
-      <option key='0' value='all'>
-        All
-      </option>
-    );
-    options.push(option);
-
-    if (categories && categories.length !== 0) {
-      categories.forEach((item, index) => {
-        let option = (
-          <option key={index + 1} value={item.slug}>
-            {item.name}
-          </option>
-        );
-        options.push(option);
-      });
-    }
-
-    return options;
   };
 
   return (
@@ -202,77 +190,62 @@ function AdProductsFilter() {
           value={searchBy}
           onChange={(e) => searchByHandler(e)}
         >
-          <option value='name'>Name</option>
-          <option value='category'>Category</option>
-          <option value='tags'>Tags</option>
+          <option value='email'>Email</option>
+          <option value='phone'>Phone Number</option>
+          <option value='_id'>User Id</option>
         </select>
       </div>
 
-      {searchBy !== 'category' && (
-        <div className='dashboard__search'>
-          <input
-            type='text'
-            className='dashboard__search-input'
-            placeholder='Search ...'
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            onKeyUp={(e) => {
-              if (e.code === 'Enter' || e.code === 'NumpadEnter') {
-                searchHandler();
-              }
-            }}
-          />
-          <button className='dashboard__search-btn' onClick={searchHandler}>
-            <i className='bx bx-search-alt'></i>
-          </button>
-        </div>
-      )}
-
-      {searchBy === 'category' && (
-        <div className='dashboard__search'>
-          <select
-            id='sortOrder'
-            className='dashboard__search-input'
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-          >
-            {renderCategoryOptions()}
-          </select>
-          <button className='dashboard__search-btn' onClick={searchHandler}>
-            <i className='bx bx-search-alt'></i>
-          </button>
-        </div>
-      )}
-
+      <div className='dashboard__search'>
+        <input
+          type='text'
+          className='dashboard__search-input'
+          placeholder={
+            searchBy === 'email'
+              ? 'Enter Email...'
+              : searchBy === 'phone'
+              ? 'Enter Phone Number...'
+              : searchBy === '_id' && 'Enter User Id...'
+          }
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
+          onKeyUp={(e) => {
+            if (e.code === 'Enter' || e.code === 'NumpadEnter') {
+              searchHandler();
+            }
+          }}
+        />
+        <button className='dashboard__search-btn' onClick={searchHandler}>
+          <i className='bx bx-search-alt'></i>
+        </button>
+      </div>
       <div className='dashboard__sort-field flex'>
         <label htmlFor='sortField'>
-          <i className='bx bx-list-ul'></i>Sort By
+          <i className='bx bx-target-lock'></i>Sort By
         </label>
         <select
           id='sortField'
           className='dashboard__select-input'
           value={sortField}
-          onChange={(e) => {
-            sortByHandler(e);
-          }}
+          onChange={(e) => sortByHandler(e)}
         >
           <option value='createdAt'>Created Date</option>
-          <option value='price'>Price</option>
-          <option value='name'>Alphabet</option>
+          <option value='name'>Username</option>
+          <option value='email'>Email</option>
+          <option value='isAdmin'>Admin</option>
+          <option value='isActive'>Status</option>
         </select>
       </div>
 
       <div className='dashboard__sort-order flex'>
         <label htmlFor='sortOrder'>
-          <i className='bx bx-sort'></i>Order by
+          <i className='bx bx-sort'></i>Order By
         </label>
         <select
           id='sortOrder'
           className='dashboard__select-input'
           value={sortOrder}
-          onChange={(e) => {
-            sortOrderHandler(e);
-          }}
+          onChange={(e) => sortOrderHandler(e)}
         >
           {renderSortOrder()}
         </select>
@@ -294,4 +267,4 @@ function AdProductsFilter() {
   );
 }
 
-export default AdProductsFilter;
+export default AdAccountsFilter;
