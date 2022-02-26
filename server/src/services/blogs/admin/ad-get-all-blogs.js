@@ -1,17 +1,20 @@
 const express = require('express');
-const Blog = require('../../models/blog.model');
-const catchAsync = require('../../utilities/catch-async.util');
-const queryDeserialize = require('../../utilities/queryDeserialize');
+const isAdmin = require('../../../middlewares/is-admin');
+const isAuth = require('../../../middlewares/is-auth');
+const Blog = require('../../../models/blog.model');
+const catchAsync = require('../../../utilities/catch-async.util');
+const queryDeserialize = require('../../../utilities/queryDeserialize');
 const router = express.Router();
 
 router.get(
-  '/',
+  '/admin',
+  isAuth,
+  isAdmin,
   catchAsync(async (req, res, next) => {
     const queryObj = queryDeserialize(req.query);
 
     const blogs = await Blog.find({
       ...queryObj.filters,
-      isActive: true,
     })
       .sort(queryObj.sort)
       .skip(queryObj.skip)
@@ -19,7 +22,6 @@ router.get(
 
     const totalBlogs = await Blog.find({
       ...queryObj.filters,
-      isActive: true,
     }).countDocuments();
 
     const { page, limit } = req.query;

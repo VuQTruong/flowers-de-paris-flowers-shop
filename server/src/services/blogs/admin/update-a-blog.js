@@ -1,11 +1,11 @@
 const express = require('express');
 const { body, param } = require('express-validator');
-const isAdmin = require('../../middlewares/is-admin');
-const isAuth = require('../../middlewares/is-auth');
-const validateRequest = require('../../middlewares/validate-request');
-const catchAsync = require('../../utilities/catch-async.util');
-const Blog = require('../../models/blog.model');
-const validateFields = require('../../middlewares/validate-fields');
+const isAdmin = require('../../../middlewares/is-admin');
+const isAuth = require('../../../middlewares/is-auth');
+const validateRequest = require('../../../middlewares/validate-request');
+const catchAsync = require('../../../utilities/catch-async.util');
+const Blog = require('../../../models/blog.model');
+const validateFields = require('../../../middlewares/validate-fields');
 const router = express.Router();
 
 const requireFields = [

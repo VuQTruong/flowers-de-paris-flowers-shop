@@ -4,35 +4,35 @@ const AppError = require('../../../errors/app-error');
 const isAdmin = require('../../../middlewares/is-admin');
 const isAuth = require('../../../middlewares/is-auth');
 const validateRequest = require('../../../middlewares/validate-request');
-const User = require('../../../models/user.model');
+const Blog = require('../../../models/blog.model');
 const catchAsync = require('../../../utilities/catch-async.util');
 const router = express.Router();
 
 const validations = [param('id').isMongoId()];
 
 router.patch(
-  '/block/:id',
+  '/setactive/:id',
   isAuth,
   isAdmin,
   validations,
   validateRequest,
   catchAsync(async (req, res, next) => {
-    const userId = req.params.id;
+    const blogId = req.params.id;
 
-    const user = await User.findById(userId);
+    const block = await Blog.findById(blogId);
 
-    if (!user) {
-      return next(AppError.badRequest('Sorry, we cannot find the user'));
+    if (!block) {
+      return next(AppError.badRequest('Sorry, we cannot find the block'));
     }
 
-    user.isActive = !user.isActive;
-    await user.save();
+    block.isActive = !block.isActive;
+    await block.save();
 
     return res.status(200).json({
       status: 'success',
-      message: `User's status is set successfully`,
+      message: `Block's status is set successfully`,
       data: {
-        user,
+        block,
       },
     });
   })

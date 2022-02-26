@@ -1,0 +1,141 @@
+.ad-blog-card {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5em;
+  background-color: white;
+  padding: 0.5em;
+  box-shadow: $box-shadow;
+}
+
+.ad-blog-card__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ad-blog-card__header-img {
+  width: 100%;
+  height: 225px;
+}
+
+.ad-blog-card__header-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.ad-blog-card__header-title {
+  font-size: $fs-22;
+  font-weight: 700;
+  margin-top: 0.5em;
+}
+
+.ad-blog-card__summary {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+
+  margin-bottom: 0.5em;
+}
+
+.ad-blog-card__summary * {
+  font-weight: 400;
+  font-size: $fs-16;
+}
+
+.ad-blog-card__status {
+  width: 5em;
+}
+
+.ad-blog-card__stat {
+  display: flex;
+  margin-bottom: 0.5em;
+}
+
+.ad-blog-card__stat-item {
+  display: flex;
+  align-items: center;
+  margin-right: 1em;
+}
+
+.ad-blog-card__stat-item i {
+  margin-right: 0.25em;
+}
+
+.ad-blog-card__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  border-top: 1px solid grey;
+  padding-top: 0.5em;
+}
+
+.ad-blog-card__active-btn {
+  width: 10em;
+}
+
+.ad-blog-card__active-btn.inactive {
+  background-color: #ccc;
+}
+
+@media (min-width: $screen-md) {
+  .ad-blog-card {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0.5em;
+
+    box-shadow: $box-shadow;
+    border-radius: 5px;
+  }
+
+  .ad-blog-card__header {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .ad-blog-card__header-img {
+    width: 75px;
+    height: 50px;
+    margin-right: 0.5em;
+  }
+
+  .ad-blog-card__header-title {
+    margin-top: 0;
+    margin-right: 0.5em;
+    font-size: $fs-16;
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ad-blog-card__summary {
+    flex-grow: 1;
+    margin-bottom: 0;
+    -webkit-line-clamp: 2;
+  }
+
+  .ad-blog-card__stat {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0.5em;
+  }
+
+  .ad-blog-card__buttons {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .ad-blog-card__btn:not(:last-child) {
+    margin-right: 0.5em;
+  }
+
+  .ad-blog-card__active-btn.inactive:hover {
+    background-color: black;
+    color: $clr-primary-300;
+  }
+}
