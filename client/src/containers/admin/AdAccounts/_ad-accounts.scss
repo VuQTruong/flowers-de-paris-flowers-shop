@@ -1,3 +1,19 @@
 .ad-users__table {
   margin-bottom: 1em;
 }
+
+.ad-users__btn--hide {
+  background-color: #ccc;
+}
+
+@media (min-width: $screen-md) {
+  // .ad-users__id {
+  //   max-width: 170px;
+  //   overflow: hidden;
+  //   text-overflow: ellipsis;
+  // }
+
+  .ad-users__btn {
+    width: 100%;
+  }
+}

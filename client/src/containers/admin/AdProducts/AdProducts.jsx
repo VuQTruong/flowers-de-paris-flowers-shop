@@ -46,7 +46,11 @@ function AdProducts() {
 
       {/* Products Table */}
       {loading && <Loading />}
-      {error && <MessageBox variant='danger'>{error}</MessageBox>}
+      {error && (
+        <MessageBox variant='danger' fullWidth>
+          {error}
+        </MessageBox>
+      )}
       {products && (
         <React.Fragment>
           {products.length === 0 ? (
@@ -108,7 +112,7 @@ function AdProducts() {
                         <td data-label='Hide' className='ad-products__hide'>
                           {product.isActive ? (
                             <button
-                              className='btn btn-primary admin-users__btn admin-users__btn--active'
+                              className='btn btn-primary ad-products__btn ad-products__btn--active'
                               onClick={() =>
                                 activateProduct(product._id, product.isActive)
                               }
@@ -117,7 +121,7 @@ function AdProducts() {
                             </button>
                           ) : (
                             <button
-                              className='btn btn-primary admin-users__btn admin-users__btn--hide'
+                              className='btn btn-primary ad-products__btn ad-products__btn--hide'
                               onClick={() =>
                                 activateProduct(product._id, product.isActive)
                               }
@@ -128,7 +132,7 @@ function AdProducts() {
                         </td>
                         <td data-label='#' className='ad-products__delete'>
                           <button
-                            className='btn btn-danger admin-users__btn'
+                            className='btn btn-danger ad-products__btn'
                             onClick={() =>
                               deleteProduct(product._id, product.images)
                             }

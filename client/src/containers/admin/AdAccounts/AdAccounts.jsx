@@ -113,14 +113,18 @@ function AdAccounts() {
       <AdAccountsFilter />
 
       {loading && <Loading />}
-      {error && <MessageBox variant='danger'>{error}</MessageBox>}
+      {error && (
+        <MessageBox variant='danger' fullWidth>
+          {error}
+        </MessageBox>
+      )}
       {users && (
         <React.Fragment>
           <div className='table__container ad-users__table'>
             <table className='table'>
               <thead>
                 <tr>
-                  <th className='admin-users__id'>User Id</th>
+                  <th className='ad-users__id'>User Id</th>
                   <th>Username</th>
                   <th>Email</th>
                   <th>Phone Number</th>
@@ -135,23 +139,20 @@ function AdAccounts() {
               <tbody>
                 {users.map((user, index) => (
                   <tr key={user._id}>
-                    <td data-label='User Id' className='admin-users__id'>
+                    <td data-label='User Id' className='ad-users__id'>
                       {user._id}
                     </td>
                     <td data-label='Username'>{user.name}</td>
                     <td data-label='Email'>{user.email}</td>
-                    <td
-                      data-label='Phone Number'
-                      className='admin-users__phone'
-                    >
+                    <td data-label='Phone Number' className='ad-users__phone'>
                       {user.phone}
                     </td>
-                    <td data-label='Gender' className='admin-users__gender'>
+                    <td data-label='Gender' className='ad-users__gender'>
                       <div className='table__cell--center'>
                         {user.gender ? user.gender : <span>&#8211;</span>}
                       </div>
                     </td>
-                    <td data-label='Is Admin' className='admin-users__admin'>
+                    <td data-label='Is Admin' className='ad-users__admin'>
                       <div className='table__cell--center'>
                         <input
                           type='checkbox'
@@ -162,7 +163,7 @@ function AdAccounts() {
                         />
                       </div>
                     </td>
-                    <td data-label='Status' className='admin-users__admin'>
+                    <td data-label='Status' className='ad-users__admin'>
                       {user.isActive ? (
                         <p
                           className='dashboard__status'
@@ -179,18 +180,18 @@ function AdAccounts() {
                         </p>
                       )}
                     </td>
-                    <td data-label='Status' className='admin-users__admin'>
+                    <td data-label='Status' className='ad-users__admin'>
                       <div className='table__cell--center'>
                         {!user.isAdmin ? (
                           <button
-                            className='btn btn-primary admin-users__btn admin-users__btn--active'
+                            className='btn btn-primary ad-users__btn ad-users__btn--active'
                             onClick={() => setAdminHandler(user._id)}
                           >
                             Activate
                           </button>
                         ) : (
                           <button
-                            className='btn btn-primary admin-users__btn admin-users__btn--hide'
+                            className='btn btn-primary ad-users__btn ad-users__btn--hide'
                             onClick={() => setAdminHandler(user._id)}
                           >
                             Deactivate
@@ -198,18 +199,18 @@ function AdAccounts() {
                         )}
                       </div>
                     </td>
-                    <td data-label='Status' className='admin-users__admin'>
+                    <td data-label='Status' className='ad-users__admin'>
                       <div className='table__cell--center'>
                         {!user.isActive ? (
                           <button
-                            className='btn btn-primary admin-users__btn admin-users__btn--active'
+                            className='btn btn-primary ad-users__btn ad-users__btn--active'
                             onClick={() => setUserStatusHandler(user._id)}
                           >
                             Activate
                           </button>
                         ) : (
                           <button
-                            className='btn btn-primary admin-users__btn admin-users__btn--hide'
+                            className='btn btn-primary ad-users__btn ad-users__btn--hide'
                             onClick={() => setUserStatusHandler(user._id)}
                           >
                             Deactivate
@@ -220,7 +221,7 @@ function AdAccounts() {
                     <td data-label='#'>
                       <div className='table__cell--center'>
                         <button
-                          className='btn btn-danger admin-users__delete'
+                          className='btn btn-danger ad-users__delete'
                           onClick={() => deleteUserHandler(user._id)}
                         >
                           Delete
@@ -234,7 +235,7 @@ function AdAccounts() {
           </div>
 
           <Paginator
-            className='admin-users__paginator'
+            className='ad-users__paginator'
             onChange={(value) => pageChangeHandler(value)}
             totalPages={totalPages}
             currentPage={currentPage}
