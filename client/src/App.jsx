@@ -76,6 +76,10 @@ const AdAppConfig = lazy(() =>
   import('./containers/admin/AdAppConfig/AdAppConfig')
 );
 const AboutUs = lazy(() => import('./containers/client/AboutUs/AboutUs'));
+const Blogs = lazy(() => import('./containers/client/Blogs/Blogs'));
+const BlogDetails = lazy(() =>
+  import('./containers/client/BlogDetails/BlogDetails')
+);
 
 function App() {
   const dispatch = useDispatch();
@@ -146,6 +150,8 @@ function App() {
             <Route path='payment' element={<Payment />} />
             <Route path='orders/:orderId' element={<ConfirmOrder />} />
             <Route path='about' element={<AboutUs />} />
+            <Route path='blogs' element={<Blogs />} />
+            <Route path='blogs/:slug' element={<BlogDetails />} />
             <Route path='oauth/fail' element={<OAuthFail />} />
           </Route>
 

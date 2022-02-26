@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { adGetAllBlogs } from '../ad-get-all-blogs';
+import { getAllBlogs } from '../get-all-blogs';
 
 const allBlogsSlice = createSlice({
   name: 'allBlogs',
@@ -14,6 +15,27 @@ const allBlogsSlice = createSlice({
   reducers: {},
   extraReducers: {
     /* get all blogs */
+    [getAllBlogs.pending]: (state) => {
+      state.loading = true;
+      state.error = '';
+      state.blogs = null;
+      state.totalBlogs = 0;
+      state.totalPages = 0;
+      state.currentPage = 1;
+    },
+    [getAllBlogs.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.blogs = action.payload.blogs;
+      state.totalBlogs = action.payload.totalBlogs;
+      state.totalPages = action.payload.totalPages;
+      state.currentPage = action.payload.currentPage;
+    },
+    [getAllBlogs.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    /* admin get all blogs */
     [adGetAllBlogs.pending]: (state) => {
       state.loading = true;
       state.error = '';

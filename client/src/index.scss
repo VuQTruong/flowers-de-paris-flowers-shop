@@ -44,6 +44,8 @@
 @import './components/PaymentComponents/AdditionalInfo/additional-info';
 @import './components/PaymentComponents/PaymentReview/payment-review';
 @import './components/OrderDetails/order-details';
+@import './components/BlogCard/blog-card';
+@import './components/Article/article';
 @import './components/Admin/AdHeader/ad-header';
 @import './components/Admin/AdSideBar/ad-side-bar';
 @import './components/Admin/AdProductsFilter/ad-products-filter';
@@ -75,6 +77,8 @@
 @import './containers/client/Payment/payment';
 @import './containers/client/ConfirmOrder/confirm-order';
 @import './containers/client/AboutUs/about-us';
+@import './containers/client/Blogs/blogs';
+@import './containers/client/BlogDetails/blog-details';
 @import './containers/admin/Dashboard/dashboard';
 @import './containers/admin/AdAnalytic/ad-analytic';
 @import './containers/admin/AdOrders/ad-orders';

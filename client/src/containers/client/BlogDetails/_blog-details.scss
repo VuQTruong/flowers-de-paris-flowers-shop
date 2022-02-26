@@ -1,0 +1,25 @@
+.blog-details__content {
+  padding: 2em 1em;
+}
+
+.blog-details__share {
+  padding-top: 1em;
+  margin-top: 2em;
+  border-top: 3px solid rgba($color: #000000, $alpha: 0.2);
+}
+
+.blog-details__share-icons {
+  margin-top: 1em;
+}
+
+.blog-details__share-icons i {
+  font-size: $fs-30;
+  margin-right: 0.5em;
+}
+
+@media (min-width: $screen-lg) {
+  .blog-details__content {
+    width: 65%;
+    margin: 0 auto;
+  }
+}

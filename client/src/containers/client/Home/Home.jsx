@@ -8,32 +8,60 @@ import FeatureImg_2 from '../../../assets/features/feature_2.jpg';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Axios from '../../../config/axios';
+import swal from 'sweetalert2';
 import ProductSlide from '../../../components/ProductSlide/ProductSlide';
+import BlogCard from '../../../components/BlogCard/BlogCard';
 
 function Home() {
   const [productsArr, setProductsArr] = useState([]);
+  const [blogs, setBlogs] = useState([]);
   const { layout } = useSelector((state) => state.config);
 
   useEffect(() => {
     window.scroll(0, 0);
 
     const fetchProducts = async () => {
-      const fetchPromises = layout.map((feature) => {
-        return Axios.get(`/products?category=${feature.categorySlug}&limit=5`);
-      });
+      try {
+        const fetchPromises = layout.map((feature) => {
+          return Axios.get(
+            `/products?category=${feature.categorySlug}&limit=5`
+          );
+        });
 
-      const promiseResults = await Promise.all(fetchPromises);
+        const promiseResults = await Promise.all(fetchPromises);
 
-      const results = [];
-      for (let result of promiseResults) {
-        results.push(result.data.data.products);
+        const results = [];
+        for (let result of promiseResults) {
+          results.push(result.data.data.products);
+        }
+
+        setProductsArr(results);
+      } catch (error) {
+        swal.fire({
+          icon: 'error',
+          title: 'Oops!...',
+          text: error.response.data.message,
+        });
       }
+    };
 
-      setProductsArr(results);
+    const fetchBlogs = async () => {
+      try {
+        const { data } = await Axios.get('/blogs?limit=3');
+
+        setBlogs(data.data.blogs);
+      } catch (error) {
+        swal.fire({
+          icon: 'error',
+          title: 'Oops!...',
+          text: error.response.data.message,
+        });
+      }
     };
 
     if (layout) {
       fetchProducts();
+      fetchBlogs();
     }
   }, [layout]);
 
@@ -79,6 +107,27 @@ function Home() {
     }
 
     return features;
+  };
+
+  const renderBlogCards = () => {
+    let blogCards = [];
+
+    for (let i = 0; i < blogs.length; i++) {
+      if (i === 3) break;
+
+      blogCards.push(
+        <BlogCard
+          key={blogs[i]._id}
+          link={`/blogs/${blogs[i].slug}`}
+          image={blogs[i].coverImage}
+          title={blogs[i].title}
+          summary={blogs[i].summary}
+          date={Date.parse(blogs[i].createdAt)}
+        />
+      );
+    }
+
+    return blogCards;
   };
 
   return (
@@ -158,13 +207,9 @@ function Home() {
       <section className='home-blog'>
         <h2 className='home-blog__title'>Discorver Our Blog</h2>
 
-        {/* {blogsLoading ? (
-          <Loading />
-        ) : blogsError ? (
-          <MessageBox variant='danger'>{blogsError}</MessageBox>
-        ) : (
+        {blogs && blogs.length !== 0 && (
           <div className='home-blog__content'>{renderBlogCards()}</div>
-        )} */}
+        )}
       </section>
     </main>
   );

@@ -1,7 +1,8 @@
 const express = require('express');
-const createBlogRouter = require('./admin/create-a-blog');
 const getABlogRouter = require('./get-a-blog');
+const getBlogBySlugRouter = require('./get-blog-by-slug');
 const getAllBlogRouter = require('./get-all-blogs');
+const createBlogRouter = require('./admin/create-a-blog');
 const updateABlogRouter = require('./admin/update-a-blog');
 const deleteABlogRouter = require('./admin/delete-a-blog');
 const adGetAllBlogsRouter = require('./admin/ad-get-all-blogs');
@@ -18,5 +19,6 @@ blogRouter.use(setActiveRouter);
 /* client routes */
 blogRouter.use(getABlogRouter);
 blogRouter.use(getAllBlogRouter);
+blogRouter.use(getBlogBySlugRouter);
 
 module.exports = blogRouter;
