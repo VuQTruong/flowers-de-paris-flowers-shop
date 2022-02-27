@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as DefaultPhotoSVG } from '../../assets/svgs/undraw_photos_re_pvh3.svg';
 import { currencyFormat, dateFormat } from '../../utilities/helpers';
 
-function OrderDetails({ order }) {
+function OrderDetails({ order, hideShoppingBtn }) {
   return (
     <React.Fragment>
       <div className='order-details__order-info'>
@@ -90,32 +90,44 @@ function OrderDetails({ order }) {
               {order.orderItems.map((item) => {
                 return (
                   <li className='order-details__item' key={item.productId}>
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className='order-details__item-img'
-                    />
-                    <Link
-                      to={`/products/${item.categorySlug}/${item.slug}`}
-                      className='order-details__item-name'
-                    >
-                      {item.name}
-                    </Link>
-                    <p className='order-details__price'>
-                      {item.quantity} x {currencyFormat.format(item.price)} ={' '}
-                      {currencyFormat.format(item.quantity * item.price)}
-                    </p>
+                    <div className='order-details__item-general-info'>
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className='order-details__item-img'
+                      />
+                      <Link
+                        to={`/products/${item.categorySlug}/${item.slug}`}
+                        className='order-details__item-name'
+                      >
+                        {item.name}
+                      </Link>
+                    </div>
+
+                    <div className='order-details__item-price'>
+                      <p className='order-details__price'>
+                        {item.quantity} x {currencyFormat.format(item.price)} ={' '}
+                        {currencyFormat.format(item.quantity * item.price)}
+                      </p>
+                    </div>
                   </li>
                 );
               })}
               {order.card && (
                 <li className='order-details__item' key={order.card.name}>
-                  <DefaultPhotoSVG className='order-details__item-img' />
-                  <p className='order-details__item-name'>{order.card.name}</p>
-                  <p className='order-details__price'>
-                    1 x {currencyFormat.format(order.card.price)} ={' '}
-                    {currencyFormat.format(1 * order.card.price)}
-                  </p>
+                  <div className='order-details__item-general-info'>
+                    <DefaultPhotoSVG className='order-details__item-img' />
+                    <p className='order-details__item-name'>
+                      {order.card.name}
+                    </p>
+                  </div>
+
+                  <div className='order-details__item-price'>
+                    <p className='order-details__price'>
+                      1 x {currencyFormat.format(order.card.price)} ={' '}
+                      {currencyFormat.format(1 * order.card.price)}
+                    </p>
+                  </div>
                 </li>
               )}
             </ul>
@@ -179,9 +191,11 @@ function OrderDetails({ order }) {
             </p>
           </section>
 
-          <Link to='/products' className='btn btn-primary order-details__btn'>
-            Keep Shopping
-          </Link>
+          {!hideShoppingBtn && (
+            <Link to='/products' className='btn btn-primary order-details__btn'>
+              Keep Shopping
+            </Link>
+          )}
         </section>
       </section>
     </React.Fragment>

@@ -1,3 +1,16 @@
-.ad-orders__container {
-  margin-left: 50px;
+.ad-orders__select-status {
+  width: 100%;
+}
+
+.ad-order-details__container {
+  margin-top: 2em;
+}
+
+.ad-order-details__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ad-order-details__title {
+  text-transform: uppercase;
 }

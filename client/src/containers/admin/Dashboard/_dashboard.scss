@@ -62,6 +62,14 @@
   border-radius: 50%;
 }
 
+.dashboard__table-btn {
+  width: 100%;
+}
+
+.dashboard__table-btn--hide {
+  background-color: #ccc;
+}
+
 /* dashboard specific classes */
 .dashboard-panel {
 }
