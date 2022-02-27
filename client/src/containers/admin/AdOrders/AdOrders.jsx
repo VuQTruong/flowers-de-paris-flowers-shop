@@ -8,7 +8,6 @@ import Paginator from '../../../components/Paginator/Paginator';
 import useCustomNavigate from '../../../hooks/use-custom-navigate';
 import {
   currencyFormat,
-  dateFormat,
   dateWithoutWeekdayFormat,
 } from '../../../utilities/helpers';
 import Axios from '../../../config/axios';

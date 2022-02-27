@@ -32,6 +32,10 @@ export const sortByOrder = (a, b) => {
   return 0;
 };
 
+export const getImageId = (image) => {
+  return image.split('/').pop().split('.')[0];
+};
+
 export const renderRatingStars = (rating) => {
   let count = 0;
   let content = [];

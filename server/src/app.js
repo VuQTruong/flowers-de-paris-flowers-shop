@@ -23,6 +23,7 @@ const appConfigRouter = require('./services/app-config');
 const cartRouter = require('./services/cart');
 const orderRouter = require('./services/orders');
 const paymentRouter = require('./services/payments');
+const fileRouter = require('./services/files');
 
 const app = express();
 
@@ -73,6 +74,7 @@ app.use('/api/users', userRouter);
 app.use('/api/carts', cartRouter);
 app.use('/api/orders', orderRouter);
 app.use('/api/payments', paymentRouter);
+app.use('/api/files', fileRouter);
 
 // todo: remove these routes before production
 app.use('/api/mock', mockRouter);
