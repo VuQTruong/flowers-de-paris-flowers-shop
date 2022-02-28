@@ -14,3 +14,10 @@
 .ad-order-details__title {
   text-transform: uppercase;
 }
+
+.ad-products__products-list p {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

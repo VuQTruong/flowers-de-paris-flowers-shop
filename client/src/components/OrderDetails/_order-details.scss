@@ -93,10 +93,33 @@
   box-shadow: $box-shadow;
 }
 
-.order-details__item-name {
+.order-details__item-default-img {
+  flex-shrink: 0;
+  width: 5em;
+  height: 5em;
+
+  border-radius: 10px;
+  box-shadow: $box-shadow;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.order-details__item-default-img i {
+  font-size: 2rem;
+}
+
+.order-details__item-name,
+.order-details__card {
   flex: 1 1 auto;
   margin-left: 1em;
   font-weight: 700;
+}
+
+.order-details__item-name {
+  color: blue;
+  text-decoration: underline;
 }
 
 .order-details__price {

@@ -150,7 +150,10 @@ function AdOrders() {
                             Date.parse(order.createdAt)
                           )}
                         </td>
-                        <td data-label='Products'>
+                        <td
+                          data-label='Products'
+                          className='ad-products__products-list'
+                        >
                           <p>{generateProducts(order.orderItems)}</p>
                         </td>
                         <td

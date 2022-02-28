@@ -1,7 +1,6 @@
 import React from 'react';
 import MessageBox from '../MessageBox/MessageBox';
 import { Link } from 'react-router-dom';
-import { ReactComponent as DefaultPhotoSVG } from '../../assets/svgs/undraw_photos_re_pvh3.svg';
 import { currencyFormat, dateFormat } from '../../utilities/helpers';
 
 function OrderDetails({ order, hideShoppingBtn }) {
@@ -116,11 +115,10 @@ function OrderDetails({ order, hideShoppingBtn }) {
               {order.card && (
                 <li className='order-details__item' key={order.card.name}>
                   <div className='order-details__item-general-info'>
-                    <DefaultPhotoSVG className='order-details__item-img' />
-                    {/* <i className='bx bx-image'></i> */}
-                    <p className='order-details__item-name'>
-                      {order.card.name}
-                    </p>
+                    <div className='order-details__item-default-img'>
+                      <i className='bx bx-image '></i>
+                    </div>
+                    <p className='order-details__card'>{order.card.name}</p>
                   </div>
 
                   <div className='order-details__item-price'>
