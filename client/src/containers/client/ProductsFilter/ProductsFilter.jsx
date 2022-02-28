@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import ColorsFilter from '../../../components/ProductsFilterComponents/ColorsFilter/ColorsFilter';
 import PriceFilter from '../../../components/ProductsFilterComponents/PriceFilter/PriceFilter';
 import RatingFilter from '../../../components/ProductsFilterComponents/RatingFilter/RatingFilter';
-import SizeFilter from '../../../components/ProductsFilterComponents/SizeFilter/SizeFilter';
+// import SizeFilter from '../../../components/ProductsFilterComponents/SizeFilter/SizeFilter';
 import Sorting from '../../../components/ProductsFilterComponents/Sorting/Sorting';
 import TagsFilter from '../../../components/ProductsFilterComponents/TagsFilter/TagsFilter';
 import { getAllProducts } from '../../../features/products/get-all-products';
@@ -23,7 +23,7 @@ function ProductsFilter() {
   const [price, setPrice] = useState({ low: null, high: null });
   const [tags, setTags] = useState('');
   const [colors, setColors] = useState([]);
-  const [size, setSize] = useState('All');
+  // const [size, setSize] = useState('All');
   const [rating, setRating] = useState(0);
 
   const toggleFilterPanelHandler = (value) => {
@@ -59,7 +59,7 @@ function ProductsFilter() {
     }
 
     // !size filter
-    queryObj.size && setSize(queryObj.size);
+    // queryObj.size && setSize(queryObj.size);
 
     // !rating filter
     queryObj['rating'] && setRating(queryObj['rating'] * 1);
@@ -107,7 +107,7 @@ function ProductsFilter() {
         <PriceFilter value={price} onChange={(value) => setPrice(value)} />
         <TagsFilter value={tags} onChange={(value) => setTags(value)} />
         <ColorsFilter value={colors} onChange={(value) => setColors(value)} />
-        <SizeFilter value={size} onChange={(value) => setSize(value)} />
+        {/* <SizeFilter value={size} onChange={(value) => setSize(value)} /> */}
         <RatingFilter value={rating} onChange={(value) => setRating(value)} />
       </div>
     </div>

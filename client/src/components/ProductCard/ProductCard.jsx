@@ -65,11 +65,11 @@ function ProductCard(props) {
           rating={product.averageRating}
           numReviews={product.numReviews}
         />
-        {product.size && (
+        {/* {product.size && (
           <div className='product-card__size'>
             Size <span className='product-card__size-icon'>{product.size}</span>
           </div>
-        )}
+        )} */}
         <div className='product-card__price'>
           {product.saleOffPrice !== 0 ? (
             <React.Fragment>
