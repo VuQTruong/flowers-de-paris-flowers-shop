@@ -1,3 +1,5 @@
+import swal from 'sweetalert2';
+
 export const dateFormat = new Intl.DateTimeFormat('en-EN', {
   weekday: 'long',
   year: 'numeric',
@@ -18,6 +20,16 @@ export const currencyFormat = new Intl.NumberFormat('en-EN', {
 
 export const roundHalf = (num) => {
   return Math.round(num * 2) / 2;
+};
+
+export const showLoadingModal = (title) => {
+  swal.fire({
+    title: title,
+    allowOutsideClick: false,
+    didOpen: () => {
+      swal.showLoading();
+    },
+  });
 };
 
 export const sortByOrder = (a, b) => {

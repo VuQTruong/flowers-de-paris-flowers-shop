@@ -16,12 +16,18 @@ class UploadAdapter {
           try {
             const formData = new FormData();
             formData.append('file', file);
+            formData.append('cloudFolder', 'texteditor');
 
-            const { data } = await axios.post('/api/files/image', formData, {
-              headers: { 'Content-Type': 'multipart/form-data' },
-            });
+            const { data } = await axios.post(
+              `${process.env.REACT_APP_SERVER_URL}/api/files/cloud-images`,
+              formData,
+              {
+                headers: { 'Content-Type': 'multipart/form-data' },
+                withCredentials: true,
+              }
+            );
             resolve({
-              default: data.url,
+              default: data.data.images[0],
             });
           } catch (err) {
             reject(err);

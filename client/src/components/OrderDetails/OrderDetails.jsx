@@ -117,6 +117,7 @@ function OrderDetails({ order, hideShoppingBtn }) {
                 <li className='order-details__item' key={order.card.name}>
                   <div className='order-details__item-general-info'>
                     <DefaultPhotoSVG className='order-details__item-img' />
+                    {/* <i className='bx bx-image'></i> */}
                     <p className='order-details__item-name'>
                       {order.card.name}
                     </p>

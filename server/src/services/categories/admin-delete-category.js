@@ -18,6 +18,11 @@ router.delete(
   catchAsync(async (req, res, next) => {
     const categoryId = req.params.id;
     const category = await Category.findById(categoryId);
+
+    if (!category) {
+      return next(AppError.badRequest('Sorry, we cannot find the category'));
+    }
+
     category.remove();
 
     return res.status(200).json({

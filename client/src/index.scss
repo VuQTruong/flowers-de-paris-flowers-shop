@@ -45,6 +45,7 @@
 @import './components/PaymentComponents/PaymentReview/payment-review';
 @import './components/OrderDetails/order-details';
 @import './components/BlogCard/blog-card';
+@import './components/GalleryModal/gallery-modal';
 @import './components/Article/article';
 @import './components/Admin/AdHeader/ad-header';
 @import './components/Admin/AdSideBar/ad-side-bar';
@@ -53,6 +54,8 @@
 @import './components/Admin/AdBlogCard/ad-blog-card';
 @import './components/Admin/AdBlogsFilter/ad-blogs-filter';
 @import './components/Admin/AdOrdersFilter/ad-orders-filter';
+@import './components/Admin/ImagesUploader/images-uploader';
+@import './components/Admin/ImagePreviewBox/image-preview-box';
 
 // containers
 @import './containers/LoadingPage/loading-page';
@@ -84,6 +87,7 @@
 @import './containers/admin/AdAnalytic/ad-analytic';
 @import './containers/admin/AdOrders/ad-orders';
 @import './containers/admin/AdCategories/ad-categories';
+@import './containers/admin/AdCategoryDetails/ad-category-details';
 @import './containers/admin/AdProducts/ad-products';
 @import './containers/admin/AdAccounts/ad-accounts';
 @import './containers/admin/AdBlogs/ad-blogs';
