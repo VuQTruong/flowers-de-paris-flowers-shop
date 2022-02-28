@@ -5,6 +5,7 @@ const isAuth = require('../../middlewares/is-auth');
 const validateRequest = require('../../middlewares/validate-request');
 const Category = require('../../models/category.model');
 const catchAsync = require('../../utilities/catch-async.util');
+const cloudinary = require('../../config/cloudinary');
 const router = express.Router();
 
 const validations = [param('id').isMongoId()];
@@ -22,6 +23,9 @@ router.delete(
     if (!category) {
       return next(AppError.badRequest('Sorry, we cannot find the category'));
     }
+
+    const imageId = category.coverImage.split('/').pop().split('.')[0];
+    await cloudinary.v2.uploader.destroy(`categories/${imageId}`);
 
     category.remove();
 
