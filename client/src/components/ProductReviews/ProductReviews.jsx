@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Formik, Form } from 'formik';
 import FormikControl from '../../formik/FormikControl';
 import * as Yup from 'yup';
-import TagInput from '../TagInput/TagInput';
+import ChipInput from '../ChipInput/ChipInput';
 import { useDispatch, useSelector } from 'react-redux';
 
 import swal from 'sweetalert2';
@@ -37,7 +37,9 @@ function ProductReviews(props) {
   }, [commentTagsOptions, dispatch]);
 
   const addReviewTag = (e) => {
-    setTags([...tags, e.target.innerHTML]);
+    if (!tags.includes(e.target.innerHTML)) {
+      setTags([...tags, e.target.innerHTML]);
+    }
   };
 
   const removeReviewTag = (e) => {
@@ -173,10 +175,10 @@ function ProductReviews(props) {
                 icon='bx bx-comment-detail'
               />
 
-              <TagInput
+              <ChipInput
                 label='Tags'
                 placeholder='type and press enter'
-                tags={tags}
+                chips={tags}
                 onUpdate={(newTags) => setTags(newTags)}
                 labelClassname='product-review__form-label'
               />

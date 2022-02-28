@@ -73,7 +73,9 @@ function ChipInput(props) {
           {chips.map((chip, index) => (
             <li className={`chip-input__chip-item`} key={index}>
               <span>{chip}</span>
-              <i className='bx bx-x' onClick={() => removeChip(chip)}></i>
+              {!readOnly && (
+                <i className='bx bx-x' onClick={() => removeChip(chip)}></i>
+              )}
             </li>
           ))}
         </ul>
