@@ -53,7 +53,7 @@ function AdCategories() {
         .fire({
           icon: 'warning',
           title: 'Watch out!...',
-          text: 'Are you sure you want to remove this category?',
+          text: 'All products under this category will also be deleted permanently! Are you sure you want to remove this category?',
           showCancelButton: true,
           showConfirmButton: true,
         })

@@ -3,16 +3,18 @@ const getProductById = require('./get-a-product-by-id');
 const getProductBySlug = require('./get-a-product-by-slug');
 const getAllProducts = require('./get-all-products');
 const getAllProductsByCategory = require('./get-all-product-by-category');
-const createProductRouter = require('./admin/create-a-product');
-const updateProductRouter = require('./admin/update-a-product');
-const deleteProductRouter = require('./admin/delete-a-product');
-const adGetAllProducts = require('./admin/ad-get-all-products');
+const adCreateProductRouter = require('./admin/admin-create-product');
+const adUpdateProductRouter = require('./admin/admin-update-product');
+const adDeleteProductRouter = require('./admin/admin-delete-product');
+const adGetAllProducts = require('./admin/admin-get-all-products');
+const adSetProductStatus = require('./admin/admin-set-product-status');
 const productRouter = express.Router();
 
 // Admin routes
-productRouter.use(createProductRouter);
-productRouter.use(updateProductRouter);
-productRouter.use(deleteProductRouter);
+productRouter.use(adCreateProductRouter);
+productRouter.use(adUpdateProductRouter);
+productRouter.use(adSetProductStatus);
+productRouter.use(adDeleteProductRouter);
 productRouter.use(adGetAllProducts);
 
 // Client routes

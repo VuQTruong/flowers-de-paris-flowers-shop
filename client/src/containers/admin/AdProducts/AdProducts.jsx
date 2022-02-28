@@ -1,14 +1,18 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import AdProductsFilter from '../../../components/Admin/AdProductsFilter/AdProductsFilter';
 import Loading from '../../../components/Loading/Loading';
 import MessageBox from '../../../components/MessageBox/MessageBox';
 import Paginator from '../../../components/Paginator/Paginator';
+import Axios from '../../../config/axios';
+import { adGetAllProducts } from '../../../features/products/ad-get-all-products';
 import useCustomNavigate from '../../../hooks/use-custom-navigate';
-import { currencyFormat } from '../../../utilities/helpers';
+import { currencyFormat, showLoadingModal } from '../../../utilities/helpers';
+import swal from 'sweetalert2';
 
 function AdProducts() {
+  const dispatch = useDispatch();
   const customNavigate = useCustomNavigate();
 
   const allProducts = useSelector((state) => state.allProducts);
@@ -24,9 +28,67 @@ function AdProducts() {
     });
   };
 
-  const activateProduct = () => {};
+  const setProductStatusHandler = async (productId) => {
+    try {
+      showLoadingModal('Updating product status...');
 
-  const deleteProduct = () => {};
+      await Axios.patch(`/products/setstatus/${productId}`);
+
+      swal.close();
+      swal
+        .fire({
+          icon: 'success',
+          title: 'Yay!...',
+          text: `Product's status is set successfully`,
+        })
+        .then(() => {
+          dispatch(adGetAllProducts());
+        });
+    } catch (error) {
+      swal.fire({
+        icon: 'error',
+        title: 'Oops!...',
+        text: error.response.data.message,
+      });
+    }
+  };
+
+  const deleteProduct = async (productId) => {
+    try {
+      swal
+        .fire({
+          icon: 'warning',
+          title: 'Watch out!...',
+          text: 'Are you sure you want to remove this product?',
+          showCancelButton: true,
+          showConfirmButton: true,
+        })
+        .then(async (result) => {
+          if (result.isConfirmed) {
+            showLoadingModal('Deleting product...');
+
+            await Axios.delete(`/products/${productId}`);
+
+            swal.close();
+            swal
+              .fire({
+                icon: 'success',
+                title: 'Yay!...',
+                text: `Product is deleted successfully`,
+              })
+              .then(() => {
+                dispatch(adGetAllProducts());
+              });
+          }
+        });
+    } catch (error) {
+      swal.fire({
+        icon: 'error',
+        title: 'Oops!...',
+        text: error.response.data.message,
+      });
+    }
+  };
 
   return (
     <main className='dashboard__container'>
@@ -69,8 +131,9 @@ function AdProducts() {
                       <th>Price</th>
                       <th>Sale Off</th>
                       <th>Category</th>
-                      <th className='ad-products__hide'>Status</th>
-                      <th className='ad-products__delete'>#</th>
+                      <th>Status</th>
+                      <th>Set Status</th>
+                      <th>#</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -109,26 +172,41 @@ function AdProducts() {
                             : '-'}
                         </td>
                         <td data-label='Category'>{product.category.name}</td>
-                        <td data-label='Hide' className='ad-products__hide'>
-                          {product.isActive ? (
-                            <button
-                              className='btn btn-primary ad-products__btn ad-products__btn--active'
-                              onClick={() =>
-                                activateProduct(product._id, product.isActive)
-                              }
-                            >
-                              Active
-                            </button>
-                          ) : (
-                            <button
-                              className='btn btn-primary ad-products__btn ad-products__btn--hide'
-                              onClick={() =>
-                                activateProduct(product._id, product.isActive)
-                              }
-                            >
-                              Hidden
-                            </button>
-                          )}
+
+                        <td data-label='Status'>
+                          <p
+                            className='order-details__status user-orders__status'
+                            style={{
+                              '--status-color': `${
+                                product.isActive ? '#6bc839' : '#d9534f'
+                              }`,
+                            }}
+                          >
+                            {product.isActive ? 'Active' : 'Inactive'}
+                          </p>
+                        </td>
+                        <td data-label='Set Status'>
+                          <div className='table__cell--center'>
+                            {!product.isActive ? (
+                              <button
+                                className='btn btn-primary ad-users__btn ad-users__btn--active'
+                                onClick={() =>
+                                  setProductStatusHandler(product._id)
+                                }
+                              >
+                                Activate
+                              </button>
+                            ) : (
+                              <button
+                                className='btn btn-primary ad-users__btn ad-users__btn--hide'
+                                onClick={() =>
+                                  setProductStatusHandler(product._id)
+                                }
+                              >
+                                Deactivate
+                              </button>
+                            )}
+                          </div>
                         </td>
                         <td data-label='#' className='ad-products__delete'>
                           <button

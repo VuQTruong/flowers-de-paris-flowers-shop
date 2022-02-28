@@ -70,11 +70,9 @@
   background-color: #ccc;
 }
 
-/* dashboard specific classes */
-.dashboard-panel {
-}
-
 .dashboard__search {
+  flex: 1 1 auto;
+
   display: flex;
   border-radius: 5px;
   box-shadow: $box-shadow;
@@ -160,7 +158,12 @@
   }
 
   .dashboard__search-input {
-    width: 350px;
+    flex: 1 1 auto;
+  }
+
+  .dashboard__limit-input {
+    flex: 1 1 auto;
+    max-width: 3em;
   }
 
   .dashboard__sort-field,

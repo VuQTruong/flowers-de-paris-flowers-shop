@@ -56,6 +56,7 @@
 @import './components/Admin/AdOrdersFilter/ad-orders-filter';
 @import './components/Admin/ImagesUploader/images-uploader';
 @import './components/Admin/ImagePreviewBox/image-preview-box';
+@import './components/Admin/AdProductDetailsForm/ad-product-details-form';
 
 // containers
 @import './containers/LoadingPage/loading-page';
@@ -89,6 +90,7 @@
 @import './containers/admin/AdCategories/ad-categories';
 @import './containers/admin/AdCategoryDetails/ad-category-details';
 @import './containers/admin/AdProducts/ad-products';
+@import './containers/admin/AdProductDetails/ad-product-details';
 @import './containers/admin/AdAccounts/ad-accounts';
 @import './containers/admin/AdBlogs/ad-blogs';
 @import './containers/admin/AdAboutUs/ad-about-us';
