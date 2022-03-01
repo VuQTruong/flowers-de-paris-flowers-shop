@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { adGetProductById } from '../ad-get-product-by-id';
 import { getProductById } from '../get-product-by-id';
 import { getProductBySlug } from '../get-product-by-slug';
 
@@ -6,10 +7,16 @@ export const currentProductSlice = createSlice({
   name: 'currentProduct',
   initialState: {
     product: null,
-    loading: true,
+    loading: false,
     error: '',
   },
-  reducers: {},
+  reducers: {
+    resetCurrentProduct: (state) => {
+      state.product = null;
+      state.loading = false;
+      state.error = '';
+    },
+  },
   extraReducers: {
     /* get product by product id */
     [getProductById.pending]: (state) => {
@@ -40,8 +47,23 @@ export const currentProductSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+
+    /* admin get product by product id */
+    [adGetProductById.pending]: (state) => {
+      state.loading = true;
+      state.error = '';
+      state.product = null;
+    },
+    [adGetProductById.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.product = action.payload;
+    },
+    [adGetProductById.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 });
 
-export const { setProductId } = currentProductSlice.actions;
+export const { resetCurrentProduct } = currentProductSlice.actions;
 export default currentProductSlice.reducer;

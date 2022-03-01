@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import MessageBox from '../MessageBox/MessageBox';
+import swal from 'sweetalert2';
+import { showLoadingModal } from '../../utilities/helpers';
 
 function GalleryModal(props) {
   const { images, showButtons, className, setCoverImage, deleteImage } = props;
@@ -158,7 +160,17 @@ function GalleryModal(props) {
               <div className='modal-image__buttons'>
                 <button
                   className='btn btn-primary'
-                  onClick={() => setCoverImage && setCoverImage(currentImg)}
+                  onClick={() => {
+                    if (setCoverImage) {
+                      setCoverImage(images[currentImg]);
+                      setOpenModal(false);
+                      swal.fire({
+                        icon: 'success',
+                        title: 'Yay!...',
+                        text: 'Image is set as cover',
+                      });
+                    }
+                  }}
                 >
                   Set as cover image
                 </button>
@@ -166,11 +178,22 @@ function GalleryModal(props) {
                   className='btn btn-danger'
                   onClick={() => {
                     if (deleteImage) {
-                      deleteImage(currentImg);
-
-                      if (currentImg === images.length - 1) {
-                        setCurrentImg(0);
-                      }
+                      setOpenModal(false);
+                      swal
+                        .fire({
+                          icon: 'warning',
+                          title: 'Watch out!...',
+                          text: 'Are you sure you want to delete this image?',
+                          showCancelButton: true,
+                          showConfirmButton: true,
+                        })
+                        .then(async (result) => {
+                          if (result.isConfirmed) {
+                            showLoadingModal('Deleting image...');
+                            await deleteImage(images[currentImg]);
+                            swal.close();
+                          }
+                        });
                     }
                   }}
                 >

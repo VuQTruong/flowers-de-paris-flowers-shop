@@ -15,9 +15,9 @@ import { getImageId, showLoadingModal } from '../../../utilities/helpers';
 import swal from 'sweetalert2';
 
 function AdCategoryDetails() {
-  const navigate = useNavigate();
   const { categoryId } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const isSubmitted = useRef(false);
   const coverRef = useRef('');
@@ -127,7 +127,7 @@ function AdCategoryDetails() {
       </div>
 
       {loading && <Loading />}
-      {error && <MessageBox variant='danger'>{error.message}</MessageBox>}
+      {error && <MessageBox variant='danger'>{error}</MessageBox>}
       {!loading && !error && (
         <div className='container ad-category-details__container'>
           <div className='ad-category-details__image-uploader'>

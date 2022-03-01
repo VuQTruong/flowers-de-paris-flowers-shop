@@ -1,5 +1,5 @@
 const express = require('express');
-const { oneOf, check, body } = require('express-validator');
+const { body } = require('express-validator');
 const isAdmin = require('../../../middlewares/is-admin');
 const isAuth = require('../../../middlewares/is-auth');
 const validateFields = require('../../../middlewares/validate-fields');
@@ -13,12 +13,12 @@ const router = express.Router();
 const requireFields = [
   'name',
   'category',
-  'categoryName',
+  'categorySlug',
   'images',
   'coverImage',
-  'price',
+  'originalPrice',
   'saleOffPrice',
-  'size',
+  // 'size',
   'summary',
   'description',
   'colors',
@@ -40,12 +40,12 @@ const validations = [
     .isString()
     .notEmpty()
     .withMessage('Images of product is missing'),
-  body('price')
+  body('originalPrice')
     .isNumeric()
     .notEmpty()
     .withMessage('Price of product is missing'),
   body('saleOffPrice').isNumeric().optional(),
-  body('size').isString().optional(),
+  // body('size').isString().optional(),
   body('summary')
     .isString()
     .notEmpty()

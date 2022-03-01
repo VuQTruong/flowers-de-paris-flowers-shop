@@ -7,20 +7,22 @@ const adCreateProductRouter = require('./admin/admin-create-product');
 const adUpdateProductRouter = require('./admin/admin-update-product');
 const adDeleteProductRouter = require('./admin/admin-delete-product');
 const adGetAllProducts = require('./admin/admin-get-all-products');
+const adGetProduct = require('./admin/admin-get-product-by-id');
 const adSetProductStatus = require('./admin/admin-set-product-status');
 const productRouter = express.Router();
 
 // Admin routes
-productRouter.use(adCreateProductRouter);
-productRouter.use(adUpdateProductRouter);
-productRouter.use(adSetProductStatus);
-productRouter.use(adDeleteProductRouter);
-productRouter.use(adGetAllProducts);
+productRouter.use(adCreateProductRouter); // POST /products
+productRouter.use(adUpdateProductRouter); // PATCH /products/:id
+productRouter.use(adSetProductStatus); // PATCH /products/setstatus/:id
+productRouter.use(adDeleteProductRouter); // DELTE /products/:id
+productRouter.use(adGetAllProducts); // GET  /products/admin
+productRouter.use(adGetProduct); // GET  /products/admin/:id
 
 // Client routes
-productRouter.use(getProductBySlug);
-productRouter.use(getProductById);
-productRouter.use(getAllProducts);
-productRouter.use(getAllProductsByCategory);
+productRouter.use(getProductBySlug); // GET /products/slug/slug:
+productRouter.use(getProductById); // GET /products/:id
+productRouter.use(getAllProducts); // GET /products
+productRouter.use(getAllProductsByCategory); // GET /products/category/:slug
 
 module.exports = productRouter;

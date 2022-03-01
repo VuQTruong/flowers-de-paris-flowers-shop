@@ -1,0 +1,57 @@
+.ck-editor {
+  border: none;
+  border-radius: 5px;
+  box-shadow: $box-shadow;
+}
+
+.ck-toolbar {
+  border: none !important;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: 1px solid #bbb !important;
+}
+
+.ck.ck-content {
+  border: none !important;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  height: max-content;
+  max-height: 70vh;
+  overflow: scroll;
+}
+
+/* In case the 'list-style: none' (ul and ol are set different than Default user agent stylesheet) */
+.ck-content ul,
+.ck-content ul li {
+  list-style-type: inherit;
+}
+
+.ck-content ul {
+  /* Default user agent stylesheet, you can change it to your needs. */
+  padding-left: 40px;
+}
+
+.ck.ck-editor__editable > .ck-placeholder::before {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+.ck-content .media {
+  width: 75%;
+  margin: 1em auto !important;
+}
+
+.ck-content a {
+  color: blue;
+  text-decoration: underline;
+}
+
+// .ck.ck-editor {
+//   display: flex;
+//   flex-direction: column-reverse;
+// }
+
+// .ck.ck-sticky-panel .ck-sticky-panel__content_sticky {
+//   bottom: 0 !important;
+// }
+// default global

@@ -1,15 +1,19 @@
 const express = require('express');
 const { param } = require('express-validator');
-const AppError = require('../../errors/app-error');
-const validateRequest = require('../../middlewares/validate-request');
-const Product = require('../../models/product.model');
-const catchAsync = require('../../utilities/catch-async.util');
+const AppError = require('../../../errors/app-error');
+const validateRequest = require('../../../middlewares/validate-request');
+const Product = require('../../../models/product.model');
+const catchAsync = require('../../../utilities/catch-async.util');
+const isAuth = require('../../../middlewares/is-auth');
+const isAdmin = require('../../../middlewares/is-admin');
 const router = express.Router();
 
 const validations = [param('id').isMongoId()];
 
 router.get(
-  '/:id',
+  '/admin/:id',
+  isAuth,
+  isAdmin,
   validations,
   validateRequest,
   catchAsync(async (req, res, next) => {
@@ -18,12 +22,9 @@ router.get(
       'category reviews'
     );
 
-    if (!product || !product.isActive) {
+    if (!product) {
       return next(AppError.notFound('Product is not found'));
     }
-
-    product.views += 1;
-    product.save();
 
     return res.status(200).json({
       status: 'success',

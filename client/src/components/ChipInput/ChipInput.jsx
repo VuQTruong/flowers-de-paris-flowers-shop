@@ -63,11 +63,7 @@ function ChipInput(props) {
       <label htmlFor='chip' className={labelClassname}>
         {label}
       </label>
-      <div
-        className={`chip-input__input-box ${
-          labelClassname ? labelClassname : ''
-        }`}
-      >
+      <div className='chip-input__input-box'>
         <i className={icon ? icon : 'bx bx-purchase-tag'}></i>
         <ul className='chip-input__chip-list'>
           {chips.map((chip, index) => (
@@ -86,7 +82,7 @@ function ChipInput(props) {
           readOnly={readOnly}
           placeholder={placeholder}
           value={chipInput}
-          onChange={(e) => setChipInput(e.target.value)}
+          onChange={(e) => setChipInput(e.target.value.toLowerCase())}
           onKeyUp={editChips}
           onKeyPress={onKeyPressHandler}
           autoComplete='off'

@@ -37,6 +37,30 @@
   gap: 0.5em;
 }
 
+.chip-input__chip {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 0.25em 0.5em 0.25em 0.75em;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+  background-color: #ddd;
+  border-radius: 5px;
+
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.chip-input__chip i {
+  font-size: $fs-22;
+  margin-left: 0.25em;
+}
+
+.chip-input__chip.active {
+  background-color: $clr-primary-300;
+  color: black;
+}
+
 .chip-input__chip-item {
   display: inline-flex;
   align-items: center;

@@ -1,0 +1,38 @@
+.ad-product-details__form {
+  flex: 1 1 auto;
+  padding: 0.25em 0;
+}
+
+.ad-product-details__form-label {
+  min-width: 7em;
+}
+
+.ad-product-details__editor-container {
+  display: flex;
+  flex-direction: column;
+  margin: 2em auto;
+  width: 100%;
+}
+
+.ad-product-details__form-editor {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: $screen-md) {
+  .ad-product-details__form {
+    padding-right: 4em;
+  }
+
+  .ad-product-details__editor-container {
+    flex-direction: row;
+  }
+
+  .ad-product-details__form-editor {
+    width: 80%;
+  }
+
+  .ad-product-details__chip-input {
+    margin-left: 9em;
+  }
+}
