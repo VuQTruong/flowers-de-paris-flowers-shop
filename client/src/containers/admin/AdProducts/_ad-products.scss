@@ -18,6 +18,7 @@
 }
 
 .ad-products__img {
+  min-width: 5em;
   width: 5em;
   height: 7em;
   border-radius: 5px;
@@ -27,6 +28,16 @@
 
 .ad-products__btn--hide {
   background-color: #ccc;
+}
+
+.ad-products__views {
+  display: flex;
+  align-items: center;
+  margin-right: 1em;
+}
+
+.ad-products__views i {
+  margin-right: 0.25em;
 }
 
 @media (max-width: 600px) {

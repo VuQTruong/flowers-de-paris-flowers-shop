@@ -128,9 +128,10 @@ function AdProducts() {
                       <th className='ad-products__id'>Product Id</th>
                       <th>Cover Image</th>
                       <th>Product</th>
-                      <th>Price</th>
+                      <th>Original Price</th>
                       <th>Sale Off</th>
                       <th>Category</th>
+                      <th>Views</th>
                       <th>Status</th>
                       <th>Set Status</th>
                       <th>#</th>
@@ -158,7 +159,7 @@ function AdProducts() {
                           </Link>
                         </td>
                         <td
-                          data-label='Price'
+                          data-label='Original Price'
                           className='ad-products_price product-price product-price--small'
                         >
                           {currencyFormat.format(product.price)}
@@ -171,7 +172,14 @@ function AdProducts() {
                             ? currencyFormat.format(product.saleOffPrice)
                             : '-'}
                         </td>
+
                         <td data-label='Category'>{product.category.name}</td>
+                        <td data-label='Views'>
+                          <div className='table__cell--center ad-products__views'>
+                            <i className='bx bx-show'></i>
+                            {product.views}
+                          </div>
+                        </td>
 
                         <td data-label='Status'>
                           <p

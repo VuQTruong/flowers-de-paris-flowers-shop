@@ -259,6 +259,7 @@ function AdProductsFilter() {
           <option value='createdAt'>Created Date</option>
           <option value='price'>Price</option>
           <option value='name'>Alphabet</option>
+          <option value='views'>Views</option>
         </select>
       </div>
 
