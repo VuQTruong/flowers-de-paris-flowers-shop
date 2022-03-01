@@ -20,7 +20,7 @@ function AdCategoryDetails() {
   const navigate = useNavigate();
 
   const isSubmitted = useRef(false);
-  const coverRef = useRef('');
+  const newImageRef = useRef('');
   const [cover, setCover] = useState('');
   const [images, setImages] = useState([]);
 
@@ -39,7 +39,6 @@ function AdCategoryDetails() {
     }
 
     if (category) {
-      coverRef.current = category.coverImage;
       setCover(category.coverImage);
       setImages([category.coverImage]);
     }
@@ -49,18 +48,9 @@ function AdCategoryDetails() {
   // !reset the currentCategory in store and delete images on Cloudinary if changes are not saved
   useEffect(() => {
     return () => {
-      // ?edit mode
-      if (category) {
-        // !delete recently uploaded image if not save
-        if (!isSubmitted.current && coverRef.current !== category.coverImage) {
-          deleteImage(coverRef.current);
-        }
-      }
-      // ?add mode
-      else {
-        if (!isSubmitted.current) {
-          deleteImage(coverRef.current);
-        }
+      // !delete recently uploaded image if not save
+      if (!isSubmitted.current) {
+        deleteImage(newImageRef.current);
       }
 
       dispatch(resetCurrentCategory());
@@ -137,19 +127,16 @@ function AdCategoryDetails() {
             />
             <ImagesUploader
               folderName='categories'
-              returnImages={(images) => {
-                // !delete the previous image if it is not the currently set coverImage
-                if (category) {
-                  if (cover && cover !== category.coverImage) {
-                    deleteImage(cover);
-                  }
-                } else {
-                  if (cover) {
-                    deleteImage(cover);
-                  }
+              returnImages={async (images) => {
+                // !delete the previous uploaded image before setting new one
+                if (newImageRef.current) {
+                  await deleteImage(cover);
                 }
 
-                coverRef.current = images[0];
+                // !store recently uploaded image to clear up in case the category information is not saved
+                newImageRef.current = images[0];
+
+                // !set image to be saved
                 setCover(images[0]);
                 setImages([...images]);
               }}

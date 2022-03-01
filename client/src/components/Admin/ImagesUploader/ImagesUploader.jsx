@@ -11,12 +11,11 @@ function ImagesUploader(props) {
     const files = Array.from(e.target.files);
 
     const formData = new FormData();
-    formData.append('folder', 'categories');
+    folderName && formData.append('cloudFolder', folderName);
 
     if (files.length !== 0) {
       files.forEach((image) => {
         formData.append('file', image);
-        folderName && formData.append('cloudFolder', folderName);
       });
 
       showLoadingModal('Uploading images...');
