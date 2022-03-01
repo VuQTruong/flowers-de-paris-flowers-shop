@@ -1,5 +1,6 @@
 const express = require('express');
 const { body, param } = require('express-validator');
+const AppError = require('../../../errors/app-error');
 const isAdmin = require('../../../middlewares/is-admin');
 const isAuth = require('../../../middlewares/is-auth');
 const validateFields = require('../../../middlewares/validate-fields');
@@ -16,7 +17,7 @@ const requireFields = [
   'coverImage',
   'price',
   'saleOffPrice',
-  'size',
+  // 'size',
   'summary',
   'description',
   'colors',
@@ -32,7 +33,7 @@ const validations = [
   body('coverImage').isString().optional(),
   body('price').isNumeric().optional(),
   body('saleOffPrice').isNumeric().optional(),
-  body('size').isString().optional(),
+  // body('size').isString().optional(),
   body('summary').isString().optional().trim().escape(),
   body('description').isString().optional().trim().escape(),
   body('colors').isArray().optional(),
@@ -48,15 +49,41 @@ router.patch(
   validateRequest,
   catchAsync(async (req, res, next) => {
     const productId = req.params.id;
+    const {
+      name,
+      category,
+      categoryName,
+      images,
+      coverImage,
+      originalPrice,
+      saleOffPrice,
+      summary,
+      description,
+      colors,
+      tags,
+    } = req.body;
 
-    const updatedProduct = await Product.findByIdAndUpdate(
-      productId,
-      req.body,
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
+    const product = await Product.findById(productId);
+
+    if (!product) {
+      return next(AppError.badRequest('Product not found'));
+    }
+
+    product.name = name ? name : product.name;
+    product.category = category ? category : product.category;
+    product.categoryName = categoryName ? categoryName : product.categoryName;
+    product.images = images ? images : product.images;
+    product.coverImage = coverImage ? coverImage : product.coverImage;
+    product.originalPrice = originalPrice
+      ? originalPrice
+      : product.originalPrice;
+    product.saleOffPrice = saleOffPrice ? saleOffPrice : product.saleOffPrice;
+    product.summary = summary ? summary : product.summary;
+    product.description = description ? description : product.description;
+    product.colors = colors ? colors : product.colors;
+    product.tags = tags ? tags : product.tags;
+
+    await product.save();
 
     return res.status(200).json({
       status: 'success',

@@ -162,7 +162,7 @@ function AdProducts() {
                           data-label='Original Price'
                           className='ad-products_price product-price product-price--small'
                         >
-                          {currencyFormat.format(product.price)}
+                          {currencyFormat.format(product.originalPrice)}
                         </td>
                         <td
                           data-label='Sale Off'

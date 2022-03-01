@@ -160,7 +160,7 @@ function AdOrders() {
                           data-label='Total Price'
                           className='ad-products_price product-price product-price--small'
                         >
-                          {currencyFormat.format(order.price)}
+                          {currencyFormat.format(order.totalPrice)}
                         </td>
 
                         <td data-label='Payment Status'>

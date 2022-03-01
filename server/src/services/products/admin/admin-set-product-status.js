@@ -22,7 +22,7 @@ router.patch(
     const product = await Product.findById(productId).populate('category');
 
     if (!product) {
-      return next(AppError.badRequest('Sorry, we cannot find the product'));
+      return next(AppError.badRequest('Product not found'));
     }
 
     if (!product.category.isActive) {

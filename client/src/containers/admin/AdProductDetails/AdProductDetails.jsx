@@ -44,7 +44,7 @@ function AdProductDetails() {
         slug: product.category.slug,
       }) ||
       null,
-    originalPrice: (product && product.price) || 0,
+    originalPrice: (product && product.originalPrice) || 0,
     saleOffPrice: (product && product.saleOffPrice) || 0,
   };
 

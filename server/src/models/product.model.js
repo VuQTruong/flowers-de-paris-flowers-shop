@@ -25,6 +25,10 @@ const productSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    originalPrice: {
+      type: Number,
+      required: true,
+    },
     saleOffPrice: {
       type: Number,
       default: 0,
@@ -93,10 +97,34 @@ productSchema.virtual('numReviews').get(function () {
 });
 
 productSchema.pre('save', function (next) {
+  const originalPrice = this.get('originalPrice');
+  const saleOffPrice = this.get('saleOffPrice');
+
   if (this.isModified('size')) {
     const size = this.get('size').toUpperCase();
     this.set('size', size);
   }
+
+  // !update price on originalPrice updated
+  if (this.isModified('originalPrice')) {
+    this.set('price', originalPrice);
+  }
+
+  // !update price and discountPercentage on saleOffPrice updated
+  if (this.isModified('saleOffPrice')) {
+    if (saleOffPrice !== 0) {
+      const percentage = Math.ceil(
+        ((originalPrice - saleOffPrice) / originalPrice) * 100
+      ).toFixed(0);
+
+      this.set('discountPercentage', percentage);
+      this.set('price', saleOffPrice);
+    } else {
+      this.set('discountPercentage', 0);
+      this.set('price', originalPrice);
+    }
+  }
+
   next();
 });
 
@@ -171,46 +199,6 @@ productSchema.pre('findOneAndUpdate', async function (next) {
 
     this._update.tagSlugs = tagSlugs;
   }
-  next();
-});
-
-// !calculate discount percentage on discount price saved
-productSchema.pre('save', function (next) {
-  if (this.isModified('saleOffPrice')) {
-    const price = this.get('price');
-    const saleOffPrice = this.get('saleOffPrice');
-
-    if (saleOffPrice !== 0) {
-      const percentage = Math.ceil(
-        ((price - saleOffPrice) / price) * 100
-      ).toFixed(0);
-
-      this.set('discountPercentage', percentage);
-    } else {
-      this.set('discountPercentage', 0);
-    }
-  }
-
-  next();
-});
-
-// !calculate discount percentage on discount price updated
-productSchema.pre('findOneAndUpdate', function (next) {
-  if (this._update && this._update.hasOwnProperty('saleOffPrice')) {
-    const price = this._update.price;
-    const saleOffPrice = this._update.saleOffPrice;
-
-    if (saleOffPrice !== 0) {
-      const percentage = Math.ceil(
-        ((price - saleOffPrice) / price) * 100
-      ).toFixed(0);
-
-      this._update.discountPercentage = percentage;
-    } else {
-      this._update.discountPercentage = 0;
-    }
-  }
-
   next();
 });
 

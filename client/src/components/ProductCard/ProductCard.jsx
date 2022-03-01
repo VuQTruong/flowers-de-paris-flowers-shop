@@ -74,7 +74,7 @@ function ProductCard(props) {
           {product.saleOffPrice !== 0 ? (
             <React.Fragment>
               <div className='product-card__price--origin inactive'>
-                <strike>{currencyFormat.format(product.price)}</strike>
+                <strike>{currencyFormat.format(product.originalPrice)}</strike>
                 <span className='product-card__discount-percentage'>
                   <i className='bx bxs-downvote'></i>
                   {product.discountPercentage}%

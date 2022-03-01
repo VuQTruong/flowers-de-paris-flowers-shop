@@ -6,6 +6,7 @@ const validateRequest = require('../../../middlewares/validate-request');
 const Product = require('../../../models/product.model');
 const Category = require('../../../models/category.model');
 const catchAsync = require('../../../utilities/catch-async.util');
+const cloudinary = require('../../../config/cloudinary');
 const router = express.Router();
 
 const validations = [param('id').isMongoId()];
@@ -21,14 +22,21 @@ router.delete(
     const product = await Product.findById(productId);
 
     if (!product) {
-      return next(AppError.badRequest('Sorry, we cannot find the product'));
+      return next(AppError.badRequest('Product not found'));
     }
 
+    // !remove product from corresponding category
     const category = await Category.findById(product.category);
     category.products = category.products.filter((product) => {
       return JSON.stringify(product) !== JSON.stringify(productId);
     });
     await category.save();
+
+    // !remove all images related to the product
+    product.images.forEach(async (image) => {
+      const imageId = image.split('/').pop().split('.')[0];
+      await cloudinary.v2.uploader.destroy(`products/${imageId}`);
+    });
 
     await product.remove();
 

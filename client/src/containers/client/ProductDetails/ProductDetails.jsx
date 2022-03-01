@@ -132,7 +132,9 @@ function ProductDetails() {
                 {product.saleOffPrice !== 0 ? (
                   <React.Fragment>
                     <span className='product-price inactive'>
-                      <strike>{currencyFormat.format(product.price)}</strike>
+                      <strike>
+                        {currencyFormat.format(product.originalPrice)}
+                      </strike>
                     </span>
 
                     <span className='product-price'>
