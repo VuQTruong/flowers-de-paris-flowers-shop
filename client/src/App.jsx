@@ -86,6 +86,9 @@ const AdCategoryDetails = lazy(() =>
 const AdProductDetails = lazy(() =>
   import('./containers/admin/AdProductDetails/AdProductDetails')
 );
+const AdBlogDetails = lazy(() =>
+  import('./containers/admin/AdBlogDetails/AdBlogDetails')
+);
 
 function App() {
   const dispatch = useDispatch();
@@ -180,6 +183,8 @@ function App() {
             />
             <Route path='accounts' element={<AdAccounts />} />
             <Route path='blogs' element={<AdBlogs />} />
+            <Route path='blogs/add' element={<AdBlogDetails />} />
+            <Route path='blogs/edit/:articleId' element={<AdBlogDetails />} />
             <Route path='about' element={<AdAboutUs />} />
             <Route path='contacts' element={<AdContacts />} />
             <Route path='hiring' element={<AdHiring />} />

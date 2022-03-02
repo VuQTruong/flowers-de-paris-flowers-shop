@@ -23,7 +23,7 @@ const validations = [
   body('author').isString().optional(),
   body('tags').isArray().optional(),
   body('summary').isString().optional().trim().escape(),
-  body('content').isString().optional().trim().escape(),
+  body('content').isString().optional().trim(),
   body('coverImage').isString().optional(),
 ];
 

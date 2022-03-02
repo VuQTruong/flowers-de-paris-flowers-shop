@@ -1,27 +1,24 @@
 const express = require('express');
 const { param } = require('express-validator');
-const AppError = require('../../errors/app-error');
-const validateRequest = require('../../middlewares/validate-request');
-const Blog = require('../../models/blog.model');
-const catchAsync = require('../../utilities/catch-async.util');
+const AppError = require('../../../errors/app-error');
+const validateRequest = require('../../../middlewares/validate-request');
+const Blog = require('../../../models/blog.model');
+const catchAsync = require('../../../utilities/catch-async.util');
 const router = express.Router();
 
 const validations = [param('id').isMongoId()];
 
 router.get(
-  '/:id',
+  '/admin/:id',
   validations,
   validateRequest,
   catchAsync(async (req, res, next) => {
     const blogId = req.params.id;
     const blog = await Blog.findById(blogId);
 
-    if (!blog || !blog.isActive) {
+    if (!blog) {
       return next(AppError.notFound('Article not found'));
     }
-
-    blog.views += 1;
-    await blog.save();
 
     return res.status(200).json({
       status: 'success',

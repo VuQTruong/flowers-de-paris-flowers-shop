@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { dateWithoutWeekdayFormat } from '../../utilities/helpers';
+import DefaultImg from '../../assets/images/defaultImg.png';
 
 function BlogCard(props) {
   const { className, link, image, title, summary, date, imgRef } = props;
@@ -9,10 +10,10 @@ function BlogCard(props) {
     <Link to={link} className={`blog-card ${className ? className : ''}`}>
       <div className='blog-card__img'>
         <img
-          src={image || '/images/defaultImg.png'}
+          src={image || DefaultImg}
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = '/images/defaultImg.png';
+            e.target.src = DefaultImg;
           }}
           alt='Blog Cover Img'
           ref={imgRef && imgRef}

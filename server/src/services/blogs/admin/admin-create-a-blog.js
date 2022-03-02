@@ -31,8 +31,7 @@ const validations = [
     .isString()
     .notEmpty()
     .withMessage('Content is missing')
-    .trim()
-    .escape(),
+    .trim(),
   body('coverImage')
     .isString()
     .notEmpty()

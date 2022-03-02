@@ -1,14 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { adGetArticle } from '../ad-get-article';
 import { getArticle } from '../get-article';
 
-const currentArticle = createSlice({
+const currentArticleSlice = createSlice({
   name: 'article',
   initialState: {
     article: null,
     loading: false,
     error: '',
   },
-  reducers: {},
+  reducers: {
+    resetCurrentArticle: (state) => {
+      state.article = null;
+      state.loading = false;
+      state.error = '';
+    },
+  },
   extraReducers: {
     [getArticle.pending]: (state) => {
       state.loading = true;
@@ -22,7 +29,22 @@ const currentArticle = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+
+    /* admin get article */
+    [adGetArticle.pending]: (state) => {
+      state.loading = true;
+      state.error = '';
+    },
+    [adGetArticle.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.article = action.payload;
+    },
+    [adGetArticle.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 });
 
-export default currentArticle.reducer;
+export const { resetCurrentArticle } = currentArticleSlice.actions;
+export default currentArticleSlice.reducer;

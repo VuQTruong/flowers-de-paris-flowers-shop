@@ -113,8 +113,6 @@ function Home() {
     let blogCards = [];
 
     for (let i = 0; i < blogs.length; i++) {
-      if (i === 3) break;
-
       blogCards.push(
         <BlogCard
           key={blogs[i]._id}

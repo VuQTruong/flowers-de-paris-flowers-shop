@@ -5,7 +5,7 @@ import swal from 'sweetalert2';
 import { showLoadingModal } from '../../../utilities/helpers';
 
 function ImagesUploader(props) {
-  const { returnImages, multiFiles, className, folderName } = props;
+  const { returnImages, multiFiles, className, folderName, title } = props;
 
   const uploadImagesHandler = (e) => {
     const files = Array.from(e.target.files);
@@ -58,13 +58,13 @@ function ImagesUploader(props) {
   };
 
   return (
-    <div className={`image-uploader__container ${className && className}`}>
+    <div className={`image-uploader__container ${className ? className : ''}`}>
       <label
         htmlFor='imgUpload'
         className='btn btn-primary image-uploader__btn'
       >
         <i className='bx bx-upload'></i>
-        Upload
+        {title ? title : 'Upload'}
       </label>
       <input
         type='file'
