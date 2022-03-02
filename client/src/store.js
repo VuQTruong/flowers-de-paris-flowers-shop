@@ -13,6 +13,8 @@ import deliveryReducer from './features/cart/slice/delivery-slice';
 import checkoutReducer from './features/checkout/slice/checkout-slice';
 import ordersReducer from './features/orders/slice/orders-slice';
 import aboutReducer from './features/about/slice/about-slice';
+import contactsReducer from './features/contact/slice/contacts-slice';
+import currentContactReducer from './features/contact/slice/current-contact-slice';
 import allBlogsReducer from './features/blogs/slice/all-blogs-slice';
 import currentArticleReducer from './features/blogs/slice/current-article';
 
@@ -33,6 +35,8 @@ const store = configureStore({
     about: aboutReducer,
     allBlogs: allBlogsReducer,
     currentArticle: currentArticleReducer,
+    allContacts: contactsReducer,
+    currentContact: currentContactReducer,
   },
 });
 

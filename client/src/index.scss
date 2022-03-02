@@ -48,6 +48,7 @@
 @import './components/GalleryModal/gallery-modal';
 @import './components/TextEditor/text-editor';
 @import './components/Article/article';
+@import './components/ContactCard/contact-card';
 @import './components/Admin/AdHeader/ad-header';
 @import './components/Admin/AdSideBar/ad-side-bar';
 @import './components/Admin/AdProductsFilter/ad-products-filter';
@@ -86,6 +87,7 @@
 @import './containers/client/AboutUs/about-us';
 @import './containers/client/Blogs/blogs';
 @import './containers/client/BlogDetails/blog-details';
+@import './containers/client/Contacts/contacts';
 @import './containers/admin/Dashboard/dashboard';
 @import './containers/admin/AdAnalytic/ad-analytic';
 @import './containers/admin/AdOrders/ad-orders';
@@ -98,5 +100,6 @@
 @import './containers/admin/AdBlogDetails/ad-blog-details';
 @import './containers/admin/AdAboutUs/ad-about-us';
 @import './containers/admin/AdContacts/ad-contacts';
+@import './containers/admin/AdContactDetails/ad-contact-details';
 @import './containers/admin/AdHiring/ad-hiring';
 @import './containers/admin/AdAppConfig/ad-app-config';

@@ -26,8 +26,8 @@ function Footer() {
             </Link>
           </li>
           <li>
-            <Link to='/contact' className='footer-link'>
-              Contact
+            <Link to='/contacts' className='footer-link'>
+              Contacts
             </Link>
           </li>
           <li>

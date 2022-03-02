@@ -11,6 +11,7 @@ function AboutUs() {
   const { aboutInfo, loading, error } = aboutUs;
 
   useEffect(() => {
+    window.scroll(0, 0);
     dispatch(getAbout());
   }, [dispatch]);
 

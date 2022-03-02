@@ -1,0 +1,57 @@
+.contact-card__container {
+  background-color: white;
+  border-radius: 10px;
+  border: 1px dashed gray;
+  padding: 1em;
+}
+
+.contact-card__item-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-card__item-img {
+  width: 100%;
+  box-shadow: $box-shadow;
+}
+
+.contact-card__item-info {
+  position: relative;
+  margin: 1em 0;
+  line-height: 1.7;
+}
+
+.contact-card__item-info > p:not(:last-child) {
+  margin-bottom: 0.75em;
+}
+
+.contact-card__btn-edit {
+  margin-top: 1em;
+  display: block;
+  width: 100%;
+
+  position: relative;
+  bottom: 0;
+}
+
+.contact-card__branch-name {
+  font-size: 1.5rem;
+  margin-bottom: 0.5em;
+}
+
+@media (min-width: $screen-md) {
+  .contact-card__item-panel {
+    flex-direction: row;
+  }
+
+  .contact-card__item-img {
+    width: 40%;
+    margin-top: 0.5em;
+    align-self: flex-start;
+    object-fit: contain;
+  }
+
+  .contact-card__item-info {
+    margin: 0 1em;
+  }
+}

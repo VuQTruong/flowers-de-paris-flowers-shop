@@ -12,6 +12,7 @@ const contactSchema = new mongoose.Schema(
     description: String,
     phone: String,
     address: String,
+    coverImage: String,
     lat: Number,
     long: Number,
     slug: String,

@@ -89,6 +89,10 @@ const AdProductDetails = lazy(() =>
 const AdBlogDetails = lazy(() =>
   import('./containers/admin/AdBlogDetails/AdBlogDetails')
 );
+const AdContactDetails = lazy(() =>
+  import('./containers/admin/AdContactDetails/AdContactDetails')
+);
+const Contacts = lazy(() => import('./containers/client/Contacts/Contacts'));
 
 function App() {
   const dispatch = useDispatch();
@@ -161,6 +165,7 @@ function App() {
             <Route path='about' element={<AboutUs />} />
             <Route path='blogs' element={<Blogs />} />
             <Route path='blogs/:slug' element={<BlogDetails />} />
+            <Route path='contacts' element={<Contacts />} />
             <Route path='oauth/fail' element={<OAuthFail />} />
           </Route>
 
@@ -187,6 +192,11 @@ function App() {
             <Route path='blogs/edit/:articleId' element={<AdBlogDetails />} />
             <Route path='about' element={<AdAboutUs />} />
             <Route path='contacts' element={<AdContacts />} />
+            <Route path='contacts/add' element={<AdContactDetails />} />
+            <Route
+              path='contacts/edit/:contactId'
+              element={<AdContactDetails />}
+            />
             <Route path='hiring' element={<AdHiring />} />
             <Route path='config' element={<AdAppConfig />} />
           </Route>

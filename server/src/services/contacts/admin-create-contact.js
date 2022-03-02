@@ -8,7 +8,7 @@ const Contact = require('../../models/contact.model');
 const validateFields = require('../../middlewares/validate-fields');
 const router = express.Router();
 
-const requireFields = ['name', 'description', 'phone', 'address'];
+const requireFields = ['name', 'description', 'phone', 'address', 'coverImage'];
 
 const validations = [
   body('name')
@@ -29,6 +29,10 @@ const validations = [
     .isString()
     .notEmpty()
     .withMessage('Address of the branch is missing'),
+  body('coverImage')
+    .isString()
+    .notEmpty()
+    .withMessage('Image of the branch is missing'),
 ];
 
 router.post(
@@ -39,13 +43,15 @@ router.post(
   validations,
   validateRequest,
   catchAsync(async (req, res, next) => {
-    const { name, description, phone, address, lat, long } = req.body;
+    const { name, description, phone, address, coverImage, lat, long } =
+      req.body;
 
     const contactInfo = {
       name,
       description,
       phone,
       address,
+      coverImage,
       lat,
       long,
     };

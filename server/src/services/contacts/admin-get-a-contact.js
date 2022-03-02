@@ -1,5 +1,7 @@
 const express = require('express');
 const { param } = require('express-validator');
+const isAdmin = require('../../middlewares/is-admin');
+const isAuth = require('../../middlewares/is-auth');
 const validateRequest = require('../../middlewares/validate-request');
 const Contact = require('../../models/contact.model');
 const catchAsync = require('../../utilities/catch-async.util');
@@ -9,6 +11,8 @@ const validations = [param('id').isMongoId()];
 
 router.get(
   '/:id',
+  isAuth,
+  isAdmin,
   validations,
   validateRequest,
   catchAsync(async (req, res, next) => {

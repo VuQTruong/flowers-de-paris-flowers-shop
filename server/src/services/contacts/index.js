@@ -1,15 +1,15 @@
 const express = require('express');
-const createContactRouter = require('./create-contact');
-const getContactRouter = require('./get-a-contact');
 const getAllContactsRouter = require('./get-all-contacts');
-const updateContactRouter = require('./update-a-contact');
-const deleteContactRouter = require('./delete-a-contact');
+const adCreateContactRouter = require('./admin-create-contact');
+const adUpdateContactRouter = require('./admin-update-a-contact');
+const adDeleteContactRouter = require('./admin-delete-a-contact');
+const adGetContactRouter = require('./admin-get-a-contact');
 const contactRouter = express.Router();
 
-contactRouter.use(createContactRouter);
-contactRouter.use(getContactRouter);
+contactRouter.use(adCreateContactRouter);
+contactRouter.use(adGetContactRouter);
 contactRouter.use(getAllContactsRouter);
-contactRouter.use(updateContactRouter);
-contactRouter.use(deleteContactRouter);
+contactRouter.use(adUpdateContactRouter);
+contactRouter.use(adDeleteContactRouter);
 
 module.exports = contactRouter;
