@@ -11,7 +11,7 @@ export const cartSlice = createSlice({
       ? JSON.parse(localStorage.getItem('cart'))
       : [],
     loading: false,
-    error: null,
+    error: '',
   },
   reducers: {
     clearCartStore: (state) => {
@@ -22,7 +22,7 @@ export const cartSlice = createSlice({
   extraReducers: {
     [getCart.pending]: (state, action) => {
       state.loading = true;
-      state.error = null;
+      state.error = '';
     },
     [getCart.fulfilled]: (state, action) => {
       state.loading = false;
@@ -38,7 +38,7 @@ export const cartSlice = createSlice({
     // !add item to cart
     [addItemToCart.pending]: (state, action) => {
       state.loading = true;
-      state.error = null;
+      state.error = '';
     },
     [addItemToCart.fulfilled]: (state, action) => {
       state.loading = false;
@@ -54,7 +54,7 @@ export const cartSlice = createSlice({
     // !remove item from cart
     [removeItemFromCart.pending]: (state, action) => {
       state.loading = true;
-      state.error = null;
+      state.error = '';
     },
     [removeItemFromCart.fulfilled]: (state, action) => {
       state.loading = false;
@@ -70,7 +70,7 @@ export const cartSlice = createSlice({
     // !empty cart
     [emptyCart.pending]: (state, action) => {
       state.loading = true;
-      state.error = null;
+      state.error = '';
     },
     [emptyCart.fulfilled]: (state, action) => {
       state.loading = false;

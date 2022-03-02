@@ -10,14 +10,14 @@ export const ordersSlice = createSlice({
     totalPages: 0,
     currentPage: 1,
     loading: false,
-    error: null,
+    error: '',
   },
   reducers: {},
   extraReducers: {
     /* get all orders of a user */
     [getAllOrders.pending]: (state) => {
       state.loading = true;
-      state.error = null;
+      state.error = '';
     },
     [getAllOrders.fulfilled]: (state, action) => {
       state.loading = false;
@@ -31,7 +31,7 @@ export const ordersSlice = createSlice({
     /* admin get all orders */
     [adGetAllOrders.pending]: (state) => {
       state.loading = true;
-      state.error = null;
+      state.error = '';
     },
     [adGetAllOrders.fulfilled]: (state, action) => {
       state.loading = false;

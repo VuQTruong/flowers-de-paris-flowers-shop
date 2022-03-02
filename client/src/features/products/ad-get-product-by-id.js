@@ -9,7 +9,7 @@ export const adGetProductById = createAsyncThunk(
 
       return data.data.product;
     } catch (error) {
-      rejectWithValue(error.response.data);
+      rejectWithValue(error.response.data.message);
     }
   }
 );

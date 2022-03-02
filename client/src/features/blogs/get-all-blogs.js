@@ -11,7 +11,7 @@ export const getAllBlogs = createAsyncThunk(
 
       return data.data;
     } catch (error) {
-      return rejectWithValue(error.repsonse.data);
+      return rejectWithValue(error.repsonse.data.message);
     }
   }
 );

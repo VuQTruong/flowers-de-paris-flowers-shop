@@ -9,7 +9,7 @@ export const getAbout = createAsyncThunk(
 
       return data.data.about;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );

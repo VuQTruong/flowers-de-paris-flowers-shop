@@ -12,7 +12,7 @@ export const fetchLayoutInfo = createAsyncThunk(
 
       return layout;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );

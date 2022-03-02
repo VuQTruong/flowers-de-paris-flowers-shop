@@ -10,7 +10,7 @@ export const emptyCart = createAsyncThunk(
       return data.data.cart.items;
     } catch (error) {
       if (error.response) {
-        rejectWithValue(error.response.data);
+        rejectWithValue(error.response.data.message);
       } else {
         rejectWithValue(error);
       }

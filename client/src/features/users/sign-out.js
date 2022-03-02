@@ -9,7 +9,7 @@ export const signOut = createAsyncThunk(
 
       return null;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );

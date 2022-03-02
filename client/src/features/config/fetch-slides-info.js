@@ -12,7 +12,7 @@ export const fetchSlidesInfo = createAsyncThunk(
 
       return slides;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );

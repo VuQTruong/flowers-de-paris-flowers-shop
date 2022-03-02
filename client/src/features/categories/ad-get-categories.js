@@ -11,7 +11,7 @@ export const adGetCategories = createAsyncThunk(
 
       return data.data.categories;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );

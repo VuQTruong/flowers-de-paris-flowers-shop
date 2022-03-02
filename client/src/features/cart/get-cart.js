@@ -41,7 +41,7 @@ export const getCart = createAsyncThunk(
 
       return modifiedCartItems;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );

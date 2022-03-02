@@ -9,7 +9,7 @@ export const getAllOrders = createAsyncThunk(
 
       return data.data.orders;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );

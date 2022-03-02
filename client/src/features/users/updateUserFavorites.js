@@ -11,7 +11,7 @@ export const updateUserFavorites = createAsyncThunk(
 
       return data.data.user;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );

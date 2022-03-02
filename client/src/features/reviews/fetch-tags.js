@@ -9,7 +9,7 @@ export const fetchTags = createAsyncThunk(
 
       return data.data.tags;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
