@@ -49,7 +49,7 @@ function AdCategoryDetails() {
   useEffect(() => {
     return () => {
       // !delete recently uploaded image if not save
-      if (!isSubmitted.current) {
+      if (!isSubmitted.current && newImageRef.current) {
         deleteImage(newImageRef.current);
       }
 

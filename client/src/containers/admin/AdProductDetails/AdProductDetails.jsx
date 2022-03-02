@@ -15,7 +15,12 @@ import { getImageId, showLoadingModal } from '../../../utilities/helpers';
 import Axios from '../../../config/axios';
 import swal from 'sweetalert2';
 
-const validationSchema = Yup.object({});
+const validationSchema = Yup.object({
+  name: Yup.string().required('Product name is missing'),
+  category: Yup.mixed().required('Category is missing'),
+  originalPrice: Yup.number().required('Product price is missing'),
+  saleOffPrice: Yup.number(),
+});
 
 function AdProductDetails() {
   const { productId } = useParams();
@@ -25,6 +30,8 @@ function AdProductDetails() {
   const formRef = useRef();
   const newImagesRef = useRef([]);
   const isSubmitted = useRef(false);
+  const [isValid, setIsValid] = useState(true);
+
   const [cover, setCover] = useState('');
   const [images, setImages] = useState([]);
   const [summary, setSummary] = useState('');
@@ -70,7 +77,7 @@ function AdProductDetails() {
   useEffect(() => {
     return () => {
       // !delete recently uploaded images if product info is not saved/updated
-      if (!isSubmitted.current) {
+      if (!isSubmitted.current && newImagesRef.current) {
         newImagesRef.current.forEach((image) => {
           deleteImage(image);
         });
@@ -100,8 +107,54 @@ function AdProductDetails() {
     setCover(image);
   };
 
+  const validateInput = (formik) => {
+    formik.validateForm();
+    const values = formik.values;
+
+    if (
+      !summary ||
+      !description ||
+      !values.name ||
+      !values.category ||
+      !values.originalPrice
+    ) {
+      if (!values.name) {
+        swal.fire({
+          icon: 'error',
+          title: 'Oops!...',
+          text: 'Product name is missing',
+        });
+      }
+
+      if (!values.category) {
+        swal.fire({
+          icon: 'error',
+          title: 'Oops!...',
+          text: 'Category is missing',
+        });
+      }
+
+      if (!values.originalPrice) {
+        swal.fire({
+          icon: 'error',
+          title: 'Oops!...',
+          text: 'Price is missing',
+        });
+      }
+
+      setIsValid(false);
+      return false;
+    }
+
+    return true;
+  };
+
   const onSubmitHandler = async () => {
     const values = formRef.current.values;
+
+    if (!validateInput(formRef.current)) {
+      return;
+    }
 
     try {
       showLoadingModal('Saving product info...');
@@ -144,6 +197,7 @@ function AdProductDetails() {
         });
       isSubmitted.current = true;
     } catch (error) {
+      console.log(error);
       swal.fire({
         icon: 'error',
         title: 'Oops!...',
@@ -218,7 +272,7 @@ function AdProductDetails() {
                 onEditorChange={(e, editor) => setSummary(editor.getData())}
               />
 
-              {!summary && (
+              {!isValid && !summary && (
                 <div className='form__error'>Summary is missing</div>
               )}
             </div>
@@ -235,7 +289,7 @@ function AdProductDetails() {
                 onEditorChange={(e, editor) => setDescription(editor.getData())}
               />
 
-              {!description && (
+              {!isValid && !description && (
                 <div className='form__error'>Description is missing</div>
               )}
             </div>
