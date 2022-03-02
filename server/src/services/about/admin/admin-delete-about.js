@@ -1,10 +1,10 @@
 const express = require('express');
-const isAuth = require('../../middlewares/is-auth');
-const isAdmin = require('../../middlewares/is-admin');
-const catchAsync = require('../../utilities/catch-async.util');
-const About = require('../../models/about.model');
+const isAuth = require('../../../middlewares/is-auth');
+const isAdmin = require('../../../middlewares/is-admin');
+const catchAsync = require('../../../utilities/catch-async.util');
+const About = require('../../../models/about.model');
 const { param } = require('express-validator');
-const validateRequest = require('../../middlewares/validate-request');
+const validateRequest = require('../../../middlewares/validate-request');
 const router = express.Router();
 
 const validations = [param('id').isMongoId()];

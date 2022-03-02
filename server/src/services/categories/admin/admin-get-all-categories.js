@@ -1,6 +1,6 @@
 const express = require('express');
-const Category = require('../../models/category.model');
-const catchAsync = require('../../utilities/catch-async.util');
+const Category = require('../../../models/category.model');
+const catchAsync = require('../../../utilities/catch-async.util');
 const router = express.Router();
 
 router.get(

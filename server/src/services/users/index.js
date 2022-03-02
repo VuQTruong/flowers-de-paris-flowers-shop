@@ -8,10 +8,10 @@ const removeAFavoriteRouter = require('./favorites/remove-a-favorite');
 const getAllFavoritesRouter = require('./favorites/get-favorites');
 const updateFavoritesRouter = require('./favorites/update-favorites');
 
-const getAllUsersRouter = require('./admin/get-all-users');
-const blockAUserRouter = require('./admin/block-a-user');
-const deleteAUserRouter = require('./admin/delete-a-user');
-const setAdminRouter = require('./admin/set-admin');
+const adGetAllUsersRouter = require('./admin/admin-get-all-users');
+const adBlockAUserRouter = require('./admin/admin-block-a-user');
+const adDeleteAUserRouter = require('./admin/admin-delete-a-user');
+const adSetAdminRouter = require('./admin/admin-set-admin');
 
 const userRouter = express.Router();
 
@@ -26,9 +26,9 @@ userRouter.use(getAllFavoritesRouter);
 userRouter.use(updateFavoritesRouter);
 
 // Admin routes
-userRouter.use(getAllUsersRouter);
-userRouter.use(blockAUserRouter);
-userRouter.use(deleteAUserRouter);
-userRouter.use(setAdminRouter);
+userRouter.use(adGetAllUsersRouter);
+userRouter.use(adBlockAUserRouter);
+userRouter.use(adDeleteAUserRouter);
+userRouter.use(adSetAdminRouter);
 
 module.exports = userRouter;

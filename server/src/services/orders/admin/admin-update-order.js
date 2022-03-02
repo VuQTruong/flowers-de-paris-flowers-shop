@@ -22,7 +22,7 @@ const validations = [
 ];
 
 router.patch(
-  '/ad/:orderId',
+  '/admin/:orderId',
   isAuth,
   isAdmin,
   validateFields(requiredFields),

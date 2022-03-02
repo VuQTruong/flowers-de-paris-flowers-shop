@@ -6,7 +6,7 @@ const Order = require('../../../models/order.model');
 const router = express.Router();
 
 router.get(
-  '/ad/:orderId',
+  '/admin/:orderId',
   isAuth,
   isAdmin,
   catchAsync(async (req, res, next) => {

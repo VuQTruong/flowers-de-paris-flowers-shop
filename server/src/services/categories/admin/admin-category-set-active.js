@@ -1,13 +1,11 @@
 const express = require('express');
-const slugify = require('slugify');
-const { body, oneOf, check, param } = require('express-validator');
-const isAdmin = require('../../middlewares/is-admin');
-const isAuth = require('../../middlewares/is-auth');
-const validateRequest = require('../../middlewares/validate-request');
-const catchAsync = require('../../utilities/catch-async.util');
-const Category = require('../../models/category.model');
-const validateFields = require('../../middlewares/validate-fields');
-const AppError = require('../../errors/app-error');
+const { param } = require('express-validator');
+const isAdmin = require('../../../middlewares/is-admin');
+const isAuth = require('../../../middlewares/is-auth');
+const validateRequest = require('../../../middlewares/validate-request');
+const catchAsync = require('../../../utilities/catch-async.util');
+const Category = require('../../../models/category.model');
+const AppError = require('../../../errors/app-error');
 const router = express.Router();
 
 const validations = [param('id').isMongoId()];

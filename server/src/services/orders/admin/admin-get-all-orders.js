@@ -7,7 +7,7 @@ const queryDeserialize = require('../../../utilities/queryDeserialize');
 const router = express.Router();
 
 router.get(
-  '/ad/all',
+  '/admin/all',
   isAuth,
   isAdmin,
   catchAsync(async (req, res, next) => {
