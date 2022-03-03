@@ -93,6 +93,7 @@ const AdContactDetails = lazy(() =>
   import('./containers/admin/AdContactDetails/AdContactDetails')
 );
 const Contacts = lazy(() => import('./containers/client/Contacts/Contacts'));
+const Hiring = lazy(() => import('./containers/client/Hiring/Hiring'));
 
 function App() {
   const dispatch = useDispatch();
@@ -166,6 +167,7 @@ function App() {
             <Route path='blogs' element={<Blogs />} />
             <Route path='blogs/:slug' element={<BlogDetails />} />
             <Route path='contacts' element={<Contacts />} />
+            <Route path='hiring' element={<Hiring />} />
             <Route path='oauth/fail' element={<OAuthFail />} />
           </Route>
 
