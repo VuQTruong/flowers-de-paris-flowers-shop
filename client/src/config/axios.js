@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { signOut } from '../features/users/sign-out';
 import swal from 'sweetalert2';
+import { BASE_URL } from '../constants';
 
 const Axios = axios.create({
-  baseURL: `${process.env.REACT_APP_SERVER_URL}/api`,
+  baseURL: `${BASE_URL}api`,
   headers: { 'Content-Type': 'application/json' },
   withCredentials: true,
 });

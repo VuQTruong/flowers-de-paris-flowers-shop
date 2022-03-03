@@ -1,5 +1,6 @@
 node_modules
 accounts.md
+server/public
 server/.env
 client/.env.development
 client/.env.production

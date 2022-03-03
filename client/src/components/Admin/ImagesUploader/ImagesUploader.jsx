@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import swal from 'sweetalert2';
+import { BASE_URL } from '../../../constants';
 
 import { showLoadingModal } from '../../../utilities/helpers';
 
@@ -21,14 +22,10 @@ function ImagesUploader(props) {
       showLoadingModal('Uploading images...');
 
       axios
-        .post(
-          `${process.env.REACT_APP_SERVER_URL}/api/files/cloud-images`,
-          formData,
-          {
-            headers: { 'Content-Type': 'multipart/form-data' },
-            withCredentials: true,
-          }
-        )
+        .post(`${BASE_URL}api/files/cloud-images`, formData, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+          withCredentials: true,
+        })
         .then(({ data }) => {
           swal.close();
 

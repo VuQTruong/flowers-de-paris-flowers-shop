@@ -2,6 +2,7 @@ import React from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import Editor from 'ckeditor5-custom-build/build/ckeditor';
 import axios from 'axios';
+import { BASE_URL } from '../../constants';
 //import config from '../../config';
 
 class UploadAdapter {
@@ -19,7 +20,7 @@ class UploadAdapter {
             formData.append('cloudFolder', 'texteditor');
 
             const { data } = await axios.post(
-              `${process.env.REACT_APP_SERVER_URL}/api/files/cloud-images`,
+              `${BASE_URL}api/files/cloud-images`,
               formData,
               {
                 headers: { 'Content-Type': 'multipart/form-data' },
