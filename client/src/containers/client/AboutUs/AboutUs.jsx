@@ -4,6 +4,7 @@ import MessageBox from '../../../components/MessageBox/MessageBox';
 import ReactHtmlParser from 'react-html-parser';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAbout } from '../../../features/about/get-about';
+import 'ckeditor5-custom-build/build/ckeditor';
 
 function AboutUs() {
   const dispatch = useDispatch();

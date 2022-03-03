@@ -28,6 +28,7 @@ function Blogs() {
           title={blogs[i].title}
           summary={blogs[i].summary}
           date={Date.parse(blogs[i].createdAt)}
+          key={blogs[i]._id}
         />
       );
     }

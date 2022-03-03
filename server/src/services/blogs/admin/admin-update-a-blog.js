@@ -39,7 +39,7 @@ router.patch(
 
     const { title, author, tags, summary, content, coverImage } = req.body;
 
-    const blog = await Blog.findByIdAndUpdate(blogId);
+    const blog = await Blog.findById(blogId);
 
     blog.title = title ? title : blog.title;
     blog.author = author ? author : blog.author;

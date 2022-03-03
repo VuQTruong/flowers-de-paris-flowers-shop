@@ -7,6 +7,7 @@ import { EmailShareButton, FacebookShareButton } from 'react-share';
 import Article from '../../../components/Article/Article';
 import { useParams } from 'react-router-dom';
 import { getArticle } from '../../../features/blogs/get-article';
+import 'ckeditor5-custom-build/build/ckeditor';
 
 function BlogDetails() {
   const dispatch = useDispatch();
