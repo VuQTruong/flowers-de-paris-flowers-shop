@@ -1,4 +1,33 @@
-.ad-header__container {
-  padding-left: 2em;
-  padding-right: 2em;
+@media (max-width: $screen-md) {
+  .ad-header__container {
+    position: relative;
+    display: block;
+  }
+
+  .ad-header__container > .brand {
+    margin: 0 auto;
+    width: 100%;
+    display: block;
+  }
+
+  .ad-header__container .nav-toggle {
+    position: absolute;
+    top: 50%;
+    left: 0.5em;
+    transform: translateY(-50%);
+  }
+
+  .ad-header__container .mobile-cart {
+    display: none;
+  }
+}
+
+@media (min-width: $screen-lg) {
+  .ad-header__container .brand {
+    margin-left: 0.5em;
+  }
+
+  .ad-header__container .header-info {
+    margin-right: 1.5em;
+  }
 }
