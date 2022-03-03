@@ -37,10 +37,10 @@ const data = {
       slug: 'valentines',
     },
     {
-      name: 'Sympathy',
+      name: 'Valentines',
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644785854/categories/andrew-johnson-ry13W09x_LY-unsplash_r2bbye.jpg',
-      slug: 'sympathy',
+      slug: 'valentines',
     },
   ],
   products: [
@@ -56,7 +56,8 @@ const data = {
       ],
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_4_bv58to.jpg',
-      price: 150,
+      price: 145,
+      originalPrice: 150,
       saleOffPrice: 145,
       size: 'L',
       colors: ['white'],
@@ -76,6 +77,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_1_qfoowm.jpg',
       price: 79.99,
+      originalPrice: 79.99,
       saleOffPrice: 0,
       size: 'M',
       colors: ['purple', 'red'],
@@ -94,7 +96,8 @@ const data = {
       ],
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_3_s51z6f.jpg',
-      price: 100,
+      price: 95.99,
+      originalPrice: 100,
       saleOffPrice: 95.99,
       size: 'M',
       colors: ['red', 'yellow'],
@@ -114,6 +117,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_4_bv58to.jpg',
       price: 150,
+      originalPrice: 150,
       saleOffPrice: 0,
       size: 'M',
       colors: ['red', 'yellow'],
@@ -133,6 +137,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_4_bv58to.jpg',
       price: 310,
+      originalPrice: 310,
       saleOffPrice: 0,
       size: 'M',
       colors: ['red', 'yellow'],
@@ -153,7 +158,8 @@ const data = {
       ],
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_4_bv58to.jpg',
-      price: 550,
+      price: 520,
+      originalPrice: 550,
       saleOffPrice: 520,
       size: 'L',
       colors: ['red', 'yellow'],
@@ -173,6 +179,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_1_qfoowm.jpg',
       price: 220,
+      originalPrice: 220,
       saleOffPrice: 0,
       size: 'M',
       colors: ['red', 'yellow'],
@@ -192,6 +199,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_3_s51z6f.jpg',
       price: 150,
+      originalPrice: 150,
       saleOffPrice: 0,
       size: 'M',
       colors: ['red', 'yellow'],
@@ -211,6 +219,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_4_bv58to.jpg',
       price: 150,
+      originalPrice: 150,
       saleOffPrice: 0,
       size: 'M',
       colors: ['purple', 'red'],
@@ -230,6 +239,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_4_bv58to.jpg',
       price: 150,
+      originalPrice: 150,
       saleOffPrice: 0,
       size: 'M',
       colors: ['red', 'yellow'],
@@ -250,7 +260,8 @@ const data = {
       ],
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340383/products/gift_2_enab3n.png',
-      price: 239.99,
+      price: 200,
+      originalPrice: 239.99,
       saleOffPrice: 200,
       size: 'M',
       colors: ['red', 'yellow'],
@@ -270,6 +281,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340382/products/gift_4_pnh4g4.png',
       price: 150,
+      originalPrice: 150,
       saleOffPrice: 0,
       size: 'S',
       colors: ['red', 'yellow'],
@@ -289,6 +301,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340383/products/gift_2_enab3n.png',
       price: 150,
+      originalPrice: 150,
       saleOffPrice: 0,
       size: 'M',
       colors: ['red', 'yellow'],
@@ -308,6 +321,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340383/products/gift_1_v1oxa1.png',
       price: 150,
+      originalPrice: 150,
       saleOffPrice: 0,
       size: 'L',
       colors: ['orange', 'blue', 'violet'],
@@ -327,6 +341,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340383/products/gift_5_dqjan1.png',
       price: 150,
+      originalPrice: 150,
       saleOffPrice: 0,
       size: 'M',
       colors: ['red', 'yellow'],
@@ -348,6 +363,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_4_bv58to.jpg',
       price: 150,
+      originalPrice: 150,
       saleOffPrice: 0,
       size: 'M',
       colors: ['red', 'yellow'],
@@ -367,6 +383,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_1_qfoowm.jpg',
       price: 150,
+      originalPrice: 150,
       saleOffPrice: 0,
       size: 'M',
       colors: ['red', 'yellow'],
@@ -386,6 +403,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_3_s51z6f.jpg',
       price: 150,
+      originalPrice: 150,
       saleOffPrice: 0,
       size: 'M',
       colors: ['red', 'yellow'],
@@ -405,6 +423,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_4_bv58to.jpg',
       price: 150,
+      originalPrice: 150,
       saleOffPrice: 0,
       size: 'M',
       colors: ['red', 'yellow'],
@@ -423,7 +442,8 @@ const data = {
       ],
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_4_bv58to.jpg',
-      price: 750,
+      price: 719.99,
+      originalPrice: 750,
       saleOffPrice: 719.99,
       size: 'L',
       colors: ['violet', 'blue', 'white'],
@@ -445,6 +465,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_5_haozk2.jpg',
       price: 150,
+      originalPrice: 150,
       saleOffPrice: 0,
       size: 'M',
       colors: ['red', 'yellow'],
@@ -464,6 +485,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_5_agcfyj.jpg',
       price: 150,
+      originalPrice: 150,
       saleOffPrice: 0,
       size: 'M',
       colors: ['red', 'yellow'],
@@ -483,6 +505,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_2_acwblc.jpg',
       price: 150,
+      originalPrice: 150,
       saleOffPrice: 0,
       size: 'M',
       colors: ['red', 'yellow'],
@@ -502,6 +525,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_2_acwblc.jpg',
       price: 150,
+      originalPrice: 150,
       saleOffPrice: 0,
       size: 'M',
       colors: ['red', 'yellow'],
@@ -521,6 +545,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_2_acwblc.jpg',
       price: 150,
+      originalPrice: 150,
       saleOffPrice: 0,
       size: 'M',
       colors: ['red', 'yellow'],
@@ -529,11 +554,11 @@ const data = {
       summary: `<p><strong>Lorem Ipsum</strong><span style="background-color:rgb(255,255,255);color:rgb(0,0,0);"> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></p>`,
     },
 
-    // !Sympathy
+    // !valentines
     {
-      name: 'Sympathy 1',
-      category: '6209834569771a7b8876b8a4',
-      categorySlug: 'sympathy',
+      name: 'Valentines 1',
+      category: '6209834569771a7b8876b8a3',
+      categorySlug: 'valentines',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_2_acwblc.jpg',
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_1_qfoowm.jpg',
@@ -542,6 +567,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_2_acwblc.jpg',
       price: 150,
+      originalPrice: 150,
       saleOffPrice: 0,
       size: 'M',
       colors: ['purple', 'white'],
@@ -550,9 +576,9 @@ const data = {
       summary: `<p><strong>Lorem Ipsum</strong><span style="background-color:rgb(255,255,255);color:rgb(0,0,0);"> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></p>`,
     },
     {
-      name: 'Sympathy 2',
-      category: '6209834569771a7b8876b8a4',
-      categorySlug: 'sympathy',
+      name: 'Valentines 2',
+      category: '6209834569771a7b8876b8a3',
+      categorySlug: 'valentines',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_4_ybozi6.jpg',
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_2_abuzfr.jpg',
@@ -561,6 +587,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_4_ybozi6.jpg',
       price: 150,
+      originalPrice: 150,
       saleOffPrice: 0,
       size: 'M',
       colors: ['purple', 'white'],
@@ -569,9 +596,9 @@ const data = {
       summary: `<p><strong>Lorem Ipsum</strong><span style="background-color:rgb(255,255,255);color:rgb(0,0,0);"> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></p>`,
     },
     {
-      name: 'Sympathy 3',
-      category: '6209834569771a7b8876b8a4',
-      categorySlug: 'sympathy',
+      name: 'Valentines 3',
+      category: '6209834569771a7b8876b8a3',
+      categorySlug: 'valentines',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340346/products/flowerbasket_3_bbchpc.jpg',
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_5_agcfyj.jpg',
@@ -580,6 +607,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_5_agcfyj.jpg',
       price: 150,
+      originalPrice: 150,
       saleOffPrice: 0,
       size: 'M',
       colors: ['purple', 'white'],
@@ -588,9 +616,9 @@ const data = {
       summary: `<p><strong>Lorem Ipsum</strong><span style="background-color:rgb(255,255,255);color:rgb(0,0,0);"> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></p>`,
     },
     {
-      name: 'Sympathy 4',
-      category: '6209834569771a7b8876b8a4',
-      categorySlug: 'sympathy',
+      name: 'Valentines 4',
+      category: '6209834569771a7b8876b8a3',
+      categorySlug: 'valentines',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340346/products/flowerbasket_3_bbchpc.jpg',
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_5_agcfyj.jpg',
@@ -599,6 +627,7 @@ const data = {
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_5_agcfyj.jpg',
       price: 150,
+      originalPrice: 150,
       saleOffPrice: 0,
       size: 'M',
       colors: ['purple', 'white'],
