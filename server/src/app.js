@@ -77,7 +77,7 @@ app.use('/api/payments', paymentRouter);
 app.use('/api/files', fileRouter);
 
 // todo: remove these routes before production
-app.use('/api/mock', mockRouter);
+// app.use('/api/mock', mockRouter);
 
 /* Unhandle Routes */
 app.all('*', (req, res, next) => {
