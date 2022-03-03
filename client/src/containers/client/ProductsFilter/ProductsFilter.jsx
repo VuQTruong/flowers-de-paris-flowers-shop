@@ -68,7 +68,7 @@ function ProductsFilter() {
   // !dispatch action whenever the query string is changed
   useEffect(() => {
     window.scroll(0, 0);
-    console.log(location.search);
+
     if (location.search) {
       // ?set up filters based on search query
       const queryObj = Object.fromEntries([...searchParams]);
