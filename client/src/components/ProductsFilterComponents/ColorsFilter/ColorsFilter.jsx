@@ -14,6 +14,12 @@ function ColorFilter({ value, onChange }) {
   const customNavigate = useCustomNavigate();
 
   const colorChangeHandler = (color) => {
+    if (value.length === 1 && value.includes(color)) {
+      onChange([]);
+      customNavigate({}, ['page', 'colors']);
+      return;
+    }
+
     if (color === 'clear') {
       onChange([]);
       customNavigate({}, ['page', 'colors']);

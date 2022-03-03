@@ -23,8 +23,8 @@ function ProductsFilter() {
   const [price, setPrice] = useState({ low: null, high: null });
   const [tags, setTags] = useState('');
   const [colors, setColors] = useState([]);
-  // const [size, setSize] = useState('All');
   const [rating, setRating] = useState(0);
+  // const [size, setSize] = useState('All');
 
   const toggleFilterPanelHandler = (value) => {
     setToggleFilterPanel(value);
@@ -68,7 +68,7 @@ function ProductsFilter() {
   // !dispatch action whenever the query string is changed
   useEffect(() => {
     window.scroll(0, 0);
-
+    console.log(location.search);
     if (location.search) {
       // ?set up filters based on search query
       const queryObj = Object.fromEntries([...searchParams]);
@@ -77,6 +77,13 @@ function ProductsFilter() {
       // ?fetch products based on search query
       dispatch(getAllProducts(searchParams.toString()));
     } else {
+      // !reset filters
+      setSortBy('-createdAt');
+      setPrice({ low: null, high: null });
+      setTags('');
+      setColors([]);
+      setRating(0);
+
       if (categorySlug) {
         dispatch(getProductsByCategorySlug(categorySlug));
       } else {

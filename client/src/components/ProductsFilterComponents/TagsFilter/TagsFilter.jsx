@@ -19,7 +19,10 @@ function TagsFilter({ value, onChange }) {
     if (tags) {
       customNavigate(
         {
-          tags: tags.split(', ').join(','),
+          tags: tags
+            .split(', ')
+            .filter((tag) => tag) // ?remove emtpy string
+            .join(','),
         },
         ['page']
       );
