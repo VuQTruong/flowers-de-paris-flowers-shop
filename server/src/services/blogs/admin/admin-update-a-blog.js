@@ -37,16 +37,24 @@ router.patch(
   catchAsync(async (req, res, next) => {
     const blogId = req.params.id;
 
-    const updatedBlog = await Blog.findByIdAndUpdate(blogId, req.body, {
-      new: true,
-      runValidators: true,
-    });
+    const { title, author, tags, summary, content, coverImage } = req.body;
+
+    const blog = await Blog.findByIdAndUpdate(blogId);
+
+    blog.title = title ? title : blog.title;
+    blog.author = author ? author : blog.author;
+    blog.tags = tags ? tags : blog.tags;
+    blog.summary = summary ? summary : blog.summary;
+    blog.content = content ? content : blog.content;
+    blog.coverImage = coverImage ? coverImage : blog.coverImage;
+
+    await blog.save();
 
     return res.status(200).json({
       status: 'success',
       message: 'Blog updated successfully',
       data: {
-        blog: updatedBlog,
+        blog,
       },
     });
   })

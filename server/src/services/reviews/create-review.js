@@ -31,7 +31,7 @@ router.post(
     const product = await Product.findById(productId).populate('reviews');
 
     if (!product) {
-      return next(AppError.badRequest('Product not found'));
+      return next(AppError.notFound('Sorry, we cannot find the product'));
     }
 
     req.body.user = user._id;

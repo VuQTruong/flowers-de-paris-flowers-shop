@@ -22,7 +22,7 @@ router.delete(
     const product = await Product.findById(productId);
 
     if (!product) {
-      return next(AppError.badRequest('Product not found'));
+      return next(AppError.notFound('Sorry, we cannot find the product'));
     }
 
     // !remove product from corresponding category

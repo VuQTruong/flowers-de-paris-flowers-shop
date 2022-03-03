@@ -1,5 +1,6 @@
 const express = require('express');
 const { body, param } = require('express-validator');
+const AppError = require('../../../errors/app-error');
 const isAdmin = require('../../../middlewares/is-admin');
 const isAuth = require('../../../middlewares/is-auth');
 const validateFields = require('../../../middlewares/validate-fields');
@@ -24,17 +25,22 @@ router.patch(
   validateRequest,
   catchAsync(async (req, res, next) => {
     const { id: aboutId } = req.params;
+    const { content } = req.body;
 
-    const updatedAbout = await About.findByIdAndUpdate(aboutId, req.body, {
-      new: true,
-      runValidators: true,
-    });
+    const about = await About.findById(aboutId);
+
+    if (!about) {
+      return next(AppError.notFound('Sorry, we cannot find the content'));
+    }
+
+    about.content = content ? content : about.content;
+    await about.save();
 
     return res.status(200).json({
       status: 'success',
       message: 'About Us content is updated',
       data: {
-        about: updatedAbout,
+        about,
       },
     });
   })

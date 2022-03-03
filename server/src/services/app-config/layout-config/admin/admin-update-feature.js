@@ -35,20 +35,23 @@ router.patch(
   catchAsync(async (req, res, next) => {
     const featureId = req.params.id;
 
-    const updatedConfig = await LayoutConfig.findByIdAndUpdate(
-      featureId,
-      req.body,
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
+    const { order, category, categorySlug, title, reverseLayout } = req.body;
+
+    const layout = await LayoutConfig.findById(featureId);
+
+    layout.order = order ? order : layout.order;
+    layout.category = category ? category : layout.category;
+    layout.categorySlug = categorySlug ? categorySlug : layout.categorySlug;
+    layout.title = title ? title : layout.title;
+    layout.reverseLayout = reverseLayout ? reverseLayout : layout.reverseLayout;
+
+    await layout.save();
 
     return res.status(200).json({
       status: 'success',
       message: 'Feature is updated successfully',
       data: {
-        feature: updatedConfig,
+        feature: layout,
       },
     });
   })

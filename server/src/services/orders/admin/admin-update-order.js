@@ -35,7 +35,7 @@ router.patch(
     const order = await Order.findById(orderId);
 
     if (!order) {
-      return next(AppError.badRequest('Sorry, we cannot find the order'));
+      return next(AppError.notFound('Sorry, we cannot find the order'));
     }
 
     updateInfo.isPaid && (order.isPaid = updateInfo.isPaid);

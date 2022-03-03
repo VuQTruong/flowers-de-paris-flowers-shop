@@ -20,6 +20,10 @@ router.delete(
     const reviewId = req.params.reviewId;
     const review = await Review.findById(reviewId);
 
+    if (!review) {
+      return next(AppError.notFound('Sorry, we cannot find the review'));
+    }
+
     let user = req.user;
 
     // !the user request delete is an admin

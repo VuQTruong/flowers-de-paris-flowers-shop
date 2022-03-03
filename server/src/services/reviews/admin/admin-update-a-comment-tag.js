@@ -6,6 +6,7 @@ const catchAsync = require('../../../utilities/catch-async.util');
 const CommentTag = require('../../../models/comment-tag.model');
 const { param, body } = require('express-validator');
 const validateFields = require('../../../middlewares/validate-fields');
+const AppError = require('../../../errors/app-error');
 const router = express.Router();
 
 const requireFields = ['tag'];
@@ -24,10 +25,16 @@ router.patch(
   validateRequest,
   catchAsync(async (req, res, next) => {
     const tagId = req.params.tagId;
-    const updatedTag = await CommentTag.findByIdAndUpdate(tagId, req.body, {
-      new: true,
-      runValidators: true,
-    });
+    const { tag } = req.body;
+
+    const updatedTag = await CommentTag.findById(tagId);
+
+    if (!updatedTag) {
+      return next(AppError.notFound('Sorry, we cannot find the tag'));
+    }
+
+    updatedTag.tag = tag ? tag : updatedTag.tag;
+    await updatedTag.save();
 
     return res.status(200).json({
       status: 'success',

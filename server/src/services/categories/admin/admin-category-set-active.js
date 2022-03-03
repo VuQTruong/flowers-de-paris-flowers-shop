@@ -22,7 +22,7 @@ router.patch(
     let category = await Category.findById(categoryId);
 
     if (!category) {
-      return next(AppError.badRequest('Sorry, we cannot find the category'));
+      return next(AppError.notFound('Sorry, we cannot find the category'));
     }
 
     category.isActive = !category.isActive;

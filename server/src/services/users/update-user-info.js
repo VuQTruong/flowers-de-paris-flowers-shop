@@ -33,6 +33,9 @@ router.patch(
   catchAsync(async (req, res, next) => {
     const userId = req.user._id;
 
+    const { email, phone, password, name, address, gender, dateOfBirth } =
+      req.body;
+
     // !User is not allow to change email or phone number if signed in with email or phone number
     // ?req.user.loginType is added in jwt-strategy and passport deserialize user. There are two types added: 'jwt' and 'oauth'
     if (req.user.loginType === 'jwt') {
@@ -65,10 +68,19 @@ router.patch(
       }
     }
 
-    const updatedUser = await User.findByIdAndUpdate(userId, req.body, {
-      new: true,
-      runValidators: true,
-    });
+    const updatedUser = await User.findById(userId);
+
+    updatedUser.email = email ? email : updatedUser.email;
+    updatedUser.phone = phone ? phone : updatedUser.phone;
+    updatedUser.password = password ? password : updatedUser.password;
+    updatedUser.name = name ? name : updatedUser.name;
+    updatedUser.address = address ? address : updatedUser.address;
+    updatedUser.gender = gender ? gender : updatedUser.gender;
+    updatedUser.dateOfBirth = dateOfBirth
+      ? dateOfBirth
+      : updatedUser.dateOfBirth;
+
+    await updatedUser.save();
 
     return res.status(200).json({
       status: 'success',

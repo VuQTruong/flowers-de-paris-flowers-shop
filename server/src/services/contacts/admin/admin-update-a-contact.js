@@ -34,7 +34,7 @@ router.patch(
     const contact = await Contact.findById(contactId);
 
     if (!contact) {
-      return next(AppError.notFound('Contact not found'));
+      return next(AppError.notFound('Sorry, we cannot find the contact'));
     }
 
     contact.name = name || contact.name;

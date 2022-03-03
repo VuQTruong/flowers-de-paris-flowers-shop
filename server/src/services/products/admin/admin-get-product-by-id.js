@@ -23,7 +23,7 @@ router.get(
     );
 
     if (!product) {
-      return next(AppError.notFound('Product is not found'));
+      return next(AppError.notFound('Sorry, we cannot find the product'));
     }
 
     return res.status(200).json({

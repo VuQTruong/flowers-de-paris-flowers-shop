@@ -13,7 +13,7 @@ router.get(
     );
 
     if (!product.isActive) {
-      return next(AppError.notFound('Product is not found'));
+      return next(AppError.notFound('Sorry, we cannot find the product'));
     }
 
     product.views += 1;

@@ -17,7 +17,7 @@ router.get(
     const blog = await Blog.findById(blogId);
 
     if (!blog) {
-      return next(AppError.notFound('Article not found'));
+      return next(AppError.notFound('Sorry, we cannot find the article'));
     }
 
     return res.status(200).json({

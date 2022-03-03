@@ -22,7 +22,7 @@ router.patch(
     const block = await Blog.findById(blogId);
 
     if (!block) {
-      return next(AppError.badRequest('Sorry, we cannot find the block'));
+      return next(AppError.notFound('Sorry, we cannot find the article'));
     }
 
     block.isActive = !block.isActive;

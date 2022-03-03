@@ -11,7 +11,7 @@ router.get(
     const category = await Category.findOne({ slug: categorySlug });
 
     if (!category.isActive) {
-      return next(AppError.notFound('Category is not found'));
+      return next(AppError.notFound('Sorry, we cannot find the category'));
     }
 
     return res.status(200).json({

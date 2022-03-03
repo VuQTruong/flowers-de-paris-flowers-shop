@@ -1,5 +1,6 @@
 const express = require('express');
 const { param } = require('express-validator');
+const AppError = require('../../../errors/app-error');
 const isAdmin = require('../../../middlewares/is-admin');
 const isAuth = require('../../../middlewares/is-auth');
 const validateRequest = require('../../../middlewares/validate-request');
@@ -18,6 +19,10 @@ router.get(
   catchAsync(async (req, res, next) => {
     const contactId = req.params.id;
     const contact = await Contact.findById(contactId);
+
+    if (!contact) {
+      return next(AppError.notFound('Sorry, we cannot find the contact'));
+    }
 
     return res.status(200).json({
       status: 'success',

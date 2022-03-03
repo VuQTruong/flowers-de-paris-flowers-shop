@@ -22,7 +22,7 @@ router.patch(
     const user = await User.findById(userId);
 
     if (!user) {
-      return next(AppError.badRequest('Sorry, we cannot find the user'));
+      return next(AppError.notFound('Sorry, we cannot find the user'));
     }
 
     user.isActive = !user.isActive;

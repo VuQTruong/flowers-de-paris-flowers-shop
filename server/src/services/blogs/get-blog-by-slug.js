@@ -13,7 +13,7 @@ router.get(
     });
 
     if (articles.length === 0) {
-      return next(AppError.badRequest('Sorry, we cannot find the article'));
+      return next(AppError.notFound('Sorry, we cannot find the article'));
     }
 
     return res.status(200).json({

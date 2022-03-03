@@ -30,14 +30,18 @@ router.patch(
   catchAsync(async (req, res, next) => {
     const slideId = req.params.id;
 
-    const updatedConfig = await SlideConfig.findByIdAndUpdate(
-      slideId,
-      req.body,
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
+    const { order, image, title, subTitle, content, url } = req.body;
+
+    const slide = await SlideConfig.findById(slideId);
+
+    slide.order = order ? order : slide.order;
+    slide.image = image ? image : slide.image;
+    slide.title = title ? title : slide.title;
+    slide.subTitle = subTitle ? subTitle : slide.subTitle;
+    slide.content = content ? content : slide.content;
+    slide.url = url ? url : slide.url;
+
+    await slide.save();
 
     return res.status(200).json({
       status: 'success',

@@ -25,6 +25,10 @@ router.patch(
     const orderId = req.params.orderId;
     const order = await Order.findOne({ orderId: orderId });
 
+    if (!order) {
+      return next(AppError.notFound('Sorry, we cannot find the order'));
+    }
+
     // ?check if the user requests the cancellation is the one who own the order
     if (JSON.stringify(order.user) !== JSON.stringify(req.user._id)) {
       return next(
