@@ -6,6 +6,7 @@ import ProductsFilter from '../ProductsFilter/ProductsFilter';
 import Paginator from '../../../components/Paginator/Paginator';
 import MessageBox from '../../../components/MessageBox/MessageBox';
 import useCustomNavigate from '../../../hooks/use-custom-navigate';
+import BreadCrumb from '../../../components/BreadCrumb/BreadCrumb';
 
 function ProductsList() {
   const customNavigate = useCustomNavigate();
@@ -25,6 +26,7 @@ function ProductsList() {
 
   return (
     <main className='container'>
+      <BreadCrumb />
       <div className='products__container'>
         <div className='products__filter-panel'>
           <ProductsFilter />

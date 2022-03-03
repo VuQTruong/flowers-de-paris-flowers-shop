@@ -8,10 +8,16 @@
 
 .breadcrumb__link {
   font-weight: 700;
+  cursor: pointer;
 }
 
 .breadcrumb__link:hover {
   color: orangered;
+}
+
+.breadcrumb__link.inactive {
+  color: gray;
+  cursor: default;
 }
 
 .breadcrumb__divider {
