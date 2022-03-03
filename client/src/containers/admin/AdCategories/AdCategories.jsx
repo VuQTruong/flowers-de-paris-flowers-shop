@@ -87,7 +87,7 @@ function AdCategories() {
   return (
     <main className='dashboard__container'>
       <div className='dashboard__header'>
-        <h2 className='dashboard__title'>Category Management</h2>
+        <h2 className='dashboard__title'>Categories Management</h2>
         <Link to='add' className='btn btn-primary dashboard__btn'>
           <i className='bx bxs-add-to-queue'></i>
           <span>Add new category</span>

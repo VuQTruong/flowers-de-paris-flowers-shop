@@ -8,10 +8,10 @@ const validateRequest = require('../../../middlewares/validate-request');
 const CommentTag = require('../../../models/comment-tag.model');
 const router = express.Router();
 
-const requireFields = ['tags'];
+const requireFields = ['tag'];
 
 const validations = [
-  body('tags').isArray().notEmpty().withMessage('Tag names are missing'),
+  body('tag').isString().notEmpty().withMessage('Tag name are missing'),
 ];
 
 router.post(
@@ -22,20 +22,17 @@ router.post(
   validations,
   validateRequest,
   catchAsync(async (req, res, next) => {
-    const tagsInput = [];
+    const { tag } = req.body;
 
-    for (let tag of req.body.tags) {
-      tagsInput.push({ tag });
-    }
-
-    const tags = await CommentTag.insertMany(tagsInput);
+    const newTag = await CommentTag.create({
+      tag: tag,
+    });
 
     return res.status(201).json({
       status: 'success',
-      message: `Created ${tags.length} comment tags`,
+      message: `Comment tag is created successfully`,
       data: {
-        results: tags.length,
-        tags,
+        tag: newTag,
       },
     });
   })

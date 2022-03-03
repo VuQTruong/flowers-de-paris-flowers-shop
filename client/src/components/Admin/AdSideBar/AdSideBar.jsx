@@ -66,6 +66,14 @@ function AdSideBar() {
         </li>
 
         <li className='admin-sidebar__item'>
+          <NavLink to='/admin/tags' className={generateAdSideBarClasses}>
+            <i className='bx bx-purchase-tag'></i>
+            Tags
+          </NavLink>
+          <div className='admin-sidebar__tooltip'>Tags</div>
+        </li>
+
+        <li className='admin-sidebar__item'>
           <NavLink to='/admin/accounts' className={generateAdSideBarClasses}>
             <i className='bx bxs-user-account'></i>
             Accounts

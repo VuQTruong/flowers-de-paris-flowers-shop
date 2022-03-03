@@ -15,12 +15,12 @@ export const commentTagsSlice = createSlice({
       state.error = '';
     },
     [fetchTags.fulfilled]: (state, action) => {
-      state.loading = true;
+      state.loading = false;
       state.tags = action.payload;
     },
 
     [fetchTags.rejected]: (state, action) => {
-      state.loading = true;
+      state.loading = false;
       state.error = action.payload;
     },
   },

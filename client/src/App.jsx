@@ -94,6 +94,7 @@ const AdContactDetails = lazy(() =>
 );
 const Contacts = lazy(() => import('./containers/client/Contacts/Contacts'));
 const Hiring = lazy(() => import('./containers/client/Hiring/Hiring'));
+const AdTags = lazy(() => import('./containers/admin/AdTags/AdTags'));
 
 function App() {
   const dispatch = useDispatch();
@@ -201,6 +202,7 @@ function App() {
             />
             <Route path='hiring' element={<AdHiring />} />
             <Route path='config' element={<AdAppConfig />} />
+            <Route path='tags' element={<AdTags />} />
           </Route>
 
           <Route path='/warning/unauthorized' element={<Unauthorized />} />
