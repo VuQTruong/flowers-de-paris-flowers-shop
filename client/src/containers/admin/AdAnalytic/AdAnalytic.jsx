@@ -1,7 +1,12 @@
 import React from 'react';
+import UnderConstruction from '../../../components/UnderConstruction/UnderConstruction';
 
 function AdAnalytic() {
-  return <div className='ad-analytic__container'>Analytic</div>;
+  return (
+    <div className='dashboard__container'>
+      <UnderConstruction />
+    </div>
+  );
 }
 
 export default AdAnalytic;

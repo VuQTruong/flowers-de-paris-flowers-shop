@@ -6,7 +6,7 @@ export const adGetAllOrders = createAsyncThunk(
   async (queryStr = '', { rejectWithValue }) => {
     try {
       const { data } = await Axios.get(
-        `/orders/ad/all${queryStr ? '?' + queryStr : ''}`
+        `/orders/admin/all${queryStr ? '?' + queryStr : ''}`
       );
 
       return data.data;

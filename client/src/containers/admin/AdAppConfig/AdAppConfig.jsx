@@ -1,7 +1,12 @@
 import React from 'react';
+import UnderConstruction from '../../../components/UnderConstruction/UnderConstruction';
 
 function AdAppConfig() {
-  return <div className='ad-config__container'>AdAppConfig</div>;
+  return (
+    <div className='dashboard__container'>
+      <UnderConstruction />
+    </div>
+  );
 }
 
 export default AdAppConfig;
