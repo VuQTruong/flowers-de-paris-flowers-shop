@@ -21,6 +21,7 @@ function Search() {
   const { products, totalPages, currentPage, totalProducts, loading } =
     allProducts;
 
+  const [tag, setTag] = useState('');
   const [searchName, setSearchName] = useState('');
   const [sortField, setSortField] = useState('createdAt');
   const [sortOrder, setSortOrder] = useState('desc');
@@ -34,6 +35,7 @@ function Search() {
       // ?get search name
       const queryObj = Object.fromEntries([...searchParams]);
       setSearchName(queryObj.name);
+      setTag(queryObj.tags);
 
       // ?set up filters
       setFilters(queryObj);
@@ -135,7 +137,8 @@ function Search() {
     <main className='container search__container'>
       <div className='search__status'>
         <MessageBox variant='info' fullWidth>
-          Search results for <strong>{searchName}</strong>:{' '}
+          Search results for&nbsp;
+          <strong>{searchName ? searchName : tag}</strong>:&nbsp;
           <strong>
             {totalProducts} {totalProducts < 1 ? 'result' : 'results'}
           </strong>

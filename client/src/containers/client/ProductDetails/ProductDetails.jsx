@@ -188,7 +188,7 @@ function ProductDetails() {
                       <ul>
                         {product.tags.map((tag, index) => (
                           <Link
-                            to={`/search?tag=${product.tagSlugs[index]}`}
+                            to={`/search?tags=${product.tagSlugs[index]}`}
                             className={'product-review__product-tag'}
                             key={index}
                           >
