@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { signIn } from '../../../features/users/sign-in';
 import { unwrapResult } from '@reduxjs/toolkit';
 import swal from 'sweetalert2';
+import { BASE_URL } from '../../../constants';
 
 const validationSchema = Yup.object({
   username: Yup.string().required('Email or Phone number is required'),
@@ -58,11 +59,11 @@ function Signin() {
   };
 
   const googleSignInHandler = () => {
-    window.open('http://localhost:5000/api/auth/google', '_self');
+    window.open(`${BASE_URL}api/auth/google`, '_self');
   };
 
   const facebookSignInHandler = () => {
-    window.open('http://localhost:5000/api/auth/facebook', '_self');
+    window.open(`${BASE_URL}api/auth/facebook`, '_self');
   };
 
   return (

@@ -10,8 +10,8 @@ router.get(
   '/facebook/callback',
   passport.authenticate('facebook', {
     successRedirect: process.env.CLIENT_URL,
-    // failureRedirect: process.env.CLIENT_URL + '/signup/fail',
-    failureMessage: 'Cannot sign in with Facebook',
+    failureRedirect: process.env.CLIENT_URL + '/oauth/fail',
+    // failureMessage: 'Cannot sign in with Facebook',
   })
 );
 
