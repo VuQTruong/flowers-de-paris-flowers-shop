@@ -5,6 +5,7 @@ const express = require('express');
 const passport = require('passport');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 
 const AppError = require('./errors/app-error');
 const { errorHandler } = require('./middlewares/error-handler');
@@ -78,6 +79,13 @@ app.use('/api/files', fileRouter);
 
 // todo: remove these routes before production
 // app.use('/api/mock', mockRouter);
+
+// handle client requests in production mode
+if (process.env.NODE_ENV === 'production') {
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '..', 'public', 'index.html'));
+  });
+}
 
 /* Unhandle Routes */
 app.all('*', (req, res, next) => {
