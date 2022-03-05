@@ -69,7 +69,7 @@ function AdAboutUs() {
       {loading && <Loading />}
       {error && <MessageBox variant='danger'>{error}</MessageBox>}
       {aboutInfo ? (
-        <div className='ad-about__panel'>
+        <div className='container ad-about__panel'>
           <TextEditor
             className='ad-about__editor'
             placeholder='About us ...'
@@ -99,7 +99,7 @@ function AdAboutUs() {
           )}
         </div>
       ) : (
-        <div className='ad-about__panel'>
+        <div className='container ad-about__panel'>
           <TextEditor
             className='ad-about__editor'
             placeholder='About us ...'

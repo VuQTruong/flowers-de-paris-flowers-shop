@@ -21,6 +21,10 @@
 }
 
 @media (min-width: $screen-md) {
+  .ad-about__editor {
+    width: 80%;
+  }
+
   .ad-about__preview {
     width: 100%;
     max-width: 80%;
