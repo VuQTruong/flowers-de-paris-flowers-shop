@@ -39,8 +39,8 @@ function Blogs() {
   return (
     <main className='container blogs__container'>
       {loading && <Loading />}
-      {error && <MessageBox variant='danger'>{error}</MessageBox>}
-      {blogs && blogs.length !== 0 && (
+      {!loading && error && <MessageBox variant='danger'>{error}</MessageBox>}
+      {!loading && blogs && blogs.length !== 0 && (
         <React.Fragment>
           <Link to={`/blogs/${blogs[0].slug}`} className='blogs__hero'>
             <div className='blogs__hero-img'>

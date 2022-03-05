@@ -95,8 +95,8 @@ function AdCategories() {
       </div>
 
       {loading && <Loading />}
-      {error && <MessageBox variant='danger'>{error}</MessageBox>}
-      {categories && (
+      {!loading && error && <MessageBox variant='danger'>{error}</MessageBox>}
+      {!loading && categories && (
         <div className='table__container'>
           <table className='table'>
             <thead>

@@ -29,14 +29,14 @@ function AdContacts() {
 
       <div className='dashboard__contacts'>
         {loading && <Loading />}
-        {error && <MessageBox variant='danger'>{error}</MessageBox>}
-        {contacts && contacts.length === 0 && (
+        {!loading && error && <MessageBox variant='danger'>{error}</MessageBox>}
+        {!loading && contacts && contacts.length === 0 && (
           <MessageBox variant='info' fullWidth>
             There are no contacts to show
           </MessageBox>
         )}
 
-        {contacts && contacts.length !== 0 && (
+        {!loading && contacts && contacts.length !== 0 && (
           <div className='ad-contacts__contacts-list'>
             {contacts.map((contact) => {
               return (

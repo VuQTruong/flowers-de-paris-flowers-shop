@@ -113,18 +113,19 @@ function AdOrders() {
       <AdOrderFilters />
 
       {loading && <Loading />}
-      {error && (
+      {!loading && error && (
         <MessageBox variant='danger' fullWidth>
           {error}
         </MessageBox>
       )}
-      {orders && (
+      {!loading && orders && (
         <React.Fragment>
-          {orders.length === 0 ? (
+          {orders.length === 0 && (
             <MessageBox variant='info' fullWidth>
               There are no orders to show
             </MessageBox>
-          ) : (
+          )}
+          {orders.length !== 0 && (
             <React.Fragment>
               <div className='table__container'>
                 <table className='table'>

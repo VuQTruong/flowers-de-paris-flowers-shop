@@ -67,8 +67,8 @@ function AdAboutUs() {
       </div>
 
       {loading && <Loading />}
-      {error && <MessageBox variant='danger'>{error}</MessageBox>}
-      {aboutInfo ? (
+      {!loading && error && <MessageBox variant='danger'>{error}</MessageBox>}
+      {!loading && aboutInfo ? (
         <div className='container ad-about__panel'>
           <TextEditor
             className='ad-about__editor'

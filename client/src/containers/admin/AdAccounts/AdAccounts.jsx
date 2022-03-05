@@ -113,12 +113,12 @@ function AdAccounts() {
       <AdAccountsFilter />
 
       {loading && <Loading />}
-      {error && (
+      {!loading && error && (
         <MessageBox variant='danger' fullWidth>
           {error}
         </MessageBox>
       )}
-      {users && (
+      {!loading && users && (
         <React.Fragment>
           <div className='table__container ad-users__table'>
             <table className='table'>

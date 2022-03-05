@@ -103,7 +103,9 @@ function AdTags() {
 
         <div className='ad-tags__comment-tags-list'>
           {loading && <i className='bx bx-loader-alt bx-spin'></i>}
-          {error && <MessageBox variant='danger'>{error}</MessageBox>}
+          {!loading && error && (
+            <MessageBox variant='danger'>{error}</MessageBox>
+          )}
           {!loading && tags && (
             <ul>
               {tags.map((tag) => {

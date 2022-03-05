@@ -108,12 +108,12 @@ function AdProducts() {
 
       {/* Products Table */}
       {loading && <Loading />}
-      {error && (
+      {!loading && error && (
         <MessageBox variant='danger' fullWidth>
           {error}
         </MessageBox>
       )}
-      {products && (
+      {!loading && products && (
         <React.Fragment>
           {products.length === 0 ? (
             <MessageBox variant='info' fullWidth>
