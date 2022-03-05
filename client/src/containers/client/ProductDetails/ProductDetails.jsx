@@ -89,6 +89,20 @@ function ProductDetails() {
     }
   };
 
+  const prevImgHandler = () => {
+    const newIndex =
+      selectedImage === 0 ? product.images.length - 1 : selectedImage - 1;
+
+    setSelectedImage(newIndex);
+  };
+
+  const nextImgHandler = () => {
+    const newIndex =
+      selectedImage === product.images.length - 1 ? 0 : selectedImage + 1;
+
+    setSelectedImage(newIndex);
+  };
+
   return (
     <div className='container product-details__container'>
       {loading ? (
@@ -114,10 +128,22 @@ function ProductDetails() {
                 {/* Product Images */}
                 <div className='product-images flex col col-5'>
                   <div className='image-box'>
+                    <button
+                      className='image-box__btn image-box__btn-prev'
+                      onClick={prevImgHandler}
+                    >
+                      <i className='bx bxs-chevron-left'></i>
+                    </button>
                     <img
                       src={product.images[selectedImage]}
                       alt={product.name}
                     />
+                    <button
+                      className='image-box__btn image-box__btn-next'
+                      onClick={nextImgHandler}
+                    >
+                      <i className='bx bxs-chevron-right'></i>
+                    </button>
                   </div>
                   <ol className='image-list flex'>
                     {product.images.map((image, index) => (

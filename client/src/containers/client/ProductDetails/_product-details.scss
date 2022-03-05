@@ -16,6 +16,43 @@
 .image-box {
   max-width: 85%;
   box-shadow: $box-shadow;
+  position: relative;
+  transition: all 0.5s;
+}
+
+.image-box:hover {
+  box-shadow: none;
+}
+
+.image-box:hover .image-box__btn {
+  opacity: 1;
+}
+
+.image-box__btn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  padding: 0 0.5em;
+  border: none;
+
+  cursor: pointer;
+  opacity: 0;
+
+  transition: all 0.5s;
+}
+
+.image-box__btn i {
+  font-size: 1.5rem;
+}
+
+.image-box__btn-prev {
+  left: 0;
+  background: linear-gradient(to left, transparent, rgba(white, 0.5));
+}
+
+.image-box__btn-next {
+  right: 0;
+  background: linear-gradient(to right, transparent, rgba(white, 0.5));
 }
 
 .image-list {
