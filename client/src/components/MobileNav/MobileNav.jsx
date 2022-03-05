@@ -148,7 +148,7 @@ function MobileNav(props) {
               <li>
                 <Link
                   className='mobile-category-list__link'
-                  to='/blog'
+                  to='/blogs'
                   onClick={closeNavHandler}
                 >
                   <i className='bx bxs-book-content'></i>
