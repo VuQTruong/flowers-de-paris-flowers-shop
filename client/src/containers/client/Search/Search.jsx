@@ -22,6 +22,8 @@ function Search() {
     allProducts;
 
   const [tag, setTag] = useState('');
+  const [color, setColor] = useState('');
+
   const [searchName, setSearchName] = useState('');
   const [sortField, setSortField] = useState('createdAt');
   const [sortOrder, setSortOrder] = useState('desc');
@@ -36,6 +38,7 @@ function Search() {
       const queryObj = Object.fromEntries([...searchParams]);
       setSearchName(queryObj.name);
       setTag(queryObj.tags);
+      setColor(queryObj.colors);
 
       // ?set up filters
       setFilters(queryObj);
@@ -138,7 +141,7 @@ function Search() {
       <div className='search__status'>
         <MessageBox variant='info' fullWidth>
           Search results for&nbsp;
-          <strong>{searchName ? searchName : tag}</strong>:&nbsp;
+          <strong>{searchName ? searchName : tag ? tag : color}</strong>:&nbsp;
           <strong>
             {totalProducts} {totalProducts < 1 ? 'result' : 'results'}
           </strong>

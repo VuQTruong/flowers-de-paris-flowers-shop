@@ -185,16 +185,28 @@ function ProductDetails() {
                   {product.tags.length !== 0 && (
                     <React.Fragment>
                       <h2>Tags</h2>
-                      <ul>
+                      <ul className='product-details__tags-list'>
                         {product.tags.map((tag, index) => (
-                          <Link
-                            to={`/search?tags=${product.tagSlugs[index]}`}
-                            className={'product-review__product-tag'}
-                            key={index}
-                          >
-                            <i className='bx bx-purchase-tag'></i>
-                            <span>{tag}</span>
-                          </Link>
+                          <li key={`${tag}${index}`}>
+                            <Link
+                              to={`/search?tags=${product.tagSlugs[index]}`}
+                              className={'product-review__product-tag'}
+                            >
+                              <i className='bx bx-purchase-tag'></i>
+                              <span>{tag}</span>
+                            </Link>
+                          </li>
+                        ))}
+                        {product.colors.map((color, index) => (
+                          <li key={`${color}${index}`}>
+                            <Link
+                              to={`/search?colors=${color}`}
+                              className={'product-review__product-tag'}
+                            >
+                              <i className='bx bx-purchase-tag'></i>
+                              <span>{color}</span>
+                            </Link>
+                          </li>
                         ))}
                       </ul>
                     </React.Fragment>

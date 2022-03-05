@@ -89,6 +89,11 @@
   font-weight: 400;
 }
 
+.product-details__tags-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .product-review__product-tag i {
   font-size: $fs-22;
   margin-right: 0.25em;
