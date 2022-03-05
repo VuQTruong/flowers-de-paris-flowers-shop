@@ -23,7 +23,7 @@ function BlogDetails() {
   }, [dispatch, slug]);
 
   return (
-    <div className='container'>
+    <main className='container blog-details__containers'>
       {loading && <Loading />}
       {error && <MessageBox variant='danger'>{error}</MessageBox>}
       {article && (
@@ -56,7 +56,7 @@ function BlogDetails() {
           </div>
         </React.Fragment>
       )}
-    </div>
+    </main>
   );
 }
 

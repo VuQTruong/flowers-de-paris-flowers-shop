@@ -37,7 +37,7 @@ function Blogs() {
   };
 
   return (
-    <div className='container'>
+    <main className='container blogs__container'>
       {loading && <Loading />}
       {error && <MessageBox variant='danger'>{error}</MessageBox>}
       {blogs && blogs.length !== 0 && (
@@ -72,7 +72,7 @@ function Blogs() {
           </div>
         </React.Fragment>
       )}
-    </div>
+    </main>
   );
 }
 
