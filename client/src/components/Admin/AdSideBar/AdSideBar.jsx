@@ -8,6 +8,10 @@ function AdSideBar() {
     showSidebar ? setShowSidebar(false) : setShowSidebar(true);
   };
 
+  const closeSideBarHandler = () => {
+    setShowSidebar(false);
+  };
+
   const generateAdSideBarClasses = (navData) => {
     const { isActive } = navData;
     let classesArray = ['admin-sidebar__link'];
@@ -30,35 +34,55 @@ function AdSideBar() {
         </li>
 
         <li className='admin-sidebar__item'>
-          <NavLink to='/admin/dashboard' className={generateAdSideBarClasses}>
+          <NavLink
+            to='/admin/dashboard'
+            className={generateAdSideBarClasses}
+            onClick={closeSideBarHandler}
+          >
             <i className='bx bxs-dashboard'></i>
             Dashboard
           </NavLink>
           <div className='admin-sidebar__tooltip'>Dashboard</div>
         </li>
         <li className='admin-sidebar__item'>
-          <NavLink to='/admin/analytic' className={generateAdSideBarClasses}>
+          <NavLink
+            to='/admin/analytic'
+            className={generateAdSideBarClasses}
+            onClick={closeSideBarHandler}
+          >
             <i className='bx bx-line-chart'></i>
             Analytic
           </NavLink>
           <div className='admin-sidebar__tooltip'>Analytic</div>
         </li>
         <li className='admin-sidebar__item'>
-          <NavLink to='/admin/orders' className={generateAdSideBarClasses}>
+          <NavLink
+            to='/admin/orders'
+            className={generateAdSideBarClasses}
+            onClick={closeSideBarHandler}
+          >
             <i className='bx bx-spreadsheet'></i>
             Orders
           </NavLink>
           <div className='admin-sidebar__tooltip'>Orders</div>
         </li>
         <li className='admin-sidebar__item'>
-          <NavLink to='/admin/categories' className={generateAdSideBarClasses}>
+          <NavLink
+            to='/admin/categories'
+            className={generateAdSideBarClasses}
+            onClick={closeSideBarHandler}
+          >
             <i className='bx bx-category'></i>
             Categories
           </NavLink>
           <div className='admin-sidebar__tooltip'>Categories</div>
         </li>
         <li className='admin-sidebar__item'>
-          <NavLink to='/admin/products' className={generateAdSideBarClasses}>
+          <NavLink
+            to='/admin/products'
+            className={generateAdSideBarClasses}
+            onClick={closeSideBarHandler}
+          >
             <i className='bx bx-store-alt'></i>
             Products
           </NavLink>
@@ -66,7 +90,11 @@ function AdSideBar() {
         </li>
 
         <li className='admin-sidebar__item'>
-          <NavLink to='/admin/tags' className={generateAdSideBarClasses}>
+          <NavLink
+            to='/admin/tags'
+            className={generateAdSideBarClasses}
+            onClick={closeSideBarHandler}
+          >
             <i className='bx bx-purchase-tag'></i>
             Tags
           </NavLink>
@@ -74,21 +102,33 @@ function AdSideBar() {
         </li>
 
         <li className='admin-sidebar__item'>
-          <NavLink to='/admin/accounts' className={generateAdSideBarClasses}>
+          <NavLink
+            to='/admin/accounts'
+            className={generateAdSideBarClasses}
+            onClick={closeSideBarHandler}
+          >
             <i className='bx bxs-user-account'></i>
             Accounts
           </NavLink>
           <div className='admin-sidebar__tooltip'>Accounts</div>
         </li>
         <li className='admin-sidebar__item'>
-          <NavLink to='/admin/blogs' className={generateAdSideBarClasses}>
+          <NavLink
+            to='/admin/blogs'
+            className={generateAdSideBarClasses}
+            onClick={closeSideBarHandler}
+          >
             <i className='bx bx-notepad'></i>
             Blogs
           </NavLink>
           <div className='admin-sidebar__tooltip'>Blogs</div>
         </li>
         <li className='admin-sidebar__item'>
-          <NavLink to='/admin/about' className={generateAdSideBarClasses}>
+          <NavLink
+            to='/admin/about'
+            className={generateAdSideBarClasses}
+            onClick={closeSideBarHandler}
+          >
             <i className='bx bx-info-circle'></i>
             About us
           </NavLink>
@@ -96,21 +136,33 @@ function AdSideBar() {
         </li>
 
         <li className='admin-sidebar__item'>
-          <NavLink to='/admin/contacts' className={generateAdSideBarClasses}>
+          <NavLink
+            to='/admin/contacts'
+            className={generateAdSideBarClasses}
+            onClick={closeSideBarHandler}
+          >
             <i className='bx bxs-contact'></i>
             Contacts
           </NavLink>
           <div className='admin-sidebar__tooltip'>Contacts</div>
         </li>
         <li className='admin-sidebar__item'>
-          <NavLink to='/admin/hiring' className={generateAdSideBarClasses}>
+          <NavLink
+            to='/admin/hiring'
+            className={generateAdSideBarClasses}
+            onClick={closeSideBarHandler}
+          >
             <i className='bx bx-user-pin'></i>
             Hiring
           </NavLink>
           <div className='admin-sidebar__tooltip'>Hiring</div>
         </li>
         <li className='admin-sidebar__item'>
-          <NavLink to='/admin/config' className={generateAdSideBarClasses}>
+          <NavLink
+            to='/admin/config'
+            className={generateAdSideBarClasses}
+            onClick={closeSideBarHandler}
+          >
             <i className='bx bxs-cog'></i>
             App Config
           </NavLink>
