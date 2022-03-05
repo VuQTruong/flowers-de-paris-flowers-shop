@@ -37,7 +37,12 @@ function UserOrders() {
 
       {loading && <Loading />}
       {error && <MessageBox variant='danger'>{error}</MessageBox>}
-      {orders && (
+      {orders && orders.length === 0 && (
+        <MessageBox variant='info'>
+          You don't have any orders to show!
+        </MessageBox>
+      )}
+      {orders && orders.length !== 0 && (
         <section className='table__container user-orders__table'>
           <table className='table'>
             <thead>
