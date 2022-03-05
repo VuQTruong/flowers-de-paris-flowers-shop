@@ -140,6 +140,7 @@ function Signin() {
                           <button
                             className='form__show-password'
                             onClick={() => setShowPassword(!showPassword)}
+                            type='button'
                           >
                             <i className='bx bx-hide'></i>
                           </button>
@@ -147,6 +148,7 @@ function Signin() {
                           <button
                             className='form__show-password'
                             onClick={() => setShowPassword(!showPassword)}
+                            type='button'
                           >
                             <i className='bx bx-show-alt'></i>
                           </button>
