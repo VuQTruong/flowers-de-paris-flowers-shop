@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import signInImg from '../../../assets/images/signin.jpg';
 
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -25,6 +25,8 @@ function Signin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const currentUser = useSelector((state) => state.currentUser);
   const { userInfo, loading } = currentUser;
@@ -127,12 +129,28 @@ function Signin() {
                       <div className='form__input-box'>
                         <i className='bx bx-lock'></i>
                         <Field
-                          type='password'
+                          type={showPassword ? 'input' : 'password'}
                           id='password'
                           name='password'
+                          maxlength='20'
                           placeholder='password'
                           className='form__input--text'
                         />
+                        {showPassword ? (
+                          <button
+                            className='form__show-password'
+                            onClick={() => setShowPassword(!showPassword)}
+                          >
+                            <i className='bx bx-hide'></i>
+                          </button>
+                        ) : (
+                          <button
+                            className='form__show-password'
+                            onClick={() => setShowPassword(!showPassword)}
+                          >
+                            <i className='bx bx-show-alt'></i>
+                          </button>
+                        )}
                         <label
                           htmlFor='password'
                           className='form__label--hidden'

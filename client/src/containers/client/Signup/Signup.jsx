@@ -11,6 +11,7 @@ import * as Yup from 'yup';
 import { unwrapResult } from '@reduxjs/toolkit';
 
 import ReCAPTCHA from 'react-google-recaptcha';
+import { RECAPTCHA_SITE_KEY } from '../../../constants';
 
 const formInitialValues = {
   name: '',
@@ -46,6 +47,7 @@ function Signup() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [showPassword, setShowPassword] = useState(false);
   const [reCaptchaToken, setReCaptchaToken] = useState(null);
   const reCaptchaRef = useRef();
 
@@ -174,12 +176,28 @@ function Signup() {
                       <div className='form__input-box'>
                         <i className='bx bx-lock'></i>
                         <Field
-                          type='password'
+                          type={showPassword ? 'input' : 'password'}
                           id='password'
                           name='password'
+                          maxlength='20'
                           placeholder='password'
                           className='form__input--text'
                         />
+                        {showPassword ? (
+                          <button
+                            className='form__show-password'
+                            onClick={() => setShowPassword(!showPassword)}
+                          >
+                            <i className='bx bx-hide'></i>
+                          </button>
+                        ) : (
+                          <button
+                            className='form__show-password'
+                            onClick={() => setShowPassword(!showPassword)}
+                          >
+                            <i className='bx bx-show-alt'></i>
+                          </button>
+                        )}
                         <label
                           htmlFor='password'
                           className='form__label--hidden'
@@ -198,12 +216,28 @@ function Signup() {
                       <div className='form__input-box'>
                         <i className='bx bx-lock'></i>
                         <Field
-                          type='password'
+                          type={showPassword ? 'input' : 'password'}
                           id='confirmPassword'
                           name='confirmPassword'
+                          maxlength='20'
                           placeholder='confirm password'
                           className='form__input--text'
                         />
+                        {showPassword ? (
+                          <button
+                            className='form__show-password'
+                            onClick={() => setShowPassword(!showPassword)}
+                          >
+                            <i className='bx bx-hide'></i>
+                          </button>
+                        ) : (
+                          <button
+                            className='form__show-password'
+                            onClick={() => setShowPassword(!showPassword)}
+                          >
+                            <i className='bx bx-show-alt'></i>
+                          </button>
+                        )}
                         <label
                           htmlFor='confirmPassword'
                           className='form__label--hidden'
@@ -220,7 +254,7 @@ function Signup() {
 
                     <div className='signup__captcha'>
                       <ReCAPTCHA
-                        sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                        sitekey={RECAPTCHA_SITE_KEY}
                         size='normal'
                         onChange={recaptchaHandler}
                         ref={reCaptchaRef}

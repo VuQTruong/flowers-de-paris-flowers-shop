@@ -6,6 +6,7 @@ import swal from 'sweetalert2';
 import { dateFormat } from '../../../utilities/helpers';
 import { clearCheckoutInfo } from '../../../features/checkout/slice/checkout-slice';
 import { emptyCart } from '../../../features/cart/empty-cart';
+import { PAYPAL_CLIENT_ID } from '../../../constants';
 
 function PaymentButton({ paymentMethod }) {
   const paypal = useRef();
@@ -22,7 +23,7 @@ function PaymentButton({ paymentMethod }) {
     const addPaypalScript = () => {
       const script = document.createElement('script');
       script.type = 'text/javascript';
-      script.src = `https://www.paypal.com/sdk/js?client-id=${process.env.REACT_APP_PAYPAL_CLIENT_ID}&components=buttons,funding-eligibility&currency=CAD`;
+      script.src = `https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&components=buttons,funding-eligibility&currency=CAD`;
       script.async = true;
       script.dataset.namespace = 'paypal_sdk';
       script.onload = () => {
