@@ -208,7 +208,7 @@ function Search() {
           <React.Fragment>
             {products && products.length !== 0 ? (
               <React.Fragment>
-                <div className='product-panel__list flex'>
+                <div className='product-panel__list'>
                   {products.map((product) => (
                     <ProductCard data={product} key={product._id} />
                   ))}

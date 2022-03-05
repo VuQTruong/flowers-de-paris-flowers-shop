@@ -44,6 +44,14 @@
   box-shadow: $box-shadow;
 }
 
+.product-panel__list {
+  display: flex;
+  align-content: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
 @media (min-width: $screen-md) {
   .search__filter {
     flex-direction: row;
@@ -60,5 +68,11 @@
     label {
       margin-bottom: 0;
     }
+  }
+}
+
+@media (min-width: $screen-lg) {
+  .product-panel__list {
+    justify-content: stretch;
   }
 }
