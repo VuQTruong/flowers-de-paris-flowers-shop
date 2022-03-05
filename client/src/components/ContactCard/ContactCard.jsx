@@ -15,15 +15,15 @@ function ContactCard({ contact, showEdit }) {
             <strong>{contact.name}</strong>
           </p>
           <p>
-            <strong>Description:</strong>
+            <strong>Description: </strong>
             {contact.description}
           </p>
           <p>
-            <strong>Address:</strong>
+            <strong>Address: </strong>
             {contact.address}
           </p>
           <p>
-            <strong>Phone:</strong>
+            <strong>Phone: </strong>
             {contact.phone}
           </p>
 
