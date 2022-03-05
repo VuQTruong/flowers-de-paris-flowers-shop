@@ -132,7 +132,7 @@ function Signin() {
                           type={showPassword ? 'input' : 'password'}
                           id='password'
                           name='password'
-                          maxlength='20'
+                          maxLength='20'
                           placeholder='password'
                           className='form__input--text'
                         />
