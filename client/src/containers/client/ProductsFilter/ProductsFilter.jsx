@@ -119,7 +119,9 @@ function ProductsFilter() {
         <Sorting value={sortBy} onChange={(value) => setSortBy(value)} />
         <PriceFilter value={price} onChange={(value) => setPrice(value)} />
         <TagsFilter value={tags} onChange={(value) => setTags(value)} />
-        <ColorsFilter value={colors} onChange={(value) => setColors(value)} />
+        {categorySlug !== 'gifts' && (
+          <ColorsFilter value={colors} onChange={(value) => setColors(value)} />
+        )}
         {/* <SizeFilter value={size} onChange={(value) => setSize(value)} /> */}
         <RatingFilter value={rating} onChange={(value) => setRating(value)} />
       </div>
