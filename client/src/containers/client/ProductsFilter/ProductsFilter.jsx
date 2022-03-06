@@ -75,7 +75,13 @@ function ProductsFilter() {
       setFilters(queryObj);
 
       // ?fetch products based on search query
-      dispatch(getAllProducts(searchParams.toString()));
+      if (categorySlug) {
+        dispatch(
+          getAllProducts(`category=${categorySlug}&${searchParams.toString()}`)
+        );
+      } else {
+        dispatch(getAllProducts(searchParams.toString()));
+      }
     } else {
       // !reset filters
       setSortBy('-createdAt');
