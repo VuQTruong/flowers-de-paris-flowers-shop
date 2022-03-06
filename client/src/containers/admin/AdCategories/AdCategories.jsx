@@ -165,6 +165,11 @@ function AdCategories() {
                         <button
                           className='btn btn-primary ad-users__btn ad-users__btn--hide'
                           onClick={() => setCategoryStatusHandler(category._id)}
+                          disabled={
+                            category.slug === 'bouquets' ||
+                            category.slug === 'flower-baskets' ||
+                            category.slug === 'gifts'
+                          }
                         >
                           Deactivate
                         </button>
@@ -176,6 +181,11 @@ function AdCategories() {
                       <button
                         className='btn btn-danger dashboard__table-btn'
                         onClick={() => deleteCategoryHandler(category._id)}
+                        disabled={
+                          category.slug === 'bouquets' ||
+                          category.slug === 'flower-baskets' ||
+                          category.slug === 'gifts'
+                        }
                       >
                         Delete
                       </button>
