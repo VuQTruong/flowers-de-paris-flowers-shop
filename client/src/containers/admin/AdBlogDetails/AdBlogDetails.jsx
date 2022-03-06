@@ -66,6 +66,11 @@ function AdBlogDetails() {
 
   const deleteImage = async (image) => {
     try {
+      // !the image is from another source other than cloudinary, we don't have to manage it
+      if (!image.includes('res.cloudinary.com')) {
+        return;
+      }
+
       const imageId = getImageId(image);
       await Axios.delete(`/files/cloud-images?folder=blogs&id=${imageId}`);
     } catch (error) {

@@ -59,8 +59,23 @@ function AdCategoryDetails() {
   }, []);
 
   const deleteImage = async (image) => {
-    const imageId = getImageId(image);
-    await Axios.delete(`/files/cloud-images?folder=categories&id=${imageId}`);
+    try {
+      // !the image is from another source other than cloudinary, we don't have to manage it
+      if (!image.includes('res.cloudinary.com')) {
+        return;
+      }
+
+      const imageId = getImageId(image);
+      await Axios.delete(`/files/cloud-images?folder=categories&id=${imageId}`);
+    } catch (error) {
+      swal.fire({
+        icon: 'error',
+        title: 'Oops!...',
+        text:
+          (error.response && error.response.data.message) ||
+          'Something went wrong!',
+      });
+    }
   };
 
   const onSubmitHandler = async (values) => {
