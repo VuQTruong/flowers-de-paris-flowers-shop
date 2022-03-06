@@ -69,13 +69,23 @@ function UserNav(props) {
 
       {userInfo ? (
         <div className='header-info__user dropdown'>
-          <Avatar
-            className='header-info__user-avatar'
-            name={userInfo.name}
-            round={true}
-            size='30'
-            textSizeRatio={3.5}
-          />
+          {!userInfo.avatar && (
+            <Avatar
+              className='header-info__user-avatar'
+              name={userInfo.name}
+              round={true}
+              size='30'
+              textSizeRatio={3.5}
+            />
+          )}
+
+          {userInfo.avatar && (
+            <img
+              src={userInfo.avatar}
+              alt='User Avatar'
+              className='header-info__user-avatar-img'
+            />
+          )}
 
           <Link to='/user/info'>
             {getClientName()}

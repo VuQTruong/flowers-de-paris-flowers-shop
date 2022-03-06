@@ -6,7 +6,14 @@ import { BASE_URL } from '../../../constants';
 import { showLoadingModal } from '../../../utilities/helpers';
 
 function ImagesUploader(props) {
-  const { returnImages, multiFiles, className, folderName, title } = props;
+  const {
+    returnImages,
+    multiFiles,
+    className,
+    folderName,
+    title,
+    withoutIcon,
+  } = props;
 
   const uploadImagesHandler = (e) => {
     const files = Array.from(e.target.files);
@@ -60,7 +67,7 @@ function ImagesUploader(props) {
         htmlFor='imgUpload'
         className='btn btn-primary image-uploader__btn'
       >
-        <i className='bx bx-upload'></i>
+        {!withoutIcon && <i className='bx bx-upload'></i>}
         {title ? title : 'Upload'}
       </label>
       <input

@@ -6,6 +6,7 @@ import { signOut } from '../sign-out';
 import { verifyUser } from '../verify-user';
 import { updateUserInfo } from '../update-user';
 import { updateUserFavorites } from '../updateUserFavorites';
+import { updateAvatar } from '../update-avatar';
 
 export const currentUserSlice = createSlice({
   name: 'currentUser',
@@ -101,6 +102,20 @@ export const currentUserSlice = createSlice({
       state.userInfo = action.payload;
     },
     [updateUserInfo.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    /* update user avatar info */
+    [updateAvatar.pending]: (state) => {
+      state.loading = true;
+      state.error = '';
+    },
+    [updateAvatar.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.userInfo = action.payload;
+    },
+    [updateAvatar.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },

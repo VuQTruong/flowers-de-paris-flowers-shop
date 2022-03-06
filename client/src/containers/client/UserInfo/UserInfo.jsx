@@ -9,6 +9,7 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import { updateUserInfo } from '../../../features/users/update-user';
 import { signOut } from '../../../features/users/sign-out';
 import { useNavigate } from 'react-router-dom';
+import UserBriefInfo from '../../../components/UserBriefInfo/UserBriefInfo';
 
 const genderOptions = [
   { key: 'Select an option', value: '' },
@@ -128,6 +129,11 @@ function UserInfo() {
   return (
     <section className='user-info__container'>
       <h3 className='user-info__title'>My Information</h3>
+
+      <div className='user-info__brief-info'>
+        <UserBriefInfo />
+      </div>
+
       <div className='user-info__content'>
         <Formik
           initialValues={formInitialValues}

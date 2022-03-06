@@ -36,6 +36,7 @@ router.post(
 
     req.body.user = user._id;
     req.body.name = user.name;
+    req.body.userAvatar = user.avatar;
     const review = await Review.create(req.body);
 
     // !wire up relationship with product

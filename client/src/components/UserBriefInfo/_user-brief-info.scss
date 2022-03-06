@@ -1,0 +1,40 @@
+.brief-info__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 2em 0 1em;
+}
+
+.brief-info__user-avatar {
+  margin-bottom: 0.5em;
+}
+
+.brief-info__user-avatar-img {
+  border-radius: 50%;
+  width: 100px;
+  box-shadow: $box-shadow;
+  margin-bottom: 0.5em;
+
+  cursor: pointer;
+}
+
+.image-uploader__container.brief-info__btn-avatar {
+  margin: unset;
+  margin-bottom: 0.5em;
+}
+
+.brief-info__btn-avatar .btn {
+  padding: 0.375em 1em;
+}
+
+.brief-info__username {
+  font-weight: 700;
+}
+
+.brief-info__joined-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1em;
+}

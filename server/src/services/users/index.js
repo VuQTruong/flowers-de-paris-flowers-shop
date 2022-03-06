@@ -2,6 +2,7 @@ const express = require('express');
 const getFavoriteRouter = require('./favorites/get-favorites');
 const getUserInfoRouter = require('./get-user-info');
 const updateUserInfoRouter = require('./update-user-info');
+const updateAvatarRouter = require('./update-avatar');
 
 const addAFavoriteRouter = require('./favorites/add-a-favorite');
 const removeAFavoriteRouter = require('./favorites/remove-a-favorite');
@@ -18,6 +19,7 @@ const userRouter = express.Router();
 userRouter.use(getFavoriteRouter);
 userRouter.use(getUserInfoRouter);
 userRouter.use(updateUserInfoRouter);
+userRouter.use(updateAvatarRouter);
 
 // Favorites routes
 userRouter.use(addAFavoriteRouter);

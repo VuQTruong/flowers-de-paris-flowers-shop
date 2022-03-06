@@ -32,6 +32,10 @@
 }
 
 @media (min-width: $screen-md) {
+  .user-info__brief-info {
+    display: none;
+  }
+
   .user-info__content {
     width: 50%;
   }

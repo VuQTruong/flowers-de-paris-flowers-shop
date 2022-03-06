@@ -5,6 +5,7 @@ const User = require('./user.model');
 const reviewSchema = new mongoose.Schema(
   {
     name: String,
+    userAvatar: String,
     title: String,
     content: String,
     rating: Number,

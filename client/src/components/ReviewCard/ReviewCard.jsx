@@ -7,6 +7,7 @@ import swal from 'sweetalert2';
 
 function ReviewCard(props) {
   const { data: review, onChange } = props;
+  console.log(review);
 
   const [loading, setLoading] = useState(false);
 
@@ -53,13 +54,24 @@ function ReviewCard(props) {
     <div className='review-card'>
       <header className='review-card__header'>
         <div className='review-card__user-info'>
-          <Avatar
-            className='review-card__user-avatar'
-            name={review.name}
-            round={true}
-            size='30'
-            textSizeRatio={3.5}
-          />
+          {!review.userAvatar && (
+            <Avatar
+              className='review-card__user-avatar'
+              name={review.name}
+              round={true}
+              size='30'
+              textSizeRatio={3.5}
+            />
+          )}
+
+          {review.userAvatar && (
+            <img
+              src={review.userAvatar}
+              alt='User Avatar'
+              className='review-card__user-avatar-img'
+            />
+          )}
+
           <p className='review-card__name'>{review.name}</p>
         </div>
         <div className='review-card__stars'>
