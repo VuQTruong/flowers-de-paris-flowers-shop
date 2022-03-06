@@ -45,13 +45,13 @@ function ProductSlide({ products }) {
     prevArrow: <PrevButton />,
     responsive: [
       {
-        breakpoint: 500,
+        breakpoint: 1024,
         settings: {
           slidesToShow: 1,
         },
       },
       {
-        breakpoint: 1025,
+        breakpoint: 1280,
         settings: {
           slidesToShow: 2,
         },
