@@ -27,7 +27,7 @@ const validationSchema = Yup.object({
   name: Yup.string()
     .matches(/^[A-Za-z ]*$/, 'Name must contain letters only')
     .required('Name is required'),
-  email: Yup.string().email('Invalid email'),
+  email: Yup.string().email('Invalid email').nullable(),
   phone: Yup.string().matches(/^[0-9]+$/, 'Invalid phone number'),
   address: Yup.string(),
   gender: Yup.string(),
@@ -60,8 +60,8 @@ function UserInfo() {
 
   const formInitialValues = {
     name: userInfo ? userInfo.name : '',
-    email: userInfo ? userInfo.email : '',
-    phone: userInfo ? userInfo.phone : '',
+    email: userInfo && userInfo.email ? userInfo.email : '',
+    phone: userInfo && userInfo.phone ? userInfo.phone : '',
     address: userInfo ? userInfo.address : '',
     gender: userInfo ? userInfo.gender : '',
     dateOfBirth: userInfo ? Date.parse(userInfo.dateOfBirth) : '',
@@ -73,7 +73,7 @@ function UserInfo() {
   const updateInfoHandler = async (values) => {
     if (!formikRef.current.dirty) {
       swal.fire({
-        icon: 'success',
+        icon: 'info',
         title: 'Huh!?...',
         text: 'There is nothing changed to be saved!',
       });
@@ -83,11 +83,11 @@ function UserInfo() {
 
     const { confirmPassword, changePassword, ...updateInfoValues } = values;
 
-    if (userInfo.email) {
+    if (userInfo.email || updateInfoValues.email === '') {
       delete updateInfoValues.email;
     }
 
-    if (userInfo.phone) {
+    if (userInfo.phone || updateInfoValues.phone === '') {
       delete updateInfoValues.phone;
     }
 
@@ -120,7 +120,7 @@ function UserInfo() {
       swal.fire({
         icon: 'error',
         title: 'Oops!...',
-        text: error.message,
+        text: error,
       });
     }
   };

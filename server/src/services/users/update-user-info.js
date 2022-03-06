@@ -19,7 +19,7 @@ const requireFields = [
 ];
 
 const validations = [
-  body('email').isEmail().optional().normalizeEmail(),
+  body('email').isEmail().optional(),
   body('phone').isString().optional(),
   body('password').isString().optional(),
 ];

@@ -5,13 +5,11 @@ const userSchema = new mongoose.Schema(
   {
     email: {
       type: String,
-      unique: true,
-      default: '',
+      index: true,
     },
     phone: {
       type: String,
-      unique: true,
-      default: '',
+      index: true,
     },
     password: {
       type: String,
@@ -72,7 +70,7 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-userSchema.pre('save', function (next) {
+userSchema.pre('save', async function (next) {
   if (this.isModified('password')) {
     const hashed = bcrypt.hashSync(this.get('password'), 10);
     this.set('password', hashed);
