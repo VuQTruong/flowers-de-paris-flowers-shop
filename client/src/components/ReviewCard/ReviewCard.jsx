@@ -7,7 +7,6 @@ import swal from 'sweetalert2';
 
 function ReviewCard(props) {
   const { data: review, onChange } = props;
-  console.log(review);
 
   const [loading, setLoading] = useState(false);
 
