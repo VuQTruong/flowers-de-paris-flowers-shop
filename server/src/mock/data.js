@@ -1,3 +1,11 @@
+const bouquetId = '6225164e9742f46d8ba67f0d';
+const flowerBasketId = '6225164e9742f46d8ba67f0e';
+const giftId = '6225164e9742f46d8ba67f0f';
+const weddingId = '6225164e9742f46d8ba67f10';
+const birthdayId = '6225164e9742f46d8ba67f11';
+const valentinesId = '6225164e9742f46d8ba67f12';
+const sympathyId = '6225164e9742f46d8ba67f13';
+
 const data = {
   categories: [
     {
@@ -37,17 +45,17 @@ const data = {
       slug: 'valentines',
     },
     {
-      name: 'Valentines',
+      name: 'Sympathy',
       coverImage:
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644785854/categories/andrew-johnson-ry13W09x_LY-unsplash_r2bbye.jpg',
-      slug: 'valentines',
+      slug: 'sympathy',
     },
   ],
   products: [
     // !bouquets
     {
       name: 'Bouquet 1',
-      category: '6209834569771a7b8876b89e',
+      category: bouquetId,
       categorySlug: 'bouquets',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_4_bv58to.jpg',
@@ -67,7 +75,7 @@ const data = {
     },
     {
       name: 'Bouquet 2',
-      category: '6209834569771a7b8876b89e',
+      category: bouquetId,
       categorySlug: 'bouquets',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_1_qfoowm.jpg',
@@ -87,7 +95,7 @@ const data = {
     },
     {
       name: 'Bouquet 3',
-      category: '6209834569771a7b8876b89e',
+      category: bouquetId,
       categorySlug: 'bouquets',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_3_s51z6f.jpg',
@@ -107,7 +115,7 @@ const data = {
     },
     {
       name: 'Bouquet 4',
-      category: '6209834569771a7b8876b89e',
+      category: bouquetId,
       categorySlug: 'bouquets',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_4_bv58to.jpg',
@@ -127,7 +135,7 @@ const data = {
     },
     {
       name: 'Bouquet 5',
-      category: '6209834569771a7b8876b89e',
+      category: bouquetId,
       categorySlug: 'bouquets',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_4_bv58to.jpg',
@@ -149,7 +157,7 @@ const data = {
     // !flower baskets
     {
       name: 'Flower Basket 1',
-      category: '6209834569771a7b8876b89f',
+      category: flowerBasketId,
       categorySlug: 'flower-baskets',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_4_bv58to.jpg',
@@ -169,7 +177,7 @@ const data = {
     },
     {
       name: 'Flower Basket 2',
-      category: '6209834569771a7b8876b89f',
+      category: flowerBasketId,
       categorySlug: 'flower-baskets',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_1_qfoowm.jpg',
@@ -189,7 +197,7 @@ const data = {
     },
     {
       name: 'Flower Basket 3',
-      category: '6209834569771a7b8876b89f',
+      category: flowerBasketId,
       categorySlug: 'flower-baskets',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_3_s51z6f.jpg',
@@ -209,7 +217,7 @@ const data = {
     },
     {
       name: 'Flower Basket 4',
-      category: '6209834569771a7b8876b89f',
+      category: flowerBasketId,
       categorySlug: 'flower-baskets',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_4_bv58to.jpg',
@@ -229,7 +237,7 @@ const data = {
     },
     {
       name: 'Flower Basket 5',
-      category: '6209834569771a7b8876b89f',
+      category: flowerBasketId,
       categorySlug: 'flower-baskets',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_4_bv58to.jpg',
@@ -251,7 +259,7 @@ const data = {
     // !gifts
     {
       name: 'Gift 1',
-      category: '6209834569771a7b8876b8a0',
+      category: giftId,
       categorySlug: 'gifts',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340382/products/gift_4_pnh4g4.png',
@@ -271,7 +279,7 @@ const data = {
     },
     {
       name: 'Gift 2',
-      category: '6209834569771a7b8876b8a0',
+      category: giftId,
       categorySlug: 'gifts',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340382/products/gift_4_pnh4g4.png',
@@ -291,7 +299,7 @@ const data = {
     },
     {
       name: 'Gift 3',
-      category: '6209834569771a7b8876b8a0',
+      category: giftId,
       categorySlug: 'gifts',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340383/products/gift_2_enab3n.png',
@@ -311,7 +319,7 @@ const data = {
     },
     {
       name: 'Gift 4',
-      category: '6209834569771a7b8876b8a0',
+      category: giftId,
       categorySlug: 'gifts',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340383/products/gift_1_v1oxa1.png',
@@ -331,7 +339,7 @@ const data = {
     },
     {
       name: 'Gift 5',
-      category: '6209834569771a7b8876b8a0',
+      category: giftId,
       categorySlug: 'gifts',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340383/products/gift_5_dqjan1.png',
@@ -353,7 +361,7 @@ const data = {
     // !wedding
     {
       name: 'Wedding 1',
-      category: '6209834569771a7b8876b8a1',
+      category: weddingId,
       categorySlug: 'wedding',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_4_bv58to.jpg',
@@ -373,7 +381,7 @@ const data = {
     },
     {
       name: 'Wedding 2',
-      category: '6209834569771a7b8876b8a1',
+      category: weddingId,
       categorySlug: 'wedding',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_1_qfoowm.jpg',
@@ -393,7 +401,7 @@ const data = {
     },
     {
       name: 'Wedding 3',
-      category: '6209834569771a7b8876b8a1',
+      category: weddingId,
       categorySlug: 'wedding',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_3_s51z6f.jpg',
@@ -413,7 +421,7 @@ const data = {
     },
     {
       name: 'Wedding 4',
-      category: '6209834569771a7b8876b8a1',
+      category: weddingId,
       categorySlug: 'wedding',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_4_bv58to.jpg',
@@ -433,7 +441,7 @@ const data = {
     },
     {
       name: 'Wedding 5',
-      category: '6209834569771a7b8876b8a1',
+      category: weddingId,
       categorySlug: 'wedding',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_4_bv58to.jpg',
@@ -455,7 +463,7 @@ const data = {
     // !Birthday
     {
       name: 'Birthday 1',
-      category: '6209834569771a7b8876b8a2',
+      category: birthdayId,
       categorySlug: 'birthday',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_5_haozk2.jpg',
@@ -475,7 +483,7 @@ const data = {
     },
     {
       name: 'Birthday 2',
-      category: '6209834569771a7b8876b8a2',
+      category: birthdayId,
       categorySlug: 'birthday',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_5_agcfyj.jpg',
@@ -495,7 +503,7 @@ const data = {
     },
     {
       name: 'Birthday 3',
-      category: '6209834569771a7b8876b8a2',
+      category: birthdayId,
       categorySlug: 'birthday',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_2_acwblc.jpg',
@@ -515,7 +523,7 @@ const data = {
     },
     {
       name: 'Birthday 4',
-      category: '6209834569771a7b8876b8a2',
+      category: birthdayId,
       categorySlug: 'birthday',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_2_acwblc.jpg',
@@ -535,7 +543,7 @@ const data = {
     },
     {
       name: 'Birthday 5',
-      category: '6209834569771a7b8876b8a2',
+      category: birthdayId,
       categorySlug: 'birthday',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_2_acwblc.jpg',
@@ -557,7 +565,7 @@ const data = {
     // !valentines
     {
       name: 'Valentines 1',
-      category: '6209834569771a7b8876b8a3',
+      category: valentinesId,
       categorySlug: 'valentines',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340347/products/flowerbasket_2_acwblc.jpg',
@@ -577,7 +585,7 @@ const data = {
     },
     {
       name: 'Valentines 2',
-      category: '6209834569771a7b8876b8a3',
+      category: valentinesId,
       categorySlug: 'valentines',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340267/products/bouquet_4_ybozi6.jpg',
@@ -597,7 +605,7 @@ const data = {
     },
     {
       name: 'Valentines 3',
-      category: '6209834569771a7b8876b8a3',
+      category: valentinesId,
       categorySlug: 'valentines',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340346/products/flowerbasket_3_bbchpc.jpg',
@@ -617,7 +625,7 @@ const data = {
     },
     {
       name: 'Valentines 4',
-      category: '6209834569771a7b8876b8a3',
+      category: valentinesId,
       categorySlug: 'valentines',
       images: [
         'https://res.cloudinary.com/flowersdeparis/image/upload/v1644340346/products/flowerbasket_3_bbchpc.jpg',
