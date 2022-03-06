@@ -9,12 +9,12 @@ function Header() {
   const [mbNavActive, setMbNavActive] = useState(false);
   const [hideHeader, setHideHeader] = useState(false);
 
-  // const onScroll = () => {
-  //   const posY = window.scrollY;
-  //   posY > 50 ? setHideHeader(true) : setHideHeader(false);
-  // };
+  const onScroll = () => {
+    const posY = window.scrollY;
+    posY > 50 ? setHideHeader(true) : setHideHeader(false);
+  };
 
-  // window.addEventListener('scroll', onScroll);
+  window.addEventListener('scroll', onScroll);
 
   return (
     <header
