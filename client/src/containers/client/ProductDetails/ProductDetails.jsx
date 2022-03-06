@@ -124,26 +124,28 @@ function ProductDetails() {
             <React.Fragment>
               <BreadCrumb />
 
-              <div className='product-details flex'>
+              <div className='product-details'>
                 {/* Product Images */}
-                <div className='product-images flex col col-5'>
+                <div className='product-images'>
                   <div className='image-box'>
-                    <button
-                      className='image-box__btn image-box__btn-prev'
-                      onClick={prevImgHandler}
-                    >
-                      <i className='bx bxs-chevron-left'></i>
-                    </button>
-                    <img
-                      src={product.images[selectedImage]}
-                      alt={product.name}
-                    />
-                    <button
-                      className='image-box__btn image-box__btn-next'
-                      onClick={nextImgHandler}
-                    >
-                      <i className='bx bxs-chevron-right'></i>
-                    </button>
+                    <div className='image-box__content'>
+                      <button
+                        className='image-box__btn image-box__btn-prev'
+                        onClick={prevImgHandler}
+                      >
+                        <i className='bx bxs-chevron-left'></i>
+                      </button>
+                      <img
+                        src={product.images[selectedImage]}
+                        alt={product.name}
+                      />
+                      <button
+                        className='image-box__btn image-box__btn-next'
+                        onClick={nextImgHandler}
+                      >
+                        <i className='bx bxs-chevron-right'></i>
+                      </button>
+                    </div>
                   </div>
                   <ol className='image-list flex'>
                     {product.images.map((image, index) => (
@@ -160,7 +162,7 @@ function ProductDetails() {
                   </ol>
                 </div>
 
-                <div className='product-info col-7'>
+                <div className='product-info'>
                   <h2 className='product-title'>{product.name}</h2>
                   {product.saleOffPrice !== 0 ? (
                     <React.Fragment>
@@ -251,9 +253,9 @@ function ProductDetails() {
                 </div>
 
                 {/* Product Reviews */}
-                <div className='product-review col-12 col-sm-12'>
+                <div className='product-review'>
                   <h2 className='product-review__title'>
-                    REVIEWS FROM OUR CUSTOMERS
+                    Reviews from our customers
                   </h2>
 
                   <div className='product-review__overview'>

@@ -12,6 +12,10 @@
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+
+  border-bottom: 1px dashed lightgray;
+  padding-bottom: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 // .review-card__body {
@@ -88,9 +92,12 @@
   }
 
   .review-card__header {
+    padding-bottom: 0;
+    margin-bottom: 0;
     padding-right: 1em;
     margin-right: 1.5em;
     border-right: 1px solid lightgray;
+    border-bottom: none;
     justify-content: center;
     align-items: center;
     width: 15em;
