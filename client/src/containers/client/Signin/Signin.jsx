@@ -55,7 +55,7 @@ function Signin() {
       swal.fire({
         icon: 'error',
         title: 'Oops!...',
-        text: error.message,
+        text: error,
       });
     }
   };
