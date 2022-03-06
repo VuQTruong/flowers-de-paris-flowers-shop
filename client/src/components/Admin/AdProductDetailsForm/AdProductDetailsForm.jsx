@@ -37,7 +37,7 @@ function AdProductDetailsForm({
       return categories.map((category) => {
         return {
           value: {
-            name: category.name,
+            id: category._id,
             slug: category.slug,
           },
           label: category.name,

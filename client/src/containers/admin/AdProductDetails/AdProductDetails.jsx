@@ -47,8 +47,8 @@ function AdProductDetails() {
     name: (product && product.name) || '',
     category:
       (product && {
-        name: product.category.name,
-        slug: product.category.slug,
+        id: product.category._id,
+        slug: product.categorySlug,
       }) ||
       null,
     originalPrice: (product && product.originalPrice) || 0,
@@ -161,7 +161,7 @@ function AdProductDetails() {
 
       const productInfo = {
         name: values.name,
-        category: values.category.name,
+        category: values.category.id,
         categorySlug: values.category.slug,
         images: images,
         coverImage: cover,

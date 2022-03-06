@@ -12,10 +12,10 @@ const router = express.Router();
 const requireFields = [
   'name',
   'category',
-  'categoryName',
+  'categorySlug',
   'images',
   'coverImage',
-  'price',
+  'originalPrice',
   'saleOffPrice',
   // 'size',
   'summary',
@@ -28,14 +28,14 @@ const validations = [
   param('id').isMongoId(),
   body('name').isString().optional(),
   body('category').isMongoId().optional(),
-  body('categoryName').isString().optional(),
+  body('categorySlug').isString().optional(),
   body('images').isArray().optional(),
   body('coverImage').isString().optional(),
-  body('price').isNumeric().optional(),
+  body('originalPrice').isNumeric().optional(),
   body('saleOffPrice').isNumeric().optional(),
   // body('size').isString().optional(),
-  body('summary').isString().optional().trim().escape(),
-  body('description').isString().optional().trim().escape(),
+  body('summary').isString().optional().trim(),
+  body('description').isString().optional().trim(),
   body('colors').isArray().optional(),
   body('tags').isArray().optional(),
 ];
@@ -52,7 +52,7 @@ router.patch(
     const {
       name,
       category,
-      categoryName,
+      categorySlug,
       images,
       coverImage,
       originalPrice,
@@ -71,7 +71,7 @@ router.patch(
 
     product.name = name ? name : product.name;
     product.category = category ? category : product.category;
-    product.categoryName = categoryName ? categoryName : product.categoryName;
+    product.categorySlug = categorySlug ? categorySlug : product.categorySlug;
     product.images = images ? images : product.images;
     product.coverImage = coverImage ? coverImage : product.coverImage;
     product.originalPrice = originalPrice
@@ -89,7 +89,7 @@ router.patch(
       status: 'success',
       message: 'Product updated successfully',
       data: {
-        product: updatedProduct,
+        product,
       },
     });
   })

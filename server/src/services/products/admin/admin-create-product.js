@@ -28,7 +28,7 @@ const requireFields = [
 const validations = [
   body('name').isString().notEmpty().withMessage('Name of product is missing'),
   body('category').isMongoId().notEmpty().withMessage('Category Id is missing'),
-  body('categoryName')
+  body('categorySlug')
     .isString()
     .notEmpty()
     .withMessage('Category of product is missing'),
@@ -50,14 +50,12 @@ const validations = [
     .isString()
     .notEmpty()
     .withMessage('Summary of product is missing')
-    .trim()
-    .escape(),
+    .trim(),
   body('description')
     .isString()
     .notEmpty()
     .withMessage('Description of product is missing')
-    .trim()
-    .escape(),
+    .trim(),
   body('colors').isArray().notEmpty(),
   body('tags').isArray().notEmpty(),
 ];
