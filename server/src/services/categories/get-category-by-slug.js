@@ -8,7 +8,9 @@ router.get(
   '/slug/:slug',
   catchAsync(async (req, res, next) => {
     const categorySlug = req.params.slug;
-    const category = await Category.findOne({ slug: categorySlug });
+    const category = await Category.findOne({ slug: categorySlug }).select(
+      'name slug coverImage isActive'
+    );
 
     if (!category.isActive) {
       return next(AppError.notFound('Sorry, we cannot find the category'));
