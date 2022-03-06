@@ -12,7 +12,9 @@ router.get(
     const products = await Product.find({
       categorySlug: categorySlug,
       isActive: true,
-    }).populate('category');
+    })
+      .sort('-createdAt')
+      .populate('category');
 
     const totalProducts = await Product.find({
       categorySlug: categorySlug,
