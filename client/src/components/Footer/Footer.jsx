@@ -31,8 +31,8 @@ function Footer() {
             </Link>
           </li>
           <li>
-            <Link to='/hiring' className='footer-link'>
-              Hiring
+            <Link to='/career' className='footer-link'>
+              Career
             </Link>
           </li>
         </ul>

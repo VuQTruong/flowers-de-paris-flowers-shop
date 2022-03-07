@@ -168,7 +168,7 @@ function App() {
             <Route path='blogs' element={<Blogs />} />
             <Route path='blogs/:slug' element={<BlogDetails />} />
             <Route path='contacts' element={<Contacts />} />
-            <Route path='hiring' element={<Hiring />} />
+            <Route path='career' element={<Hiring />} />
             <Route path='oauth/fail' element={<OAuthFail />} />
           </Route>
 
