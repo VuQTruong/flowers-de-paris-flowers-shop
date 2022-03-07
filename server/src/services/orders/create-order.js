@@ -6,6 +6,7 @@ const { customAlphabet } = require('nanoid');
 const { body } = require('express-validator');
 const Order = require('../../models/order.model');
 const validateFields = require('../../middlewares/validate-fields');
+const Product = require('../../models/product.model');
 const router = express.Router();
 
 const requiredFields = [
@@ -94,6 +95,19 @@ router.post(
       isPaid,
       paidAt,
     });
+
+    // !update sold quantity of ordered items
+    const productsPromises = orderItems.map((item) => {
+      return Product.findById(item.productId);
+    });
+
+    const products = await Promise.all(productsPromises);
+
+    const updatePromises = products.map((item, index) => {
+      item.soldQty += orderItems[index].quantity;
+      item.save();
+    });
+    await Promise.all(updatePromises);
 
     return res.status(201).json({
       status: 'success',
