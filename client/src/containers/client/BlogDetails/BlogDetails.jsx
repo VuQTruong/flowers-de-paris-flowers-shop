@@ -25,8 +25,8 @@ function BlogDetails() {
   return (
     <main className='container blog-details__containers'>
       {loading && <Loading />}
-      {error && <MessageBox variant='danger'>{error}</MessageBox>}
-      {article && (
+      {!loading && error && <MessageBox variant='danger'>{error}</MessageBox>}
+      {!loading && article && (
         <React.Fragment>
           <div className='blog-details__content'>
             <Article

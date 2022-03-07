@@ -40,12 +40,12 @@ function AdBlogs() {
       <AdBlogsFilter />
 
       {loading && <Loading />}
-      {error && (
+      {!loading && error && (
         <MessageBox variant='danger' fullWidth>
           {error}
         </MessageBox>
       )}
-      {blogs && (
+      {!loading && blogs && (
         <React.Fragment>
           {blogs.length === 0 ? (
             <MessageBox variant='info' fullWidth>

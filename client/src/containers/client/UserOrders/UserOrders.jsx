@@ -36,8 +36,8 @@ function UserOrders() {
       <h3 className='user-fav__title'>My Orders</h3>
 
       {loading && <Loading />}
-      {error && <MessageBox variant='danger'>{error}</MessageBox>}
-      {orders && orders.length === 0 && (
+      {!loading && error && <MessageBox variant='danger'>{error}</MessageBox>}
+      {!loading && orders && orders.length === 0 && (
         <MessageBox variant='info'>
           You don't have any orders to show!
         </MessageBox>

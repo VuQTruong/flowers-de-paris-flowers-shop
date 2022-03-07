@@ -226,7 +226,7 @@ function AdProductDetails() {
       </div>
 
       {loading && <Loading />}
-      {error && <MessageBox variant='danger'>{error}</MessageBox>}
+      {!loading && error && <MessageBox variant='danger'>{error}</MessageBox>}
       {!loading && !error && (
         <div className='container'>
           <div className='ad-product-details__container'>

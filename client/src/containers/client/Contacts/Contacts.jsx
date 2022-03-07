@@ -24,8 +24,8 @@ function Contacts() {
       </div>
 
       {loading && <Loading />}
-      {error && <MessageBox variant='danger'>{error}</MessageBox>}
-      {contacts && (
+      {!loading && error && <MessageBox variant='danger'>{error}</MessageBox>}
+      {!loading && contacts && (
         <div className='contacts__content'>
           {contacts.map((contact) => {
             return <ContactCard contact={contact} key={contact._id} />;

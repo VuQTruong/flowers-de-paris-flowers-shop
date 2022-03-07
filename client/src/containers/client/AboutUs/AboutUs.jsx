@@ -23,8 +23,8 @@ function AboutUs() {
       </div>
 
       {loading && <Loading />}
-      {error && <MessageBox variant='danger'>{error}</MessageBox>}
-      {aboutInfo && (
+      {!loading && error && <MessageBox variant='danger'>{error}</MessageBox>}
+      {!loading && aboutInfo && (
         <div className='about-us__content ck-content'>
           {ReactHtmlParser(aboutInfo.content)}
         </div>

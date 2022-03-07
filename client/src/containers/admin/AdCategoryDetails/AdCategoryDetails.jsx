@@ -132,7 +132,7 @@ function AdCategoryDetails() {
       </div>
 
       {loading && <Loading />}
-      {error && <MessageBox variant='danger'>{error}</MessageBox>}
+      {!loading && error && <MessageBox variant='danger'>{error}</MessageBox>}
       {!loading && !error && (
         <div className='container ad-category-details__container'>
           <div className='ad-category-details__image-uploader'>

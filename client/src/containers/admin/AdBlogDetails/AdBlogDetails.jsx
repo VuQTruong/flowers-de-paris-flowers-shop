@@ -159,7 +159,7 @@ function AdBlogDetails() {
       </div>
 
       {loading && <Loading />}
-      {error && <MessageBox variant='danger'>{error}</MessageBox>}
+      {!loading && error && <MessageBox variant='danger'>{error}</MessageBox>}
       {!loading && !error && (
         <div className='container ad-blog-details__container'>
           <div className='ad-blog-details__info'>

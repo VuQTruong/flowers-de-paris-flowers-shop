@@ -33,8 +33,8 @@ function UserFavorites() {
       <h3 className='user-fav__title'>My Favorites</h3>
 
       {loading && <Loading />}
-      {error && <MessageBox variant='danger'>{error}</MessageBox>}
-      {favorites && (
+      {!loading && error && <MessageBox variant='danger'>{error}</MessageBox>}
+      {!loading && favorites && (
         <React.Fragment>
           {favorites.length === 0 ? (
             <div className='user-fav__message'>

@@ -153,7 +153,7 @@ function AdContactDetails() {
       </div>
 
       {loading && <Loading />}
-      {error && <MessageBox variant='danger'>{error}</MessageBox>}
+      {!loading && error && <MessageBox variant='danger'>{error}</MessageBox>}
       {!loading && !error && (
         <div className='container ad-contact-details__container'>
           <div className='ad-contact-details__image-uploader'>
