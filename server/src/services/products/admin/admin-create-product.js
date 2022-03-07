@@ -56,8 +56,8 @@ const validations = [
     .notEmpty()
     .withMessage('Description of product is missing')
     .trim(),
-  body('colors').isArray().notEmpty(),
-  body('tags').isArray().notEmpty(),
+  body('colors').isArray().optional(),
+  body('tags').isArray().optional(),
 ];
 
 router.post(
