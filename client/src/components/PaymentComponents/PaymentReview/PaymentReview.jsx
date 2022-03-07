@@ -25,7 +25,7 @@ function PaymentReview(props) {
     let totalProduct = 0;
     cartItems.forEach((item) => (totalProduct += item.quantity));
 
-    if (useCard && card !== {}) {
+    if (useCard && Object.keys(card).length !== 0) {
       totalProduct += 1;
     }
 
@@ -38,7 +38,7 @@ function PaymentReview(props) {
       (item) => (totalPrice += item.product.price * item.quantity)
     );
 
-    if (useCard && card !== {}) {
+    if (useCard && Object.keys(card).length !== 0) {
       totalPrice += card.price;
     }
 
