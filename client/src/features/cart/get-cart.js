@@ -8,10 +8,24 @@ export const getCart = createAsyncThunk(
       const { cartItems } = getState().cart;
       let modifiedCartItems = [...cartItems];
 
+      // ?check if items in the local cart are still available (is active and not deleted)
+      const productPromises = modifiedCartItems.map((item) => {
+        return Axios.get(`/products/ping/${item.product._id}`);
+      });
+
+      const responses = await Promise.all(productPromises);
+      const products = responses.map((response) => {
+        return response.data.data.product;
+      });
+
+      modifiedCartItems = modifiedCartItems.filter((item, index) => {
+        return item.product._id === products[index];
+      });
+
       const { data } = await Axios.get('/carts');
 
       // ?if cartItems is empty, update the cart with items from db
-      if (cartItems.length === 0) {
+      if (modifiedCartItems.length === 0) {
         modifiedCartItems = data.data.items;
       }
       // ?if cartItems is not empty

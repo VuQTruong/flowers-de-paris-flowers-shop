@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import CartItem from '../../../components/CartItem/CartItem';
 import MessageBox from '../../../components/MessageBox/MessageBox';
+import { getCart } from '../../../features/cart/get-cart';
 import { currencyFormat } from '../../../utilities/helpers';
 
 function Cart() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const cart = useSelector((state) => state.cart);
@@ -14,7 +16,11 @@ function Cart() {
 
   useEffect(() => {
     window.scroll(0, 0);
-  }, []);
+    if (userInfo) {
+      dispatch(getCart());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch]);
 
   const calculateTotalPrice = () => {
     let totalPrice = 0;
