@@ -10,7 +10,7 @@ const router = express.Router();
 const requiredFields = ['items'];
 
 const validations = [
-  body('items').isArray().notEmpty().withMessage('List of items is missing'),
+  body('items').isArray(),
   body('items.*.product').notEmpty().withMessage('Product is missing'),
   body('item.*.quantity')
     .isNumeric()
