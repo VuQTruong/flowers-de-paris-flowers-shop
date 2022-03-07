@@ -42,7 +42,7 @@ function UserOrders() {
           You don't have any orders to show!
         </MessageBox>
       )}
-      {orders && orders.length !== 0 && (
+      {!loading && orders && orders.length !== 0 && (
         <section className='table__container user-orders__table'>
           <table className='table'>
             <thead>
