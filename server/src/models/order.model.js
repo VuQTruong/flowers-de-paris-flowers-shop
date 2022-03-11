@@ -57,7 +57,6 @@ const orderSchema = new mongoose.Schema(
           code: String,
           name: String,
         },
-        required: true,
       },
       address: { type: String, required: true },
       postalCode: String,
