@@ -1,12 +1,9 @@
 # Flowers de Paris - Flowers Shop
 
----
-
 ## Table of Contents
-
 - [Introduction](#introduction)
 - [Project Demo](#project-demo)
-- [Installing](#installing)
+- [Installation](#installation)
 - [Running the app](#running-the-app)
 - [APIs Overview](#apis-overview)
 	- [Auth Service](#auth-service)
@@ -23,8 +20,6 @@
 	- [Contacts Service](#contacts-service)
 	- [AppConfig Service](#appconfig-service)
 
----
-
 ## Introduction
 Flowers de Paris is a fully functional eCommerce website that supports online trading with credit/debit cards or Paypal. The project was built using the **MERN** tech stack which are **MongoDB**, **Express**, **ReactJS**, **NodeJS**.
 
@@ -32,18 +27,13 @@ The most important thing to any business is the reputation or how to let the cus
 
 Even though the Back-end's APIs are ready to implement features like the **Content Management Systems - CMS**, the Front-end side will be implemented in the future. Other features such as **Dashboard** and **Analytic** are also in the next phase.
 
----
-
 ## Project Demo
 
 - Live at http://flowersdeparis.ca
 
 ![Project Demo](project-demo.gif)
 
----
-
-## Installing
-
+## Installation
 Execute these commands from the project directory
 
 ```
@@ -53,8 +43,6 @@ cd client/ && npm install
 ```
 cd server/ && npm install
 ```
-
----
 
 ## Running the app
 
@@ -69,8 +57,6 @@ And open another terminal on client directory
 ```
 npm start
 ```
-
----
 
 ## APIs Overview
 
