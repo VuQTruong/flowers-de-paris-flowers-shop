@@ -1,8 +1,8 @@
 // !development, comment this out when going to production
-// export const BASE_URL = 'http://localhost:5000/';
+export const BASE_URL = 'http://localhost:5000/';
 
 // !production, comment this out when in development
-export const BASE_URL = '/';
+// export const BASE_URL = '/';
 
 export const RECAPTCHA_SITE_KEY = '6LfTyFweAAAAACPZP6WGppt3PlUTtDiGSZS8lVoE';
 export const PAYPAL_CLIENT_ID =
