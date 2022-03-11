@@ -124,7 +124,7 @@ function PaymentReview(props) {
             </div>
           ))}
 
-          {useCard && card !== {} && (
+          {useCard && Object.keys(card).length !== 0 && (
             <div className='item-details'>
               <span className='item-details__name'>{card.name}</span>
               <span className='item-details__qty'>x1</span>
