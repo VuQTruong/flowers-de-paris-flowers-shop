@@ -5,7 +5,7 @@ const adSetActiveCategory = require('./admin/admin-category-set-active');
 const adGetAllCategories = require('./admin/admin-get-all-categories');
 const adDeleteCategory = require('./admin/admin-delete-category');
 const getAllCategories = require('./get-all-categories');
-const getCategory = require('./get-a-category');
+const adGetCategory = require('./admin/admin-get-a-category');
 const getCategoryBySlug = require('./get-category-by-slug');
 
 const categoryRouter = express.Router();
@@ -16,10 +16,10 @@ categoryRouter.use(adUpdateCategory);
 categoryRouter.use(adSetActiveCategory);
 categoryRouter.use(adDeleteCategory);
 categoryRouter.use(adGetAllCategories);
+categoryRouter.use(adGetCategory);
 
 /* client routes */
 categoryRouter.use(getAllCategories);
-categoryRouter.use(getCategory);
 categoryRouter.use(getCategoryBySlug);
 
 module.exports = categoryRouter;
