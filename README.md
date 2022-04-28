@@ -29,7 +29,7 @@ Even though the Back-end's APIs are ready to implement features like the **Conte
 
 ## Project Demo
 
-- Live at http://flowersdeparis.ca
+- Live at https://www.flowersdeparis.ca/ or https://flowers-de-paris.herokuapp.com/
 
 ![Project Demo](project-demo.gif)
 
